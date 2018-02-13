@@ -9,12 +9,10 @@ public class UIEvents : MonoBehaviour {
     //}
     public void PauseMenuEnable(Animator _anim)
     {
-        Debug.Log("Pausing");
         _anim.SetBool("PauseEnabled", true);
     }
     public void PauseMenuDisable(Animator _anim)
     {
-        Debug.Log("unPausing");
         _anim.SetBool("PauseEnabled", false);
     }
     public void DebugLog(string text)
