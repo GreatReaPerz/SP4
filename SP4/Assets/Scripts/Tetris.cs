@@ -5,19 +5,23 @@ using UnityEngine;
 public class Tetris : MonoBehaviour {
 
 	[SerializeField]
-	private GameObject tetrisPiece; 
+	private Rigidbody2D tetrisPiece;
+	bool stopDrag = false;
+
 
 	// Use this for initialization
 	void Start () {
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		tetrisPiece.transform.Translate (0, 10, 0);
+		if (stopDrag)
+			Debug.Log ("YES");
 	}
 
 	public void DragObject()
 	{
-		tetrisPiece.transform.position = Input.mousePosition;
+		tetrisPiece.MovePosition (Input.mousePosition);
 	}
 }
