@@ -6,8 +6,8 @@ public class Tetris : MonoBehaviour {
 
 	[SerializeField]
 	private Rigidbody2D tetrisPiece;
-	bool stopDrag = false;
-
+	public bool stopDrag = false;
+    public bool isMoving = false;
 
 	// Use this for initialization
 	void Start () {
@@ -22,6 +22,8 @@ public class Tetris : MonoBehaviour {
 
 	public void DragObject()
 	{
-		tetrisPiece.MovePosition (Input.mousePosition);
-	}
+        //tetrisPiece.MovePosition(Input.mousePosition);
+        isMoving = true;
+        //Debug.Log("Moving");
+    }
 }
