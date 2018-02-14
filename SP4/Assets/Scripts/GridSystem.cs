@@ -11,7 +11,7 @@ public class GridSystem : MonoBehaviour {
     const float tileWidth = 100;
     const float tileHeight = 100;
 
-    private TetrisCube tetrisBlock = null;
+    private Tetris tetrisBlock = null;
     private GridData theGridData = null;
 
     float halfTileWidth = tileWidth * 0.5f, halfTileHeight = tileHeight * 0.5f;
@@ -24,7 +24,7 @@ public class GridSystem : MonoBehaviour {
     
     // Use this for initialization
     void Start () {
-        tetrisBlock =  GameObject.Find("TetrisCube(4x4)").GetComponent<TetrisCube>();
+        tetrisBlock =  GameObject.Find("RedQuad").GetComponent<Tetris>();
         theGridData = new GridData();
         theGridData.Init();
 
