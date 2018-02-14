@@ -17,12 +17,22 @@ public class TetrisCube {
 
 
 	FixedJoint2D container = new FixedJoint2D();
+	//container = btmLeft.GetComponent<FixedJoint2D> ();
 	private Rigidbody2D btmLeft = new Rigidbody2D ();
 	private Rigidbody2D btmRight = new Rigidbody2D ();
 	private Rigidbody2D topLeft = new Rigidbody2D ();
 	private Rigidbody2D topRight = new Rigidbody2D ();
-		// Use this for initialization
+
+	public bool isMoving = false;
+
+	// Use this for initialization
 	public TetrisCube(){}
+
+
+
+
+
+
 	
 	// Update is called once per frame
 	void Update () {
@@ -31,6 +41,7 @@ public class TetrisCube {
 	public void DragbtmLeft()
 	{
 		btmLeft.MovePosition (Input.mousePosition);
+        isMoving = true;
 	}
 
 	public void DragbtmRight()
