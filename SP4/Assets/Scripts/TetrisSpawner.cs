@@ -27,7 +27,6 @@ public class TetrisSpawner : MonoBehaviour{
 
 	}
 
-
 	void Spawn4x4Cube ()
 	{
 		GameObject newCube = Instantiate (TetrisList [0], transform.position, Quaternion.identity);

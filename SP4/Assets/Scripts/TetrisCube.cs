@@ -27,12 +27,6 @@ public class TetrisCube {
 
 	// Use this for initialization
 	public TetrisCube(){}
-
-
-
-
-
-
 	
 	// Update is called once per frame
 	void Update () {
