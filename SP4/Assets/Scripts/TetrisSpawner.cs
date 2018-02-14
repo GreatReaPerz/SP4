@@ -37,8 +37,7 @@ public class TetrisSpawner : MonoBehaviour{
 		newCube.transform.SetParent (GameObject.FindGameObjectWithTag ("Canvas").transform, true);
 		TetrisCube theCube = new TetrisCube ();
 
-		tetrisList [key] = theCube;
-		++key;
+
 		//Set up the 4 cubes based on newCube's child
 		theCube.setTheCubes (newCube.transform.Find ("BtmLeft").GetComponent<Rigidbody2D> (), newCube.transform.Find ("BtmRight").GetComponent<Rigidbody2D> (), newCube.transform.Find ("TopLeft").GetComponent<Rigidbody2D> (), newCube.transform.Find ("TopRight").GetComponent<Rigidbody2D> ());
 
@@ -80,5 +79,8 @@ public class TetrisSpawner : MonoBehaviour{
 		});
 		TopRTrig.triggers.Add (TopREntry);
 		return key;
+
+		tetrisList [key] = theCube;
+		++key;
 	}
 }
