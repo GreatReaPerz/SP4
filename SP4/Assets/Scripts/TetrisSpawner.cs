@@ -6,14 +6,18 @@ using UnityEngine.EventSystems;
 public class TetrisSpawner : MonoBehaviour{
 
 	[SerializeField]
-	GameObject[] TetrisList;
+	GameObject[] TetrisTypes;
 
+
+	public TetrisCube[] tetrisList = new TetrisCube[3]; 
 	float timer = 0;
-
+	int numSpawned = 0;
 
   	// Use this for initialization
 	void Start () {
-		Spawn4x4Cube ();
+		
+		numSpawned = Spawn4x4Cube (numSpawned);
+		numSpawned = Spawn4x4Cube (numSpawned);
 	}
 	
 	// Update is called once per frame
@@ -28,12 +32,14 @@ public class TetrisSpawner : MonoBehaviour{
 	}
 
 
-	void Spawn4x4Cube ()
+	int Spawn4x4Cube (int key)
 	{
-		GameObject newCube = Instantiate (TetrisList [0], transform.position, Quaternion.identity);
+		GameObject newCube = Instantiate (TetrisTypes [0], transform.position, Quaternion.identity);
 		newCube.transform.SetParent (GameObject.FindGameObjectWithTag ("Canvas").transform, true);
 		TetrisCube theCube = new TetrisCube ();
 
+		tetrisList [key] = theCube;
+		++key;
 		//Set up the 4 cubes based on newCube's child
 		theCube.setTheCubes (newCube.transform.Find ("BtmLeft").GetComponent<Rigidbody2D> (), newCube.transform.Find ("BtmRight").GetComponent<Rigidbody2D> (), newCube.transform.Find ("TopLeft").GetComponent<Rigidbody2D> (), newCube.transform.Find ("TopRight").GetComponent<Rigidbody2D> ());
 
@@ -74,5 +80,6 @@ public class TetrisSpawner : MonoBehaviour{
 			theCube.DragtopRight ();
 		});
 		TopRTrig.triggers.Add (TopREntry);
+		return key;
 	}
 }
