@@ -1018,7 +1018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d87b0bc424dc9f3419a42999eb6abb08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TetrisList:
+  TetrisTypes:
   - {fileID: 1911669028287552, guid: dc41c7ddc1e19ce468cc3ff9fe2dd14a, type: 2}
 --- !u!4 &1081676153
 Transform:
