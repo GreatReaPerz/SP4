@@ -16,8 +16,11 @@ public class TetrisCube : MonoBehaviour {
 	private Hashtable tetrisList = new Hashtable();
 	FixedJoint2D container = new FixedJoint2D();
 	private Rigidbody2D bottomRight = new Rigidbody2D ();
-		// Use this for initialization
-	void Start () {
+
+    public bool isMoving = false;
+
+    // Use this for initialization
+    void Start () {
 		container = btmLeft.GetComponent<FixedJoint2D> ();
 	}
 	
@@ -28,6 +31,7 @@ public class TetrisCube : MonoBehaviour {
 	public void DragbtmLeft()
 	{
 		btmLeft.MovePosition (Input.mousePosition);
+        isMoving = true;
 	}
 
 	public void DragbtmRight()

@@ -147,6 +147,7 @@ public class GridData
 
     public bool AddTetrisBlockData(uint Index, string NameID, string UnitType, uint Health, uint moveSpeed, uint attackDamage, uint attackRate)
     {
+        //Check if there is already a unit in that tile
         if (gridData[Index] != null)
         {
             return false;
@@ -160,6 +161,7 @@ public class GridData
 
     public bool RemoveTetrisBlockData(uint Index)
     {
+        //Check if there is no unit inside that tile
         if (gridData[Index] == null)
         {
             return false;
@@ -174,20 +176,17 @@ public class GridData
 //Storage class for Tetris Block data
 public class TetrisData
 {
-    public string NameID, UnitType;
+    string NameID, UnitType;
     uint Health, moveSpeed, attackDamage, attackRate;
-
+    uint OriginalHealth, OriginalMoveSpeed, OriginalAttackDamage, OriginalAttackRate;
 
     public TetrisData()
     {
         NameID = UnitType = "";
         Health = moveSpeed = attackDamage = attackRate = 0;
+        OriginalHealth = OriginalMoveSpeed = OriginalAttackDamage = OriginalAttackRate = 0;
     }
-
-    void Update()
-    {
-    }
-
+    
     public void CreateUnit(string NameID, string UnitType, uint Health, uint moveSpeed, uint attackDamage, uint attackRate)
     {
         this.NameID = NameID;
@@ -196,6 +195,97 @@ public class TetrisData
         this.moveSpeed = moveSpeed;
         this.attackDamage = attackDamage;
         this.attackRate = attackRate;
+
+        OriginalHealth = Health;
+        OriginalMoveSpeed = moveSpeed;
+        OriginalAttackDamage = attackDamage;
+        OriginalAttackRate = attackRate;
+    }
+
+    //Getters
+    uint GetHealth()
+    {
+        return Health;
+    }
+    uint GetMoveSpeed()
+    {
+        return moveSpeed;
+    }
+    uint GetAttackDamage()
+    {
+        return attackDamage;
+    }
+    uint GetAttackRate()
+    {
+        return attackRate;
+    }
+    string GetNameID()
+    {
+        return NameID;
+    }
+    string GetUnitType()
+    {
+        return UnitType;
+    }
+
+    //Setters
+    void SetHealth(uint newHealthValue)
+    {
+        Health = newHealthValue;
+    }
+    void SetMoveSpeed(uint newMoveSpeedValue)
+    {
+        moveSpeed = newMoveSpeedValue;
+    }
+    void SetAttackDamage(uint newAttackDamageValue)
+    {
+        attackDamage = newAttackDamageValue;
+    }
+    void SetAttackRate(uint newAttackRateValue)
+    {
+        attackRate = newAttackRateValue;
+    }
+    void SetNameID(string newNameIDValue)
+    {
+        NameID = newNameIDValue;
+    }
+    void SetUnitType(string newUnitTypeValue)
+    {
+        UnitType = newUnitTypeValue;
+    }
+
+    //Subtractors & Adders
+    void SubractHealth(uint HealthToSubtract)
+    {
+        Health -= HealthToSubtract;
+    }
+    void AddHealth(uint HealthToAdd)
+    {
+        Health += HealthToAdd;
+    }
+    void SubractMoveSpeed(uint MoveSpeedToSubtract)
+    {
+        moveSpeed -= MoveSpeedToSubtract;
+    }
+    void AddMoveSpeed(uint MoveSpeedToAdd)
+    {
+        moveSpeed += MoveSpeedToAdd;
+    }
+    void SubractAttackRate(uint AttackRateToSubtract)
+    {
+        attackRate -= AttackRateToSubtract;
+    }
+    void AddAttackRate(uint AttackRateToAdd)
+    {
+        attackRate += AttackRateToAdd;
+    }
+    void SubractAttackDamage(uint AttackDamageToSubtract)
+    {
+        attackDamage -= AttackDamageToSubtract;
+    }
+    void AddAttackDamage(uint AttackDamageToAdd)
+    {
+        attackDamage += AttackDamageToAdd;
     }
 }
 
