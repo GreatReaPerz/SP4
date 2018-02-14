@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthSystem : MonoBehaviour {
-    int health/* = 100*/;
+    float health/* = 100*/;
+    float previousHealth;
     [SerializeField]
-    int maxHealth = 100;
+    float maxHealth = 100f;
 	// Use this for initialization
 	void Start () {
         health = maxHealth;
-	}
+        previousHealth = health;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -17,14 +19,25 @@ public class HealthSystem : MonoBehaviour {
 	}
     public void addHealth(int _amount)
     {
+        previousHealth = health;
         health += _amount;
+        if (health > maxHealth)
+            health = maxHealth;
     }
-    public int getHealth()
+    public float getHealth()
     {
         return health;
     }
-    public int getMaxHealth()
+    public float getMaxHealth()
     {
         return maxHealth;
+    }
+    public bool isHealthModified()
+    {
+        return previousHealth != health;
+    }
+    public void setHealthModifiedToFalse()
+    {
+        previousHealth = health;
     }
 }

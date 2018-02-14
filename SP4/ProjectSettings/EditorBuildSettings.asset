@@ -10,4 +10,16 @@ EditorBuildSettings:
     guid: ed55651c9ee725f429db7e3ad1a2ad85
   - enabled: 1
     path: Assets/Scenes/Game.unity
+    guid: 8907219d325fc37409f4b369a605a3ed
+  - enabled: 1
+    path: Assets/Scenes/Marcus.unity
+    guid: 7b20936724c248f4c80989ed9aa657df
+  - enabled: 1
+    path: Assets/Scenes/ChuanXu.unity
+    guid: 0e3912aafbd508645acf9b1e7980d1ad
+  - enabled: 1
+    path: Assets/Scenes/Shish.unity
+    guid: c5d950b58af40064fa89c47a044ac75c
+  - enabled: 1
+    path: Assets/Scenes/Steven.unity
     guid: 00000000000000000000000000000000

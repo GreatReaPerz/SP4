@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class UIEvents : MonoBehaviour {
-    //void Start()
-    //{
-    //    Debug.Log("Hello");
-    //}
-    public void PauseMenuEnable(Animator _anim)
+    string boolToCheck;
+    public void BoolToCheckEnable(Animator _anim)
     {
-        _anim.SetBool("PauseEnabled", true);
+        _anim.SetBool(boolToCheck, true);
     }
-    public void PauseMenuDisable(Animator _anim)
+    public void BoolToCheckDisable(Animator _anim)
     {
-        _anim.SetBool("PauseEnabled", false);
+        _anim.SetBool(boolToCheck, false);
+    }
+    public void SetBoolToCheck(string boolName)
+    {
+        boolToCheck = boolName;
     }
     public void DebugLog(string text)
     {
