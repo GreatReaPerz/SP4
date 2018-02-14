@@ -39,7 +39,7 @@ public class GridSystem : MonoBehaviour {
             grid[i].rectTransform.sizeDelta = new Vector2(tileWidth, tileHeight);
             
             //Adjusts the individual grid block's position
-            grid[i].transform.position = new Vector2(rowCount * halfTileWidth, heightCount * halfTileHeight);
+            grid[i].transform.position = new Vector2((rowCount * halfTileWidth) + halfTileWidth, (heightCount * halfTileHeight) + (tileHeight * 10));
 
             rowCount += 2;
 

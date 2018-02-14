@@ -681,13 +681,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64cd4b965d90fa84f8cc73951bfd73e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  btmLeft: {fileID: 2067033978}
-  btmRight: {fileID: 1364434388}
-  topLeft: {fileID: 1458767981}
-  topRight: {fileID: 1449502564}
-  container: {fileID: 0}
-  bottomRight: {fileID: 0}
-  isMoving: 0
 --- !u!224 &186920243
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5560,7 +5553,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 0.99
-  m_ReferenceResolution: {x: 1024, y: 800}
+  m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
