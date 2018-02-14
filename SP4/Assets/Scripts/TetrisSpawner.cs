@@ -13,6 +13,9 @@ public class TetrisSpawner : MonoBehaviour{
 	float timer = 0;
 	int numSpawned = 0;
 
+    public bool SomethingIsMoving = false;
+    public uint IndexofMovingObject = 0;
+
   	// Use this for initialization
 	void Start () {
 		
@@ -29,6 +32,24 @@ public class TetrisSpawner : MonoBehaviour{
 			timer = 0;
 		}*/
 
+        for(uint i = 0; i < 3; ++i)
+        {
+            SomethingIsMoving = false;
+
+            if(tetrisList[i] == null)
+            {
+                continue;
+            }
+
+            if (tetrisList[i].isMoving)
+            {
+                SomethingIsMoving = true;
+                IndexofMovingObject = i;
+                break;
+            }
+
+            tetrisList[i].isMoving = false;
+        }
 	}
     
 	int Spawn4x4Cube (int key)
@@ -78,9 +99,10 @@ public class TetrisSpawner : MonoBehaviour{
 			theCube.DragtopRight ();
 		});
 		TopRTrig.triggers.Add (TopREntry);
-		return key;
 
 		tetrisList [key] = theCube;
 		++key;
-	}
+
+        return key;
+    }
 }

@@ -13,6 +13,7 @@ public class GridSystem : MonoBehaviour {
 
     private Tetris tetrisBlock = null;
     private GridData theGridData = null;
+    private TetrisSpawner theTetrisSpawner = null;
 
     float halfTileWidth = tileWidth * 0.5f, halfTileHeight = tileHeight * 0.5f;
 
@@ -25,11 +26,15 @@ public class GridSystem : MonoBehaviour {
     // Use this for initialization
     void Start () {
         tetrisBlock =  GameObject.Find("RedQuad").GetComponent<Tetris>();
+
         theGridData = new GridData();
         theGridData.Init();
 
+        theTetrisSpawner = GameObject.Find("Spawner").GetComponent<TetrisSpawner>();
+
         Debug.Assert(tetrisBlock != null);
         Debug.Assert(theGridData != null);
+        Debug.Assert(theTetrisSpawner != null);
 
         uint rowCount = 1, heightCount = 1;
         
@@ -65,7 +70,7 @@ public class GridSystem : MonoBehaviour {
     {
         if (Input.GetMouseButton(0) == true)
         {
-            if (tetrisBlock.isMoving == true)
+            if (theTetrisSpawner.SomethingIsMoving == true)
             {
                 uint colNum = 0, rowNum = 0;
 
@@ -90,7 +95,33 @@ public class GridSystem : MonoBehaviour {
                 }
 
                 objectIndex = colNum + (rowNum * col);
-                FirstTetrisBlock.transform.position = grid[objectIndex].transform.position;
+                //FirstTetrisBlock.transform.position = grid[objectIndex].transform.position;
+
+                switch(theTetrisSpawner.tetrisList[theTetrisSpawner.IndexofMovingObject].Whatisbeingmoved)
+                {
+                    case "btmLeft":
+                        {
+                            theTetrisSpawner.tetrisList[theTetrisSpawner.IndexofMovingObject].btmLeft.MovePosition(grid[objectIndex].transform.position);
+                            break;
+                        }
+                    case "btmRight":
+                        {
+                            theTetrisSpawner.tetrisList[theTetrisSpawner.IndexofMovingObject].btmRight.MovePosition(grid[objectIndex].transform.position);
+                            break;
+                        }
+                    case "topLeft":
+                        {
+                            theTetrisSpawner.tetrisList[theTetrisSpawner.IndexofMovingObject].topLeft.MovePosition(grid[objectIndex].transform.position);
+                            break;
+                        }
+                    case "topRight":
+                        {
+                            theTetrisSpawner.tetrisList[theTetrisSpawner.IndexofMovingObject].topRight.MovePosition(grid[objectIndex].transform.position);
+                            break;
+                        }
+                    default:
+                        break;
+                };
                 isMouseMovingAnObject = true;
             }
 
@@ -98,10 +129,11 @@ public class GridSystem : MonoBehaviour {
         else if (isMouseMovingAnObject && Input.GetMouseButtonUp(0)) //When the touch is released, it saves the tetris data into the data grid tile
         {
             //Set the tetris block to not moving
-            tetrisBlock.isMoving = false;
+            // tetrisBlock.isMoving = false;
+            theTetrisSpawner.tetrisList[theTetrisSpawner.IndexofMovingObject].isMoving = false;
 
             //Pass the tetris block data into the grid data
-            if(theGridData.AddTetrisBlockData(objectIndex, "Test01", "UnitTest", 100, 20, 35, 45))
+            if (theGridData.AddTetrisBlockData(objectIndex, "Test01", "UnitTest", 100, 20, 35, 45))
             {
                 Debug.Log("Successful Save");
             }
