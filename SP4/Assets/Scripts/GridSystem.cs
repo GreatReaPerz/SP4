@@ -140,11 +140,7 @@ public class GridData
         gridDataSize = GridSystem.gridSize;
         gridData = new TetrisData[gridDataSize];
     }
-
-    void Update()
-    {
-    }
-
+    
     public bool AddTetrisBlockData(uint Index, string NameID, string UnitType, uint Health, uint moveSpeed, uint attackDamage, uint attackRate)
     {
         //Check if there is already a unit in that tile

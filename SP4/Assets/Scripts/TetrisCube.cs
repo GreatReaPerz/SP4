@@ -13,7 +13,7 @@ public class TetrisCube {
 	public bool isMoving = false;
 
 	// Use this for initialization
-	public TetrisCube( ){
+	public TetrisCube(){
 	}
 
 	// Update is called once per frame

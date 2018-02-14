@@ -30,8 +30,7 @@ public class TetrisSpawner : MonoBehaviour{
 		}*/
 
 	}
-
-
+    
 	int Spawn4x4Cube (int key)
 	{
 		GameObject newCube = Instantiate (TetrisTypes [0], transform.position, Quaternion.identity);
