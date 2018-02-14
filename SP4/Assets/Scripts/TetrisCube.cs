@@ -2,24 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TetrisCube : MonoBehaviour {
+public class TetrisCube {
 
-	[SerializeField]
+	/*[SerializeField]
 	private Rigidbody2D btmLeft;
 	[SerializeField]
 	private Rigidbody2D btmRight;
 	[SerializeField]
 	private Rigidbody2D topLeft;
 	[SerializeField]
-	private Rigidbody2D topRight;
+	private Rigidbody2D topRight;*/
 
 	private Hashtable tetrisList = new Hashtable();
+
+
 	FixedJoint2D container = new FixedJoint2D();
-	private Rigidbody2D bottomRight = new Rigidbody2D ();
+	private Rigidbody2D btmLeft = new Rigidbody2D ();
+	private Rigidbody2D btmRight = new Rigidbody2D ();
+	private Rigidbody2D topLeft = new Rigidbody2D ();
+	private Rigidbody2D topRight = new Rigidbody2D ();
 		// Use this for initialization
-	void Start () {
-		container = btmLeft.GetComponent<FixedJoint2D> ();
-	}
+	public TetrisCube(){}
 	
 	// Update is called once per frame
 	void Update () {
@@ -32,6 +35,7 @@ public class TetrisCube : MonoBehaviour {
 
 	public void DragbtmRight()
 	{
+
 		btmRight.MovePosition (Input.mousePosition);
 	}
 
@@ -56,6 +60,14 @@ public class TetrisCube : MonoBehaviour {
 			return tetrisList [key];
 		else
 			return null;
+	}
+
+	public void setTheCubes(Rigidbody2D _btmLeft,Rigidbody2D _btmRight,Rigidbody2D _topLeft, Rigidbody2D _topRight)
+	{
+		btmLeft = _btmLeft;
+		btmRight = _btmRight;
+		topLeft = _topLeft;
+		topRight = _topRight;
 	}
 
 }
