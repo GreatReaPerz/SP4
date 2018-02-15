@@ -19,11 +19,12 @@ public class TetrisSpawner : MonoBehaviour{
   	// Use this for initialization
 	void Start () {
 		
-		//numSpawned = Spawn4x4Cube (numSpawned);
+		numSpawned = Spawn4x4Cube (numSpawned);
+		numSpawned = Spawn4x4Cube (numSpawned);
 		//numSpawned = SpawnTShape (numSpawned);
 
 		//numSpawned = SpawnLShape (numSpawned);
-		numSpawned = SpawnZShape(numSpawned);
+		//numSpawned = SpawnZShape(numSpawned);
 	}
 	
 	// Update is called once per frame
