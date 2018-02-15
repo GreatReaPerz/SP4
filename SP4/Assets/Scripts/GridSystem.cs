@@ -11,8 +11,7 @@ public class GridSystem : MonoBehaviour {
 
     const float tileWidth = 100;
     const float tileHeight = 100;
-
-    private Tetris tetrisBlock = null;
+    
     private GridData theGridData = null;
     private TetrisSpawner theTetrisSpawner = null;
 
@@ -26,14 +25,12 @@ public class GridSystem : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        tetrisBlock =  GameObject.Find("RedQuad").GetComponent<Tetris>();
 
         theGridData = new GridData();
         theGridData.Init();
 
         theTetrisSpawner = GameObject.Find("Spawner").GetComponent<TetrisSpawner>();
-
-        Debug.Assert(tetrisBlock != null);
+        
         Debug.Assert(theGridData != null);
         Debug.Assert(theTetrisSpawner != null);
 
