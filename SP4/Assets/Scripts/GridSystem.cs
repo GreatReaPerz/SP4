@@ -5,11 +5,12 @@ using UnityEngine.UI;
 
 public class GridSystem : MonoBehaviour {
 
-    const ushort row = 6, col = 10;
+    //Note: Increasing the num of rows & col means that you also need to add more images into the array in the inspector
+    const ushort row = 6, col = 11;
     public const uint gridSize = row * col;
 
-    const float tileWidth = 100;
-    const float tileHeight = 100;
+    const float tileWidth = 0.5f;
+    const float tileHeight = 0.5f;
 
     private Tetris tetrisBlock = null;
     private GridData theGridData = null;
@@ -22,7 +23,10 @@ public class GridSystem : MonoBehaviour {
 
     [SerializeField]
     Image FirstTetrisBlock;
-    
+
+    [SerializeField]
+    Canvas thisCanvas;
+
     // Use this for initialization
     void Start () {
         tetrisBlock =  GameObject.Find("RedQuad").GetComponent<Tetris>();
@@ -36,28 +40,37 @@ public class GridSystem : MonoBehaviour {
         Debug.Assert(theGridData != null);
         Debug.Assert(theTetrisSpawner != null);
 
-        uint rowCount = 1, heightCount = 1;
+        RectTransform objectRectTransform = thisCanvas.GetComponent<RectTransform>();
+        Vector2 Grid0Pos = new Vector2(objectRectTransform.transform.position.x - (0.5f * (col - 1) * tileWidth) , objectRectTransform.transform.position.y  - ((row * tileHeight)) - 2 * (tileHeight));
         
+        grid[0].transform.position = Grid0Pos;
+
         for (uint i = 0; i < gridSize; ++i)
         {
             //Adjusts the individual grid block's size
             grid[i].rectTransform.sizeDelta = new Vector2(tileWidth, tileHeight);
             
-            //Adjusts the individual grid block's position
-            grid[i].transform.position = new Vector2((rowCount * halfTileWidth) + halfTileWidth, (heightCount * halfTileHeight) + (tileHeight * 10));
-
-            rowCount += 2;
-
-            if ((i + 1) % (col) == 0)
-            {
-                rowCount = 1;
-                heightCount += 2;
-            }
-
             //Anchor to bottom
             grid[i].rectTransform.anchorMin = new Vector2(0.5f, 0);
             grid[i].rectTransform.anchorMax = new Vector2(0.5f, 0);
             grid[i].rectTransform.pivot = new Vector2(0.5f, 0.5f);
+
+            if(i == 0)
+            {
+                continue;
+            }
+            
+
+            //Adjusts the individual grid block's position
+            //grid[i].transform.position = new Vector2((rowCount * halfTileWidth) + halfTileWidth, (heightCount * halfTileHeight) + (tileHeight * 10));
+            if (i < col)
+            {
+                grid[i].transform.position = new Vector2(grid[0].transform.position.x + (i * tileWidth), grid[0].transform.position.y);
+            }
+            else
+            {
+                grid[i].transform.position = new Vector2(grid[i - col].transform.position.x, grid[i - col].transform.position.y + tileHeight);
+            }
         }
 
     }
