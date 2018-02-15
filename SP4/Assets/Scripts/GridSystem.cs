@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class GridSystem : MonoBehaviour {
 
     //Note: Increasing the num of rows & col means that you also need to add more images into the array in the inspector
-    const ushort row = 6, col = 11;
+    const ushort row = 6, col = 10;
     public const uint gridSize = row * col;
 
-    const float tileWidth = 0.5f;
-    const float tileHeight = 0.5f;
+    const float tileWidth = 100;
+    const float tileHeight = 100;
 
     private Tetris tetrisBlock = null;
     private GridData theGridData = null;
@@ -20,10 +20,7 @@ public class GridSystem : MonoBehaviour {
 
     [SerializeField]
     Image[] grid = new Image[gridSize];
-
-    [SerializeField]
-    Image FirstTetrisBlock;
-
+    
     [SerializeField]
     Canvas thisCanvas;
 
@@ -60,9 +57,7 @@ public class GridSystem : MonoBehaviour {
                 continue;
             }
             
-
-            //Adjusts the individual grid block's position
-            //grid[i].transform.position = new Vector2((rowCount * halfTileWidth) + halfTileWidth, (heightCount * halfTileHeight) + (tileHeight * 10));
+            //Adjusts the individual grid block's position\
             if (i < col)
             {
                 grid[i].transform.position = new Vector2(grid[0].transform.position.x + (i * tileWidth), grid[0].transform.position.y);
