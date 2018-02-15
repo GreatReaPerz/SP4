@@ -23,28 +23,28 @@ public class TetrisCube {
 
 	public void DragbtmLeft()
 	{
-		//btmLeft.MovePosition (Input.mousePosition);
+		btmLeft.MovePosition (Input.mousePosition);
         isMoving = true;
         Whatisbeingmoved = "btmLeft";
 	}
 
 	public void DragbtmRight()
 	{
-		//btmRight.MovePosition (Input.mousePosition);
+		btmRight.MovePosition (Input.mousePosition);
         isMoving = true;
         Whatisbeingmoved = "btmRight";
     }
 
 	public void DragtopLeft()
 	{
-		//topLeft.MovePosition(Input.mousePosition);
+		topLeft.MovePosition(Input.mousePosition);
         isMoving = true;
         Whatisbeingmoved = "topLeft";
     }
 
 	public void DragtopRight()
 	{
-		//topRight.MovePosition (Input.mousePosition);
+		topRight.MovePosition (Input.mousePosition);
         isMoving = true;
         Whatisbeingmoved = "topRight";
     }
