@@ -5,12 +5,13 @@ using UnityEngine;
 public class TetrisCube {
 		FixedJoint2D container = new FixedJoint2D();
 	//container = btmLeft.GetComponent<FixedJoint2D> ();
-	private Rigidbody2D btmLeft = new Rigidbody2D ();
-	private Rigidbody2D btmRight = new Rigidbody2D ();
-	private Rigidbody2D topLeft = new Rigidbody2D ();
-	private Rigidbody2D topRight = new Rigidbody2D ();
+	public Rigidbody2D btmLeft = new Rigidbody2D ();
+	public Rigidbody2D btmRight = new Rigidbody2D ();
+	public Rigidbody2D topLeft = new Rigidbody2D ();
+	public Rigidbody2D topRight = new Rigidbody2D ();
 
 	public bool isMoving = false;
+    public string Whatisbeingmoved = "";
 
 	// Use this for initialization
 	public TetrisCube(){
@@ -22,24 +23,31 @@ public class TetrisCube {
 
 	public void DragbtmLeft()
 	{
-		btmLeft.MovePosition (Input.mousePosition);
+		//btmLeft.MovePosition (Input.mousePosition);
         isMoving = true;
+        Whatisbeingmoved = "btmLeft";
 	}
 
 	public void DragbtmRight()
 	{
-		btmRight.MovePosition (Input.mousePosition);
-	}
+		//btmRight.MovePosition (Input.mousePosition);
+        isMoving = true;
+        Whatisbeingmoved = "btmRight";
+    }
 
 	public void DragtopLeft()
 	{
-		topLeft.MovePosition(Input.mousePosition);
-	}
+		//topLeft.MovePosition(Input.mousePosition);
+        isMoving = true;
+        Whatisbeingmoved = "topLeft";
+    }
 
 	public void DragtopRight()
 	{
-		topRight.MovePosition (Input.mousePosition);
-	}
+		//topRight.MovePosition (Input.mousePosition);
+        isMoving = true;
+        Whatisbeingmoved = "topRight";
+    }
 		
 	public void setTheCubes(Rigidbody2D _btmLeft,Rigidbody2D _btmRight,Rigidbody2D _topLeft, Rigidbody2D _topRight)
 	{
