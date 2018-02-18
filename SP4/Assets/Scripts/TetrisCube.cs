@@ -11,7 +11,10 @@ public class TetrisCube {
 	public Rigidbody2D topRight = new Rigidbody2D ();
 
 	public bool isMoving = false;
+    public bool returning = false;
     public string Whatisbeingmoved = "";
+    public Vector3 origin;
+    public GameObject parentCube;
 
 	// Use this for initialization
 	public TetrisCube(){
@@ -25,6 +28,7 @@ public class TetrisCube {
 	{
 		btmLeft.MovePosition (Input.mousePosition);
         isMoving = true;
+        returning = false;
         Whatisbeingmoved = "btmLeft";
 	}
 
@@ -32,6 +36,7 @@ public class TetrisCube {
 	{
 		btmRight.MovePosition (Input.mousePosition);
         isMoving = true;
+        returning = false;
         Whatisbeingmoved = "btmRight";
     }
 
@@ -39,6 +44,7 @@ public class TetrisCube {
 	{
 		topLeft.MovePosition(Input.mousePosition);
         isMoving = true;
+        returning = false;
         Whatisbeingmoved = "topLeft";
     }
 
@@ -46,6 +52,7 @@ public class TetrisCube {
 	{
 		topRight.MovePosition (Input.mousePosition);
         isMoving = true;
+        returning = false;
         Whatisbeingmoved = "topRight";
     }
 		
