@@ -19,11 +19,33 @@ public class TetrisSpawner : MonoBehaviour{
 
   	// Use this for initialization
 	void Start () {
-		
-		numSpawned = Spawn4x4Cube (numSpawned);
-		numSpawned = Spawn4x4Cube (numSpawned);
-		numSpawned = Spawn4x4Cube(numSpawned);
-
+		for (int i = 0; i < 3; ++i) {
+			int rand = Random.Range (0, TetrisTypes.Length -1);
+			switch(rand)
+			{
+			case 0:
+				{
+					numSpawned = Spawn4x4Cube (numSpawned);
+					break;
+				}
+			case 1:
+				{
+					numSpawned = SpawnLShape (numSpawned);
+					break;
+				}
+			case 2:
+				{
+					numSpawned = SpawnTShape (numSpawned);
+					break;
+				}
+			case 3:
+				{
+					numSpawned = SpawnZShape (numSpawned);
+					break;
+				}
+			};
+			Debug.Log (rand);
+		}
 		//numSpawned = SpawnLShape (numSpawned);
 		//numSpawned = SpawnZShape(numSpawned);
 	}
@@ -67,9 +89,6 @@ public class TetrisSpawner : MonoBehaviour{
 
             tetrisList[i].isMoving = false;
         }
-		for (int i = 0; i < 1; ++i) {
-			tetrisList [i].StateMachine.Update ();
-		}
 	}
     
 	int Spawn4x4Cube (int key)
@@ -83,7 +102,7 @@ public class TetrisSpawner : MonoBehaviour{
         theCube.parentCube.transform.position = theCube.origin;
 
 		//Adding state to the stateMachine
-		theCube.StateMachine.AddState(new TetrisMove("Move",theCube));
+		// theCube.StateMachine.AddState(new TetrisMove("Move",theCube));
 
         //Set up the 4 cubes based on theCube.parentCube's child
         theCube.setTheCubes (theCube.parentCube.transform.Find ("BtmLeft").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("BtmRight").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("TopLeft").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("TopRight").GetComponent<Rigidbody2D> ());
@@ -137,7 +156,10 @@ public class TetrisSpawner : MonoBehaviour{
         TetrisCube theCube = new TetrisCube();
         theCube.parentCube = Instantiate (TetrisTypes [1], transform.position, Quaternion.identity);
 		theCube.parentCube.transform.SetParent (GameObject.FindGameObjectWithTag ("Canvas").transform, true);
-
+		pil.Set(-300 + (key * 300), -300, 0);
+		pil1 = theCube.parentCube.transform.position + pil;
+		theCube.origin.Set(pil1.x, pil1.y, pil1.z);
+		theCube.parentCube.transform.position = theCube.origin;
 
 		//Set up the 4 cubes based on theCube.parentCube's child
 		theCube.setTheCubes (theCube.parentCube.transform.Find ("TopLeft").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("TopRight").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("TopCenter").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("BtmCenter").GetComponent<Rigidbody2D> ());
@@ -191,7 +213,10 @@ public class TetrisSpawner : MonoBehaviour{
         TetrisCube theCube = new TetrisCube();
         theCube.parentCube = Instantiate (TetrisTypes [2], transform.position, Quaternion.identity);
 		theCube.parentCube.transform.SetParent (GameObject.FindGameObjectWithTag ("Canvas").transform, true);
-
+		pil.Set(-300 + (key * 300), -300, 0);
+		pil1 = theCube.parentCube.transform.position + pil;
+		theCube.origin.Set(pil1.x, pil1.y, pil1.z);
+		theCube.parentCube.transform.position = theCube.origin;
 
 		//Set up the 4 cubes based on theCube.parentCube's child
 		theCube.setTheCubes (theCube.parentCube.transform.Find ("Top").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("Center").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("Btm").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("BtmRight").GetComponent<Rigidbody2D> ());
@@ -246,7 +271,10 @@ public class TetrisSpawner : MonoBehaviour{
 
         theCube.parentCube = Instantiate (TetrisTypes [3], transform.position, Quaternion.identity);
 		theCube.parentCube.transform.SetParent (GameObject.FindGameObjectWithTag ("Canvas").transform, true);
-
+		pil.Set(-300 + (key * 300), -300, 0);
+		pil1 = theCube.parentCube.transform.position + pil;
+		theCube.origin.Set(pil1.x, pil1.y, pil1.z);
+		theCube.parentCube.transform.position = theCube.origin;
 
 
 		//Set up the 4 cubes based on theCube.parentCube's child
