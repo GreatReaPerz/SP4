@@ -414,7 +414,7 @@ public class GridData
     }
 }
 
-//Terrain basic unit modifiers: Hills Favourable to archers, Forest favourable to combat infantry, Rivers favourable to cavalry
+//Terrain basic unit modifiers: Hills favourable to Bowmen, Forest favourable to Combat Infantry, Rivers favourable to Cavalry
 //Plains favour all units
 
 //Storage class for Tetris Block data
@@ -447,6 +447,172 @@ public class TetrisData
         OriginalAttackRate = attackRate;
 
         this.Position = position;
+    }
+
+    public bool neutralZoneStatsChanged = false;
+    public void TerrainStatsModify(string NeutralZoneTerrainType)
+    {
+        //Slow down units based on terrain modifiers
+        switch (UnitType)
+        {
+            case "Infantry":
+                {
+                    if (NeutralZoneTerrainType == "Hills")
+                    {
+                        //Subtract 10% attack damage
+                        attackDamage -= (attackDamage * 0.1f);
+
+                        //Subtract 15% movement
+                        moveSpeed -= (moveSpeed * 0.15f);
+
+                        //Subtrack 10% attack rate
+                        attackRate -= (attackRate * 0.1f);
+                    }
+                    else if(NeutralZoneTerrainType == "Forest")
+                    {
+                        //Add 15% attack damage
+                        attackDamage += (attackDamage * 0.1f);
+
+                        //Subtract 10% movement
+                        moveSpeed -= (moveSpeed * 0.1f);
+
+                        //Subtrack 5% attack rate
+                        attackRate -= (attackRate * 0.05f);
+                    }
+                    else if(NeutralZoneTerrainType == "River")
+                    {
+                        //Subtract 10% attack damage
+                        attackDamage -= (attackDamage * 0.1f);
+
+                        //Subtract 15% movement
+                        moveSpeed -= (moveSpeed * 0.15f);
+
+                        //Subtract 15% attack rate
+                        attackRate -= (attackRate * 0.1f);
+                    }
+                    else if(NeutralZoneTerrainType == "Plains")
+                    {
+                        //Add 10% attack damage
+                        attackDamage += (attackDamage * 0.1f);
+
+                        //Add 20% movement
+                        moveSpeed += (moveSpeed * 0.2f);
+
+                        //Add 10% attack rate
+                        attackRate += (attackRate * 0.1f);
+                    }
+                    break;
+                }
+            case "Cavalry":
+                {
+                    if (NeutralZoneTerrainType == "Hills")
+                    {
+                        //Subtract 15% attack damage
+                        attackDamage -= (attackDamage * 0.15f);
+
+                        //Subtract 25% movement
+                        moveSpeed -= (moveSpeed * 0.25f);
+
+                        //Subtrack 15% attack rate
+                        attackRate -= (attackRate * 0.15f);
+                    }
+                    else if (NeutralZoneTerrainType == "Forest")
+                    {
+                        //Subtract 10% attack damage
+                        attackDamage -= (attackDamage * 0.1f);
+
+                        //Subtract 15% movement
+                        moveSpeed -= (moveSpeed * 0.15f);
+
+                        //Subtrack 5% attack rate
+                        attackRate -= (attackRate * 0.05f);
+                    }
+                    else if (NeutralZoneTerrainType == "River")
+                    {
+                        //Add 10% attack damage
+                        attackDamage += (attackDamage * 0.1f);
+
+                        //Subtract 10% movement
+                        moveSpeed -= (moveSpeed * 0.1f);
+
+                        //Subtrack 10% attack rate
+                        attackRate -= (attackRate * 0.1f);
+                    }
+                    else if (NeutralZoneTerrainType == "Plains")
+                    {
+                        //Add 10% attack damage
+                        attackDamage += (attackDamage * 0.1f);
+
+                        //Add 15% movement
+                        moveSpeed += (moveSpeed * 0.15f);
+
+                        //Add 15% attack rate
+                        attackRate += (attackRate * 0.1f);
+                    }
+                    break;
+                }
+            case "Bowmen":
+                {
+                    if (NeutralZoneTerrainType == "Hills")
+                    {
+                        //Add 10% attack damage
+                        attackDamage += (attackDamage * 0.1f);
+                        
+                        //Add 5% attack rate
+                        attackRate += (attackRate * 0.05f);
+
+                        //Subtract 10% movement speed
+                        moveSpeed -= (moveSpeed * 0.1f);
+                    }
+                    else if (NeutralZoneTerrainType == "Forest")
+                    {
+                        //Sutract 15% attack damage
+                        attackDamage -= (attackDamage * 0.15f);
+
+                        //Subtract 10% movement
+                        moveSpeed -= (moveSpeed * 0.1f);
+
+                        //Subtrack 15% attack rate
+                        attackRate -= (attackRate * 0.15f);
+                    }
+                    else if (NeutralZoneTerrainType == "River")
+                    {
+                        //Subtract 10% attack damage
+                        attackDamage -= (attackDamage * 0.1f);
+
+                        //Subtract 10% movement
+                        moveSpeed -= (moveSpeed * 0.1f);
+
+                        //Subtrack 5% attack rate
+                        attackRate -= (attackRate * 0.1f);
+                    }
+                    else if (NeutralZoneTerrainType == "Plains")
+                    {
+                        //Add 10% attack damage
+                        attackDamage += (attackDamage * 0.1f);
+
+                        //Add 10% movement
+                        moveSpeed += (moveSpeed * 0.1f);
+
+                        //Add 20% attack rate
+                        attackRate += (attackRate * 0.2f);
+                    }
+                    break;
+                }
+            default:
+                break;
+        }
+
+        neutralZoneStatsChanged = true;
+    }
+
+    public void ResetStats()
+    {
+        neutralZoneStatsChanged = false;
+        
+        moveSpeed = OriginalMoveSpeed;
+        attackDamage = OriginalAttackDamage;
+        attackRate = OriginalAttackRate;
     }
 
     //Getters

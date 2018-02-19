@@ -39,12 +39,12 @@ public class MainGame : MonoBehaviour {
 
         if (ranNum > 3.0f)
         {
-            NeutralZoneTerrainType = "PlainsSprite";
+            NeutralZoneTerrainType = "Plains";
             NeutralZone.sprite = PlainsSprite;
         }
         else if (ranNum > 2.0f)
         {
-            NeutralZoneTerrainType = "RiverSprite";
+            NeutralZoneTerrainType = "River";
             NeutralZone.sprite = RiverSprite;
         }
         else if(ranNum > 1.0f)
@@ -64,14 +64,14 @@ public class MainGame : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //Do unit updates here
-        for(uint i = 0; i < GridSystem.gridSize; ++i)
+        for (uint i = 0; i < GridSystem.gridSize; ++i)
         {
-            if(theGridSystem.theGridData.gridData[i] == null)
+            if (theGridSystem.theGridData.gridData[i] == null)
             {
                 continue;
             }
             //If the unit health drops to 0
-            if(theGridSystem.theGridData.gridData[i].GetHealth() <= 0)
+            if (theGridSystem.theGridData.gridData[i].GetHealth() <= 0)
             {
                 theGridSystem.theGridData.gridData[i] = null;
                 continue;
@@ -81,13 +81,18 @@ public class MainGame : MonoBehaviour {
             theGridSystem.theGridData.gridData[i].AddPosition(0, Time.deltaTime * theGridSystem.theGridData.gridData[i].GetMoveSpeed());
 
             //If unit reaches the neutral zone
-            if(theGridSystem.theGridData.gridData[i].GetPosition().y > NeutralZone.rectTransform.transform.position.y - NeutralZone.rectTransform.rect.width * 0.5f
-                && theGridSystem.theGridData.gridData[i].GetPosition().y < NeutralZone.rectTransform.transform.position.y + NeutralZone.rectTransform.rect.width * 0.5f)
+            if (theGridSystem.theGridData.gridData[i].GetPosition().y > NeutralZone.rectTransform.transform.position.y - NeutralZone.rectTransform.rect.width * 0.5f &&
+            theGridSystem.theGridData.gridData[i].GetPosition().y < NeutralZone.rectTransform.transform.position.y + NeutralZone.rectTransform.rect.width * 0.5f)
             {
-                //Slow down units based on terrain modifiers
-
+                if (!theGridSystem.theGridData.gridData[i].neutralZoneStatsChanged)
+                {
+                    theGridSystem.theGridData.gridData[i].TerrainStatsModify(NeutralZoneTerrainType);
+                }
+            }
+            else if (theGridSystem.theGridData.gridData[i].neutralZoneStatsChanged)
+            {
+                theGridSystem.theGridData.gridData[i].ResetStats();
             }
         }
-        
 	}
 }
