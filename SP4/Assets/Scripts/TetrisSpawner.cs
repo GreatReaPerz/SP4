@@ -37,6 +37,18 @@ public class TetrisSpawner : MonoBehaviour{
 			timer = 0;
 		}*/
 
+		//Put this in grid system update for statemachine to work
+		/*if (!playerTurn) {
+			for (int i = 0; i < 3; ++i) {
+				theTetrisSpawner.tetrisList [i].StateMachine.AddState (new TetrisMove ("Move", theTetrisSpawner.tetrisList [i])); 
+				theTetrisSpawner.tetrisList [i].StateMachine.SetNextState ("Move");
+			}
+			playerTurn = true;
+		}
+		for (int i = 0; i < 3; ++i) {
+			theTetrisSpawner.tetrisList [i].StateMachine.Update ();
+		}*/
+
         for(uint i = 0; i < 3; ++i)
         {
             SomethingIsMoving = false;
@@ -55,6 +67,9 @@ public class TetrisSpawner : MonoBehaviour{
 
             tetrisList[i].isMoving = false;
         }
+		for (int i = 0; i < 1; ++i) {
+			tetrisList [i].StateMachine.Update ();
+		}
 	}
     
 	int Spawn4x4Cube (int key)
@@ -66,6 +81,9 @@ public class TetrisSpawner : MonoBehaviour{
         pil1 = theCube.parentCube.transform.position + pil;
         theCube.origin.Set(pil1.x, pil1.y, pil1.z);
         theCube.parentCube.transform.position = theCube.origin;
+
+		//Adding state to the stateMachine
+		theCube.StateMachine.AddState(new TetrisMove("Move",theCube));
 
         //Set up the 4 cubes based on theCube.parentCube's child
         theCube.setTheCubes (theCube.parentCube.transform.Find ("BtmLeft").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("BtmRight").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("TopLeft").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("TopRight").GetComponent<Rigidbody2D> ());
