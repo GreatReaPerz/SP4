@@ -16,14 +16,13 @@ public class TetrisCube {
     public Vector3 origin;
     public GameObject parentCube;
 
+	public TetrisAIManager StateMachine = new TetrisAIManager();
+
 	// Use this for initialization
 	public TetrisCube(){
+		StateMachine.Start ();
 	}
-
-	// Update is called once per frame
-	void Update () {
-	}
-
+		
 	public void DragbtmLeft()
 	{
 		btmLeft.MovePosition (Input.mousePosition);
