@@ -39,7 +39,7 @@ public class GridSystem : MonoBehaviour {
         Debug.Assert(theTetrisSpawner != null);
 
         RectTransform objectRectTransform = thisCanvas.GetComponent<RectTransform>();
-        Vector2 Grid0Pos = new Vector2(objectRectTransform.transform.position.x - (0.5f * (col - 1) * tileWidth) , objectRectTransform.transform.position.y  - ((row * tileHeight)));
+        Vector2 Grid0Pos = new Vector2(objectRectTransform.transform.position.x - (0.5f * (col - 1) * tileWidth) , objectRectTransform.transform.position.y  - ((row * tileHeight)) - (2 * (tileHeight)));
         
         grid[0].transform.position = Grid0Pos;
 
