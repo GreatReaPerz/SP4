@@ -39,7 +39,7 @@ public class GridSystem : MonoBehaviour {
         Debug.Assert(theTetrisSpawner != null);
 
         RectTransform objectRectTransform = thisCanvas.GetComponent<RectTransform>();
-        Vector2 Grid0Pos = new Vector2(objectRectTransform.transform.position.x - (0.5f * (col - 1) * tileWidth) , objectRectTransform.transform.position.y  - ((row * tileHeight)) - 2 * (tileHeight));
+        Vector2 Grid0Pos = new Vector2(objectRectTransform.transform.position.x - (0.5f * (col - 1) * tileWidth) , objectRectTransform.transform.position.y  - ((row * tileHeight)));
         
         grid[0].transform.position = Grid0Pos;
 
@@ -58,7 +58,7 @@ public class GridSystem : MonoBehaviour {
                 continue;
             }
             
-            //Adjusts the individual grid block's position\
+            //Adjusts the individual grid block's position
             if (i < col)
             {
                 grid[i].transform.position = new Vector2(grid[0].transform.position.x + (i * tileWidth), grid[0].transform.position.y);
@@ -223,7 +223,7 @@ public class GridSystem : MonoBehaviour {
             //tetrisBlock.isMoving = false;
             theTetrisSpawner.tetrisList[theTetrisSpawner.IndexofMovingObject].isMoving = false;
             //Pass the tetris block data into the grid data
-            if (theGridData.AddTetrisBlockData(objectIndex, "Test01", "UnitTest", 100, 20, 35, 45))
+            if (theGridData.AddTetrisBlockData(objectIndex, "Test01", "UnitTest", 100, 20, 35, 45, grid[objectIndex].transform.position))
             {
                 Debug.Log("Successful Save");
             }
@@ -386,7 +386,7 @@ public class GridData
         gridData = new TetrisData[gridDataSize];
     }
     
-    public bool AddTetrisBlockData(uint Index, string NameID, string UnitType, uint Health, uint moveSpeed, uint attackDamage, uint attackRate)
+    public bool AddTetrisBlockData(uint Index, string NameID, string UnitType, uint Health, uint moveSpeed, uint attackDamage, uint attackRate, Vector2 Position)
     {
         //Check if there is already a unit in that tile
         if (gridData[Index] != null)
@@ -395,7 +395,7 @@ public class GridData
         }
 
         gridData[Index] = new TetrisData();
-        gridData[Index].CreateUnit(NameID, UnitType, Health, moveSpeed, attackDamage, attackRate);
+        gridData[Index].CreateUnit(NameID, UnitType, Health, moveSpeed, attackDamage, attackRate, Position);
         
         return true;
     }
@@ -420,6 +420,7 @@ public class TetrisData
     string NameID, UnitType;
     uint Health, moveSpeed, attackDamage, attackRate;
     uint OriginalHealth, OriginalMoveSpeed, OriginalAttackDamage, OriginalAttackRate;
+    Vector2 Position = new Vector2();
 
     public TetrisData()
     {
@@ -428,7 +429,7 @@ public class TetrisData
         OriginalHealth = OriginalMoveSpeed = OriginalAttackDamage = OriginalAttackRate = 0;
     }
     
-    public void CreateUnit(string NameID, string UnitType, uint Health, uint moveSpeed, uint attackDamage, uint attackRate)
+    public void CreateUnit(string NameID, string UnitType, uint Health, uint moveSpeed, uint attackDamage, uint attackRate, Vector2 position)
     {
         this.NameID = NameID;
         this.UnitType = UnitType;
@@ -441,6 +442,8 @@ public class TetrisData
         OriginalMoveSpeed = moveSpeed;
         OriginalAttackDamage = attackDamage;
         OriginalAttackRate = attackRate;
+
+        this.Position = position;
     }
 
     //Getters
@@ -468,6 +471,10 @@ public class TetrisData
     {
         return UnitType;
     }
+    Vector2 GetPosition()
+    {
+        return Position;
+    }
 
     //Setters
     void SetHealth(uint newHealthValue)
@@ -493,6 +500,10 @@ public class TetrisData
     void SetUnitType(string newUnitTypeValue)
     {
         UnitType = newUnitTypeValue;
+    }
+    void SetPosition(Vector2 newPosition)
+    {
+        Position = newPosition;
     }
 
     //Subtractors & Adders
