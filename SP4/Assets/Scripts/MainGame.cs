@@ -10,6 +10,9 @@ public class MainGame : MonoBehaviour {
     Canvas thisCanvas;
 
     [SerializeField]
+    Canvas UICanvas;
+
+    [SerializeField]
     Sprite HillsSprite;
     [SerializeField]
     Sprite ForestSprite;
@@ -20,12 +23,16 @@ public class MainGame : MonoBehaviour {
     [SerializeField]
     Image NeutralZone;
 
+    [SerializeField]
+    GameObject Infantry;
+
     private GridSystem theGridSystem = null;
 
     string NeutralZoneTerrainType;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
 
         theGridSystem = GameObject.Find("PlayerTetrisGrid").GetComponent<GridSystem>();
         Debug.Assert(theGridSystem != null);
@@ -47,20 +54,50 @@ public class MainGame : MonoBehaviour {
             NeutralZoneTerrainType = "River";
             NeutralZone.sprite = RiverSprite;
         }
-        else if(ranNum > 1.0f)
+        else if (ranNum > 1.0f)
         {
             NeutralZoneTerrainType = "Hills";
             NeutralZone.sprite = HillsSprite;
         }
-        else if(ranNum > 0.0f)
+        else if (ranNum > 0.0f)
         {
             NeutralZoneTerrainType = "Forest";
             NeutralZone.sprite = ForestSprite;
         }
 
-        Debug.Log(NeutralZoneTerrainType);
-	}
-	
+        for (uint i = 0; i < GridSystem.gridSize; ++i)
+        {
+            if (theGridSystem.theGridData.gridData[i] == null)
+            {
+                continue;
+            }
+
+            switch (theGridSystem.theGridData.gridData[i].GetUnitType())
+            {
+                case "Infantry":
+                    {
+                        theGridSystem.theGridData.gridData[i].thisGameObject = Instantiate(Infantry , transform.position, Quaternion.identity);
+                        theGridSystem.theGridData.gridData[i].thisGameObject.transform.SetParent(GameObject.FindGameObjectWithTag("UICanvas").transform, true);
+                        theGridSystem.theGridData.gridData[i].thisGameObject.transform.position = theGridSystem.theGridData.gridData[i].GetPosition();
+                        //theGridSystem.theGridData.gridData[i].thisGameObject.transform. = new Vector3(100, 100, 100);
+                        theGridSystem.theGridData.gridData[i].thisGameObject.transform.localScale = new Vector3(100, 100, 100);
+                        break;
+                    }
+                case "Cavalry":
+                    {
+                        break;
+                    }
+                case "Bowmen":
+                    {
+                        break;
+                    }
+
+                default:
+                    break;
+            }
+
+        }
+    }
 	// Update is called once per frame
 	void Update () {
         //Do unit updates here
@@ -78,7 +115,7 @@ public class MainGame : MonoBehaviour {
             }
 
             //Unit Movement
-            theGridSystem.theGridData.gridData[i].AddPosition(0, Time.deltaTime * theGridSystem.theGridData.gridData[i].GetMoveSpeed());
+            //theGridSystem.theGridData.gridData[i].AddPosition(0, Time.deltaTime * theGridSystem.theGridData.gridData[i].GetMoveSpeed());
 
             //If unit reaches the neutral zone
             if (theGridSystem.theGridData.gridData[i].GetPosition().y > NeutralZone.rectTransform.transform.position.y - NeutralZone.rectTransform.rect.width * 0.5f &&

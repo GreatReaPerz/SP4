@@ -19,7 +19,7 @@ public class GridSystem : MonoBehaviour {
     bool[] taken = new bool[gridSize];
 
     [SerializeField]
-    Image[] grid = new Image[gridSize];
+    public Image[] grid = new Image[gridSize];
     
     [SerializeField]
     Canvas thisCanvas;
@@ -424,6 +424,7 @@ public class TetrisData
     float Health, moveSpeed, attackDamage, attackRate;
     float OriginalHealth, OriginalMoveSpeed, OriginalAttackDamage, OriginalAttackRate;
     Vector2 Position = new Vector2();
+    public GameObject thisGameObject;
 
     public TetrisData()
     {
