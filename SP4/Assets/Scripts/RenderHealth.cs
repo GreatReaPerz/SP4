@@ -23,11 +23,11 @@ public class RenderHealth : MonoBehaviour {
         {
             GameObject healthobj = Instantiate(healthTexture, new Vector3(0,0,0), Quaternion.identity);
             healthobj.transform.localScale = new Vector3(healthobj.transform.localScale.x / playerHealth.getMaxHealth(), healthobj.transform.localScale.y, healthobj.transform.localScale.z);
-            Debug.Log(healthobj.transform.localScale);
             Vector3 position = new Vector3(theParent.transform.position.x + i * healthobj.transform.localScale.x, theParent.transform.position.y, theParent.transform.position.z);
             healthobj.transform.SetParent(theParent.transform);
             healthobj.transform.position = position;
-            healthobj.name = "health " + i;
+            healthobj.name = playerObj.transform.name + "health " + i;
+            Debug.Log(healthobj.name);
         }
         //prevScale = transform.localScale;
         //defaultSize = transform.localScale.x;
@@ -39,10 +39,10 @@ public class RenderHealth : MonoBehaviour {
         if (playerHealth.isHealthModified())
         {
             //theParent.transform.GetChild((int)playerHealth.getHealth() + 1);
-            for (int i = theParent.transform.childCount; i >= (int)playerHealth.getHealth() + 1 ; ++i)
+            for (int i = theParent.transform.childCount; i >= (int)playerHealth.getHealth() ; --i)
             {
-                Debug.Log("health " + i);
-                GameObject toBeDestroyed = GameObject.Find("health " + i);
+                Debug.Log(playerObj.transform.name + "health " + i);
+                GameObject toBeDestroyed = GameObject.Find(playerObj.transform.name + "health " + i);
                 Destroy(toBeDestroyed);
             }
 
