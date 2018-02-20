@@ -72,15 +72,16 @@ public class MainGame : MonoBehaviour {
                 continue;
             }
 
+            //Unit Spawning
             switch (theGridSystem.theGridData.gridData[i].GetUnitType())
             {
                 case "Infantry":
                     {
-                        theGridSystem.theGridData.gridData[i].thisGameObject = Instantiate(Infantry , transform.position, Quaternion.identity);
-                        theGridSystem.theGridData.gridData[i].thisGameObject.transform.SetParent(GameObject.FindGameObjectWithTag("UICanvas").transform, true);
-                        theGridSystem.theGridData.gridData[i].thisGameObject.transform.position = theGridSystem.theGridData.gridData[i].GetPosition();
-                        //theGridSystem.theGridData.gridData[i].thisGameObject.transform. = new Vector3(100, 100, 100);
-                        theGridSystem.theGridData.gridData[i].thisGameObject.transform.localScale = new Vector3(100, 100, 100);
+                        //theGridSystem.theGridData.gridData[i].thisGameObject = Instantiate(Infantry , transform.position, Quaternion.identity);
+                        //theGridSystem.theGridData.gridData[i].thisGameObject.transform.SetParent(GameObject.FindGameObjectWithTag("UICanvas").transform, true);
+                        //theGridSystem.theGridData.gridData[i].thisGameObject.transform.position = theGridSystem.theGridData.gridData[i].GetPosition();
+                        ////theGridSystem.theGridData.gridData[i].thisGameObject.transform. = new Vector3(100, 100, 100);
+                        //theGridSystem.theGridData.gridData[i].thisGameObject.transform.localScale = new Vector3(100, 100, 100);
                         break;
                     }
                 case "Cavalry":

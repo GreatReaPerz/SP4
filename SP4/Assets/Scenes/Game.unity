@@ -225,6 +225,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerObj: {fileID: 161571068}
+  theParent: {fileID: 0}
+  healthTexture: {fileID: 0}
 --- !u!114 &73750257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1420,6 +1422,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerObj: {fileID: 376297939}
+  theParent: {fileID: 0}
+  healthTexture: {fileID: 0}
 --- !u!114 &289191799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3119,7 +3123,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &599830711
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3151,11 +3155,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisCanvas: {fileID: 961660700}
+  UICanvas: {fileID: 845421002}
   HillsSprite: {fileID: 21300000, guid: e01d60da388de814b8358ae9d971f675, type: 3}
   ForestSprite: {fileID: 21300000, guid: a66f694d29761d943985e9d8f63a4cac, type: 3}
   RiverSprite: {fileID: 21300000, guid: 5020ed49a29e4d746a2a4a82d68d6d36, type: 3}
   PlainsSprite: {fileID: 21300000, guid: fb52246fbe8c186488ac3929046b8280, type: 3}
   NeutralZone: {fileID: 740747259}
+  Infantry: {fileID: 0}
 --- !u!1 &611484603
 GameObject:
   m_ObjectHideFlags: 0
