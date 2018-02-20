@@ -63,6 +63,25 @@ public class enemyTetrisSpawner : MonoBehaviour
     int Spawn4x4Cube(int key)
     {
         TetrisCube theCube = new TetrisCube();
+        int rand = Random.Range(0, 3);
+        switch (rand)
+        {
+            case 0:
+                {
+                    theCube.troopName = "Cavalry";
+                    break;
+                }
+            case 1:
+                {
+                    theCube.troopName = "Infantry";
+                    break;
+                }
+            case 2:
+                {
+                    theCube.troopName = "Bowmen";
+                    break;
+                }
+        };
         theCube.parentCube = Instantiate(TetrisTypes[0], transform.position, Quaternion.identity);
         theCube.parentCube.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, true);
         pil.Set(-300 + (key * 300), -300, -100);
@@ -121,6 +140,25 @@ public class enemyTetrisSpawner : MonoBehaviour
     public int SpawnTShape(int key)
     {
         TetrisCube theCube = new TetrisCube();
+        int rand = Random.Range(0, 3);
+        switch (rand)
+        {
+            case 0:
+                {
+                    theCube.troopName = "Cavalry";
+                    break;
+                }
+            case 1:
+                {
+                    theCube.troopName = "Infantry";
+                    break;
+                }
+            case 2:
+                {
+                    theCube.troopName = "Bowmen";
+                    break;
+                }
+        };
         theCube.parentCube = Instantiate(TetrisTypes[2], transform.position, Quaternion.identity);
         theCube.parentCube.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, true);
 
@@ -176,6 +214,25 @@ public class enemyTetrisSpawner : MonoBehaviour
     public int SpawnLShape(int key)
     {
         TetrisCube theCube = new TetrisCube();
+        int rand = Random.Range(0, 3);
+        switch (rand)
+        {
+            case 0:
+                {
+                    theCube.troopName = "Cavalry";
+                    break;
+                }
+            case 1:
+                {
+                    theCube.troopName = "Infantry";
+                    break;
+                }
+            case 2:
+                {
+                    theCube.troopName = "Bowmen";
+                    break;
+                }
+        };
         theCube.parentCube = Instantiate(TetrisTypes[1], transform.position, Quaternion.identity);
         theCube.parentCube.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, true);
 
@@ -231,7 +288,25 @@ public class enemyTetrisSpawner : MonoBehaviour
     public int SpawnZShape(int key)
     {
         TetrisCube theCube = new TetrisCube();
-
+        int rand = Random.Range(0, 3);
+        switch (rand)
+        {
+            case 0:
+                {
+                    theCube.troopName = "Cavalry";
+                    break;
+                }
+            case 1:
+                {
+                    theCube.troopName = "Infantry";
+                    break;
+                }
+            case 2:
+                {
+                    theCube.troopName = "Bowmen";
+                    break;
+                }
+        };
         theCube.parentCube = Instantiate(TetrisTypes[3], transform.position, Quaternion.identity);
         theCube.parentCube.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, true);
 

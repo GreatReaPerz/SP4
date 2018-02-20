@@ -383,10 +383,10 @@ public class enemyGridSystem : MonoBehaviour
         {
             for (int i = 0; i < 3; ++i)
             {
-                theTetrisSpawner.tetrisList[i].partOne.MovePosition(grid[(i * 3) + 11].transform.position);
+                theTetrisSpawner.tetrisList[i].partOne.MovePosition(grid[(i * 3) + 21].transform.position);
                 theTetrisSpawner.tetrisList[i].isMoving = true;
-                if (Mathf.Abs(theTetrisSpawner.tetrisList[i].partOne.position.x - grid[(i * 3) + 11].transform.position.x) < 10
-                    && (Mathf.Abs(theTetrisSpawner.tetrisList[i].partOne.position.y - grid[(i * 3) + 11].transform.position.y) < 10))
+                if (Mathf.Abs(theTetrisSpawner.tetrisList[i].partOne.position.x - grid[(i * 3) + 21].transform.position.x) < 10
+                    && (Mathf.Abs(theTetrisSpawner.tetrisList[i].partOne.position.y - grid[(i * 3) + 21].transform.position.y) < 10))
                 {
                     check = true;
                     theTetrisSpawner.tetrisList[i].isMoving = false;
