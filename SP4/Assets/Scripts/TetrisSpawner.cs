@@ -20,7 +20,7 @@ public class TetrisSpawner : MonoBehaviour{
   	// Use this for initialization
 	void Start () {
 		for (int i = 0; i < 3; ++i) {
-			int rand = Random.Range (0, TetrisTypes.Length -1);
+			int rand = Random.Range (0, TetrisTypes.Length);
 			switch(rand)
 			{
 			case 0:
@@ -44,10 +44,7 @@ public class TetrisSpawner : MonoBehaviour{
 					break;
 				}
 			};
-			Debug.Log (rand);
 		}
-		//numSpawned = SpawnLShape (numSpawned);
-		//numSpawned = SpawnZShape(numSpawned);
 	}
 	
 	// Update is called once per frame
@@ -101,48 +98,50 @@ public class TetrisSpawner : MonoBehaviour{
         theCube.origin.Set(pil1.x, pil1.y, pil1.z);
         theCube.parentCube.transform.position = theCube.origin;
 
+
 		//Adding state to the stateMachine
 		// theCube.StateMachine.AddState(new TetrisMove("Move",theCube));
 
         //Set up the 4 cubes based on theCube.parentCube's child
-        theCube.setTheCubes (theCube.parentCube.transform.Find ("BtmLeft").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("BtmRight").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("TopLeft").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("TopRight").GetComponent<Rigidbody2D> ());
-
+		theCube.setTheCubes (theCube.parentCube.transform.Find ("partOne").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partTwo").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partThree").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partFour").GetComponent<Rigidbody2D> ());
+		theCube.setTheObjectType (TetrisCube.objectType.TETRIS_4X4); 
+	
 		//Could use raycast instead 
 		//Also cause the only thing changing is the movement function, could try to make a switch instead
 		//Trigger and entry for bottom left 
-		EventTrigger BtmLTrig= theCube.parentCube.transform.Find("BtmLeft").GetComponent<EventTrigger> ();
+		EventTrigger BtmLTrig= theCube.parentCube.transform.Find("partOne").GetComponent<EventTrigger> ();
 		EventTrigger.Entry BtmLEntry = new EventTrigger.Entry ();
 		BtmLEntry.eventID = EventTriggerType.Drag;
 		BtmLEntry.callback.AddListener ((data) => {
-			theCube.DragbtmLeft ();
+			theCube.DragObject (theCube.partOne);
 		});
 		BtmLTrig.triggers.Add (BtmLEntry);
-        theCube.origin = theCube.btmLeft.position;
+        theCube.origin = theCube.partOne.position;
 
         //Trigger and entry for bottom Right 
-        EventTrigger BtmRTrig = theCube.parentCube.transform.Find("BtmRight").GetComponent<EventTrigger> ();
+		EventTrigger BtmRTrig = theCube.parentCube.transform.Find("partTwo").GetComponent<EventTrigger> ();
 		EventTrigger.Entry BtmREntry = new EventTrigger.Entry ();
 		BtmREntry.eventID = EventTriggerType.Drag;
 		BtmREntry.callback.AddListener ((data) => {
-			theCube.DragbtmRight ();
+			theCube.DragObject(theCube.partTwo);
 		});
 		BtmRTrig.triggers.Add (BtmREntry);
 
 		//Trigger and entry for top Left 
-		EventTrigger TopLTrig = theCube.parentCube.transform.Find("TopLeft").GetComponent<EventTrigger> ();
+		EventTrigger TopLTrig = theCube.parentCube.transform.Find("partThree").GetComponent<EventTrigger> ();
 		EventTrigger.Entry TopLEntry = new EventTrigger.Entry ();
 		TopLEntry.eventID = EventTriggerType.Drag;
 		TopLEntry.callback.AddListener ((data) => {
-			theCube.DragtopLeft ();
+			theCube.DragObject (theCube.partThree);
 		});
 		TopLTrig.triggers.Add (TopLEntry);
 
 		//Trigger and entry for top Right 
-		EventTrigger TopRTrig = theCube.parentCube.transform.Find("TopRight").GetComponent<EventTrigger> ();
+		EventTrigger TopRTrig = theCube.parentCube.transform.Find("partFour").GetComponent<EventTrigger> ();
 		EventTrigger.Entry TopREntry = new EventTrigger.Entry ();
 		TopREntry.eventID = EventTriggerType.Drag;
 		TopREntry.callback.AddListener ((data) => {
-			theCube.DragtopRight ();
+			theCube.DragObject (theCube.partFour);
 		});
 		TopRTrig.triggers.Add (TopREntry);
 
@@ -162,43 +161,44 @@ public class TetrisSpawner : MonoBehaviour{
 		theCube.parentCube.transform.position = theCube.origin;
 
 		//Set up the 4 cubes based on theCube.parentCube's child
-		theCube.setTheCubes (theCube.parentCube.transform.Find ("TopLeft").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("TopRight").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("TopCenter").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("BtmCenter").GetComponent<Rigidbody2D> ());
-
+		theCube.setTheCubes (theCube.parentCube.transform.Find ("partOne").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partTwo").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partThree").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partFour").GetComponent<Rigidbody2D> ());
+		theCube.setTheObjectType (TetrisCube.objectType.TETRIS_T);
 		//Could use raycast instead 
 		//Also cause the only thing changing is the movement function, could try to make a switch instead
+
 		//Trigger and entry for bottom left 
-		EventTrigger BtmLTrig= theCube.parentCube.transform.Find("TopLeft").GetComponent<EventTrigger> ();
+		EventTrigger BtmLTrig= theCube.parentCube.transform.Find("partOne").GetComponent<EventTrigger> ();
 		EventTrigger.Entry BtmLEntry = new EventTrigger.Entry ();
 		BtmLEntry.eventID = EventTriggerType.Drag;
 		BtmLEntry.callback.AddListener ((data) => {
-			theCube.DragbtmLeft ();
+			theCube.DragObject (theCube.partOne);
 		});
 		BtmLTrig.triggers.Add (BtmLEntry);
-        theCube.origin = theCube.btmLeft.position;
+        theCube.origin = theCube.partOne.position;
         //Trigger and entry for bottom Right 
-        EventTrigger BtmRTrig = theCube.parentCube.transform.Find("TopRight").GetComponent<EventTrigger> ();
+		EventTrigger BtmRTrig = theCube.parentCube.transform.Find("partTwo").GetComponent<EventTrigger> ();
 		EventTrigger.Entry BtmREntry = new EventTrigger.Entry ();
 		BtmREntry.eventID = EventTriggerType.Drag;
 		BtmREntry.callback.AddListener ((data) => {
-			theCube.DragbtmRight ();
+			theCube.DragObject(theCube.partTwo);
 		});
 		BtmRTrig.triggers.Add (BtmREntry);
 
 		//Trigger and entry for top Left 
-		EventTrigger TopLTrig = theCube.parentCube.transform.Find("TopCenter").GetComponent<EventTrigger> ();
+		EventTrigger TopLTrig = theCube.parentCube.transform.Find("partThree").GetComponent<EventTrigger> ();
 		EventTrigger.Entry TopLEntry = new EventTrigger.Entry ();
 		TopLEntry.eventID = EventTriggerType.Drag;
 		TopLEntry.callback.AddListener ((data) => {
-			theCube.DragtopLeft ();
+			theCube.DragObject(theCube.partThree);
 		});
 		TopLTrig.triggers.Add (TopLEntry);
 
 		//Trigger and entry for top Right 
-		EventTrigger TopRTrig = theCube.parentCube.transform.Find("BtmCenter").GetComponent<EventTrigger> ();
+		EventTrigger TopRTrig = theCube.parentCube.transform.Find("partFour").GetComponent<EventTrigger> ();
 		EventTrigger.Entry TopREntry = new EventTrigger.Entry ();
 		TopREntry.eventID = EventTriggerType.Drag;
 		TopREntry.callback.AddListener ((data) => {
-			theCube.DragtopRight ();
+			theCube.DragObject(theCube.partFour);
 		});
 		TopRTrig.triggers.Add (TopREntry);
 
@@ -219,43 +219,44 @@ public class TetrisSpawner : MonoBehaviour{
 		theCube.parentCube.transform.position = theCube.origin;
 
 		//Set up the 4 cubes based on theCube.parentCube's child
-		theCube.setTheCubes (theCube.parentCube.transform.Find ("Top").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("Center").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("Btm").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("BtmRight").GetComponent<Rigidbody2D> ());
+		theCube.setTheCubes (theCube.parentCube.transform.Find ("partOne").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partTwo").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partThree").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partFour").GetComponent<Rigidbody2D> ());
+		theCube.setTheObjectType (TetrisCube.objectType.TETRIS_L);
 
 		//Could use raycast instead 
 		//Also cause the only thing changing is the movement function, could try to make a switch instead
 		//Trigger and entry for bottom left 
-		EventTrigger BtmLTrig= theCube.parentCube.transform.Find("Top").GetComponent<EventTrigger> ();
+		EventTrigger BtmLTrig= theCube.parentCube.transform.Find("partOne").GetComponent<EventTrigger> ();
 		EventTrigger.Entry BtmLEntry = new EventTrigger.Entry ();
 		BtmLEntry.eventID = EventTriggerType.Drag;
 		BtmLEntry.callback.AddListener ((data) => {
-			theCube.DragbtmLeft ();
+			theCube.DragObject(theCube.partOne);
 		});
 		BtmLTrig.triggers.Add (BtmLEntry);
-        theCube.origin = theCube.btmLeft.position;
+        theCube.origin = theCube.partOne.position;
         //Trigger and entry for bottom Right 
-        EventTrigger BtmRTrig = theCube.parentCube.transform.Find("Center").GetComponent<EventTrigger> ();
+		EventTrigger BtmRTrig = theCube.parentCube.transform.Find("partTwo").GetComponent<EventTrigger> ();
 		EventTrigger.Entry BtmREntry = new EventTrigger.Entry ();
 		BtmREntry.eventID = EventTriggerType.Drag;
 		BtmREntry.callback.AddListener ((data) => {
-			theCube.DragbtmRight ();
+			theCube.DragObject(theCube.partTwo);
 		});
 		BtmRTrig.triggers.Add (BtmREntry);
 
 		//Trigger and entry for top Left 
-		EventTrigger TopLTrig = theCube.parentCube.transform.Find("Btm").GetComponent<EventTrigger> ();
+		EventTrigger TopLTrig = theCube.parentCube.transform.Find("partThree").GetComponent<EventTrigger> ();
 		EventTrigger.Entry TopLEntry = new EventTrigger.Entry ();
 		TopLEntry.eventID = EventTriggerType.Drag;
 		TopLEntry.callback.AddListener ((data) => {
-			theCube.DragtopLeft ();
+			theCube.DragObject(theCube.partThree);
 		});
 		TopLTrig.triggers.Add (TopLEntry);
 
 		//Trigger and entry for top Right 
-		EventTrigger TopRTrig = theCube.parentCube.transform.Find("BtmRight").GetComponent<EventTrigger> ();
+		EventTrigger TopRTrig = theCube.parentCube.transform.Find("partFour").GetComponent<EventTrigger> ();
 		EventTrigger.Entry TopREntry = new EventTrigger.Entry ();
 		TopREntry.eventID = EventTriggerType.Drag;
 		TopREntry.callback.AddListener ((data) => {
-			theCube.DragtopRight ();
+			theCube.DragObject(theCube.partFour);
 		});
 		TopRTrig.triggers.Add (TopREntry);
 
@@ -278,43 +279,43 @@ public class TetrisSpawner : MonoBehaviour{
 
 
 		//Set up the 4 cubes based on theCube.parentCube's child
-		theCube.setTheCubes (theCube.parentCube.transform.Find ("TopLeft").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("TopCenter").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("BtmCenter").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("BtmRight").GetComponent<Rigidbody2D> ());
-
+		theCube.setTheCubes (theCube.parentCube.transform.Find ("partOne").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partTwo").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partThree").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partFour").GetComponent<Rigidbody2D> ());
+		theCube.setTheObjectType (TetrisCube.objectType.TETRIS_Z);
 		//Could use raycast instead 
 		//Also cause the only thing changing is the movement function, could try to make a switch instead
 		//Trigger and entry for bottom left 
-		EventTrigger BtmLTrig= theCube.parentCube.transform.Find("TopLeft").GetComponent<EventTrigger> ();
+		EventTrigger BtmLTrig= theCube.parentCube.transform.Find("partOne").GetComponent<EventTrigger> ();
 		EventTrigger.Entry BtmLEntry = new EventTrigger.Entry ();
 		BtmLEntry.eventID = EventTriggerType.Drag;
 		BtmLEntry.callback.AddListener ((data) => {
-			theCube.DragbtmLeft ();
+			theCube.DragObject(theCube.partOne);
 		});
 		BtmLTrig.triggers.Add (BtmLEntry);
-        theCube.origin = theCube.btmLeft.position;
+        theCube.origin = theCube.partOne.position;
         //Trigger and entry for bottom Right 
-        EventTrigger BtmRTrig = theCube.parentCube.transform.Find("TopCenter").GetComponent<EventTrigger> ();
+		EventTrigger BtmRTrig = theCube.parentCube.transform.Find("partTwo").GetComponent<EventTrigger> ();
 		EventTrigger.Entry BtmREntry = new EventTrigger.Entry ();
 		BtmREntry.eventID = EventTriggerType.Drag;
 		BtmREntry.callback.AddListener ((data) => {
-			theCube.DragbtmRight ();
+			theCube.DragObject(theCube.partTwo);
 		});
 		BtmRTrig.triggers.Add (BtmREntry);
 
 		//Trigger and entry for top Left 
-		EventTrigger TopLTrig = theCube.parentCube.transform.Find("BtmCenter").GetComponent<EventTrigger> ();
+		EventTrigger TopLTrig = theCube.parentCube.transform.Find("partThree").GetComponent<EventTrigger> ();
 		EventTrigger.Entry TopLEntry = new EventTrigger.Entry ();
 		TopLEntry.eventID = EventTriggerType.Drag;
 		TopLEntry.callback.AddListener ((data) => {
-			theCube.DragtopLeft ();
+			theCube.DragObject(theCube.partThree);
 		});
 		TopLTrig.triggers.Add (TopLEntry);
 
 		//Trigger and entry for top Right 
-		EventTrigger TopRTrig = theCube.parentCube.transform.Find("BtmRight").GetComponent<EventTrigger> ();
+		EventTrigger TopRTrig = theCube.parentCube.transform.Find("partFour").GetComponent<EventTrigger> ();
 		EventTrigger.Entry TopREntry = new EventTrigger.Entry ();
 		TopREntry.eventID = EventTriggerType.Drag;
 		TopREntry.callback.AddListener ((data) => {
-			theCube.DragtopRight ();
+			theCube.DragObject(theCube.partFour);
 		});
 		TopRTrig.triggers.Add (TopREntry);
 

@@ -5,16 +5,26 @@ using UnityEngine;
 public class TetrisCube {
 		FixedJoint2D container = new FixedJoint2D();
 	//container = btmLeft.GetComponent<FixedJoint2D> ();
-	public Rigidbody2D btmLeft = new Rigidbody2D ();
-	public Rigidbody2D btmRight = new Rigidbody2D ();
-	public Rigidbody2D topLeft = new Rigidbody2D ();
-	public Rigidbody2D topRight = new Rigidbody2D ();
+	public Rigidbody2D partOne = new Rigidbody2D ();
+	public Rigidbody2D partTwo = new Rigidbody2D ();
+	public Rigidbody2D partThree = new Rigidbody2D ();
+	public Rigidbody2D partFour = new Rigidbody2D ();
 
 	public bool isMoving = false;
     public bool returning = false;
     public string Whatisbeingmoved = "";
     public Vector3 origin;
     public GameObject parentCube;
+
+	public enum objectType
+	{
+		TETRIS_4X4,
+		TETRIS_T,
+		TETRIS_Z,
+		TETRIS_L,
+	}
+
+	public objectType thisType;
 
 	public TetrisAIManager StateMachine = new TetrisAIManager();
 
@@ -23,9 +33,9 @@ public class TetrisCube {
 		StateMachine.Start ();
 	}
 		
-	public void DragbtmLeft()
+/*	public void DragbtmLeft()
 	{
-		btmLeft.MovePosition (Input.mousePosition);
+		partOne.MovePosition (Input.mousePosition);
         isMoving = true;
         returning = false;
         Whatisbeingmoved = "btmLeft";
@@ -33,7 +43,7 @@ public class TetrisCube {
 
 	public void DragbtmRight()
 	{
-		btmRight.MovePosition (Input.mousePosition);
+		partTwo.MovePosition (Input.mousePosition);
         isMoving = true;
         returning = false;
         Whatisbeingmoved = "btmRight";
@@ -41,7 +51,7 @@ public class TetrisCube {
 
 	public void DragtopLeft()
 	{
-		topLeft.MovePosition(Input.mousePosition);
+		partThree.MovePosition(Input.mousePosition);
         isMoving = true;
         returning = false;
         Whatisbeingmoved = "topLeft";
@@ -49,18 +59,48 @@ public class TetrisCube {
 
 	public void DragtopRight()
 	{
-		topRight.MovePosition (Input.mousePosition);
+		partFour.MovePosition (Input.mousePosition);
         isMoving = true;
         returning = false;
         Whatisbeingmoved = "topRight";
-    }
-		
-	public void setTheCubes(Rigidbody2D _btmLeft,Rigidbody2D _btmRight,Rigidbody2D _topLeft, Rigidbody2D _topRight)
+    }*/
+
+	public void DragObject(Rigidbody2D tetrisPart)
 	{
-		btmLeft = _btmLeft;
-		btmRight = _btmRight;
-		topLeft = _topLeft;
-		topRight = _topRight;
+		if (tetrisPart == partOne) {
+			partOne.MovePosition (Input.mousePosition);
+			isMoving = true;
+			returning = false;
+			Whatisbeingmoved = "partOne";
+		} else if (tetrisPart ==  partTwo) {
+			partTwo.MovePosition (Input.mousePosition);
+			isMoving = true;
+			returning = false;
+			Whatisbeingmoved = "partTwo";
+		} else if (tetrisPart == partFour) {
+			partFour.MovePosition (Input.mousePosition);
+			isMoving = true;
+			returning = false;
+			Whatisbeingmoved = "partThree";
+		}
+		else if(tetrisPart ==  partThree){
+			partThree.MovePosition(Input.mousePosition);
+			isMoving = true;
+			returning = false;
+			Whatisbeingmoved = "partFour";
+		}
+	}
+		
+	public void setTheCubes(Rigidbody2D _partOne,Rigidbody2D _partTwo,Rigidbody2D _partThree, Rigidbody2D _partFour)
+	{
+		partOne = _partOne;
+		partTwo = _partTwo;
+		partThree = _partThree;
+		partFour = _partFour;
 	}
 
+	public void setTheObjectType(objectType theType)
+	{
+		thisType = theType;
+	}
 }
