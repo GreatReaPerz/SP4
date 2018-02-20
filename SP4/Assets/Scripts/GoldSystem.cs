@@ -15,11 +15,11 @@ public class GoldSystem : MonoBehaviour {
 		
 	}
 
-    void addGold(int _amount)
+    public void addGold(int _amount)
     {
         gold += _amount;
     }
-    int getGold()
+    public int getGold()
     {
         return gold;
     }

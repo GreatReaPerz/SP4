@@ -21,14 +21,9 @@ public class RenderHealth : MonoBehaviour {
         playerHealth = playerObj.GetComponent<HealthSystem>();
         for (int i = 0; i < playerHealth.getMaxHealth(); ++i)
         {
-            GameObject healthobj = Instantiate(healthTexture, new Vector3(0,0,0), Quaternion.identity);
-            healthobj.transform.localScale = new Vector3(healthobj.transform.localScale.x / playerHealth.getMaxHealth(), healthobj.transform.localScale.y, healthobj.transform.localScale.z);
-            Vector3 position = new Vector3(theParent.transform.position.x + i * healthobj.transform.localScale.x, theParent.transform.position.y, theParent.transform.position.z);
-            healthobj.transform.SetParent(theParent.transform);
-            healthobj.transform.position = position;
-            healthobj.name = playerObj.transform.name + "health " + i;
-            Debug.Log(healthobj.name);
+            createHealthobj(i);
         }
+
         //prevScale = transform.localScale;
         //defaultSize = transform.localScale.x;
     }
@@ -39,11 +34,22 @@ public class RenderHealth : MonoBehaviour {
         if (playerHealth.isHealthModified())
         {
             //theParent.transform.GetChild((int)playerHealth.getHealth() + 1);
-            for (int i = theParent.transform.childCount; i >= (int)playerHealth.getHealth() ; --i)
+
+            if (playerHealth.isHealthDecreased())
             {
-                Debug.Log(playerObj.transform.name + "health " + i);
-                GameObject toBeDestroyed = GameObject.Find(playerObj.transform.name + "health " + i);
-                Destroy(toBeDestroyed);
+                //deleting from the last health object to current
+                for (int i = theParent.transform.childCount; i >= (int)playerHealth.getHealth(); --i)
+                {
+                    GameObject toBeDestroyed = GameObject.Find(playerObj.transform.name + "health " + i);
+                    Destroy(toBeDestroyed);
+                }
+            }
+            else
+            {
+                for (int i = theParent.transform.childCount; i < (int)playerHealth.getHealth(); ++i)
+                {
+                    createHealthobj(i);
+                }
             }
 
             //float currPercentage = playerHealth.getHealth() / playerHealth.getMaxHealth();
@@ -54,7 +60,17 @@ public class RenderHealth : MonoBehaviour {
             ////transform.Translate(new Vector3(0.5f*((playerHealth.getHealth() / playerHealth.getMaxHealth()-1) ), 0, 0));
             ////transform.Translate(new Vector3(((currPercentage - 1f)) * prevScale.x, 0, 0));
             //Debug.Log("NewScale:" + transform.localScale + ", NewPos:" + transform.localPosition);
-            //playerHealth.setHealthModifiedToFalse();
+            playerHealth.setHealthModifiedToFalse();
         }
+    }
+
+    void createHealthobj(int i)
+    {
+        GameObject healthobj = Instantiate(healthTexture, new Vector3(0, 0, 0), Quaternion.identity);     //Instantiating new object
+        healthobj.transform.localScale = new Vector3(healthobj.transform.localScale.x / playerHealth.getMaxHealth(), healthobj.transform.localScale.y, healthobj.transform.localScale.z);   //calculate new scale to always fit default size
+        Vector3 position = new Vector3(theParent.transform.position.x + i * healthobj.transform.localScale.x, theParent.transform.position.y, theParent.transform.position.z);              //calculate new position
+        healthobj.transform.SetParent(theParent.transform);                                             //Set parent
+        healthobj.transform.position = position;                                                        //Displacment
+        healthobj.name = playerObj.transform.name + "health " + i;                                      //give each object unique names
     }
 }
