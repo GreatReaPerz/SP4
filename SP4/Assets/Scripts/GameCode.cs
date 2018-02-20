@@ -11,9 +11,15 @@ public class GameCode : MonoBehaviour {
 
     [SerializeField]
     GameObject Terrain;
+    [SerializeField]
     GameObject Player1;
+    [SerializeField]
     GameObject Player2;
-
+    enum GameState
+    {
+        PLANNING,
+        ATTACK
+    };
     private float timer;
     private bool destroyed;
     private TetrisSpawner theTetrisSpawner = null;
@@ -22,6 +28,7 @@ public class GameCode : MonoBehaviour {
     private enemyGridSystem enemyGridSystem = null;
     private TroopAI troop = null;
     private string TerrainName;
+    int state;
     public List<GameObject> objects;
     // Use this for initialization
     void Start () {
@@ -31,6 +38,7 @@ public class GameCode : MonoBehaviour {
         enemyGridSystem = GameObject.Find("EnemyTetrisGrid").GetComponent<enemyGridSystem>();
         timer = 0;
         destroyed = false;
+        state = (int)GameState.PLANNING;
         TerrainName = Terrain.GetComponent<MainGame>().NeutralZoneTerrainType;
     }
 	
@@ -43,9 +51,10 @@ public class GameCode : MonoBehaviour {
                 if (theTetrisSpawner.tetrisList[i].sav)
                 {
                     GameObject newObj;
-                    Vector3 hello = theTetrisSpawner.tetrisList[i].btmLeft.transform.position;
+                    Vector3 hello = theTetrisSpawner.tetrisList[i].partOne.transform.position;
                     hello.z = 100;
-                    newObj = (GameObject)Instantiate(GameObject.Find("Bowmen"), hello, Quaternion.identity);
+                    Debug.Log(theTetrisSpawner.tetrisList[i].troopName);
+                    newObj = (GameObject)Instantiate(GameObject.Find(theTetrisSpawner.tetrisList[i].troopName), hello, Quaternion.identity);
                     newObj.transform.parent = Ui.transform;
                     troop = newObj.GetComponent<TroopAI>();
                     troop.team = 1;
@@ -53,9 +62,9 @@ public class GameCode : MonoBehaviour {
                     objects.Add(newObj);
 
                     GameObject newObj1;
-                    hello = theTetrisSpawner.tetrisList[i].btmRight.transform.position;
+                    hello = theTetrisSpawner.tetrisList[i].partTwo.transform.position;
                     hello.z = 100;
-                    newObj1 = (GameObject)Instantiate(GameObject.Find("Bowmen"), hello, Quaternion.identity);
+                    newObj1 = (GameObject)Instantiate(GameObject.Find(theTetrisSpawner.tetrisList[i].troopName), hello, Quaternion.identity);
                     newObj1.transform.parent = Ui.transform;
                     troop = newObj1.GetComponent<TroopAI>();
                     troop.team = 1;
@@ -63,9 +72,9 @@ public class GameCode : MonoBehaviour {
                     objects.Add(newObj1);
 
                     GameObject newObj2;
-                    hello = theTetrisSpawner.tetrisList[i].topLeft.transform.position;
+                    hello = theTetrisSpawner.tetrisList[i].partThree.transform.position;
                     hello.z = 100;
-                    newObj2 = (GameObject)Instantiate(GameObject.Find("Bowmen"), hello, Quaternion.identity);
+                    newObj2 = (GameObject)Instantiate(GameObject.Find(theTetrisSpawner.tetrisList[i].troopName), hello, Quaternion.identity);
                     newObj2.transform.parent = Ui.transform;
                     troop = newObj2.GetComponent<TroopAI>();
                     troop.team = 1;
@@ -73,9 +82,9 @@ public class GameCode : MonoBehaviour {
                     objects.Add(newObj2);
 
                     GameObject newObj3;
-                    hello = theTetrisSpawner.tetrisList[i].topRight.transform.position;
+                    hello = theTetrisSpawner.tetrisList[i].partFour.transform.position;
                     hello.z = 100;
-                    newObj3 = (GameObject)Instantiate(GameObject.Find("Bowmen"), hello, Quaternion.identity);
+                    newObj3 = (GameObject)Instantiate(GameObject.Find(theTetrisSpawner.tetrisList[i].troopName), hello, Quaternion.identity);
                     newObj3.transform.parent = Ui.transform;
                     troop = newObj3.GetComponent<TroopAI>();
                     troop.team = 1;
@@ -88,9 +97,9 @@ public class GameCode : MonoBehaviour {
                 if (enemyTetrisSpawner.tetrisList[i].sav)
                 {
                     GameObject newObj;
-                    Vector3 hello = enemyTetrisSpawner.tetrisList[i].btmLeft.transform.position;
+                    Vector3 hello = enemyTetrisSpawner.tetrisList[i].partOne.transform.position;
                     hello.z = 100;
-                    newObj = (GameObject)Instantiate(GameObject.Find("Infantry"), hello, Quaternion.identity);
+                    newObj = (GameObject)Instantiate(GameObject.Find(enemyTetrisSpawner.tetrisList[i].troopName), hello, Quaternion.identity);
                     newObj.transform.parent = Ui.transform;
                     troop = newObj.GetComponent<TroopAI>();
                     troop.team = -1;
@@ -98,9 +107,9 @@ public class GameCode : MonoBehaviour {
                     objects.Add(newObj);
 
                     GameObject newObj1;
-                    hello = enemyTetrisSpawner.tetrisList[i].btmRight.transform.position;
+                    hello = enemyTetrisSpawner.tetrisList[i].partTwo.transform.position;
                     hello.z = 100;
-                    newObj1 = (GameObject)Instantiate(GameObject.Find("Infantry"), hello, Quaternion.identity);
+                    newObj1 = (GameObject)Instantiate(GameObject.Find(enemyTetrisSpawner.tetrisList[i].troopName), hello, Quaternion.identity);
                     newObj1.transform.parent = Ui.transform;
                     troop = newObj1.GetComponent<TroopAI>();
                     troop.team = -1;
@@ -108,9 +117,9 @@ public class GameCode : MonoBehaviour {
                     objects.Add(newObj1);
 
                     GameObject newObj2;
-                    hello = enemyTetrisSpawner.tetrisList[i].topLeft.transform.position;
+                    hello = enemyTetrisSpawner.tetrisList[i].partThree.transform.position;
                     hello.z = 100;
-                    newObj2 = (GameObject)Instantiate(GameObject.Find("Infantry"), hello, Quaternion.identity);
+                    newObj2 = (GameObject)Instantiate(GameObject.Find(enemyTetrisSpawner.tetrisList[i].troopName), hello, Quaternion.identity);
                     newObj2.transform.parent = Ui.transform;
                     troop = newObj2.GetComponent<TroopAI>();
                     troop.team = -1;
@@ -118,9 +127,9 @@ public class GameCode : MonoBehaviour {
                     objects.Add(newObj2);
 
                     GameObject newObj3;
-                    hello = enemyTetrisSpawner.tetrisList[i].topRight.transform.position;
+                    hello = enemyTetrisSpawner.tetrisList[i].partFour.transform.position;
                     hello.z = 100;
-                    newObj3 = (GameObject)Instantiate(GameObject.Find("Infantry"), hello, Quaternion.identity);
+                    newObj3 = (GameObject)Instantiate(GameObject.Find(enemyTetrisSpawner.tetrisList[i].troopName), hello, Quaternion.identity);
                     newObj3.transform.parent = Ui.transform;
                     troop = newObj3.GetComponent<TroopAI>();
                     troop.team = -1;
@@ -172,12 +181,16 @@ public class GameCode : MonoBehaviour {
                             if(objects[i].transform.position.y > 2000)
                             {
                                 troop.activ = false;
-                                HealthSystem ji = null;
+                                Player2.GetComponent<HealthSystem>().addHealth(-1);
                             }
                         }
                         if (troop.team == -1)
                         {
-
+                            if (objects[i].transform.position.y < 100)
+                            {
+                                troop.activ = false;
+                                Player1.GetComponent<HealthSystem>().addHealth(-1);
+                            }
                         }
                     }
                 }

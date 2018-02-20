@@ -1384,7 +1384,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 761927094}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -469.15512, y: -206.37762, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 785115664}
@@ -1574,6 +1574,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 584d79128c8ceef4bbd868b9216fdc93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GridSize: 40
+  taken: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   grid:
   - {fileID: 1286677001}
   - {fileID: 790774516}
@@ -2617,7 +2619,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1043330202}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2721,10 +2723,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TetrisTypes:
-  - {fileID: 1911669028287552, guid: dc41c7ddc1e19ce468cc3ff9fe2dd14a, type: 2}
-  - {fileID: 1821125940722974, guid: ab1d1303800e536468926588c0c7f4d5, type: 2}
-  - {fileID: 1150678330795736, guid: 4dbdc46ae1494af4e922d23e03e723bf, type: 2}
-  - {fileID: 1609753283700160, guid: 39173d86ea493f048aa107d06fb48dd8, type: 2}
+  - {fileID: 1592847256830460, guid: dc41c7ddc1e19ce468cc3ff9fe2dd14a, type: 2}
+  - {fileID: 1678510967310458, guid: ab1d1303800e536468926588c0c7f4d5, type: 2}
+  - {fileID: 1894050752949088, guid: 4dbdc46ae1494af4e922d23e03e723bf, type: 2}
+  - {fileID: 1923746785537824, guid: 39173d86ea493f048aa107d06fb48dd8, type: 2}
   SomethingIsMoving: 0
   IndexofMovingObject: 0
 --- !u!4 &1081676153
@@ -2734,11 +2736,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1081676151}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 512, y: 384, z: 0}
+  m_LocalPosition: {x: 512, y: 384, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1096104174
 GameObject:
@@ -3233,7 +3235,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1253711997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3302,7 +3304,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4550,7 +4552,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1766344635
 MonoBehaviour:
   m_ObjectHideFlags: 0

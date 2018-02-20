@@ -17,7 +17,6 @@ public class TetrisAI : MonoBehaviour {
 
 class TetrisMove: TetrisAIBase{
 
-	//
 	TetrisCube theObject = new TetrisCube();
 	Vector2 moveSpeed = new Vector2();
 	public TetrisMove(string _stateID,TetrisCube _object)
@@ -34,10 +33,10 @@ class TetrisMove: TetrisAIBase{
 
 	// Update is called once per frame
 	public override void Update () {
-		theObject.btmLeft.MovePosition(theObject.btmLeft.position + moveSpeed * Time.deltaTime);
-		theObject.btmRight.MovePosition(theObject.btmRight.position + moveSpeed * Time.deltaTime);
-		theObject.topLeft.MovePosition(theObject.topLeft.position + moveSpeed * Time.deltaTime);
-		theObject.topRight.MovePosition(theObject.topRight.position + moveSpeed * Time.deltaTime);
+		theObject.partOne.MovePosition(theObject.partOne.position + moveSpeed * Time.deltaTime);
+		theObject.partTwo.MovePosition(theObject.partTwo.position + moveSpeed * Time.deltaTime);
+		theObject.partThree.MovePosition(theObject.partThree.position + moveSpeed * Time.deltaTime);
+		theObject.partFour.MovePosition(theObject.partFour.position + moveSpeed * Time.deltaTime);
 
 	}
 	public override void Exit(){
