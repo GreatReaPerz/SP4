@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthSystem : MonoBehaviour {
-    float health/* = 100*/;
+    public float health/* = 100*/;
     float previousHealth;
     [SerializeField]
     float maxHealth = 100f;

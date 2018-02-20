@@ -23,15 +23,13 @@ public class MainGame : MonoBehaviour {
     [SerializeField]
     Image NeutralZone;
 
-    [SerializeField]
-    GameObject Infantry;
 
     private GridSystem theGridSystem = null;
 
-    string NeutralZoneTerrainType;
+     public string NeutralZoneTerrainType;
 
     // Use this for initialization
-    void Start()
+    public void Start()
     {
 
         theGridSystem = GameObject.Find("PlayerTetrisGrid").GetComponent<GridSystem>();

@@ -19,7 +19,8 @@ public class TetrisSpawner : MonoBehaviour{
 
   	// Use this for initialization
 	public void Start () {
-		for (int i = 0; i < 3; ++i) {
+        numSpawned = 0;
+        for (int i = 0; i < 3; ++i) {
 			int rand = Random.Range (0, TetrisTypes.Length);
 			switch(rand)
 			{
@@ -92,7 +93,26 @@ public class TetrisSpawner : MonoBehaviour{
 	{
         TetrisCube theCube = new TetrisCube();
         theCube.parentCube = Instantiate (TetrisTypes [0], transform.position, Quaternion.identity);
-		theCube.parentCube.transform.SetParent (GameObject.FindGameObjectWithTag ("Canvas").transform, true);
+        int rand = Random.Range(0, 3);
+        switch (rand)
+        {
+            case 0:
+                {
+                    theCube.troopName = "Cavalry";
+                    break;
+                }
+            case 1:
+                {
+                    theCube.troopName = "Infantry";
+                    break;
+                }
+            case 2:
+                {
+                    theCube.troopName = "Bowmen";
+                    break;
+                }
+        };
+        theCube.parentCube.transform.SetParent (GameObject.FindGameObjectWithTag ("Canvas").transform, true);
         pil.Set(-300 + (key * 300), -300, 0);
         pil1 = theCube.parentCube.transform.position + pil;
         theCube.origin.Set(pil1.x, pil1.y, pil1.z);
@@ -153,6 +173,25 @@ public class TetrisSpawner : MonoBehaviour{
 	public int SpawnTShape(int key)
 	{
         TetrisCube theCube = new TetrisCube();
+        int rand = Random.Range(0, 3);
+        switch (rand)
+        {
+            case 0:
+                {
+                    theCube.troopName = "Cavalry";
+                    break;
+                }
+            case 1:
+                {
+                    theCube.troopName = "Infantry";
+                    break;
+                }
+            case 2:
+                {
+                    theCube.troopName = "Bowmen";
+                    break;
+                }
+        };
         theCube.parentCube = Instantiate (TetrisTypes [2], transform.position, Quaternion.identity);
 		theCube.parentCube.transform.SetParent (GameObject.FindGameObjectWithTag ("Canvas").transform, true);
 		pil.Set(-300 + (key * 300), -300, 0);
@@ -211,6 +250,25 @@ public class TetrisSpawner : MonoBehaviour{
 	public int SpawnLShape(int key)
 	{
         TetrisCube theCube = new TetrisCube();
+        int rand = Random.Range(0, 3);
+        switch (rand)
+        {
+            case 0:
+                {
+                    theCube.troopName = "Cavalry";
+                    break;
+                }
+            case 1:
+                {
+                    theCube.troopName = "Infantry";
+                    break;
+                }
+            case 2:
+                {
+                    theCube.troopName = "Bowmen";
+                    break;
+                }
+        };
         theCube.parentCube = Instantiate (TetrisTypes [1], transform.position, Quaternion.identity);
 		theCube.parentCube.transform.SetParent (GameObject.FindGameObjectWithTag ("Canvas").transform, true);
 		pil.Set(-300 + (key * 300), -300, 0);
@@ -269,7 +327,25 @@ public class TetrisSpawner : MonoBehaviour{
 	public int SpawnZShape(int key)
 	{
         TetrisCube theCube = new TetrisCube();
-
+        int rand = Random.Range(0, 3);
+        switch (rand)
+        {
+            case 0:
+                {
+                    theCube.troopName = "Cavalry";
+                    break;
+                }
+            case 1:
+                {
+                    theCube.troopName = "Infantry";
+                    break;
+                }
+            case 2:
+                {
+                    theCube.troopName = "Bowmen";
+                    break;
+                }
+        };
         theCube.parentCube = Instantiate (TetrisTypes [3], transform.position, Quaternion.identity);
 		theCube.parentCube.transform.SetParent (GameObject.FindGameObjectWithTag ("Canvas").transform, true);
 		pil.Set(-300 + (key * 300), -300, 0);

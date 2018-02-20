@@ -13,6 +13,7 @@ public class TetrisCube {
     public bool sav = false;
     public bool isMoving = false;
     public bool returning = false;
+    public string troopName = "";
     public string Whatisbeingmoved = "";
     public Vector3 origin;
     public GameObject parentCube;
