@@ -195,15 +195,15 @@ public class TroopAI : MonoBehaviour {
                             {
                                 nearestAI.health -= attckDmg;
                             }
-                            if (_class == 1 && nearestAI._class == 2)
+                            if (_class == 1 && nearestAI._class == 3)
                             {
                                 nearestAI.health -= attckDmg * 1.2f;
                             }
-                            if (_class == 2 && nearestAI._class == 3)
+                            if (_class == 2 && nearestAI._class == 1)
                             {
                                 nearestAI.health -= attckDmg * 1.2f;
                             }
-                            if (_class == 3 && nearestAI._class == 1)
+                            if (_class == 3 && nearestAI._class == 2)
                             {
                                 nearestAI.health -= attckDmg * 1.2f;
                             }

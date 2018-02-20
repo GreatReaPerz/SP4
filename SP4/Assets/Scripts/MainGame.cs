@@ -64,7 +64,6 @@ public class MainGame : MonoBehaviour {
             NeutralZoneTerrainType = "Forest";
             NeutralZone.sprite = ForestSprite;
         }
-
         //for (uint i = 0; i < GridSystem.gridSize; ++i)
         //{
         //    if (theGridSystem.theGridData.gridData[i] == null)
