@@ -49,7 +49,7 @@ public class GameCode : MonoBehaviour {
         if(state == (int)GameState.PLANNING)
         {
             UIPanelAnimator.SetBool("UIPanelEnabled", true);
-            if (timer > 5.0f && !destroyed)
+            if (timer > 10.0f && !destroyed)
             {
                 for (int i = 0; i < 3; ++i)
                 {

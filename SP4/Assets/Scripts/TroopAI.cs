@@ -33,9 +33,11 @@ public class TroopAI : MonoBehaviour {
     Vector3 pos;
     GameObject nearest;
     private TroopAI nearestAI = null;
+
+    GameObject thePlayer;
     // Use this for initialization
     void Start () {
-
+        thePlayer = GameObject.Find("Player");
         game = GameObject.Find("EventSystem").GetComponent<GameCode>();
         if (type == "Cavalry")
         {
@@ -159,6 +161,8 @@ public class TroopAI : MonoBehaviour {
             return;
         if(health <= 0)
         {
+            //if (team == -1)
+            //    thePlayer.GetComponent<InGameCash>().addAmount(10);
             activ = false;
         }
         if (activ)
