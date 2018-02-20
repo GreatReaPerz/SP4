@@ -655,11 +655,7 @@ public class GridSystem : MonoBehaviour {
         return false;
 
     }
-}
 
-//The grid where data is stored
-public class GridData
-{
     public bool[] gridData;
     public bool GridBecameGrey = false;
 
