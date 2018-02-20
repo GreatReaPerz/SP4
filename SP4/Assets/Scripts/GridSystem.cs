@@ -12,7 +12,6 @@ public class GridSystem : MonoBehaviour {
     const float tileWidth = 100;
     const float tileHeight = 100;
     public bool[] taken = new bool[gridSize];
-    private GridData theGridData = null;
     private TetrisSpawner theTetrisSpawner = null;
 
     float halfTileWidth = tileWidth * 0.5f, halfTileHeight = tileHeight * 0.5f;
@@ -25,16 +24,12 @@ public class GridSystem : MonoBehaviour {
 
     // Use this for initialization
     public void Start () {
-
-        theGridData = new GridData();
-        theGridData.Init();
-        for(int i = 0; i < gridSize; ++i)
+                for(int i = 0; i < gridSize; ++i)
         {
             taken[i] = false;
         }
         theTetrisSpawner = GameObject.Find("Spawner").GetComponent<TetrisSpawner>();
         
-        Debug.Assert(theGridData != null);
         Debug.Assert(theTetrisSpawner != null);
 
         RectTransform objectRectTransform = thisCanvas.GetComponent<RectTransform>();
