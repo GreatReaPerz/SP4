@@ -26,6 +26,7 @@ public class TroopAI : MonoBehaviour {
     public bool activ;
     public float aggrotimer;
     public float attacktimer;
+    public string terrainName;
     private GameCode game = null;
     Vector3 pos;
     GameObject nearest;

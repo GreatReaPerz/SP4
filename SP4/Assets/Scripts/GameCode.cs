@@ -9,6 +9,11 @@ public class GameCode : MonoBehaviour {
     Canvas Ui;
 
 
+    [SerializeField]
+    GameObject Terrain;
+    GameObject Player1;
+    GameObject Player2;
+
     private float timer;
     private bool destroyed;
     private TetrisSpawner theTetrisSpawner = null;
@@ -16,6 +21,7 @@ public class GameCode : MonoBehaviour {
     private enemyTetrisSpawner enemyTetrisSpawner = null;
     private enemyGridSystem enemyGridSystem = null;
     private TroopAI troop = null;
+    private string TerrainName;
     public List<GameObject> objects;
     // Use this for initialization
     void Start () {
@@ -25,6 +31,7 @@ public class GameCode : MonoBehaviour {
         enemyGridSystem = GameObject.Find("EnemyTetrisGrid").GetComponent<enemyGridSystem>();
         timer = 0;
         destroyed = false;
+        TerrainName = Terrain.GetComponent<MainGame>().NeutralZoneTerrainType;
     }
 	
 	// Update is called once per frame
@@ -42,6 +49,7 @@ public class GameCode : MonoBehaviour {
                     newObj.transform.parent = Ui.transform;
                     troop = newObj.GetComponent<TroopAI>();
                     troop.team = 1;
+                    troop.terrainName = TerrainName;
                     objects.Add(newObj);
 
                     GameObject newObj1;
@@ -51,6 +59,7 @@ public class GameCode : MonoBehaviour {
                     newObj1.transform.parent = Ui.transform;
                     troop = newObj1.GetComponent<TroopAI>();
                     troop.team = 1;
+                    troop.terrainName = TerrainName;
                     objects.Add(newObj1);
 
                     GameObject newObj2;
@@ -60,6 +69,7 @@ public class GameCode : MonoBehaviour {
                     newObj2.transform.parent = Ui.transform;
                     troop = newObj2.GetComponent<TroopAI>();
                     troop.team = 1;
+                    troop.terrainName = TerrainName;
                     objects.Add(newObj2);
 
                     GameObject newObj3;
@@ -69,6 +79,7 @@ public class GameCode : MonoBehaviour {
                     newObj3.transform.parent = Ui.transform;
                     troop = newObj3.GetComponent<TroopAI>();
                     troop.team = 1;
+                    troop.terrainName = TerrainName;
                     objects.Add(newObj3);
                 }
             }
@@ -83,6 +94,7 @@ public class GameCode : MonoBehaviour {
                     newObj.transform.parent = Ui.transform;
                     troop = newObj.GetComponent<TroopAI>();
                     troop.team = -1;
+                    troop.terrainName = TerrainName;
                     objects.Add(newObj);
 
                     GameObject newObj1;
@@ -92,6 +104,7 @@ public class GameCode : MonoBehaviour {
                     newObj1.transform.parent = Ui.transform;
                     troop = newObj1.GetComponent<TroopAI>();
                     troop.team = -1;
+                    troop.terrainName = TerrainName;
                     objects.Add(newObj1);
 
                     GameObject newObj2;
@@ -101,6 +114,7 @@ public class GameCode : MonoBehaviour {
                     newObj2.transform.parent = Ui.transform;
                     troop = newObj2.GetComponent<TroopAI>();
                     troop.team = -1;
+                    troop.terrainName = TerrainName;
                     objects.Add(newObj2);
 
                     GameObject newObj3;
@@ -110,6 +124,7 @@ public class GameCode : MonoBehaviour {
                     newObj3.transform.parent = Ui.transform;
                     troop = newObj3.GetComponent<TroopAI>();
                     troop.team = -1;
+                    troop.terrainName = TerrainName;
                     objects.Add(newObj3);
                 }
             }
@@ -132,6 +147,8 @@ public class GameCode : MonoBehaviour {
             theGridSystem.Start();
             enemyTetrisSpawner.Start();
             enemyGridSystem.Start();
+            Terrain.GetComponent<MainGame>().Start();
+            TerrainName = Terrain.GetComponent<MainGame>().NeutralZoneTerrainType;
             destroyed = false;
             timer = 0.0f;
         }
@@ -145,6 +162,25 @@ public class GameCode : MonoBehaviour {
         {
             if(objects.Count > 0)
             {
+                for (int i = 0; i < objects.Count; ++ i)
+                {
+                    troop = objects[i].GetComponent<TroopAI>();
+                    if (troop.activ)
+                    {
+                        if(troop.team == 1)
+                        {
+                            if(objects[i].transform.position.y > 2000)
+                            {
+                                troop.activ = false;
+                                HealthSystem ji = null;
+                            }
+                        }
+                        if (troop.team == -1)
+                        {
+
+                        }
+                    }
+                }
                 for (int i = 0; i < objects.Count;)
                 {
                     troop = objects[i].GetComponent<TroopAI>();
