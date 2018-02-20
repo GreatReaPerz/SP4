@@ -65,71 +65,71 @@ public class MainGame : MonoBehaviour {
             NeutralZone.sprite = ForestSprite;
         }
 
-        for (uint i = 0; i < GridSystem.gridSize; ++i)
-        {
-            if (theGridSystem.theGridData.gridData[i] == null)
-            {
-                continue;
-            }
+        //for (uint i = 0; i < GridSystem.gridSize; ++i)
+        //{
+        //    if (theGridSystem.theGridData.gridData[i] == null)
+        //    {
+        //        continue;
+        //    }
 
-            switch (theGridSystem.theGridData.gridData[i].GetUnitType())
-            {
-                case "Infantry":
-                    {
-                        theGridSystem.theGridData.gridData[i].thisGameObject = Instantiate(Infantry , transform.position, Quaternion.identity);
-                        theGridSystem.theGridData.gridData[i].thisGameObject.transform.SetParent(GameObject.FindGameObjectWithTag("UICanvas").transform, true);
-                        theGridSystem.theGridData.gridData[i].thisGameObject.transform.position = theGridSystem.theGridData.gridData[i].GetPosition();
-                        //theGridSystem.theGridData.gridData[i].thisGameObject.transform. = new Vector3(100, 100, 100);
-                        theGridSystem.theGridData.gridData[i].thisGameObject.transform.localScale = new Vector3(100, 100, 100);
-                        break;
-                    }
-                case "Cavalry":
-                    {
-                        break;
-                    }
-                case "Bowmen":
-                    {
-                        break;
-                    }
+        //    switch (theGridSystem.theGridData.gridData[i].GetUnitType())
+        //    {
+        //        case "Infantry":
+        //            {
+        //                theGridSystem.theGridData.gridData[i].thisGameObject = Instantiate(Infantry , transform.position, Quaternion.identity);
+        //                theGridSystem.theGridData.gridData[i].thisGameObject.transform.SetParent(GameObject.FindGameObjectWithTag("UICanvas").transform, true);
+        //                theGridSystem.theGridData.gridData[i].thisGameObject.transform.position = theGridSystem.theGridData.gridData[i].GetPosition();
+        //                //theGridSystem.theGridData.gridData[i].thisGameObject.transform. = new Vector3(100, 100, 100);
+        //                theGridSystem.theGridData.gridData[i].thisGameObject.transform.localScale = new Vector3(100, 100, 100);
+        //                break;
+        //            }
+        //        case "Cavalry":
+        //            {
+        //                break;
+        //            }
+        //        case "Bowmen":
+        //            {
+        //                break;
+        //            }
 
-                default:
-                    break;
-            }
+        //        default:
+        //            break;
+        //    }
 
-        }
+        //}
     }
 	// Update is called once per frame
 	void Update () {
         //Do unit updates here
-        for (uint i = 0; i < GridSystem.gridSize; ++i)
-        {
-            if (theGridSystem.theGridData.gridData[i] == null)
-            {
-                continue;
-            }
-            //If the unit health drops to 0
-            if (theGridSystem.theGridData.gridData[i].GetHealth() <= 0)
-            {
-                theGridSystem.theGridData.gridData[i] = null;
-                continue;
-            }
+    //    for (uint i = 0; i < GridSystem.gridSize; ++i)
+    //    {
+    //        if (theGridSystem.theGridData.gridData[i] == null)
+    //        {
+    //            continue;
+    //        }
+    //        //If the unit health drops to 0
+    //        if (theGridSystem.theGridData.gridData[i].GetHealth() <= 0)
+    //        {
+    //            theGridSystem.theGridData.gridData[i] = null;
+    //            continue;
+    //        }
 
-            //Unit Movement
-            //theGridSystem.theGridData.gridData[i].AddPosition(0, Time.deltaTime * theGridSystem.theGridData.gridData[i].GetMoveSpeed());
+    //        //Unit Movement
+    //        //theGridSystem.theGridData.gridData[i].AddPosition(0, Time.deltaTime * theGridSystem.theGridData.gridData[i].GetMoveSpeed());
 
-            //If unit reaches the neutral zone
-            if (theGridSystem.theGridData.gridData[i].GetPosition().y > NeutralZone.rectTransform.transform.position.y - NeutralZone.rectTransform.rect.width * 0.5f &&
-            theGridSystem.theGridData.gridData[i].GetPosition().y < NeutralZone.rectTransform.transform.position.y + NeutralZone.rectTransform.rect.width * 0.5f)
-            {
-                if (!theGridSystem.theGridData.gridData[i].neutralZoneStatsChanged)
-                {
-                    theGridSystem.theGridData.gridData[i].TerrainStatsModify(NeutralZoneTerrainType);
-                }
-            }
-            else if (theGridSystem.theGridData.gridData[i].neutralZoneStatsChanged)
-            {
-                theGridSystem.theGridData.gridData[i].ResetStats();
-            }
-        }
-	}
+    //        //If unit reaches the neutral zone
+    //        if (theGridSystem.theGridData.gridData[i].GetPosition().y > NeutralZone.rectTransform.transform.position.y - NeutralZone.rectTransform.rect.width * 0.5f &&
+    //        theGridSystem.theGridData.gridData[i].GetPosition().y < NeutralZone.rectTransform.transform.position.y + NeutralZone.rectTransform.rect.width * 0.5f)
+    //        {
+    //            if (!theGridSystem.theGridData.gridData[i].neutralZoneStatsChanged)
+    //            {
+    //                theGridSystem.theGridData.gridData[i].TerrainStatsModify(NeutralZoneTerrainType);
+    //            }
+    //        }
+    //        else if (theGridSystem.theGridData.gridData[i].neutralZoneStatsChanged)
+    //        {
+    //            theGridSystem.theGridData.gridData[i].ResetStats();
+    //        }
+    //    }
+    }
 }
