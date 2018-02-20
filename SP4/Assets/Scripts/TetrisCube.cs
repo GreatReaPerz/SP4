@@ -10,7 +10,8 @@ public class TetrisCube {
 	public Rigidbody2D partThree = new Rigidbody2D ();
 	public Rigidbody2D partFour = new Rigidbody2D ();
 
-	public bool isMoving = false;
+    public bool sav = false;
+    public bool isMoving = false;
     public bool returning = false;
     public string Whatisbeingmoved = "";
     public Vector3 origin;

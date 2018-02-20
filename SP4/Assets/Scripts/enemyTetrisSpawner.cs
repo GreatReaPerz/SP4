@@ -3,76 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class TetrisSpawner : MonoBehaviour{
+public class enemyTetrisSpawner : MonoBehaviour
+{
 
-	[SerializeField]
-	GameObject[] TetrisTypes;
+    [SerializeField]
+    GameObject[] TetrisTypes;
 
 
-	public TetrisCube[] tetrisList = new TetrisCube[3]; 
-	float timer = 0;
-	int numSpawned = 0;
+    public TetrisCube[] tetrisList = new TetrisCube[3];
+    float timer = 0;
+    int numSpawned = 0;
     private Vector3 pil;
     private Vector3 pil1;
     public bool SomethingIsMoving = false;
     public uint IndexofMovingObject = 0;
 
-  	// Use this for initialization
-	public void Start () {
-		for (int i = 0; i < 3; ++i) {
-			int rand = Random.Range (0, TetrisTypes.Length);
-			switch(rand)
-			{
-			case 0:
-				{
-					numSpawned = Spawn4x4Cube (numSpawned);
-					break;
-				}
-			case 1:
-				{
-					numSpawned = SpawnLShape (numSpawned);
-					break;
-				}
-			case 2:
-				{
-					numSpawned = SpawnTShape (numSpawned);
-					break;
-				}
-			case 3:
-				{
-					numSpawned = SpawnZShape (numSpawned);
-					break;
-				}
-			};
-		}
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		//Used to test spawning (dont spawn ontop of each other, will kinda bug out
-		/*timer += Time.deltaTime;
+    // Use this for initialization
+    public void Start()
+    {
+
+        numSpawned = 0;
+        numSpawned = Spawn4x4Cube(numSpawned);
+        numSpawned = Spawn4x4Cube(numSpawned);
+        numSpawned = Spawn4x4Cube(numSpawned);
+        //numSpawned = SpawnLShape (numSpawned);
+        //numSpawned = SpawnZShape(numSpawned);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //Used to test spawning (dont spawn ontop of each other, will kinda bug out
+        /*timer += Time.deltaTime;
 		if (timer > 3) {
 			Spawn4x4Cube ();
 			timer = 0;
 		}*/
 
-		//Put this in grid system update for statemachine to work
-		/*if (!playerTurn) {
-			for (int i = 0; i < 3; ++i) {
-				theTetrisSpawner.tetrisList [i].StateMachine.AddState (new TetrisMove ("Move", theTetrisSpawner.tetrisList [i])); 
-				theTetrisSpawner.tetrisList [i].StateMachine.SetNextState ("Move");
-			}
-			playerTurn = true;
-		}
-		for (int i = 0; i < 3; ++i) {
-			theTetrisSpawner.tetrisList [i].StateMachine.Update ();
-		}*/
-
-        for(uint i = 0; i < 3; ++i)
+        for (uint i = 0; i < 3; ++i)
         {
             SomethingIsMoving = false;
 
-            if(tetrisList[i] == null)
+            if (tetrisList[i] == null)
             {
                 continue;
             }
@@ -86,26 +58,22 @@ public class TetrisSpawner : MonoBehaviour{
 
             tetrisList[i].isMoving = false;
         }
-	}
-    
-	int Spawn4x4Cube (int key)
-	{
+    }
+
+    int Spawn4x4Cube(int key)
+    {
         TetrisCube theCube = new TetrisCube();
-        theCube.parentCube = Instantiate (TetrisTypes [0], transform.position, Quaternion.identity);
-		theCube.parentCube.transform.SetParent (GameObject.FindGameObjectWithTag ("Canvas").transform, true);
-        pil.Set(-300 + (key * 300), -300, 0);
+        theCube.parentCube = Instantiate(TetrisTypes[0], transform.position, Quaternion.identity);
+        theCube.parentCube.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, true);
+        pil.Set(-300 + (key * 300), -300, -100);
         pil1 = theCube.parentCube.transform.position + pil;
-        theCube.origin.Set(pil1.x, pil1.y, pil1.z);
+        theCube.origin.Set(pil1.x,1920, pil1.z);
         theCube.parentCube.transform.position = theCube.origin;
 
-
-		//Adding state to the stateMachine
-		// theCube.StateMachine.AddState(new TetrisMove("Move",theCube));
-
-        //Set up the 4 cubes based on theCube.parentCube's child
+		//Set up the 4 cubes based on theCube.parentCube's child
 		theCube.setTheCubes (theCube.parentCube.transform.Find ("partOne").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partTwo").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partThree").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partFour").GetComponent<Rigidbody2D> ());
 		theCube.setTheObjectType (TetrisCube.objectType.TETRIS_4X4); 
-	
+
 		//Could use raycast instead 
 		//Also cause the only thing changing is the movement function, could try to make a switch instead
 		//Trigger and entry for bottom left 
@@ -116,9 +84,9 @@ public class TetrisSpawner : MonoBehaviour{
 			theCube.DragObject (theCube.partOne);
 		});
 		BtmLTrig.triggers.Add (BtmLEntry);
-        theCube.origin = theCube.partOne.position;
+		theCube.origin = theCube.partOne.position;
 
-        //Trigger and entry for bottom Right 
+		//Trigger and entry for bottom Right 
 		EventTrigger BtmRTrig = theCube.parentCube.transform.Find("partTwo").GetComponent<EventTrigger> ();
 		EventTrigger.Entry BtmREntry = new EventTrigger.Entry ();
 		BtmREntry.eventID = EventTriggerType.Drag;
@@ -147,18 +115,15 @@ public class TetrisSpawner : MonoBehaviour{
 
 		tetrisList [key] = theCube;
 		++key;
-        return key;
+		return key;
     }
 
-	public int SpawnTShape(int key)
-	{
+    public int SpawnTShape(int key)
+    {
         TetrisCube theCube = new TetrisCube();
-        theCube.parentCube = Instantiate (TetrisTypes [2], transform.position, Quaternion.identity);
-		theCube.parentCube.transform.SetParent (GameObject.FindGameObjectWithTag ("Canvas").transform, true);
-		pil.Set(-300 + (key * 300), -300, 0);
-		pil1 = theCube.parentCube.transform.position + pil;
-		theCube.origin.Set(pil1.x, pil1.y, pil1.z);
-		theCube.parentCube.transform.position = theCube.origin;
+        theCube.parentCube = Instantiate(TetrisTypes[2], transform.position, Quaternion.identity);
+        theCube.parentCube.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, true);
+
 
 		//Set up the 4 cubes based on theCube.parentCube's child
 		theCube.setTheCubes (theCube.parentCube.transform.Find ("partOne").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partTwo").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partThree").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partFour").GetComponent<Rigidbody2D> ());
@@ -174,8 +139,8 @@ public class TetrisSpawner : MonoBehaviour{
 			theCube.DragObject (theCube.partOne);
 		});
 		BtmLTrig.triggers.Add (BtmLEntry);
-        theCube.origin = theCube.partOne.position;
-        //Trigger and entry for bottom Right 
+		theCube.origin = theCube.partOne.position;
+		//Trigger and entry for bottom Right 
 		EventTrigger BtmRTrig = theCube.parentCube.transform.Find("partTwo").GetComponent<EventTrigger> ();
 		EventTrigger.Entry BtmREntry = new EventTrigger.Entry ();
 		BtmREntry.eventID = EventTriggerType.Drag;
@@ -206,17 +171,14 @@ public class TetrisSpawner : MonoBehaviour{
 		++key;
 
 		return key;
-	}
+    }
 
-	public int SpawnLShape(int key)
-	{
+    public int SpawnLShape(int key)
+    {
         TetrisCube theCube = new TetrisCube();
-        theCube.parentCube = Instantiate (TetrisTypes [1], transform.position, Quaternion.identity);
-		theCube.parentCube.transform.SetParent (GameObject.FindGameObjectWithTag ("Canvas").transform, true);
-		pil.Set(-300 + (key * 300), -300, 0);
-		pil1 = theCube.parentCube.transform.position + pil;
-		theCube.origin.Set(pil1.x, pil1.y, pil1.z);
-		theCube.parentCube.transform.position = theCube.origin;
+        theCube.parentCube = Instantiate(TetrisTypes[1], transform.position, Quaternion.identity);
+        theCube.parentCube.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, true);
+
 
 		//Set up the 4 cubes based on theCube.parentCube's child
 		theCube.setTheCubes (theCube.parentCube.transform.Find ("partOne").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partTwo").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partThree").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partFour").GetComponent<Rigidbody2D> ());
@@ -232,8 +194,8 @@ public class TetrisSpawner : MonoBehaviour{
 			theCube.DragObject(theCube.partOne);
 		});
 		BtmLTrig.triggers.Add (BtmLEntry);
-        theCube.origin = theCube.partOne.position;
-        //Trigger and entry for bottom Right 
+		theCube.origin = theCube.partOne.position;
+		//Trigger and entry for bottom Right 
 		EventTrigger BtmRTrig = theCube.parentCube.transform.Find("partTwo").GetComponent<EventTrigger> ();
 		EventTrigger.Entry BtmREntry = new EventTrigger.Entry ();
 		BtmREntry.eventID = EventTriggerType.Drag;
@@ -264,19 +226,14 @@ public class TetrisSpawner : MonoBehaviour{
 		++key;
 
 		return key;
-	}
-		
-	public int SpawnZShape(int key)
-	{
+    }
+
+    public int SpawnZShape(int key)
+    {
         TetrisCube theCube = new TetrisCube();
 
-        theCube.parentCube = Instantiate (TetrisTypes [3], transform.position, Quaternion.identity);
-		theCube.parentCube.transform.SetParent (GameObject.FindGameObjectWithTag ("Canvas").transform, true);
-		pil.Set(-300 + (key * 300), -300, 0);
-		pil1 = theCube.parentCube.transform.position + pil;
-		theCube.origin.Set(pil1.x, pil1.y, pil1.z);
-		theCube.parentCube.transform.position = theCube.origin;
-
+        theCube.parentCube = Instantiate(TetrisTypes[3], transform.position, Quaternion.identity);
+        theCube.parentCube.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, true);
 
 		//Set up the 4 cubes based on theCube.parentCube's child
 		theCube.setTheCubes (theCube.parentCube.transform.Find ("partOne").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partTwo").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partThree").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partFour").GetComponent<Rigidbody2D> ());
@@ -291,8 +248,8 @@ public class TetrisSpawner : MonoBehaviour{
 			theCube.DragObject(theCube.partOne);
 		});
 		BtmLTrig.triggers.Add (BtmLEntry);
-        theCube.origin = theCube.partOne.position;
-        //Trigger and entry for bottom Right 
+		theCube.origin = theCube.partOne.position;
+		//Trigger and entry for bottom Right 
 		EventTrigger BtmRTrig = theCube.parentCube.transform.Find("partTwo").GetComponent<EventTrigger> ();
 		EventTrigger.Entry BtmREntry = new EventTrigger.Entry ();
 		BtmREntry.eventID = EventTriggerType.Drag;
@@ -323,5 +280,6 @@ public class TetrisSpawner : MonoBehaviour{
 		++key;
 
 		return key;
-	}
+    }
 }
+
