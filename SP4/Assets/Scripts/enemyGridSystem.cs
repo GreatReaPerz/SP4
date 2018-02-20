@@ -41,7 +41,7 @@ public class enemyGridSystem : MonoBehaviour
         Debug.Assert(theTetrisSpawner != null);
 
         RectTransform objectRectTransform = thisCanvas.GetComponent<RectTransform>();
-        Vector2 Grid0Pos = new Vector2(objectRectTransform.transform.position.x - (0.5f * (col - 1) * tileWidth), objectRectTransform.transform.position.y - ((row * tileHeight)) - (2 * (tileHeight)) + 1024);
+        Vector2 Grid0Pos = new Vector2(objectRectTransform.transform.position.x - (0.5f * (col - 1) * tileWidth), objectRectTransform.transform.position.y + ((row * tileHeight)) + (2 * (tileHeight)));
         grid[0].transform.position = Grid0Pos;
 
         for (uint i = 0; i < gridSize; ++i)
@@ -67,7 +67,7 @@ public class enemyGridSystem : MonoBehaviour
             }
             else
             {
-                grid[i].transform.position = new Vector2(grid[i - col].transform.position.x, grid[i - col].transform.position.y + tileHeight);
+                grid[i].transform.position = new Vector2(grid[i - col].transform.position.x, grid[i - col].transform.position.y - tileHeight);
                 //Debug.Log(grid[i].transform.position);
             }
         }

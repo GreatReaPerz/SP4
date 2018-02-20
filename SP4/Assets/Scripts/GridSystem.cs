@@ -515,30 +515,11 @@ public class GridSystem : MonoBehaviour {
             {
                 theTetrisSpawner.tetrisList[theTetrisSpawner.IndexofMovingObject].returning = true;
             }
-            //Pass the tetris block data into the grid data
-            if (theGridData.AddTetrisBlockData(objectIndex, "Test01", "UnitTest", 100, 20, 35, 45, grid[objectIndex].transform.position))
-            {
-                Debug.Log("Successful Save");
-                theTetrisSpawner.tetrisList[theTetrisSpawner.IndexofMovingObject].sav = true;
-            }
-            else
-            {
-                Debug.Log("Unsuccessful Save");
-            }
+          
         }
         //When the tetris block is picked up from the grid, it removes the data from that tile
         if (isMouseMovingAnObject && Input.GetMouseButtonDown(0))
         {
-            //Remove the data from the tile
-            if (theGridData.RemoveTetrisBlockData(objectIndex))
-            {
-                Debug.Log("Successful Removal");
-            }
-            else
-            {
-                Debug.Log("Unsuccessful Removal");
-            }
-
             isMouseMovingAnObject = false;
         }
         for (int i = 0; i < 3; ++i)
@@ -679,347 +660,31 @@ public class GridSystem : MonoBehaviour {
 //The grid where data is stored
 public class GridData
 {
-    public TetrisData[] gridData;
+    public bool[] gridData;
+    public bool GridBecameGrey = false;
+
     uint gridDataSize;
 
     public void Init()
     {
         gridDataSize = GridSystem.gridSize;
-        gridData = new TetrisData[gridDataSize];
+        gridData = new bool[gridDataSize];
     }
 
-    public bool AddTetrisBlockData(uint Index, string NameID, string UnitType, uint Health, uint moveSpeed, uint attackDamage, uint attackRate, Vector2 Position)
+    public bool IsGreyedOut(uint index)
     {
-        //Check if there is already a unit in that tile
-        if (gridData[Index] != null)
-        {
-            return false;
-        }
-
-        gridData[Index] = new TetrisData();
-        gridData[Index].CreateUnit(NameID, UnitType, Health, moveSpeed, attackDamage, attackRate, Position);
-
-        return true;
+        return gridData[index];
     }
 
-    public bool RemoveTetrisBlockData(uint Index)
+    public uint SetIsGreyOut(uint index, bool GreyOut = true)
     {
-        //Check if there is no unit inside that tile
-        if (gridData[Index] == null)
-        {
-            return false;
-        }
-
-        gridData[Index] = null;
-
-        return true;
+        gridData[index] = GreyOut;
+        GridBecameGrey = true;
+        return index;
     }
 }
 
 //Terrain basic unit modifiers: Hills favourable to Bowmen, Forest favourable to Combat Infantry, Rivers favourable to Cavalry
 //Plains favour all units
-
-//Storage class for Tetris Block data
-public class TetrisData
-{
-    string NameID, UnitType;
-    float Health, moveSpeed, attackDamage, attackRate;
-    float OriginalHealth, OriginalMoveSpeed, OriginalAttackDamage, OriginalAttackRate;
-    Vector2 Position = new Vector2();
-
-    public TetrisData()
-    {
-        NameID = UnitType = "";
-        Health = moveSpeed = attackDamage = attackRate = 0;
-        OriginalHealth = OriginalMoveSpeed = OriginalAttackDamage = OriginalAttackRate = 0;
-    }
-
-    public void CreateUnit(string NameID, string UnitType, float Health, float moveSpeed, float attackDamage, float attackRate, Vector2 position)
-    {
-        this.NameID = NameID;
-        this.UnitType = UnitType;
-        this.Health = Health;
-        this.moveSpeed = moveSpeed;
-        this.attackDamage = attackDamage;
-        this.attackRate = attackRate;
-
-        OriginalHealth = Health;
-        OriginalMoveSpeed = moveSpeed;
-        OriginalAttackDamage = attackDamage;
-        OriginalAttackRate = attackRate;
-
-        this.Position = position;
-    }
-
-    public bool neutralZoneStatsChanged = false;
-    public void TerrainStatsModify(string NeutralZoneTerrainType)
-    {
-        //Slow down units based on terrain modifiers
-        switch (UnitType)
-        {
-            case "Infantry":
-                {
-                    if (NeutralZoneTerrainType == "Hills")
-                    {
-                        //Subtract 10% attack damage
-                        attackDamage -= (attackDamage * 0.1f);
-
-                        //Subtract 15% movement
-                        moveSpeed -= (moveSpeed * 0.15f);
-
-                        //Subtrack 10% attack rate
-                        attackRate -= (attackRate * 0.1f);
-                    }
-                    else if (NeutralZoneTerrainType == "Forest")
-                    {
-                        //Add 15% attack damage
-                        attackDamage += (attackDamage * 0.1f);
-
-                        //Subtract 10% movement
-                        moveSpeed -= (moveSpeed * 0.1f);
-
-                        //Subtrack 5% attack rate
-                        attackRate -= (attackRate * 0.05f);
-                    }
-                    else if (NeutralZoneTerrainType == "River")
-                    {
-                        //Subtract 10% attack damage
-                        attackDamage -= (attackDamage * 0.1f);
-
-                        //Subtract 15% movement
-                        moveSpeed -= (moveSpeed * 0.15f);
-
-                        //Subtract 15% attack rate
-                        attackRate -= (attackRate * 0.1f);
-                    }
-                    else if (NeutralZoneTerrainType == "Plains")
-                    {
-                        //Add 10% attack damage
-                        attackDamage += (attackDamage * 0.1f);
-
-                        //Add 20% movement
-                        moveSpeed += (moveSpeed * 0.2f);
-
-                        //Add 10% attack rate
-                        attackRate += (attackRate * 0.1f);
-                    }
-                    break;
-                }
-            case "Cavalry":
-                {
-                    if (NeutralZoneTerrainType == "Hills")
-                    {
-                        //Subtract 15% attack damage
-                        attackDamage -= (attackDamage * 0.15f);
-
-                        //Subtract 25% movement
-                        moveSpeed -= (moveSpeed * 0.25f);
-
-                        //Subtrack 15% attack rate
-                        attackRate -= (attackRate * 0.15f);
-                    }
-                    else if (NeutralZoneTerrainType == "Forest")
-                    {
-                        //Subtract 10% attack damage
-                        attackDamage -= (attackDamage * 0.1f);
-
-                        //Subtract 15% movement
-                        moveSpeed -= (moveSpeed * 0.15f);
-
-                        //Subtrack 5% attack rate
-                        attackRate -= (attackRate * 0.05f);
-                    }
-                    else if (NeutralZoneTerrainType == "River")
-                    {
-                        //Add 10% attack damage
-                        attackDamage += (attackDamage * 0.1f);
-
-                        //Subtract 10% movement
-                        moveSpeed -= (moveSpeed * 0.1f);
-
-                        //Subtrack 10% attack rate
-                        attackRate -= (attackRate * 0.1f);
-                    }
-                    else if (NeutralZoneTerrainType == "Plains")
-                    {
-                        //Add 10% attack damage
-                        attackDamage += (attackDamage * 0.1f);
-
-                        //Add 15% movement
-                        moveSpeed += (moveSpeed * 0.15f);
-
-                        //Add 15% attack rate
-                        attackRate += (attackRate * 0.1f);
-                    }
-                    break;
-                }
-            case "Bowmen":
-                {
-                    if (NeutralZoneTerrainType == "Hills")
-                    {
-                        //Add 10% attack damage
-                        attackDamage += (attackDamage * 0.1f);
-
-                        //Add 5% attack rate
-                        attackRate += (attackRate * 0.05f);
-
-                        //Subtract 10% movement speed
-                        moveSpeed -= (moveSpeed * 0.1f);
-                    }
-                    else if (NeutralZoneTerrainType == "Forest")
-                    {
-                        //Sutract 15% attack damage
-                        attackDamage -= (attackDamage * 0.15f);
-
-                        //Subtract 10% movement
-                        moveSpeed -= (moveSpeed * 0.1f);
-
-                        //Subtrack 15% attack rate
-                        attackRate -= (attackRate * 0.15f);
-                    }
-                    else if (NeutralZoneTerrainType == "River")
-                    {
-                        //Subtract 10% attack damage
-                        attackDamage -= (attackDamage * 0.1f);
-
-                        //Subtract 10% movement
-                        moveSpeed -= (moveSpeed * 0.1f);
-
-                        //Subtrack 5% attack rate
-                        attackRate -= (attackRate * 0.1f);
-                    }
-                    else if (NeutralZoneTerrainType == "Plains")
-                    {
-                        //Add 10% attack damage
-                        attackDamage += (attackDamage * 0.1f);
-
-                        //Add 10% movement
-                        moveSpeed += (moveSpeed * 0.1f);
-
-                        //Add 20% attack rate
-                        attackRate += (attackRate * 0.2f);
-                    }
-                    break;
-                }
-            default:
-                break;
-        }
-
-        neutralZoneStatsChanged = true;
-    }
-
-    public void ResetStats()
-    {
-        neutralZoneStatsChanged = false;
-
-        moveSpeed = OriginalMoveSpeed;
-        attackDamage = OriginalAttackDamage;
-        attackRate = OriginalAttackRate;
-    }
-
-    //Getters
-    public float GetHealth()
-    {
-        return Health;
-    }
-    public float GetMoveSpeed()
-    {
-        return moveSpeed;
-    }
-    public float GetAttackDamage()
-    {
-        return attackDamage;
-    }
-    public float GetAttackRate()
-    {
-        return attackRate;
-    }
-    public string GetNameID()
-    {
-        return NameID;
-    }
-    public string GetUnitType()
-    {
-        return UnitType;
-    }
-    public Vector2 GetPosition()
-    {
-        return Position;
-    }
-
-    //Setters
-    public void SetHealth(float newHealthValue)
-    {
-        Health = newHealthValue;
-    }
-    public void SetMoveSpeed(float newMoveSpeedValue)
-    {
-        moveSpeed = newMoveSpeedValue;
-    }
-    public void SetAttackDamage(float newAttackDamageValue)
-    {
-        attackDamage = newAttackDamageValue;
-    }
-    public void SetAttackRate(float newAttackRateValue)
-    {
-        attackRate = newAttackRateValue;
-    }
-    public void SetNameID(string newNameIDValue)
-    {
-        NameID = newNameIDValue;
-    }
-    public void SetUnitType(string newUnitTypeValue)
-    {
-        UnitType = newUnitTypeValue;
-    }
-    public void SetPosition(Vector2 newPosition)
-    {
-        Position = newPosition;
-    }
-
-    //Subtractors & Adders
-    public void SubractHealth(float HealthToSubtract)
-    {
-        Health -= HealthToSubtract;
-    }
-    public void AddHealth(float HealthToAdd)
-    {
-        Health += HealthToAdd;
-    }
-    public void SubractMoveSpeed(float MoveSpeedToSubtract)
-    {
-        moveSpeed -= MoveSpeedToSubtract;
-    }
-    public void AddMoveSpeed(float MoveSpeedToAdd)
-    {
-        moveSpeed += MoveSpeedToAdd;
-    }
-    public void SubractAttackRate(float AttackRateToSubtract)
-    {
-        attackRate -= AttackRateToSubtract;
-    }
-    public void AddAttackRate(float AttackRateToAdd)
-    {
-        attackRate += AttackRateToAdd;
-    }
-    public void SubractAttackDamage(float AttackDamageToSubtract)
-    {
-        attackDamage -= AttackDamageToSubtract;
-    }
-    public void AddAttackDamage(float AttackDamageToAdd)
-    {
-        attackDamage += AttackDamageToAdd;
-    }
-    public void AddPosition(float PositionXAdd = 0, float PositionYAdd = 0)
-    {
-        Position.x += PositionXAdd;
-        Position.y += PositionYAdd;
-    }
-    public void SubtractPosition(float PositionXSubtract = 0, float PositionYSubtract = 0)
-    {
-        Position.x -= PositionXSubtract;
-        Position.y -= PositionYSubtract;
-    }
-}
 
 

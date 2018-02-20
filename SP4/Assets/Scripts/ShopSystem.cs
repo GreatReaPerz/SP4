@@ -11,16 +11,22 @@ public class ShopSystem : MonoBehaviour {
     [SerializeField]
     GridLayoutGroup ContentGrid;
 
+    private float playerGold = 0;
+    GameObject playerGoldText = null;
+    
     // Use this for initialization
     void Start () {
         for (int i = 0; i < 10; ++i)
             CreateButton("New Button " + i);
-	}
+
+        playerGold = PlayerPrefs.GetInt("Gold");
+        playerGoldText = GameObject.Find("GoldAmount");
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        playerGoldText.GetComponent<UnityEngine.UI.Text>();
+    }
 
     void CreateButton(string name)
     {

@@ -1843,7 +1843,6 @@ MonoBehaviour:
   Player1: {fileID: 376297939}
   Player2: {fileID: 161571068}
   UIPanelAnimator: {fileID: 1174336883}
-  PauseAnimator: {fileID: 1001305501}
   objects: []
 --- !u!114 &280144281
 MonoBehaviour:
