@@ -1669,9 +1669,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d49f1915ae2df5449cef2116bcd6a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tetrisPiece: {fileID: 0}
-  stopDrag: 0
-  isMoving: 0
 --- !u!114 &274683762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1845,6 +1842,8 @@ MonoBehaviour:
   Terrain: {fileID: 599830710}
   Player1: {fileID: 376297939}
   Player2: {fileID: 161571068}
+  UIPanelAnimator: {fileID: 1174336883}
+  PauseAnimator: {fileID: 1001305501}
   objects: []
 --- !u!114 &280144281
 MonoBehaviour:
@@ -6271,9 +6270,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d49f1915ae2df5449cef2116bcd6a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tetrisPiece: {fileID: 0}
-  stopDrag: 0
-  isMoving: 0
 --- !u!1 &900728161
 GameObject:
   m_ObjectHideFlags: 0
@@ -6303,7 +6299,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 961660701}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6321,6 +6317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b51b9a92d2fb14e969226844b2c9e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PauseAnimator: {fileID: 1001305501}
   type: Cavalry
   health: 0
   _class: 0
@@ -6746,11 +6743,11 @@ RectTransform:
   - {fileID: 599830711}
   - {fileID: 430057098}
   - {fileID: 1903860802}
-  - {fileID: 1001305500}
   - {fileID: 1174336882}
   - {fileID: 900728162}
   - {fileID: 1213968303}
   - {fileID: 1656381458}
+  - {fileID: 1001305500}
   - {fileID: 195718208}
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -7239,7 +7236,7 @@ RectTransform:
   - {fileID: 82177923}
   - {fileID: 2029738182}
   m_Father: {fileID: 961660701}
-  m_RootOrder: 5
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -7997,7 +7994,7 @@ RectTransform:
   - {fileID: 945686483}
   - {fileID: 1914070379}
   m_Father: {fileID: 961660701}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8186,7 +8183,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 961660701}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8204,6 +8201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b51b9a92d2fb14e969226844b2c9e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PauseAnimator: {fileID: 1001305501}
   type: Infantry
   health: 0
   _class: 0
@@ -9959,7 +9957,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 961660701}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9977,6 +9975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b51b9a92d2fb14e969226844b2c9e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PauseAnimator: {fileID: 1001305501}
   type: Bowmen
   health: 0
   _class: 0

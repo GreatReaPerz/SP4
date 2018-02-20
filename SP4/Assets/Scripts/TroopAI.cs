@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TroopAI : MonoBehaviour {
 
+    [SerializeField]
+    Animator PauseAnimator;
     enum States
     {
         CHARGE,
@@ -153,6 +155,8 @@ public class TroopAI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (PauseAnimator.GetBool("PauseEnabled") == true)
+            return;
         if(health <= 0)
         {
             activ = false;

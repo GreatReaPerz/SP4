@@ -15,6 +15,8 @@ public class GameCode : MonoBehaviour {
     GameObject Player1;
     [SerializeField]
     GameObject Player2;
+    [SerializeField]
+    Animator UIPanelAnimator;
     enum GameState
     {
         PLANNING,
@@ -46,6 +48,7 @@ public class GameCode : MonoBehaviour {
 	void Update () {
         if(state == (int)GameState.PLANNING)
         {
+            UIPanelAnimator.SetBool("UIPanelEnabled", true);
             if (timer > 5.0f && !destroyed)
             {
                 for (int i = 0; i < 3; ++i)
@@ -161,6 +164,7 @@ public class GameCode : MonoBehaviour {
 
         if (state == (int)GameState.ATTACK)
         {
+            UIPanelAnimator.SetBool("UIPanelEnabled", false);
             if (destroyed)
             {
                 if (objects.Count > 0)
