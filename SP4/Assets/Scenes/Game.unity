@@ -1186,7 +1186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  maxHealth: 15
+  maxHealth: 10
 --- !u!1 &192502705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1724,7 +1724,8 @@ MonoBehaviour:
   - {fileID: 1282603865}
   - {fileID: 469817296}
   thisCanvas: {fileID: 961660700}
-  GreyGridSprite: {fileID: 0}
+  GreyGridSprite: {fileID: 21300000, guid: c616bc0d5b326404f8b11ef19d6124fe, type: 3}
+  BlueGridSprite: {fileID: 21300000, guid: c616bc0d5b326404f8b11ef19d6124fe, type: 3}
   gridData: 
 --- !u!1 &280144273
 GameObject:
@@ -2952,7 +2953,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  maxHealth: 15
+  maxHealth: 10
 --- !u!4 &376297941
 Transform:
   m_ObjectHideFlags: 0
@@ -6262,7 +6263,8 @@ MonoBehaviour:
   - {fileID: 903562454}
   - {fileID: 80742073}
   thisCanvas: {fileID: 961660700}
-  GreyGridSprite: {fileID: 0}
+  GreyGridSprite: {fileID: 21300000, guid: 510741c1e8710c1428cba48f72f5fa03, type: 3}
+  BlueGridSprite: {fileID: 21300000, guid: c616bc0d5b326404f8b11ef19d6124fe, type: 3}
   gridData: 
 --- !u!114 &886640751
 MonoBehaviour:
@@ -6339,6 +6341,7 @@ MonoBehaviour:
   aggrotimer: 0
   attacktimer: 0
   terrainName: 
+  originPos: {x: 0, y: 0, z: 0}
   targetPos: {x: 0, y: 0, z: 0}
 --- !u!114 &900728164
 MonoBehaviour:
@@ -8224,6 +8227,7 @@ MonoBehaviour:
   aggrotimer: 0
   attacktimer: 0
   terrainName: 
+  originPos: {x: 0, y: 0, z: 0}
   targetPos: {x: 0, y: 0, z: 0}
 --- !u!114 &1213968305
 MonoBehaviour:
@@ -10003,6 +10007,7 @@ MonoBehaviour:
   aggrotimer: 0
   attacktimer: 0
   terrainName: 
+  originPos: {x: 0, y: 0, z: 0}
   targetPos: {x: 0, y: 0, z: 0}
 --- !u!114 &1656381460
 MonoBehaviour:

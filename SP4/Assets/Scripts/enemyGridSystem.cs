@@ -29,6 +29,9 @@ public class enemyGridSystem : MonoBehaviour
     [SerializeField]
     Sprite GreyGridSprite;
 
+    [SerializeField]
+    Sprite BlueGridSprite;
+
     // Use this for initialization
     public void Start()
     {
@@ -1008,7 +1011,7 @@ public class enemyGridSystem : MonoBehaviour
     public uint UnSetIsGreyOut(uint index, bool GreyOut = false)
     {
         gridData[index] = GreyOut;
-        grid[index].sprite = GreyGridSprite;
+        grid[index].sprite = BlueGridSprite;
 
         return index;
     }
