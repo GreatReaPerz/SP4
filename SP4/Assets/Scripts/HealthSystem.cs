@@ -19,16 +19,12 @@ public class HealthSystem : MonoBehaviour {
 	}
     public void addHealth(int _amount)
     {
-        Debug.Log("Health:" + health + ",Amount:" + _amount);
-        if (health + _amount <=0)
-        {
-            health = 0;
-            return;
-        }
         previousHealth = health;
         health += _amount;
         if (health > maxHealth)
             health = maxHealth;
+        else if (health < 0)
+            health = 0;
     }
     public float getHealth()
     {
