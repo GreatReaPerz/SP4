@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class RenderHealth : MonoBehaviour {
     
-    float defaultSize = 10;
-
     [SerializeField]
     GameObject playerObj;
     [SerializeField]
