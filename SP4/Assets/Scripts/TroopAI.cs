@@ -173,6 +173,12 @@ public class TroopAI : MonoBehaviour {
                 hello.x = 0;
                 hello.y = team;
                 hello.z = 0;
+                bool collided = false;
+                for(int i = 0; i < game.objects.Count; ++i)
+                {
+                    Vector3 nextPosition = transform.position += hello * speed;
+                    //if (game.objects[i].transform.position.x = )
+                }
                 transform.position += hello * speed;
 
                 if (prevhealth != health)
@@ -303,4 +309,16 @@ public class TroopAI : MonoBehaviour {
         }
 
 	}
+
+    bool Collided(Vector3 firstTroop, Vector3 secondTroop)
+    {
+        if (firstTroop.x < secondTroop.x + (100 * 0.5f) 
+            &&  firstTroop.x + (100 * 0.5f) > secondTroop.x 
+            && firstTroop.y < secondTroop.y + (100 * 0.5f)
+            && (100 * 0.5f) + firstTroop.y > secondTroop.y)
+        {
+            return true;
+        }
+        return false;
+    }
 }
