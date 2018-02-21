@@ -28,11 +28,9 @@ public class TetrisCube {
 
 	public objectType thisType;
 
-	public TetrisAIManager StateMachine = new TetrisAIManager();
-
 	// Use this for initialization
 	public TetrisCube(){
-		StateMachine.Start ();
+
 	}
 		
 /*	public void DragbtmLeft()
