@@ -215,7 +215,7 @@ public class TroopAI : MonoBehaviour {
                         //    minNearest = dist;
                         //    nearest = game.objects[i];
                         //}
-                        if(game.objects[i].transform.position.x > transform.position.x - 50 && game.objects[i].transform.position.x < transform.position.x + 50 && Mathf.Abs(game.objects[i].transform.position.y - transform.position.y) < 110)
+                        if(game.objects[i].transform.position.x > transform.position.x - 150 && game.objects[i].transform.position.x < transform.position.x + 150 && (game.objects[i].transform.position - transform.position).magnitude < 110)
                         {
                             nearest = game.objects[i];
                         }
@@ -228,7 +228,7 @@ public class TroopAI : MonoBehaviour {
             }
             if (state == (int)States.CHASE)
             {
-                aggrotimer += 1 / 60;
+                aggrotimer += Time.deltaTime;
                 if (prevhealth == health && aggrotimer % 5 == 0 || aggrotimer % 5 == 0)
                 {
                     state = (int)States.CHARGE;
@@ -319,18 +319,24 @@ public class TroopAI : MonoBehaviour {
 
             if (state == (int)States.ATTACK)
             {
-                attacktimer += 1 / 60;
+                attacktimer += Time.deltaTime;
                 if (nearest != null)
                 {
+                    nearestAI = nearest.GetComponent<TroopAI>();
                     if (nearestAI.activ)
                     {
-                        if (attacktimer % (1.0f / attckSpd) == 0)
+                        if (attacktimer > (1.0f / attckSpd))
                         {
+                            attacktimer = 0;
                             if (_class == nearestAI._class)
                             {
-                                nearestAI.health -= attckDmg;
+                                nearestAI.health -= 100;
                             }
                             if (_class == 1 && nearestAI._class == 3)
+                            {
+                                nearestAI.health -= attckDmg * 1.2f;
+                            }
+                            if (_class == 1 && nearestAI._class == 2)
                             {
                                 nearestAI.health -= attckDmg * 1.2f;
                             }
@@ -338,10 +344,19 @@ public class TroopAI : MonoBehaviour {
                             {
                                 nearestAI.health -= attckDmg * 1.2f;
                             }
+                            if (_class == 2 && nearestAI._class == 3)
+                            {
+                                nearestAI.health -= attckDmg * 1.2f;
+                            }
+                            if (_class == 3 && nearestAI._class == 1)
+                            {
+                                nearestAI.health -= attckDmg * 1.2f;
+                            }
                             if (_class == 3 && nearestAI._class == 2)
                             {
                                 nearestAI.health -= attckDmg * 1.2f;
                             }
+                            
                         }
                     }
                     else

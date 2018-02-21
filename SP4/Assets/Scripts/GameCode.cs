@@ -264,6 +264,7 @@ public class GameCode : MonoBehaviour {
                         {
                             if (troop.team == 1)
                             {
+                                //Player 1 reach enemy base, reduce enemy base health
                                 if (objects[i].transform.position.y > 2000)
                                 {
                                     troop.activ = false;
@@ -272,6 +273,7 @@ public class GameCode : MonoBehaviour {
                             }
                             if (troop.team == -1)
                             {
+                                //Player 2 reach enemy base, reduce enemy base health
                                 if (objects[i].transform.position.y < 100)
                                 {
                                     troop.activ = false;
@@ -280,7 +282,7 @@ public class GameCode : MonoBehaviour {
                             }
                         }
                     }
-                    for (int i = 0; i < objects.Count;)
+                    for (int i = 0; i < objects.Count;) //Remove dead/not needed troops from scene
                     {
                         troop = objects[i].GetComponent<TroopAI>();
                         if (troop.activ)
@@ -298,16 +300,19 @@ public class GameCode : MonoBehaviour {
                         troop = objects[i].GetComponent<TroopAI>();
                         if (troop.activ)
                         {
+                            //If the unit reaches its target grid
                             if (Mathf.Abs(troop.targetPos.y - troop.transform.position.y) < 10)
                             {
                                 if(troop.team == 1)
                                 {
+                                    //Set the target grid to grey
                                     enemyGridSystem.SetIsGreyOut(troop.targetIndex);
                                     troop.activ = false;
                                 }
                                 if(troop.team == -1)
                                 {
                                     //Debug.Log("kill");
+                                    //Set the target grid to grey
                                     theGridSystem.SetIsGreyOut(troop.targetIndex);
                                     troop.activ = false;
                                 }
@@ -373,6 +378,6 @@ public class GameCode : MonoBehaviour {
             }
         }
 
-        timer += 1.0f / 60.0f;
+        timer += Time.deltaTime;
 	}
 }
