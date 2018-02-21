@@ -171,7 +171,7 @@ public class TetrisSpawner : MonoBehaviour{
 	public int SpawnTShape(int key)
 	{
         TetrisCube theCube = new TetrisCube();
-        theCube.parentCube = Instantiate (TetrisTypes [2], transform.position, Quaternion.Euler(0,0,90));
+        theCube.parentCube = Instantiate (TetrisTypes [2], transform.position, Quaternion.identity);
 
         theCube.parentCube.transform.SetParent (GameObject.FindGameObjectWithTag ("Canvas").transform, true);
 		pil.Set(-300 + (key * 300), -300, 0);
