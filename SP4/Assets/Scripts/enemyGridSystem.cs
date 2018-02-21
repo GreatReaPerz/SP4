@@ -18,6 +18,8 @@ public class enemyGridSystem : MonoBehaviour
     float halfTileWidth = tileWidth * 0.5f, halfTileHeight = tileHeight * 0.5f;
     public bool[] taken = new bool[gridSize];
 
+    private HealthSystem EnemyHealth;
+
     [SerializeField]
     Image[] grid = new Image[gridSize];
 
@@ -33,7 +35,7 @@ public class enemyGridSystem : MonoBehaviour
             taken[i] = false;
         }
         theTetrisSpawner = GameObject.Find("enemySpawner").GetComponent<enemyTetrisSpawner>();
-        
+        EnemyHealth = GameObject.Find("Enemy").GetComponent<HealthSystem>();
         Debug.Assert(theTetrisSpawner != null);
 
         RectTransform objectRectTransform = thisCanvas.GetComponent<RectTransform>();
@@ -67,7 +69,7 @@ public class enemyGridSystem : MonoBehaviour
                 //Debug.Log(grid[i].transform.position);
             }
         }
-
+        Init();
     }
 
     private uint objectIndex = 0;
@@ -999,6 +1001,51 @@ public class enemyGridSystem : MonoBehaviour
         gridData[index] = GreyOut;
         GridBecameGrey = true;
         return index;
+    }
+    public void CheckGreyedGrid()
+    {
+        //Check Column
+        for (uint x = 0; x < col - 1; ++x)
+        {
+            bool colGreyed = true;
+            for (uint numRow = 0; numRow < col; ++numRow)
+            {
+                if (!IsGreyedOut(x + numRow * 10))
+                {
+                    colGreyed = false;
+                    break;
+                }
+            }
+            if (colGreyed)
+            {
+                //Do damage stuff
+                Debug.Log(EnemyHealth.getHealth());
+                EnemyHealth.addHealth(2);
+                Debug.Log(EnemyHealth.getHealth());
+                Debug.Log("Column damage on Enemy");
+            }
+        }
+        //Check Row
+        for (uint y = 0; y < row - 1; ++y)
+        {
+            bool rowGreyed = true;
+            for (uint numCol = 0; numCol < col; ++numCol)
+            {
+                if (!IsGreyedOut(numCol + y * 10))
+                {
+                    rowGreyed = false;
+                    break;
+                }
+            }
+            if (rowGreyed)
+            {
+                //Do damage stuff
+                Debug.Log(EnemyHealth.getHealth());
+                EnemyHealth.addHealth(10);
+                Debug.Log(EnemyHealth.getHealth());
+                Debug.Log("Row damage on Enemy");
+            }
+        }
     }
 }
 

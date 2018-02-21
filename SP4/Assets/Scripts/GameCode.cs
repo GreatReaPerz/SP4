@@ -206,7 +206,7 @@ public class GameCode : MonoBehaviour {
                         }
                     }
                     theGridSystem.CheckGreyedGrid();
-                    //enemyGridSystem.CheckGreyedGrid();
+                    enemyGridSystem.CheckGreyedGrid();
                 }
             }
             if (objects.Count <= 0 && destroyed)
