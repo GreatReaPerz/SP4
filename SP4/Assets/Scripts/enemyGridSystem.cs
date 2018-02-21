@@ -21,7 +21,7 @@ public class enemyGridSystem : MonoBehaviour
     private HealthSystem EnemyHealth;
 
     [SerializeField]
-    Image[] grid = new Image[gridSize];
+    public Image[] grid = new Image[gridSize];
 
     [SerializeField]
     Canvas thisCanvas;
@@ -984,7 +984,6 @@ public class enemyGridSystem : MonoBehaviour
     }
 
     public bool[] gridData;
-    public bool GridBecameGrey = false;
 
     uint gridDataSize;
 
@@ -1002,7 +1001,13 @@ public class enemyGridSystem : MonoBehaviour
     public uint SetIsGreyOut(uint index, bool GreyOut = true)
     {
         gridData[index] = GreyOut;
-        GridBecameGrey = true;
+        grid[index].sprite = GreyGridSprite;
+
+        return index;
+    }
+    public uint UnSetIsGreyOut(uint index, bool GreyOut = false)
+    {
+        gridData[index] = GreyOut;
         grid[index].sprite = GreyGridSprite;
 
         return index;
@@ -1013,21 +1018,20 @@ public class enemyGridSystem : MonoBehaviour
         for (uint x = 0; x < col - 1; ++x)
         {
             bool colGreyed = true;
-            for (uint numRow = 0; numRow < col; ++numRow)
+            for (uint numRow = 0; numRow < row; ++numRow)
             {
                 if (!IsGreyedOut(x + numRow * 10))
                 {
                     colGreyed = false;
-                    break;
                 }
             }
             if (colGreyed)
             {
-                //Do damage stuff
-                Debug.Log(EnemyHealth.getHealth());
-                EnemyHealth.addHealth(2);
-                Debug.Log(EnemyHealth.getHealth());
-                Debug.Log("Column damage on Enemy");
+                EnemyHealth.addHealth(-2);
+                for (uint numRow = 0; numRow < row; ++numRow)
+                {
+                    UnSetIsGreyOut(x + numRow * 10);
+                }
             }
         }
         //Check Row
@@ -1044,11 +1048,11 @@ public class enemyGridSystem : MonoBehaviour
             }
             if (rowGreyed)
             {
-                //Do damage stuff
-                Debug.Log(EnemyHealth.getHealth());
-                EnemyHealth.addHealth(10);
-                Debug.Log(EnemyHealth.getHealth());
-                Debug.Log("Row damage on Enemy");
+                EnemyHealth.addHealth(-10);
+                for (uint numCol = 0; numCol < col; ++numCol)
+                {
+                    UnSetIsGreyOut(numCol + y * 10);
+                }
             }
         }
     }

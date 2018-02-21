@@ -58,12 +58,23 @@ public class GameCode : MonoBehaviour {
                         GameObject newObj;
                         Vector3 hello = theTetrisSpawner.tetrisList[i].partOne.transform.position;
                         hello.z = 100;
-                        Debug.Log(theTetrisSpawner.tetrisList[i].troopName);
                         newObj = (GameObject)Instantiate(GameObject.Find(theTetrisSpawner.tetrisList[i].troopName), hello, Quaternion.identity);
                         newObj.transform.parent = Ui.transform;
                         troop = newObj.GetComponent<TroopAI>();
                         troop.team = 1;
                         troop.terrainName = TerrainName;
+                        float dist = 0;
+                        for(uint j = 0; j< enemyGridSystem.GridSize; ++j)
+                        {
+                            float yDist = enemyGridSystem.grid[j].transform.position.y - troop.originPos.y;
+                            if (Mathf.Abs(enemyGridSystem.grid[j].transform.position.x - troop.originPos.x) < 10 && !enemyGridSystem.IsGreyedOut(j) && yDist > dist)
+                            {
+                                dist = yDist;
+                                troop.targetPos = enemyGridSystem.grid[j].transform.position;
+                                troop.targetIndex = j;
+                            }
+                        }
+
                         objects.Add(newObj);
 
                         GameObject newObj1;
@@ -74,6 +85,17 @@ public class GameCode : MonoBehaviour {
                         troop = newObj1.GetComponent<TroopAI>();
                         troop.team = 1;
                         troop.terrainName = TerrainName;
+                        dist = 0;
+                        for (uint j = 0; j < enemyGridSystem.GridSize; ++j)
+                        {
+                            float yDist = enemyGridSystem.grid[j].transform.position.y - troop.originPos.y;
+                            if (Mathf.Abs(enemyGridSystem.grid[j].transform.position.x - troop.originPos.x) < 10 && !enemyGridSystem.IsGreyedOut(j) && yDist > dist)
+                            {
+                                dist = yDist;
+                                troop.targetPos = enemyGridSystem.grid[j].transform.position;
+                                troop.targetIndex = j;
+                            }
+                        }
                         objects.Add(newObj1);
 
                         GameObject newObj2;
@@ -84,6 +106,17 @@ public class GameCode : MonoBehaviour {
                         troop = newObj2.GetComponent<TroopAI>();
                         troop.team = 1;
                         troop.terrainName = TerrainName;
+                        dist = 0;
+                        for (uint j = 0; j < enemyGridSystem.GridSize; ++j)
+                        {
+                            float yDist = enemyGridSystem.grid[j].transform.position.y - troop.originPos.y;
+                            if (Mathf.Abs(enemyGridSystem.grid[j].transform.position.x - troop.originPos.x) < 10 && !enemyGridSystem.IsGreyedOut(j) && yDist > dist)
+                            {
+                                dist = yDist;
+                                troop.targetPos = enemyGridSystem.grid[j].transform.position;
+                                troop.targetIndex = j;
+                            }
+                        }
                         objects.Add(newObj2);
 
                         GameObject newObj3;
@@ -94,6 +127,17 @@ public class GameCode : MonoBehaviour {
                         troop = newObj3.GetComponent<TroopAI>();
                         troop.team = 1;
                         troop.terrainName = TerrainName;
+                        dist = 0;
+                        for (uint j = 0; j < enemyGridSystem.GridSize; ++j)
+                        {
+                            float yDist = enemyGridSystem.grid[j].transform.position.y - troop.originPos.y;
+                            if (Mathf.Abs(enemyGridSystem.grid[j].transform.position.x - troop.originPos.x) < 10 && !enemyGridSystem.IsGreyedOut(j) && yDist > dist)
+                            {
+                                dist = yDist;
+                                troop.targetPos = enemyGridSystem.grid[j].transform.position;
+                                troop.targetIndex = j;
+                            }
+                        }
                         objects.Add(newObj3);
                     }
                 }
@@ -109,6 +153,17 @@ public class GameCode : MonoBehaviour {
                         troop = newObj.GetComponent<TroopAI>();
                         troop.team = -1;
                         troop.terrainName = TerrainName;
+                        float dist = 0;
+                        for (uint j = 0; j < theGridSystem.GridSize; ++j)
+                        {
+                            float yDist = Mathf.Abs(theGridSystem.grid[j].transform.position.y - troop.originPos.y);
+                            if (Mathf.Abs(theGridSystem.grid[j].transform.position.x - troop.originPos.x) < 10 && !theGridSystem.IsGreyedOut(j) && yDist > dist)
+                            {
+                                dist = yDist;
+                                troop.targetPos = theGridSystem.grid[j].transform.position;
+                                troop.targetIndex = j;
+                            }
+                        }
                         objects.Add(newObj);
 
                         GameObject newObj1;
@@ -119,6 +174,17 @@ public class GameCode : MonoBehaviour {
                         troop = newObj1.GetComponent<TroopAI>();
                         troop.team = -1;
                         troop.terrainName = TerrainName;
+                        dist = 0;
+                        for (uint j = 0; j < theGridSystem.GridSize; ++j)
+                        {
+                            float yDist = Mathf.Abs(theGridSystem.grid[j].transform.position.y - troop.originPos.y);
+                            if (Mathf.Abs(theGridSystem.grid[j].transform.position.x - troop.originPos.x) < 10 && !theGridSystem.IsGreyedOut(j) && yDist > dist)
+                            {
+                                dist = yDist;
+                                troop.targetPos = theGridSystem.grid[j].transform.position;
+                                troop.targetIndex = j;
+                            }
+                        }
                         objects.Add(newObj1);
 
                         GameObject newObj2;
@@ -129,6 +195,17 @@ public class GameCode : MonoBehaviour {
                         troop = newObj2.GetComponent<TroopAI>();
                         troop.team = -1;
                         troop.terrainName = TerrainName;
+                        dist = 0;
+                        for (uint j = 0; j < theGridSystem.GridSize; ++j)
+                        {
+                            float yDist = Mathf.Abs(theGridSystem.grid[j].transform.position.y - troop.originPos.y);
+                            if (Mathf.Abs(theGridSystem.grid[j].transform.position.x - troop.originPos.x) < 10 && !theGridSystem.IsGreyedOut(j) && yDist > dist)
+                            {
+                                dist = yDist;
+                                troop.targetPos = theGridSystem.grid[j].transform.position;
+                                troop.targetIndex = j;
+                            }
+                        }
                         objects.Add(newObj2);
 
                         GameObject newObj3;
@@ -139,6 +216,17 @@ public class GameCode : MonoBehaviour {
                         troop = newObj3.GetComponent<TroopAI>();
                         troop.team = -1;
                         troop.terrainName = TerrainName;
+                        dist = 0;
+                        for (uint j = 0; j < theGridSystem.GridSize; ++j)
+                        {
+                            float yDist = Mathf.Abs(theGridSystem.grid[j].transform.position.y - troop.originPos.y);
+                            if (Mathf.Abs(theGridSystem.grid[j].transform.position.x - troop.originPos.x) < 10 && !theGridSystem.IsGreyedOut(j) && yDist > dist)
+                            {
+                                dist = yDist;
+                                troop.targetPos = theGridSystem.grid[j].transform.position;
+                                troop.targetIndex = j;
+                            }
+                        }
                         objects.Add(newObj3);
                     }
                 }
@@ -205,8 +293,64 @@ public class GameCode : MonoBehaviour {
                             objects.RemoveAt(i);
                         }
                     }
+                    for (int i = 0; i < objects.Count; ++i)
+                    {
+                        troop = objects[i].GetComponent<TroopAI>();
+                        if (troop.activ)
+                        {
+                            if (Mathf.Abs(troop.targetPos.y - troop.transform.position.y) < 10)
+                            {
+                                if(troop.team == 1)
+                                {
+                                    enemyGridSystem.SetIsGreyOut(troop.targetIndex);
+                                    troop.activ = false;
+                                }
+                                if(troop.team == -1)
+                                {
+                                    //Debug.Log("kill");
+                                    theGridSystem.SetIsGreyOut(troop.targetIndex);
+                                    troop.activ = false;
+                                }
+                            }
+                        }
+                    }
                     theGridSystem.CheckGreyedGrid();
                     enemyGridSystem.CheckGreyedGrid();
+                    for (int i = 0; i < objects.Count; ++i)
+                    {
+                        troop = objects[i].GetComponent<TroopAI>();
+                        if (troop.activ)
+                        {
+                            if (troop.team == 1)
+                            {
+                                float dist = 0;
+                                for (uint j = 0; j < enemyGridSystem.GridSize; ++j)
+                                {
+                                    float yDist = enemyGridSystem.grid[j].transform.position.y - troop.originPos.y;
+                                    if (Mathf.Abs(enemyGridSystem.grid[j].transform.position.x - troop.originPos.x) < 10 && !enemyGridSystem.IsGreyedOut(j) && yDist > dist)
+                                    {
+                                        dist = yDist;
+                                        troop.targetPos = enemyGridSystem.grid[j].transform.position;
+                                        troop.targetIndex = j;
+                                    }
+                                }
+                            }
+                            if (troop.team == -1)
+                            {
+                                float dist = 0;
+                                for (uint j = 0; j < theGridSystem.GridSize; ++j)
+                                {
+                                    float yDist = Mathf.Abs(theGridSystem.grid[j].transform.position.y - troop.originPos.y);
+                                    if (Mathf.Abs(theGridSystem.grid[j].transform.position.x - troop.originPos.x) < 10 && !theGridSystem.IsGreyedOut(j) && yDist > dist)
+                                    {
+                                        dist = yDist;
+                                        troop.targetPos = theGridSystem.grid[j].transform.position;
+                                        troop.targetIndex = j;
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
             if (objects.Count <= 0 && destroyed)
@@ -221,7 +365,6 @@ public class GameCode : MonoBehaviour {
                     theGridSystem.taken[i] = false;
                 }
                 enemyTetrisSpawner.Start();
-                //enemyGridSystem.Start();
                 Terrain.GetComponent<MainGame>().Start();
                 TerrainName = Terrain.GetComponent<MainGame>().NeutralZoneTerrainType;
                 destroyed = false;
