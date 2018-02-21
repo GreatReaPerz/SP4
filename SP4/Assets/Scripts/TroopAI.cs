@@ -41,12 +41,12 @@ public class TroopAI : MonoBehaviour {
         game = GameObject.Find("EventSystem").GetComponent<GameCode>();
         if (type == "Cavalry")
         {
-            Debug.Log("Cavalry");
+            //Debug.Log("Cavalry");
             health = 40;
             attckDmg = 15;
             attckSpd = 0.2f;
-            speed = 3;
-            vision = 200;
+            speed = 75 * 0.016f;
+            vision = 100;
             range = 100;
             state = (int)States.CHARGE;
             prevhealth = health;
@@ -79,11 +79,11 @@ public class TroopAI : MonoBehaviour {
         }
         else if (type == "Infantry")
         {
-            Debug.Log("Infantry");
+            //Debug.Log("Infantry");
             health = 50;
             attckDmg = 20;
             attckSpd = 0.1f;
-            speed = 2;
+            speed = 50 * 0.016f;
             range = 100;
             vision = 100;
             state = (int)States.CHARGE;
@@ -117,11 +117,11 @@ public class TroopAI : MonoBehaviour {
         }
         else if (type == "Bowmen")
         {
-            Debug.Log("Bowmen");
+            //Debug.Log("Bowmen");
             health = 30;
             attckDmg = 10;
             attckSpd = 0.2f;
-            speed = 2;
+            speed = 50 * 0.016f;
             range = 300;
             vision = 300;
             state = (int)States.CHARGE;
@@ -153,6 +153,7 @@ public class TroopAI : MonoBehaviour {
                 attckSpd += (attckSpd * 0.2f);
             }
         }
+        Debug.Log(transform.position);
     }
 	
 	// Update is called once per frame
@@ -176,10 +177,19 @@ public class TroopAI : MonoBehaviour {
                 bool collided = false;
                 for(int i = 0; i < game.objects.Count; ++i)
                 {
-                    Vector3 nextPosition = transform.position += hello * speed;
-                    //if (game.objects[i].transform.position.x = )
+                    Vector3 nextPosition = transform.position + hello * speed;
+                    if (!(game.objects[i].transform.position.x == transform.position.x && game.objects[i].transform.position.y == transform.position.y))
+                    {
+                        if(Collided(nextPosition, game.objects[i].transform.position))
+                        {
+                            collided = true;
+                        }
+                    }
                 }
-                transform.position += hello * speed;
+                if (!collided)
+                {
+                    transform.position += hello * speed;
+                }
 
                 if (prevhealth != health)
                 {
@@ -233,7 +243,7 @@ public class TroopAI : MonoBehaviour {
                                 float dist = hello1.SqrMagnitude();
                                 if (dist <= vision * vision && dist < minNearest)
                                 {
-                                    Debug.Log(dist);
+                                    //Debug.Log(dist);
                                     minNearest = dist;
                                     nearest = game.objects[i];
                                 }
@@ -246,13 +256,43 @@ public class TroopAI : MonoBehaviour {
                         {
                             Vector3 hello2 = new Vector3(nearest.transform.position.x - transform.position.x, 0, 0);
                             hello2.Normalize();
-                            transform.position += hello2 * speed;
+                            bool collided = false;
+                            for (int i = 0; i < game.objects.Count; ++i)
+                            {
+                                Vector3 nextPosition = transform.position + hello2 * speed;
+                                if (game.objects[i].transform.position.x != transform.position.x || game.objects[i].transform.position.y != transform.position.y)
+                                {
+                                    if (Collided(nextPosition, game.objects[i].transform.position))
+                                    {
+                                        collided = true;
+                                    }
+                                }
+                            }
+                            if (!collided)
+                            {
+                                transform.position += hello2 * speed;
+                            }
                         }
                         else
                         {
                             Vector3 hello2 = new Vector3(0, nearest.transform.position.y - transform.position.y, 0);
                             hello2.Normalize();
-                            transform.position += hello2 * speed;
+                            bool collided = false;
+                            for (int i = 0; i < game.objects.Count; ++i)
+                            {
+                                Vector3 nextPosition = transform.position + hello2 * speed;
+                                if (game.objects[i].transform.position.x != transform.position.x || game.objects[i].transform.position.y != transform.position.y)
+                                {
+                                    if (Collided(nextPosition, game.objects[i].transform.position))
+                                    {
+                                        collided = true;
+                                    }
+                                }
+                            }
+                            if (!collided)
+                            {
+                                transform.position += hello2 * speed;
+                            }
                         }
                         Vector3 hello3 = new Vector3(nearest.transform.position.x - transform.position.x, nearest.transform.position.y - transform.position.y, 0);
                         float dis = hello3.sqrMagnitude;
@@ -312,11 +352,12 @@ public class TroopAI : MonoBehaviour {
 
     bool Collided(Vector3 firstTroop, Vector3 secondTroop)
     {
-        if (firstTroop.x < secondTroop.x + (100 * 0.5f) 
-            &&  firstTroop.x + (100 * 0.5f) > secondTroop.x 
-            && firstTroop.y < secondTroop.y + (100 * 0.5f)
-            && (100 * 0.5f) + firstTroop.y > secondTroop.y)
+        if (firstTroop.x - (99 * 0.5f) < secondTroop.x + (99 * 0.5f) 
+            &&  firstTroop.x + (99 * 0.5f) > secondTroop.x - (99 * 0.5f)
+            && firstTroop.y - (99 * 0.5f) < secondTroop.y + (99 * 0.5f)
+            && (99 * 0.5f) + firstTroop.y > secondTroop.y - (99 * 0.5f))
         {
+            //Debug.Log("collided");
             return true;
         }
         return false;
