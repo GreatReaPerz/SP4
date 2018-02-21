@@ -24,6 +24,9 @@ public class GridSystem : MonoBehaviour {
     [SerializeField]
     Canvas thisCanvas;
 
+    [SerializeField]
+    Sprite GreyGridSprite;
+
     // Use this for initialization
     public void Start () {
                 for(int i = 0; i < gridSize; ++i)
@@ -676,6 +679,8 @@ public class GridSystem : MonoBehaviour {
     {
         gridData[index] = GreyOut;
         GridBecameGrey = true;
+
+        grid[index].sprite = GreyGridSprite;
         return index;
     }
     public void CheckGreyedGrid()
