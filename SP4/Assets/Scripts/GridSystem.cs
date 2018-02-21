@@ -681,29 +681,33 @@ public class GridSystem : MonoBehaviour {
         grid[index].sprite = GreyGridSprite;
         return index;
     }
+    public uint UnSetIsGreyOut(uint index, bool GreyOut = false)
+    {
+        gridData[index] = GreyOut;
+        grid[index].sprite = GreyGridSprite;
+
+        return index;
+    }
     public void CheckGreyedGrid()
     {
         //Check Column
-        //try
-        //{
         for (uint x = 0; x < col - 1; ++x)
         {
             bool colGreyed = true;
-            for (uint numRow = 0; numRow < col; ++numRow)
+            for (uint numRow = 0; numRow < row; ++numRow)
             {
                 if (!IsGreyedOut(x + numRow * 10))
                 {
                     colGreyed = false;
-                    break;
                 }
             }
             if (colGreyed)
             {
-                //Do damage stuff
-                Debug.Log(PlayerHealth.getHealth());
-                PlayerHealth.addHealth(2);
-                Debug.Log(PlayerHealth.getHealth());
-                Debug.Log("Column damage on Player");
+                PlayerHealth.addHealth(-2);
+                for (uint numRow = 0; numRow < row; ++numRow)
+                {
+                    UnSetIsGreyOut(x + numRow * 10);
+                }
             }
         }
         //Check Row
@@ -720,11 +724,11 @@ public class GridSystem : MonoBehaviour {
             }
             if (rowGreyed)
             {
-                //Do damage stuff
-                Debug.Log(PlayerHealth.getHealth());
-                PlayerHealth.addHealth(10);
-                Debug.Log(PlayerHealth.getHealth());
-                Debug.Log("Row damage on Player");
+                PlayerHealth.addHealth(-10);
+                for (uint numCol = 0; numCol < col; ++numCol)
+                {
+                    UnSetIsGreyOut(numCol + y * 10);
+                }
             }
         }
         //}
