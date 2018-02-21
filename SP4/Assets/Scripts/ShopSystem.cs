@@ -33,6 +33,7 @@ public class ShopSystem : MonoBehaviour {
         playerGoldText = GameObject.Find("GoldAmount");
         playerGoldText.GetComponent<Text>().text = playerGold.ToString();
 
+        //Add shop items that the player can buy
         shopItems.Add("UpgradeInfantryHealth", UpgradeInfantryHealthPrice);
         shopItems.Add("UpgradeInfantryAttack", UpgradeInfantryAttackPrice);
     }
@@ -44,17 +45,39 @@ public class ShopSystem : MonoBehaviour {
 
     public int BuyItem(string ItemName)
     {
+        //Update the amount of gold the player has left
         playerGold -= (int)shopItems[ItemName];
         PlayerPrefs.SetInt("Gold", playerGold);
+        PlayerPrefs.Save();
         playerGoldText.GetComponent<Text>().text = playerGold.ToString();
+
+        //The bought item modifications to player
+        switch(ItemName)
+        {
+            case "UpgradeInfantryHealth":
+                {
+                    //Increase base health of infantry
+                    break;
+                }
+            case "UpgradeInfantryAttack":
+                {
+                    //Increase base damage of infantry
+                    break;
+                }
+            default:
+                break;
+        }
 
         return playerGold;
     }
 
     public void ButtonOnClick()
     {
+        //Pass in the name of the button that was clicked
         BuyItem(EventSystem.current.currentSelectedGameObject.name);
     }
+   
+    
     //void CreateButton(string name)
     //{
     //    GameObject newButton = Instantiate(ButtonPrefab) as GameObject;
