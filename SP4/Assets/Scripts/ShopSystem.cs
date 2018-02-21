@@ -15,19 +15,25 @@ public class ShopSystem : MonoBehaviour {
     private int playerGold = 0;
     GameObject playerGoldText = null;
     Hashtable shopItems = new Hashtable();
+    Text ItemDescription;
 
     [SerializeField]
     int UpgradeInfantryHealthPrice = 100;
 
     [SerializeField]
+    int UpgradeInfantryHealthAmount = 10;
+
+    [SerializeField]
     int UpgradeInfantryAttackPrice = 200;
+
+    [SerializeField]
+    int UpgradeInfantryDamageAmount = 10;
 
     [SerializeField]
     Image GoldBorder = null;
 
     string CurrentSelectedItem = "";
-    Vector2 CurrentSelectedItemPos = new Vector2();
-    
+        
     // Use this for initialization
     void Start () {
         //for (int i = 0; i < 10; ++i)
@@ -39,9 +45,13 @@ public class ShopSystem : MonoBehaviour {
         playerGoldText = GameObject.Find("GoldAmount");
         playerGoldText.GetComponent<Text>().text = playerGold.ToString();
 
+        //Get Item Description Text object
+        ItemDescription = GameObject.Find("ItemDescription").GetComponent<Text>();
+        ItemDescription.enabled = false;
+
         //Set the gold border size
-        RectTransform a = GameObject.FindGameObjectWithTag("viewport").GetComponent<RectTransform>();
-        GoldBorder.rectTransform.sizeDelta = new Vector3(a.rect.width, a.rect.height * 0.25f, 1);
+        //RectTransform a = GameObject.FindGameObjectWithTag("viewport").GetComponent<RectTransform>();
+        //GoldBorder.rectTransform.sizeDelta = new Vector3(a.rect.width, a.rect.height * 0.25f, 1);
         GoldBorder.enabled = false;
 
         //Add shop items that the player can buy
@@ -51,10 +61,6 @@ public class ShopSystem : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(CurrentSelectedItem != "")
-        {
-            GoldBorder.transform.position = CurrentSelectedItemPos;
-        }
     }
 
     public int BuyItem(string ItemName)
@@ -87,13 +93,42 @@ public class ShopSystem : MonoBehaviour {
 
     public void ItemButtonOnClick()
     {
-        //Pass in the name of the button that was clicked
-        CurrentSelectedItem = EventSystem.current.currentSelectedGameObject.name;
-        CurrentSelectedItemPos = EventSystem.current.currentSelectedGameObject.GetComponent<RectTransform>().transform.position;
+        GameObject CurrentButton = EventSystem.current.currentSelectedGameObject;
+        RectTransform CurrentButtonRectTransform = CurrentButton.GetComponent<RectTransform>();
+
+        //Set name of button
+        CurrentSelectedItem = CurrentButton.name;
+        //Set position of border to button's postion
+        GoldBorder.transform.position = CurrentButtonRectTransform.transform.position;
+
+        //Set scale of border to button
+        GoldBorder.rectTransform.sizeDelta = new Vector3(CurrentButtonRectTransform.rect.width * CurrentButtonRectTransform.localScale.x * 1.05f, 
+            CurrentButtonRectTransform.rect.height * CurrentButtonRectTransform.localScale.y * 1.05f, 1);
 
         if (!GoldBorder.enabled)
         {
             GoldBorder.enabled = true;
+        }
+
+        //Item description
+        switch (CurrentSelectedItem)
+        {
+            case "UpgradeInfantryHealth":
+                {
+                    ItemDescription.text = "Infantry Health: " + PlayerPrefs.GetInt("Gold") + " (+" + UpgradeInfantryHealthAmount.ToString() + ")";
+                    break;
+                }
+            case "UpgradeInfantryAttack":
+                {
+                    ItemDescription.text = "Infantry Damage: " + PlayerPrefs.GetInt("Gold") + " (+" + UpgradeInfantryDamageAmount.ToString() + ")";
+                    break;
+                }
+            default:
+                break;
+        }
+        if(!ItemDescription.enabled)
+        {
+            ItemDescription.enabled = true;
         }
     }
 
