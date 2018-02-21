@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class GridSystem : MonoBehaviour {
 
@@ -13,6 +14,7 @@ public class GridSystem : MonoBehaviour {
     const float tileHeight = 100;
     public bool[] taken = new bool[gridSize];
     private TetrisSpawner theTetrisSpawner = null;
+    private HealthSystem PlayerHealth;
 
     float halfTileWidth = tileWidth * 0.5f, halfTileHeight = tileHeight * 0.5f;
 
@@ -29,6 +31,7 @@ public class GridSystem : MonoBehaviour {
             taken[i] = false;
         }
         theTetrisSpawner = GameObject.Find("Spawner").GetComponent<TetrisSpawner>();
+        PlayerHealth = GameObject.Find("Player").GetComponent<HealthSystem>();
         
         Debug.Assert(theTetrisSpawner != null);
 
@@ -61,7 +64,7 @@ public class GridSystem : MonoBehaviour {
                 grid[i].transform.position = new Vector2(grid[i - col].transform.position.x, grid[i - col].transform.position.y + tileHeight);
             }
         }
-
+        Init();
     }
 
     private uint objectIndex = 0;
@@ -70,6 +73,8 @@ public class GridSystem : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+
+
         //if (Input.GetMouseButton(0) == true)
         //{
         //    if (theTetrisSpawner.SomethingIsMoving == true)
@@ -113,7 +118,7 @@ public class GridSystem : MonoBehaviour {
         //                        {
         //                            theTetrisSpawner.tetrisList[theTetrisSpawner.IndexofMovingObject].btmLeft.MovePosition(grid[objectIndex].transform.position);
         //                        }
-                               
+
         //                        //theTetrisSpawner.tetrisList[theTetrisSpawner.IndexofMovingObject].btmLeft.position = grid[objectIndex].transform.position;
         //                        break;
         //                    }
@@ -672,6 +677,58 @@ public class GridSystem : MonoBehaviour {
         gridData[index] = GreyOut;
         GridBecameGrey = true;
         return index;
+    }
+    public void CheckGreyedGrid()
+    {
+        //Check Column
+        //try
+        //{
+        for (uint x = 0; x < col - 1; ++x)
+        {
+            bool colGreyed = true;
+            for (uint numRow = 0; numRow < col; ++numRow)
+            {
+                if (!IsGreyedOut(x + numRow * 10))
+                {
+                    colGreyed = false;
+                    break;
+                }
+            }
+            if (colGreyed)
+            {
+                //Do damage stuff
+                Debug.Log(PlayerHealth.getHealth());
+                PlayerHealth.addHealth(2);
+                Debug.Log(PlayerHealth.getHealth());
+                Debug.Log("Column damage on Player");
+            }
+        }
+        //Check Row
+        for (uint y = 0; y < row - 1; ++y)
+        {
+            bool rowGreyed = true;
+            for (uint numCol = 0; numCol < col; ++numCol)
+            {
+                if (!IsGreyedOut(numCol + y * 10))
+                {
+                    rowGreyed = false;
+                    break;
+                }
+            }
+            if (rowGreyed)
+            {
+                //Do damage stuff
+                Debug.Log(PlayerHealth.getHealth());
+                PlayerHealth.addHealth(10);
+                Debug.Log(PlayerHealth.getHealth());
+                Debug.Log("Row damage on Player");
+            }
+        }
+        //}
+        //catch (Exception e)
+        //{
+        //    Debug.Log(e.ToString());
+        //}
     }
 }
 
