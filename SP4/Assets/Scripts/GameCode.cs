@@ -64,6 +64,16 @@ public class GameCode : MonoBehaviour {
                         troop = newObj.GetComponent<TroopAI>();
                         troop.team = 1;
                         troop.terrainName = TerrainName;
+                        float dist = 0;
+                        for(uint j = 0; j<theGridSystem.GridSize; ++j)
+                        {
+                            float yDist = theGridSystem.grid[j].transform.position.y - troop.transform.position.y;
+                            if (theGridSystem.grid[j].transform.position.x == troop.transform.position.x && theGridSystem.IsGreyedOut(j) && yDist > dist)
+                            {
+                                dist = yDist;
+                                troop.ta
+                            }
+                        }
                         objects.Add(newObj);
 
                         GameObject newObj1;
@@ -221,7 +231,6 @@ public class GameCode : MonoBehaviour {
                     theGridSystem.taken[i] = false;
                 }
                 enemyTetrisSpawner.Start();
-                //enemyGridSystem.Start();
                 Terrain.GetComponent<MainGame>().Start();
                 TerrainName = Terrain.GetComponent<MainGame>().NeutralZoneTerrainType;
                 destroyed = false;

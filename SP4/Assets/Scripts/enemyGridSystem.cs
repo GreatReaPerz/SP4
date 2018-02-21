@@ -984,7 +984,6 @@ public class enemyGridSystem : MonoBehaviour
     }
 
     public bool[] gridData;
-    public bool GridBecameGrey = false;
 
     uint gridDataSize;
 
@@ -1002,7 +1001,6 @@ public class enemyGridSystem : MonoBehaviour
     public uint SetIsGreyOut(uint index, bool GreyOut = true)
     {
         gridData[index] = GreyOut;
-        GridBecameGrey = true;
         grid[index].sprite = GreyGridSprite;
 
         return index;

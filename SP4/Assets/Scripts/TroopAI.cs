@@ -30,7 +30,7 @@ public class TroopAI : MonoBehaviour {
     public float attacktimer;
     public string terrainName;
     private GameCode game = null;
-    Vector3 pos;
+    public Vector3 targetPos;
     GameObject nearest;
     private TroopAI nearestAI = null;
 
@@ -153,7 +153,8 @@ public class TroopAI : MonoBehaviour {
                 attckSpd += (attckSpd * 0.2f);
             }
         }
-        Debug.Log(transform.position);
+        //Debug.Log(transform.position);
+        //targetPos = transform.position;
     }
 	
 	// Update is called once per frame
@@ -170,10 +171,11 @@ public class TroopAI : MonoBehaviour {
         {
             if (state == (int)States.CHARGE)
             {
-                Vector3 hello = transform.position;
-                hello.x = 0;
-                hello.y = team;
-                hello.z = 0;
+                Vector3 hello = targetPos - transform.position;
+                //hello.x = 0;
+                //hello.y = team;
+                //hello.z = 0;
+                hello.Normalize();
                 bool collided = false;
                 for(int i = 0; i < game.objects.Count; ++i)
                 {
