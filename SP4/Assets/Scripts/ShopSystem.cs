@@ -21,6 +21,12 @@ public class ShopSystem : MonoBehaviour {
 
     [SerializeField]
     int UpgradeInfantryAttackPrice = 200;
+
+    [SerializeField]
+    Image GoldBorder = null;
+
+    string CurrentSelectedItem = "";
+    Vector2 CurrentSelectedItemPos = new Vector2();
     
     // Use this for initialization
     void Start () {
@@ -33,6 +39,11 @@ public class ShopSystem : MonoBehaviour {
         playerGoldText = GameObject.Find("GoldAmount");
         playerGoldText.GetComponent<Text>().text = playerGold.ToString();
 
+        //Set the gold border size
+        RectTransform a = GameObject.FindGameObjectWithTag("viewport").GetComponent<RectTransform>();
+        GoldBorder.rectTransform.sizeDelta = new Vector3(a.rect.width, a.rect.height * 0.25f, 1);
+        GoldBorder.enabled = false;
+
         //Add shop items that the player can buy
         shopItems.Add("UpgradeInfantryHealth", UpgradeInfantryHealthPrice);
         shopItems.Add("UpgradeInfantryAttack", UpgradeInfantryAttackPrice);
@@ -40,7 +51,10 @@ public class ShopSystem : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
+        if(CurrentSelectedItem != "")
+        {
+            GoldBorder.transform.position = CurrentSelectedItemPos;
+        }
     }
 
     public int BuyItem(string ItemName)
@@ -71,13 +85,25 @@ public class ShopSystem : MonoBehaviour {
         return playerGold;
     }
 
-    public void ButtonOnClick()
+    public void ItemButtonOnClick()
     {
         //Pass in the name of the button that was clicked
-        BuyItem(EventSystem.current.currentSelectedGameObject.name);
+        CurrentSelectedItem = EventSystem.current.currentSelectedGameObject.name;
+        CurrentSelectedItemPos = EventSystem.current.currentSelectedGameObject.GetComponent<RectTransform>().transform.position;
+
+        if (!GoldBorder.enabled)
+        {
+            GoldBorder.enabled = true;
+        }
     }
-   
-    
+
+
+    public void BuyButtonOnClick()
+    {
+        //Pass in the name of the button that was clicked
+        BuyItem(CurrentSelectedItem);
+    }
+
     //void CreateButton(string name)
     //{
     //    GameObject newButton = Instantiate(ButtonPrefab) as GameObject;
