@@ -25,6 +25,9 @@ public class enemyGridSystem : MonoBehaviour
 
     [SerializeField]
     Canvas thisCanvas;
+    
+    [SerializeField]
+    Sprite GreyGridSprite;
 
     // Use this for initialization
     public void Start()
@@ -47,9 +50,9 @@ public class enemyGridSystem : MonoBehaviour
             //Adjusts the individual grid block's size
             grid[i].rectTransform.sizeDelta = new Vector2(tileWidth, tileHeight);
 
-            //Anchor to bottom
-            grid[i].rectTransform.anchorMin = new Vector2(0.5f, 0);
-            grid[i].rectTransform.anchorMax = new Vector2(0.5f, 0);
+            //Anchor to top
+            grid[i].rectTransform.anchorMin = new Vector2(0.5f, 1);
+            grid[i].rectTransform.anchorMax = new Vector2(0.5f, 1);
             grid[i].rectTransform.pivot = new Vector2(0.5f, 0.5f);
 
             if (i == 0)
@@ -1000,6 +1003,8 @@ public class enemyGridSystem : MonoBehaviour
     {
         gridData[index] = GreyOut;
         GridBecameGrey = true;
+        grid[index].sprite = GreyGridSprite;
+
         return index;
     }
     public void CheckGreyedGrid()
