@@ -42,7 +42,7 @@ public class TroopAI : MonoBehaviour {
         if (type == "Cavalry")
         {
             //Debug.Log("Cavalry");
-            health = 40;
+            health = 400;
             attckDmg = 15;
             attckSpd = 0.2f;
             speed = 75 * 0.016f;
@@ -80,7 +80,7 @@ public class TroopAI : MonoBehaviour {
         else if (type == "Infantry")
         {
             //Debug.Log("Infantry");
-            health = 50;
+            health = 500;
             attckDmg = 20;
             attckSpd = 0.1f;
             speed = 50 * 0.016f;
@@ -118,7 +118,7 @@ public class TroopAI : MonoBehaviour {
         else if (type == "Bowmen")
         {
             //Debug.Log("Bowmen");
-            health = 30;
+            health = 300;
             attckDmg = 10;
             attckSpd = 0.2f;
             speed = 50 * 0.016f;
@@ -193,7 +193,7 @@ public class TroopAI : MonoBehaviour {
 
                 if (prevhealth != health)
                 {
-                    state = (int)States.CHASE;
+                   // state = (int)States.CHASE;
                     aggrotimer = 0;
                 }
                 prevhealth = health;
@@ -204,18 +204,22 @@ public class TroopAI : MonoBehaviour {
                     nearestAI = game.objects[i].GetComponent<TroopAI>();
                     if (nearestAI.activ && nearestAI.team != team)
                     {
-                        Vector2 hello1 = new Vector2(game.objects[i].transform.position.x - transform.position.x, game.objects[i].transform.position.y - transform.position.y);
-                        float dist = hello1.SqrMagnitude();
-                        if (dist <= vision * vision && dist < minNearest)
+                        //Vector2 hello1 = new Vector2(game.objects[i].transform.position.x - transform.position.x, game.objects[i].transform.position.y - transform.position.y);
+                        //float dist = hello1.SqrMagnitude();
+                        //if (dist <= vision * vision && dist < minNearest)
+                        //{
+                        //    minNearest = dist;
+                        //    nearest = game.objects[i];
+                        //}
+                        if(game.objects[i].transform.position.x > transform.position.x - 50 && game.objects[i].transform.position.x < transform.position.x + 50 && Mathf.Abs(game.objects[i].transform.position.y - transform.position.y) < 110)
                         {
-                            minNearest = dist;
                             nearest = game.objects[i];
                         }
                     }
                 }
                 if (nearest != null)
                 {
-                    state = (int)States.CHASE;
+                    state = (int)States.ATTACK;
                 }
             }
             if (state == (int)States.CHASE)
