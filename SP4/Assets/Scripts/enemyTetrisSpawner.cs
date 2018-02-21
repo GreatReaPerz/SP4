@@ -21,13 +21,34 @@ public class enemyTetrisSpawner : MonoBehaviour
     // Use this for initialization
     public void Start()
     {
-
         numSpawned = 0;
-        numSpawned = Spawn4x4Cube(numSpawned);
-        numSpawned = Spawn4x4Cube(numSpawned);
-        numSpawned = Spawn4x4Cube(numSpawned);
-        //numSpawned = SpawnLShape (numSpawned);
-        //numSpawned = SpawnZShape(numSpawned);
+        for (int i = 0; i < 3; ++i)
+        {
+            int rand = Random.Range(0, TetrisTypes.Length);
+            switch (rand)
+            {
+                case 0:
+                    {
+                        numSpawned = Spawn4x4Cube(numSpawned);
+                        break;
+                    }
+                case 1:
+                    {
+                        numSpawned = SpawnLShape(numSpawned);
+                        break;
+                    }
+                case 2:
+                    {
+                        numSpawned = SpawnTShape(numSpawned);
+                        break;
+                    }
+                case 3:
+                    {
+                        numSpawned = SpawnZShape(numSpawned);
+                        break;
+                    }
+            };
+        }
     }
 
     // Update is called once per frame
@@ -161,10 +182,13 @@ public class enemyTetrisSpawner : MonoBehaviour
         };
         theCube.parentCube = Instantiate(TetrisTypes[2], transform.position, Quaternion.identity);
         theCube.parentCube.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, true);
+        pil.Set(-300 + (key * 300), -300, -100);
+        pil1 = theCube.parentCube.transform.position + pil;
+        theCube.origin.Set(pil1.x, 1920, pil1.z);
+        theCube.parentCube.transform.position = theCube.origin;
 
-
-		//Set up the 4 cubes based on theCube.parentCube's child
-		theCube.setTheCubes (theCube.parentCube.transform.Find ("partOne").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partTwo").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partThree").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partFour").GetComponent<Rigidbody2D> ());
+        //Set up the 4 cubes based on theCube.parentCube's child
+        theCube.setTheCubes (theCube.parentCube.transform.Find ("partOne").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partTwo").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partThree").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partFour").GetComponent<Rigidbody2D> ());
 		theCube.setTheObjectType (TetrisCube.objectType.TETRIS_T);
 		//Could use raycast instead 
 		//Also cause the only thing changing is the movement function, could try to make a switch instead
@@ -235,10 +259,13 @@ public class enemyTetrisSpawner : MonoBehaviour
         };
         theCube.parentCube = Instantiate(TetrisTypes[1], transform.position, Quaternion.identity);
         theCube.parentCube.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, true);
+        pil.Set(-300 + (key * 300), -300, -100);
+        pil1 = theCube.parentCube.transform.position + pil;
+        theCube.origin.Set(pil1.x, 1920, pil1.z);
+        theCube.parentCube.transform.position = theCube.origin;
 
-
-		//Set up the 4 cubes based on theCube.parentCube's child
-		theCube.setTheCubes (theCube.parentCube.transform.Find ("partOne").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partTwo").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partThree").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partFour").GetComponent<Rigidbody2D> ());
+        //Set up the 4 cubes based on theCube.parentCube's child
+        theCube.setTheCubes (theCube.parentCube.transform.Find ("partOne").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partTwo").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partThree").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partFour").GetComponent<Rigidbody2D> ());
 		theCube.setTheObjectType (TetrisCube.objectType.TETRIS_L);
 
 		//Could use raycast instead 
@@ -309,9 +336,12 @@ public class enemyTetrisSpawner : MonoBehaviour
         };
         theCube.parentCube = Instantiate(TetrisTypes[3], transform.position, Quaternion.identity);
         theCube.parentCube.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, true);
-
-		//Set up the 4 cubes based on theCube.parentCube's child
-		theCube.setTheCubes (theCube.parentCube.transform.Find ("partOne").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partTwo").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partThree").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partFour").GetComponent<Rigidbody2D> ());
+        pil.Set(-300 + (key * 300), -300, -100);
+        pil1 = theCube.parentCube.transform.position + pil;
+        theCube.origin.Set(pil1.x, 1920, pil1.z);
+        theCube.parentCube.transform.position = theCube.origin;
+        //Set up the 4 cubes based on theCube.parentCube's child
+        theCube.setTheCubes (theCube.parentCube.transform.Find ("partOne").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partTwo").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partThree").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partFour").GetComponent<Rigidbody2D> ());
 		theCube.setTheObjectType (TetrisCube.objectType.TETRIS_Z);
 		//Could use raycast instead 
 		//Also cause the only thing changing is the movement function, could try to make a switch instead

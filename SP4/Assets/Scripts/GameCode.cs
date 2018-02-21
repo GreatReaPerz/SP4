@@ -149,8 +149,8 @@ public class GameCode : MonoBehaviour {
                     destroyed = true;
                 }
 
-                Destroy(theGridSystem);
-                Destroy(enemyGridSystem);
+                //Destroy(theGridSystem);
+                //Destroy(enemyGridSystem);
 
                 timer = 0.0f;
                 state = (int)GameState.ATTACK;
@@ -206,15 +206,22 @@ public class GameCode : MonoBehaviour {
                         }
                     }
                     theGridSystem.CheckGreyedGrid();
-                    enemyGridSystem.CheckGreyedGrid();
+                    //enemyGridSystem.CheckGreyedGrid();
                 }
             }
             if (objects.Count <= 0 && destroyed)
             {
                 theTetrisSpawner.Start();
-                theGridSystem.Start();
+                for (int i = 0; i < enemyGridSystem.GridSize; ++i)
+                {
+                    enemyGridSystem.taken[i] = false;
+                }
+                for (int i = 0; i < theGridSystem.GridSize; ++i)
+                {
+                    theGridSystem.taken[i] = false;
+                }
                 enemyTetrisSpawner.Start();
-                enemyGridSystem.Start();
+                //enemyGridSystem.Start();
                 Terrain.GetComponent<MainGame>().Start();
                 TerrainName = Terrain.GetComponent<MainGame>().NeutralZoneTerrainType;
                 destroyed = false;
