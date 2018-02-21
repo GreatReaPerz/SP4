@@ -1724,6 +1724,8 @@ MonoBehaviour:
   - {fileID: 1282603865}
   - {fileID: 469817296}
   thisCanvas: {fileID: 961660700}
+  gridData: 
+  GridBecameGrey: 0
 --- !u!1 &280144273
 GameObject:
   m_ObjectHideFlags: 0
@@ -6216,6 +6218,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d824285ffec8574588a15b63106f5b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GridSize: 40
+  taken: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   grid:
   - {fileID: 875338519}
   - {fileID: 1424482757}
@@ -6258,6 +6262,8 @@ MonoBehaviour:
   - {fileID: 903562454}
   - {fileID: 80742073}
   thisCanvas: {fileID: 961660700}
+  gridData: 
+  GridBecameGrey: 0
 --- !u!114 &886640751
 MonoBehaviour:
   m_ObjectHideFlags: 0
