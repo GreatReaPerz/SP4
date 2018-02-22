@@ -3,47 +3,127 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PowerupsSystem : MonoBehaviour {
+public class PowerupsSystem : MonoBehaviour
+{
 
     private GridSystem theGridSystem = null;
+    private enemyGridSystem theEnemyGridSystem = null;
 
     [SerializeField]
     uint MaximumPowerUpsAmount = 10;
 
-    List<Image> PlayerGridPowerups = new List<Image>();
-    List<Image> EnemyGridPowerups = new List<Image>();
+    [SerializeField]
+    public Image SampleImage;
+
+    //Sprites
+    [SerializeField]
+    public Sprite moveSpeedSprite;
+    [SerializeField]
+    public Sprite attackSpeedSprite;
+    [SerializeField]
+    public Sprite attackDamageSprite;
+
+    List<PowerUp> PlayerGridPowerups = new List<PowerUp>();
+    List<PowerUp> EnemyGridPowerups = new List<PowerUp>();
 
     public enum POWERUP_TYPE
     {
-       TOTAL_POWERUPS
+        POWERUP_MOVESPEED = 0,
+        POWERUP_ATTACKSPEED,
+        POWERUP_ATTACKDAMAGE,
+
+        TOTAL_POWERUPS
     }
 
-    // Use this for initialization
-    void Start () {
-        theGridSystem = GameObject.Find("PlayerTetrisGrid").GetComponent<GridSystem>();
+    private void OnEnable()
+    {
+        
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    // Use this for initialization
+    void Start()
+    {
+        theGridSystem = GameObject.Find("PlayerTetrisGrid").GetComponent<GridSystem>();
+        theEnemyGridSystem = GameObject.Find("EnemyTetrisGrid").GetComponent<enemyGridSystem>();
+
+        Debug.Assert(theGridSystem != null);
+        Debug.Assert(theEnemyGridSystem != null);
+        
+
+        CreatePowerups();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+    }
 
     public void CreatePowerups()
     {
-        for(uint i = 0; i <= MaximumPowerUpsAmount; ++i)
+        //Player Grid
+        for (uint i = 0; i <= MaximumPowerUpsAmount; ++i)
         {
-            //theGridSystem.grid[Random.Range(0, theGridSystem.GridSize)].transform.position;
+            //Add to the player grid powerups list
+            PlayerGridPowerups.Add(new PowerUp(theGridSystem.grid[(int)Random.Range(0, theGridSystem.GridSize - 1)].transform.position));
+
+            //Store the sprites into the object
+            PlayerGridPowerups[(int)i].StoreSprites(moveSpeedSprite, attackSpeedSprite, attackDamageSprite);
+            //Init the image object in powerup class
+            PlayerGridPowerups[(int)i].PowerUpTexture = Instantiate(SampleImage);
+            //Decides the powerup modifiers based on powertype
+            PlayerGridPowerups[(int)i].AssignType();
+            //Set the parent to canvas
+            PlayerGridPowerups[(int)i].PowerUpTexture.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, true);
+            //Change the position of powerup
+            PlayerGridPowerups[(int)i].ChangePosition();
+        }
+
+        //Enemy Grid
+        for (uint i = 0; i <= MaximumPowerUpsAmount; ++i)
+        {
+            EnemyGridPowerups.Add(new PowerUp(theEnemyGridSystem.grid[(int)Random.Range(0, theEnemyGridSystem.GridSize - 1)].transform.position));
+
+            //Store the sprites into the object
+            EnemyGridPowerups[(int)i].StoreSprites(moveSpeedSprite, attackSpeedSprite, attackDamageSprite);
+            //Init the image object in powerup class
+            EnemyGridPowerups[(int)i].PowerUpTexture = Instantiate(SampleImage);
+            //Decides the powerup modifiers based on powertype
+            EnemyGridPowerups[(int)i].AssignType();
+            //Set the parent to canvas
+            EnemyGridPowerups[(int)i].PowerUpTexture.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, true);
+            //Change the position of powerup
+            EnemyGridPowerups[(int)i].ChangePosition();
         }
     }
 
-    public void PlacePowerUp(Vector2 positon, POWERUP_TYPE powerType = POWERUP_TYPE.TOTAL_POWERUPS)
+    public void PlacePowerUp(uint GridIndex, string WhichGrid = "Both", POWERUP_TYPE powerType = POWERUP_TYPE.TOTAL_POWERUPS)
     {
+        if (WhichGrid == "Player" || WhichGrid == "Both")
+        {
+            PlayerGridPowerups.Add(new PowerUp(theGridSystem.grid[GridIndex].transform.position, powerType));
 
-    }
+            //Store the sprites into the object
+            PlayerGridPowerups[PlayerGridPowerups.Count - 1].StoreSprites(moveSpeedSprite, attackSpeedSprite, attackDamageSprite);
+            //Init the image object in powerup class
+            PlayerGridPowerups[PlayerGridPowerups.Count - 1].PowerUpTexture = Instantiate(SampleImage);
+            //Decides the powerup modifiers based on powertype
+            PlayerGridPowerups[PlayerGridPowerups.Count - 1].AssignType();
+            //Change the position of powerup
+            PlayerGridPowerups[PlayerGridPowerups.Count - 1].ChangePosition();
+        }
 
-    public void PlacePowerUp(GameObject theGrid, uint GridIndex, POWERUP_TYPE powerType = POWERUP_TYPE.TOTAL_POWERUPS)
-    {
+        if (WhichGrid == "Enemy" || WhichGrid == "Both")
+        {
+            EnemyGridPowerups.Add(new PowerUp(theEnemyGridSystem.grid[GridIndex].transform.position, powerType));
 
+            //Store the sprites into the object
+            EnemyGridPowerups[EnemyGridPowerups.Count - 1].StoreSprites(moveSpeedSprite, attackSpeedSprite, attackDamageSprite);
+            //Init the image object in powerup class
+            EnemyGridPowerups[EnemyGridPowerups.Count - 1].PowerUpTexture = Instantiate(SampleImage);
+            //Decides the powerup modifiers based on powertype
+            EnemyGridPowerups[EnemyGridPowerups.Count - 1].AssignType();
+            //Change the position of powerup
+            EnemyGridPowerups[EnemyGridPowerups.Count - 1].ChangePosition();
+        }
     }
 }
 
@@ -51,6 +131,85 @@ class PowerUp
 {
     PowerupsSystem.POWERUP_TYPE powerType;
     Vector2 powerupPosition = new Vector2();
+    public Image PowerUpTexture;
 
+    public float AddedMoveSpeed = 0;
+    public float AddedAttackSpeed = 0;
+    public float AddedAttackDamage = 0;
 
+    Sprite moveSpeedSprite;
+    Sprite attackSpeedSprite;
+    Sprite attackDamageSprite;
+
+    public void StoreSprites(Sprite movespeed, Sprite attackspeed, Sprite attackdamage)
+    {
+        moveSpeedSprite = movespeed;
+        attackSpeedSprite = attackspeed;
+        attackDamageSprite = attackdamage;
+    }
+
+    public PowerUp(Vector2 NewPosition, PowerupsSystem.POWERUP_TYPE NewPowerType = PowerupsSystem.POWERUP_TYPE.TOTAL_POWERUPS)
+    {
+        if (NewPowerType == PowerupsSystem.POWERUP_TYPE.TOTAL_POWERUPS)
+        {
+            //If there is no specified power type passed in, a random powerup is assigned
+            powerType = (PowerupsSystem.POWERUP_TYPE)Random.Range(0, (float)PowerupsSystem.POWERUP_TYPE.TOTAL_POWERUPS);
+        }
+        else
+        {
+            powerType = NewPowerType;
+        }
+
+        powerupPosition = NewPosition;
+    }
+
+    public void AssignType(PowerupsSystem.POWERUP_TYPE NewPowerType = PowerupsSystem.POWERUP_TYPE.TOTAL_POWERUPS)
+    {
+        //NOTE: PowerUpTexture must be initialised before this function can be used!
+
+        if (NewPowerType != PowerupsSystem.POWERUP_TYPE.TOTAL_POWERUPS)
+        {
+            powerType = NewPowerType;
+        }
+
+        switch (powerType)
+        {
+            case PowerupsSystem.POWERUP_TYPE.POWERUP_MOVESPEED:
+                {
+                    //Unit stats modify
+                    AddedMoveSpeed = 15;
+                    PowerUpTexture.sprite = moveSpeedSprite;
+                    break;
+                }
+            case PowerupsSystem.POWERUP_TYPE.POWERUP_ATTACKSPEED:
+                {
+                    //Unit stats modify
+                    AddedAttackSpeed = 15;
+                    PowerUpTexture.sprite = attackSpeedSprite;
+                    break;
+                }
+            case PowerupsSystem.POWERUP_TYPE.POWERUP_ATTACKDAMAGE:
+                {
+                    //Unit stats modify
+                    AddedAttackDamage = 15;
+                    PowerUpTexture.sprite = attackDamageSprite;
+                    Debug.Log("BITCONNECT");
+                    break;
+                }
+            default:
+                break;
+        }
+
+    }
+
+    public void ChangePosition(Vector2 NewPosition)
+    {
+        powerupPosition = NewPosition;
+        PowerUpTexture.transform.position = powerupPosition;
+    }
+
+    public void ChangePosition()
+    {
+        PowerUpTexture.transform.position = powerupPosition;
+    }
 }

@@ -33,7 +33,7 @@ public class enemyGridSystem : MonoBehaviour
     Sprite BlueGridSprite;
 
     // Use this for initialization
-    public void Start()
+    public void Awake()
     {
         check = false;
         for (int i = 0; i < gridSize; ++i)
