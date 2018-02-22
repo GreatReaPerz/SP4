@@ -32,8 +32,8 @@ public class MainGame : MonoBehaviour {
     public void Start()
     {
 
-        theGridSystem = GameObject.Find("PlayerTetrisGrid").GetComponent<GridSystem>();
-        Debug.Assert(theGridSystem != null);
+        //theGridSystem = GameObject.Find("PlayerTetrisGrid").GetComponent<GridSystem_Temp>();
+        //Debug.Assert(theGridSystem != null);
 
         //Create neutral zone
         RectTransform objectRectTransform = thisCanvas.GetComponent<RectTransform>();
