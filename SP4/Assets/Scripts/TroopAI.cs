@@ -28,6 +28,7 @@ public class TroopAI : MonoBehaviour {
     public bool activ;
     public float aggrotimer;
     public float attacktimer;
+    public float attackWidth;
     public string terrainName;
     private GameCode game = null;
     public Vector3 originPos;
@@ -41,10 +42,11 @@ public class TroopAI : MonoBehaviour {
         thePlayer = GameObject.Find("Player");
         game = GameObject.Find("EventSystem").GetComponent<GameCode>();
         originPos = transform.position;
+        attackWidth = 50;
         if (type == "Cavalry")
         {
             //Debug.Log("Cavalry");
-            health = 400;
+            health = 40;
             attckDmg = 15;
             attckSpd = 0.2f;
             speed = 75 * 0.016f;
@@ -82,7 +84,7 @@ public class TroopAI : MonoBehaviour {
         else if (type == "Infantry")
         {
             //Debug.Log("Infantry");
-            health = 500;
+            health = 50;
             attckDmg = 20;
             attckSpd = 0.1f;
             speed = 50 * 0.016f;
@@ -120,7 +122,7 @@ public class TroopAI : MonoBehaviour {
         else if (type == "Bowmen")
         {
             //Debug.Log("Bowmen");
-            health = 300;
+            health = 30;
             attckDmg = 10;
             attckSpd = 0.2f;
             speed = 50 * 0.016f;
@@ -215,7 +217,7 @@ public class TroopAI : MonoBehaviour {
                         //    minNearest = dist;
                         //    nearest = game.objects[i];
                         //}
-                        if(game.objects[i].transform.position.x > transform.position.x - 150 && game.objects[i].transform.position.x < transform.position.x + 150 && (game.objects[i].transform.position - transform.position).magnitude < 110)
+                        if(game.objects[i].transform.position.x > transform.position.x - attackWidth && game.objects[i].transform.position.x < transform.position.x + attackWidth && (game.objects[i].transform.position - transform.position).magnitude < range + 20)
                         {
                             nearest = game.objects[i];
                         }
@@ -325,7 +327,7 @@ public class TroopAI : MonoBehaviour {
                     nearestAI = nearest.GetComponent<TroopAI>();
                     if (nearestAI.activ)
                     {
-                        if (attacktimer > (1.0f / attckSpd))
+                        if (attacktimer > (attckSpd))
                         {
                             attacktimer = 0;
                             if (_class == nearestAI._class)
@@ -356,7 +358,7 @@ public class TroopAI : MonoBehaviour {
                             {
                                 nearestAI.health -= attckDmg * 1.2f;
                             }
-                            
+                            attacktimer = 0;
                         }
                     }
                     else

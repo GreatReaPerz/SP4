@@ -30,6 +30,8 @@ public class GameCode : MonoBehaviour {
     private enemyGridSystem enemyGridSystem = null;
     private TroopAI troop = null;
     public bool ready = false;
+    public bool melee = false;
+    public bool front = true;
     private string TerrainName;
     int state;
     public List<GameObject> objects;
@@ -54,7 +56,7 @@ public class GameCode : MonoBehaviour {
             //{
             //    ready = true;
             //}
-            if (ready)
+            if (ready && !destroyed)
             {
                 for (int i = 0; i < 3; ++i)
                 {
@@ -244,9 +246,11 @@ public class GameCode : MonoBehaviour {
 
                 //Destroy(theGridSystem);
                 //Destroy(enemyGridSystem);
-
-                timer = 0.0f;
-                state = (int)GameState.ATTACK;
+                if (ready && destroyed)
+                {
+                    timer = 0.0f;
+                    state = (int)GameState.ATTACK;
+                }
             }
             if (!destroyed)
             {
@@ -359,6 +363,25 @@ public class GameCode : MonoBehaviour {
                                     }
                                 }
                             }
+                            if(troop.type == "Bowmen")
+                            {
+                                if(melee)
+                                {
+                                    troop.range = 100;
+                                }
+                                else
+                                {
+                                    troop.range = 300;
+                                }
+                            }
+                            if (front)
+                            {
+                                troop.attackWidth = 50;
+                            }
+                            else
+                            {
+                                troop.attackWidth = 150;
+                            }
                         }
                     }
                 }
@@ -379,7 +402,7 @@ public class GameCode : MonoBehaviour {
                 TerrainName = Terrain.GetComponent<MainGame>().NeutralZoneTerrainType;
                 destroyed = false;
                 timer = 0.0f;
-                ready = true;
+                ready = false;
                 state = (int)GameState.PLANNING;
             }
         }
@@ -389,6 +412,25 @@ public class GameCode : MonoBehaviour {
 
     public void ReadyButton()
     {
-        ready = true;
+        if(!ready && !destroyed)
+        {
+            ready = true;
+        }
+    }
+    public void OnlyFront()
+    {
+        front = true;
+    }
+    public void Adj()
+    {
+        front = false;
+    }
+    public void ranged()
+    {
+        melee = false;
+    }
+    public void Melee()
+    {
+        melee = true;
     }
 }
