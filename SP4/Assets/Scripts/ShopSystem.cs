@@ -19,15 +19,30 @@ public class ShopSystem : MonoBehaviour {
 
     [SerializeField]
     int UpgradeInfantryHealthPrice = 100;
-
     [SerializeField]
     int UpgradeInfantryHealthAmount = 10;
-
     [SerializeField]
     int UpgradeInfantryAttackPrice = 200;
-
     [SerializeField]
     int UpgradeInfantryDamageAmount = 10;
+
+    [SerializeField]
+    int UpgradeCavalryHealthPrice = 100;
+    [SerializeField]
+    int UpgradeCavalryHealthAmount = 10;
+    [SerializeField]
+    int UpgradeCavalryAttackPrice = 200;
+    [SerializeField]
+    int UpgradeCavalryDamageAmount = 10;
+
+    [SerializeField]
+    int UpgradeBowmenHealthPrice = 100;
+    [SerializeField]
+    int UpgradeBowmenHealthAmount = 10;
+    [SerializeField]
+    int UpgradeBowmenAttackPrice = 200;
+    [SerializeField]
+    int UpgradeBowmenDamageAmount = 10;
 
     [SerializeField]
     Image GoldBorder = null;
@@ -40,7 +55,7 @@ public class ShopSystem : MonoBehaviour {
         //    CreateButton("New Button " + i);
 
         PlayerPrefs.SetInt("Gold", 1000);
-        //Set the gold the player has as displayed text on screen
+        //Get the gold the player and save it to text gameobject to display on screen
         playerGold = PlayerPrefs.GetInt("Gold");
         playerGoldText = GameObject.Find("GoldAmount");
         playerGoldText.GetComponent<Text>().text = playerGold.ToString();
@@ -49,14 +64,16 @@ public class ShopSystem : MonoBehaviour {
         ItemDescription = GameObject.Find("ItemDescription").GetComponent<Text>();
         ItemDescription.enabled = false;
 
-        //Set the gold border size
-        //RectTransform a = GameObject.FindGameObjectWithTag("viewport").GetComponent<RectTransform>();
-        //GoldBorder.rectTransform.sizeDelta = new Vector3(a.rect.width, a.rect.height * 0.25f, 1);
+        //Set the gold border such that it doesn't appear at first
         GoldBorder.enabled = false;
 
         //Add shop items that the player can buy
         shopItems.Add("UpgradeInfantryHealth", UpgradeInfantryHealthPrice);
         shopItems.Add("UpgradeInfantryAttack", UpgradeInfantryAttackPrice);
+        shopItems.Add("UpgradeCavalryHealth", UpgradeCavalryHealthPrice);
+        shopItems.Add("UpgradeCavalryAttack", UpgradeCavalryAttackPrice);
+        shopItems.Add("UpgradeBowmenHealth", UpgradeBowmenHealthPrice);
+        shopItems.Add("UpgradeBowmenAttack", UpgradeBowmenAttackPrice);
     }
 	
 	// Update is called once per frame
@@ -65,10 +82,8 @@ public class ShopSystem : MonoBehaviour {
 
     public int BuyItem(string ItemName)
     {
-        //Update the amount of gold the player has left
+        //Update the amount of gold the player has left after buying
         playerGold -= (int)shopItems[ItemName];
-        PlayerPrefs.SetInt("Gold", playerGold);
-        PlayerPrefs.Save();
         playerGoldText.GetComponent<Text>().text = playerGold.ToString();
 
         //The bought item modifications to player
@@ -77,11 +92,49 @@ public class ShopSystem : MonoBehaviour {
             case "UpgradeInfantryHealth":
                 {
                     //Increase base health of infantry
+
+                    //Update the item description with the new stats
+                    ItemDescription.text = "Infantry Health: " + PlayerPrefs.GetFloat("infantryHealth") + " (+" + UpgradeInfantryHealthAmount.ToString() + ")";
                     break;
                 }
             case "UpgradeInfantryAttack":
                 {
                     //Increase base damage of infantry
+
+                    //Update the item description with the new stats
+                    ItemDescription.text = "Infantry Damage: " + PlayerPrefs.GetFloat("infantryDamage") + " (+" + UpgradeInfantryDamageAmount.ToString() + ")";
+                    break;
+                }
+            case "UpgradeCavalryHealth":
+                {
+                    //Increase base health of cavalry
+
+                    //Update the item description with the new stats
+                    ItemDescription.text = "Cavalry Health: " + PlayerPrefs.GetFloat("cavalryHealth") + " (+" + UpgradeCavalryHealthAmount.ToString() + ")";
+                    break;
+                }
+            case "UpgradeCavalryAttack":
+                {
+                    //Increase base damage of cavalry
+
+                    //Update the item description with the new stats
+                    ItemDescription.text = "Cavalry Damage: " + PlayerPrefs.GetFloat("cavalryDamage") + " (+" + UpgradeCavalryDamageAmount.ToString() + ")";
+                    break;
+                }
+            case "UpgradeBowmenHealth":
+                {
+                    //Increase base health of bowmen
+
+                    //Update the item description with the new stats
+                    ItemDescription.text = "Bowmen Health: " + PlayerPrefs.GetFloat("bowmenHealth") + " (+" + UpgradeBowmenHealthAmount.ToString() + ")";
+                    break;
+                }
+            case "UpgradeBowmenAttack":
+                {
+                    //Increase base damage of bowmen
+
+                    //Update the item description with the new stats
+                    ItemDescription.text = "Bowmen Damage: " + PlayerPrefs.GetFloat("bowmenDamage") + " (+" + UpgradeBowmenDamageAmount.ToString() + ")";
                     break;
                 }
             default:
@@ -93,10 +146,11 @@ public class ShopSystem : MonoBehaviour {
 
     public void ItemButtonOnClick()
     {
+        //Get the button that was clicked
         GameObject CurrentButton = EventSystem.current.currentSelectedGameObject;
         RectTransform CurrentButtonRectTransform = CurrentButton.GetComponent<RectTransform>();
 
-        //Set name of button
+        //Get name of button
         CurrentSelectedItem = CurrentButton.name;
         //Set position of border to button's postion
         GoldBorder.transform.position = CurrentButtonRectTransform.transform.position;
@@ -105,38 +159,71 @@ public class ShopSystem : MonoBehaviour {
         GoldBorder.rectTransform.sizeDelta = new Vector3(CurrentButtonRectTransform.rect.width * CurrentButtonRectTransform.localScale.x * 1.05f, 
             CurrentButtonRectTransform.rect.height * CurrentButtonRectTransform.localScale.y * 1.05f, 1);
 
+        //If the border is disabled, enable it
         if (!GoldBorder.enabled)
         {
             GoldBorder.enabled = true;
         }
 
-        //Item description
+        //Display Item description
         switch (CurrentSelectedItem)
         {
             case "UpgradeInfantryHealth":
                 {
-                    ItemDescription.text = "Infantry Health: " + PlayerPrefs.GetInt("Gold") + " (+" + UpgradeInfantryHealthAmount.ToString() + ")";
+                    ItemDescription.text = "Infantry Health: " + PlayerPrefs.GetFloat("infantryHealth") + " (+" + UpgradeInfantryHealthAmount.ToString() + ")";
                     break;
                 }
             case "UpgradeInfantryAttack":
                 {
-                    ItemDescription.text = "Infantry Damage: " + PlayerPrefs.GetInt("Gold") + " (+" + UpgradeInfantryDamageAmount.ToString() + ")";
+                    ItemDescription.text = "Infantry Damage: " + PlayerPrefs.GetFloat("infantryDamage") + " (+" + UpgradeInfantryDamageAmount.ToString() + ")";
+                    break;
+                }
+
+            case "UpgradeCavalryHealth":
+                {
+                    ItemDescription.text = "Cavalry Health: " + PlayerPrefs.GetFloat("cavalryHealth") + " (+" + UpgradeCavalryHealthAmount.ToString() + ")";
+                    break;
+                }
+            case "UpgradeCavalryAttack":
+                {
+                    ItemDescription.text = "Cavalry Damage: " + PlayerPrefs.GetFloat("cavalryDamage") + " (+" + UpgradeCavalryDamageAmount.ToString() + ")";
+                    break;
+                }
+
+            case "UpgradeBowmenHealth":
+                {
+                    ItemDescription.text = "Bowmen Health: " + PlayerPrefs.GetFloat("bowmenHealth") + " (+" + UpgradeBowmenHealthAmount.ToString() + ")";
+                    break;
+                }
+            case "UpgradeBowmenAttack":
+                {
+                    ItemDescription.text = "Bowmen Damage: " + PlayerPrefs.GetFloat("bowmenDamage") + " (+" + UpgradeBowmenDamageAmount.ToString() + ")";
                     break;
                 }
             default:
                 break;
         }
+
         if(!ItemDescription.enabled)
         {
             ItemDescription.enabled = true;
         }
     }
 
-
     public void BuyButtonOnClick()
     {
         //Pass in the name of the button that was clicked
         BuyItem(CurrentSelectedItem);
+    }
+
+    public void ExitButtonOnClick()
+    {
+        //Save the player gold to playerpref
+        PlayerPrefs.SetInt("Gold", playerGold);
+        PlayerPrefs.Save();
+
+        //Return to main menu
+
     }
 
     //void CreateButton(string name)

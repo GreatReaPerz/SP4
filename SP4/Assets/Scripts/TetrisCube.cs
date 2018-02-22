@@ -17,6 +17,7 @@ public class TetrisCube {
     public string Whatisbeingmoved = "";
     public Vector3 origin;
     public GameObject parentCube;
+    public bool movable = true;
 
 	public enum objectType
 	{

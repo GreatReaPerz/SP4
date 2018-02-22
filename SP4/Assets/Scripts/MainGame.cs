@@ -38,7 +38,7 @@ public class MainGame : MonoBehaviour {
         //Create neutral zone
         RectTransform objectRectTransform = thisCanvas.GetComponent<RectTransform>();
         NeutralZone.transform.position = objectRectTransform.transform.position;
-        NeutralZone.rectTransform.sizeDelta = new Vector2(objectRectTransform.rect.width, objectRectTransform.rect.height * 0.1f);
+        NeutralZone.rectTransform.sizeDelta = new Vector2(objectRectTransform.rect.width * 0.92f, objectRectTransform.rect.height * 0.25f);
 
         float ranNum = Random.Range(0.0f, 4.0f);
 

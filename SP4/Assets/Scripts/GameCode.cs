@@ -28,6 +28,9 @@ public class GameCode : MonoBehaviour {
     private GridSystem theGridSystem = null;
     private enemyGridSystem enemyGridSystem = null;
     private TroopAI troop = null;
+    public bool ready = false;
+    public bool melee = false;
+    public bool front = true;
     private string TerrainName;
     int state;
     public List<GameObject> objects;
@@ -41,13 +44,17 @@ public class GameCode : MonoBehaviour {
         state = (int)GameState.PLANNING;
         TerrainName = Terrain.GetComponent<MainGame>().NeutralZoneTerrainType;
     }
-	
-	// Update is called once per frame
-	void Update () {
-        if(state == (int)GameState.PLANNING)
+
+    // Update is called once per frame
+    void Update() {
+        if (state == (int)GameState.PLANNING)
         {
             UIPanelAnimator.SetBool("UIPanelEnabled", true);
-            if (timer > 10.0f && !destroyed)
+            //if (timer > 10.0f && !destroyed)
+            //{
+            //    ready = true;
+            //}
+            if (ready && !destroyed)
             {
                 for (int i = 0; i < 3; ++i)
                 {
@@ -62,7 +69,7 @@ public class GameCode : MonoBehaviour {
                         troop.team = 1;
                         troop.terrainName = TerrainName;
                         float dist = 0;
-                        for(uint j = 0; j< enemyGridSystem.GridSize; ++j)
+                        for (uint j = 0; j < enemyGridSystem.GridSize; ++j)
                         {
                             float yDist = enemyGridSystem.grid[j].transform.position.y - troop.originPos.y;
                             if (Mathf.Abs(enemyGridSystem.grid[j].transform.position.x - troop.originPos.x) < 10 && !enemyGridSystem.IsGreyedOut(j) && yDist > dist)
@@ -237,9 +244,11 @@ public class GameCode : MonoBehaviour {
 
                 //Destroy(theGridSystem);
                 //Destroy(enemyGridSystem);
-
-                timer = 0.0f;
-                state = (int)GameState.ATTACK;
+                if (ready && destroyed)
+                {
+                    timer = 0.0f;
+                    state = (int)GameState.ATTACK;
+                }
             }
             if (!destroyed)
             {
@@ -301,13 +310,13 @@ public class GameCode : MonoBehaviour {
                             //If the unit reaches its target grid
                             if (Mathf.Abs(troop.targetPos.y - troop.transform.position.y) < 10)
                             {
-                                if(troop.team == 1)
+                                if (troop.team == 1)
                                 {
                                     //Set the target grid to grey
                                     enemyGridSystem.SetIsGreyOut(troop.targetIndex);
                                     troop.activ = false;
                                 }
-                                if(troop.team == -1)
+                                if (troop.team == -1)
                                 {
                                     //Debug.Log("kill");
                                     //Set the target grid to grey
@@ -352,6 +361,25 @@ public class GameCode : MonoBehaviour {
                                     }
                                 }
                             }
+                            if(troop.type == "Bowmen")
+                            {
+                                if(melee)
+                                {
+                                    troop.range = 100;
+                                }
+                                else
+                                {
+                                    troop.range = 300;
+                                }
+                            }
+                            if (front)
+                            {
+                                troop.attackWidth = 50;
+                            }
+                            else
+                            {
+                                troop.attackWidth = 150;
+                            }
                         }
                     }
                 }
@@ -372,10 +400,35 @@ public class GameCode : MonoBehaviour {
                 TerrainName = Terrain.GetComponent<MainGame>().NeutralZoneTerrainType;
                 destroyed = false;
                 timer = 0.0f;
+                ready = false;
                 state = (int)GameState.PLANNING;
             }
         }
 
         timer += Time.deltaTime;
-	}
+    }
+
+    public void ReadyButton()
+    {
+        if(!ready && !destroyed)
+        {
+            ready = true;
+        }
+    }
+    public void OnlyFront()
+    {
+        front = true;
+    }
+    public void Adj()
+    {
+        front = false;
+    }
+    public void ranged()
+    {
+        melee = false;
+    }
+    public void Melee()
+    {
+        melee = true;
+    }
 }

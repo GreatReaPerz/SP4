@@ -2017,7 +2017,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 309468603}
-  - component: {fileID: 309468605}
   - component: {fileID: 309468604}
   m_Layer: 0
   m_Name: EnemyTetrisGrid
@@ -2047,7 +2046,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 309468602}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d824285ffec8574588a15b63106f5b9, type: 3}
+  m_Script: {fileID: 11500000, guid: c06df603d502051418e00906188dd323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   GridSize: 40
@@ -2096,17 +2095,6 @@ MonoBehaviour:
   thisCanvas: {fileID: 1056636299}
   gridData: 
   GridBecameGrey: 0
---- !u!114 &309468605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 309468602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d49f1915ae2df5449cef2116bcd6a76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &311100766
 GameObject:
   m_ObjectHideFlags: 0
@@ -3545,6 +3533,7 @@ GameObject:
   - component: {fileID: 575953237}
   - component: {fileID: 575953236}
   - component: {fileID: 575953235}
+  - component: {fileID: 575953238}
   m_Layer: 5
   m_Name: Cavalry
   m_TagString: Untagged
@@ -3576,7 +3565,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 575953233}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4b51b9a92d2fb14e969226844b2c9e9, type: 3}
   m_Name: 
@@ -3597,7 +3586,10 @@ MonoBehaviour:
   activ: 0
   aggrotimer: 0
   attacktimer: 0
+  attackWidth: 0
   terrainName: 
+  originPos: {x: 0, y: 0, z: 0}
+  targetPos: {x: 0, y: 0, z: 0}
 --- !u!114 &575953236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3631,6 +3623,34 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 575953233}
+--- !u!114 &575953238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 575953233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4364d4129cc6b754ab9a23ac42a0f8a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PauseAnimator: {fileID: 269915130}
+  type: Cavalry
+  health: 0
+  _class: 0
+  attckDmg: 0
+  attckSpd: 0
+  speed: 0
+  range: 0
+  vision: 0
+  targetIndex: 0
+  team: 0
+  state: 0
+  prevhealth: 0
+  activ: 0
+  aggrotimer: 0
+  attacktimer: 0
+  terrainName: 
 --- !u!1 &584018131
 GameObject:
   m_ObjectHideFlags: 0
@@ -6063,6 +6083,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1009899134}
   - component: {fileID: 1009899133}
+  - component: {fileID: 1009899135}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -6076,7 +6097,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1009899132}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d87b0bc424dc9f3419a42999eb6abb08, type: 3}
   m_Name: 
@@ -6086,6 +6107,7 @@ MonoBehaviour:
   - {fileID: 1894050752949088, guid: 4dbdc46ae1494af4e922d23e03e723bf, type: 2}
   - {fileID: 1678510967310458, guid: ab1d1303800e536468926588c0c7f4d5, type: 2}
   - {fileID: 1923746785537824, guid: 39173d86ea493f048aa107d06fb48dd8, type: 2}
+  troopImages: []
   SomethingIsMoving: 0
   IndexofMovingObject: 0
 --- !u!4 &1009899134
@@ -6101,6 +6123,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1009899135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1009899132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8552b6686181d7419f1021e37517600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TetrisTypes:
+  - {fileID: 1592847256830460, guid: dc41c7ddc1e19ce468cc3ff9fe2dd14a, type: 2}
+  - {fileID: 1894050752949088, guid: 4dbdc46ae1494af4e922d23e03e723bf, type: 2}
+  - {fileID: 1678510967310458, guid: ab1d1303800e536468926588c0c7f4d5, type: 2}
+  - {fileID: 1923746785537824, guid: 39173d86ea493f048aa107d06fb48dd8, type: 2}
+  SomethingIsMoving: 0
+  IndexofMovingObject: 0
 --- !u!1 &1012043862
 GameObject:
   m_ObjectHideFlags: 0
@@ -6112,6 +6152,7 @@ GameObject:
   - component: {fileID: 1012043866}
   - component: {fileID: 1012043865}
   - component: {fileID: 1012043864}
+  - component: {fileID: 1012043867}
   m_Layer: 5
   m_Name: Bowmen
   m_TagString: Untagged
@@ -6143,7 +6184,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1012043862}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4b51b9a92d2fb14e969226844b2c9e9, type: 3}
   m_Name: 
@@ -6164,7 +6205,10 @@ MonoBehaviour:
   activ: 0
   aggrotimer: 0
   attacktimer: 0
+  attackWidth: 0
   terrainName: 
+  originPos: {x: 0, y: 0, z: 0}
+  targetPos: {x: 0, y: 0, z: 0}
 --- !u!114 &1012043865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6198,6 +6242,34 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1012043862}
+--- !u!114 &1012043867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1012043862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4364d4129cc6b754ab9a23ac42a0f8a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PauseAnimator: {fileID: 269915130}
+  type: Bowmen
+  health: 0
+  _class: 0
+  attckDmg: 0
+  attckSpd: 0
+  speed: 0
+  range: 0
+  vision: 0
+  targetIndex: 0
+  team: 0
+  state: 0
+  prevhealth: 0
+  activ: 0
+  aggrotimer: 0
+  attacktimer: 0
+  terrainName: 
 --- !u!1 &1015944176
 GameObject:
   m_ObjectHideFlags: 0
@@ -8308,10 +8380,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thisCanvas: {fileID: 1056636299}
   UICanvas: {fileID: 0}
-  HillsSprite: {fileID: 21300000, guid: e01d60da388de814b8358ae9d971f675, type: 3}
-  ForestSprite: {fileID: 21300000, guid: a66f694d29761d943985e9d8f63a4cac, type: 3}
-  RiverSprite: {fileID: 21300000, guid: 5020ed49a29e4d746a2a4a82d68d6d36, type: 3}
-  PlainsSprite: {fileID: 21300000, guid: fb52246fbe8c186488ac3929046b8280, type: 3}
+  HillsSprite: {fileID: 21300000, guid: 34135196d25f09b4a9f2356022df555f, type: 3}
+  ForestSprite: {fileID: 21300000, guid: 0b3f4ad824a146b4f8d876740be796a9, type: 3}
+  RiverSprite: {fileID: 21300000, guid: 6081fad1a20b58544a7f29034448f876, type: 3}
+  PlainsSprite: {fileID: 21300000, guid: 96a38c1c8bb6209419353ac0e40acb67, type: 3}
   NeutralZone: {fileID: 1370580383}
   NeutralZoneTerrainType: 
 --- !u!1 &1428983168
@@ -8563,6 +8635,7 @@ GameObject:
   - component: {fileID: 1505901710}
   - component: {fileID: 1505901707}
   - component: {fileID: 1505901709}
+  - component: {fileID: 1505901715}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -8622,7 +8695,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1505901705}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1515aceff6b04644a0cd73b0ffd705f, type: 3}
   m_Name: 
@@ -8632,6 +8705,9 @@ MonoBehaviour:
   Player1: {fileID: 1526702796}
   Player2: {fileID: 107558273}
   UIPanelAnimator: {fileID: 274212017}
+  ready: 0
+  melee: 0
+  front: 1
   objects: []
 --- !u!114 &1505901711
 MonoBehaviour:
@@ -8691,6 +8767,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1505901715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1505901705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3ba4437133851d45b466351294120ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ui: {fileID: 1056636299}
+  Terrain: {fileID: 1395408348}
+  Player1: {fileID: 1526702796}
+  Player2: {fileID: 107558273}
+  UIPanelAnimator: {fileID: 274212017}
+  objects: []
 --- !u!1 &1526702796
 GameObject:
   m_ObjectHideFlags: 0
@@ -9590,7 +9683,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1751453445}
   - component: {fileID: 1751453447}
-  - component: {fileID: 1751453446}
   m_Layer: 0
   m_Name: PlayerTetrisGrid
   m_TagString: Untagged
@@ -9611,17 +9703,6 @@ Transform:
   m_Father: {fileID: 2123955328}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1751453446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1751453444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d49f1915ae2df5449cef2116bcd6a76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1751453447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9630,7 +9711,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1751453444}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 584d79128c8ceef4bbd868b9216fdc93, type: 3}
+  m_Script: {fileID: 11500000, guid: 15b41c46b165c744d829568b9781353e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   GridSize: 40
@@ -9671,8 +9752,8 @@ MonoBehaviour:
   - {fileID: 1794135358}
   - {fileID: 1535218499}
   - {fileID: 196195560}
-  - {fileID: 1705319260}
   - {fileID: 1428983170}
+  - {fileID: 1705319260}
   - {fileID: 2006253209}
   - {fileID: 1827684675}
   - {fileID: 194475484}
@@ -10159,6 +10240,7 @@ GameObject:
   - component: {fileID: 1818787441}
   - component: {fileID: 1818787440}
   - component: {fileID: 1818787439}
+  - component: {fileID: 1818787442}
   m_Layer: 5
   m_Name: Infantry
   m_TagString: Untagged
@@ -10190,7 +10272,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1818787437}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4b51b9a92d2fb14e969226844b2c9e9, type: 3}
   m_Name: 
@@ -10211,7 +10293,10 @@ MonoBehaviour:
   activ: 0
   aggrotimer: 0
   attacktimer: 0
+  attackWidth: 0
   terrainName: 
+  originPos: {x: 0, y: 0, z: 0}
+  targetPos: {x: 0, y: 0, z: 0}
 --- !u!114 &1818787440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10245,6 +10330,34 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1818787437}
+--- !u!114 &1818787442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1818787437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4364d4129cc6b754ab9a23ac42a0f8a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PauseAnimator: {fileID: 269915130}
+  type: Infantry
+  health: 0
+  _class: 0
+  attckDmg: 0
+  attckSpd: 0
+  speed: 0
+  range: 0
+  vision: 0
+  targetIndex: 0
+  team: 0
+  state: 0
+  prevhealth: 0
+  activ: 0
+  aggrotimer: 0
+  attacktimer: 0
+  terrainName: 
 --- !u!1 &1819775922
 GameObject:
   m_ObjectHideFlags: 0
@@ -10904,7 +11017,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1895067089}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d978e1e2bc5c4f9479bf8ccb50823a10, type: 3}
+  m_Script: {fileID: 11500000, guid: 27f221b84ff5a144da84f3227d1ed723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TetrisTypes:

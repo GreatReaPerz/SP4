@@ -1478,6 +1478,7 @@ MonoBehaviour:
   activ: 0
   aggrotimer: 0
   attacktimer: 0
+  attackWidth: 0
   terrainName: 
   originPos: {x: 0, y: 0, z: 0}
   targetPos: {x: 0, y: 0, z: 0}
@@ -1577,6 +1578,7 @@ MonoBehaviour:
   activ: 0
   aggrotimer: 0
   attacktimer: 0
+  attackWidth: 0
   terrainName: 
   originPos: {x: 0, y: 0, z: 0}
   targetPos: {x: 0, y: 0, z: 0}
@@ -7697,6 +7699,7 @@ MonoBehaviour:
   activ: 0
   aggrotimer: 0
   attacktimer: 0
+  attackWidth: 0
   terrainName: 
   originPos: {x: 0, y: 0, z: 0}
   targetPos: {x: 0, y: 0, z: 0}
@@ -11532,6 +11535,9 @@ MonoBehaviour:
   Player1: {fileID: 205814642}
   Player2: {fileID: 1196755656}
   UIPanelAnimator: {fileID: 1291632260}
+  ready: 0
+  melee: 0
+  front: 1
   objects: []
 --- !u!114 &1992708148
 MonoBehaviour:

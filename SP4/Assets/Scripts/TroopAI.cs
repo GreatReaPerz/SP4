@@ -28,6 +28,7 @@ public class TroopAI : MonoBehaviour {
     public bool activ;
     public float aggrotimer;
     public float attacktimer;
+    public float attackWidth;
     public string terrainName;
     private GameCode game = null;
     public Vector3 originPos;
@@ -37,277 +38,341 @@ public class TroopAI : MonoBehaviour {
 
     GameObject thePlayer;
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         thePlayer = GameObject.Find("Player");
         game = GameObject.Find("EventSystem").GetComponent<GameCode>();
         originPos = transform.position;
-        if (type == "Cavalry")
-        {
+        attackWidth = 50;
             //Debug.Log("Cavalry");
-            health = 400;
+            health = 40;
             attckDmg = 15;
-            attckSpd = 0.2f;
-            speed = 75 * 0.016f;
-            vision = 100;
-            range = 100;
-            state = (int)States.CHARGE;
-            prevhealth = health;
-            activ = true;
-            _class = 3;
-            if (terrainName == "Hills")
+            if (type == "Cavalry")
             {
-                attckDmg -= (attckDmg * 0.15f);
-                speed -= (speed * 0.25f);
-                attckSpd -= (attckSpd * 0.15f);
-            }
-            else if (terrainName == "Forest")
-            {
-                attckDmg -= (attckDmg * 0.1f);
-                speed -= (speed * 0.15f);
-                attckSpd -= (attckSpd * 0.05f);
-            }
-            else if (terrainName == "River")
-            {
-                attckDmg += (attckDmg * 0.1f);
-                speed -= (speed * 0.1f);
-                attckSpd -= (attckSpd * 0.1f);
-            }
-            else if (terrainName == "Plains")
-            {
-                attckDmg += (attckDmg * 0.1f);
-                speed += (speed * 0.15f);
-                attckSpd += (attckSpd * 0.1f);
-            }
-        }
-        else if (type == "Infantry")
-        {
-            //Debug.Log("Infantry");
-            health = 500;
-            attckDmg = 20;
-            attckSpd = 0.1f;
-            speed = 50 * 0.016f;
-            range = 100;
-            vision = 100;
-            state = (int)States.CHARGE;
-            prevhealth = health;
-            activ = true;
-            _class = 1;
-            if (terrainName == "Hills")
-            {
-                attckDmg -= (attckDmg * 0.1f);
-                speed -= (speed * 0.15f);
-                attckSpd -= (attckSpd * 0.1f);
-            }
-            else if (terrainName == "Forest")
-            {
-                attckDmg += (attckDmg * 0.1f);
-                speed -= (speed * 0.1f);
-                attckSpd -= (attckSpd * 0.05f);
-            }
-            else if (terrainName == "River")
-            {
-                attckDmg -= (attckDmg * 0.1f);
-                speed -= (speed * 0.15f);
-                attckSpd -= (attckSpd * 0.1f);
-            }
-            else if (terrainName == "Plains")
-            {
-                attckDmg += (attckDmg * 0.1f);
-                speed += (speed * 0.2f);
-                attckSpd += (attckSpd * 0.1f);
-            }
-        }
-        else if (type == "Bowmen")
-        {
-            //Debug.Log("Bowmen");
-            health = 300;
-            attckDmg = 10;
-            attckSpd = 0.2f;
-            speed = 50 * 0.016f;
-            range = 300;
-            vision = 300;
-            state = (int)States.CHARGE;
-            prevhealth = health;
-            activ = true;
-            _class = 2;
-            if (terrainName == "Hills")
-            {
-                attckDmg += (attckDmg * 0.1f);
-                speed += (speed * 0.05f);
-                attckSpd -= (attckSpd * 0.1f);
-            }
-            else if (terrainName == "Forest")
-            {
-                attckDmg -= (attckDmg * 0.15f);
-                speed -= (speed * 0.1f);
-                attckSpd -= (attckSpd * 0.15f);
-            }
-            else if (terrainName == "River")
-            {
-                attckDmg -= (attckDmg * 0.1f);
-                speed -= (speed * 0.1f);
-                attckSpd -= (attckSpd * 0.1f);
-            }
-            else if (terrainName == "Plains")
-            {
-                attckDmg += (attckDmg * 0.1f);
-                speed += (speed * 0.1f);
-                attckSpd += (attckSpd * 0.2f);
-            }
-        }
-        //Debug.Log(transform.position);
-        //targetPos = transform.position;
-    }
-	
-	// Update is called once per frame
-	void Update () {
-        if (PauseAnimator.GetBool("PauseEnabled") == true)
-            return;
-        if(health <= 0)
-        {
-            //if (team == -1)
-            //    thePlayer.GetComponent<InGameCash>().addAmount(10);
-            activ = false;
-        }
-        if (activ)
-        {
-            if (state == (int)States.CHARGE)
-            {
-                Vector3 hello = targetPos - transform.position;
-                //hello.x = 0;
-                //hello.y = team;
-                //hello.z = 0;
-                hello.Normalize();
-                bool collided = false;
-                for(int i = 0; i < game.objects.Count; ++i)
-                {
-                    Vector3 nextPosition = transform.position + hello * speed;
-                    if (!(game.objects[i].transform.position.x == transform.position.x && game.objects[i].transform.position.y == transform.position.y))
-                    {
-                        if(Collided(nextPosition, game.objects[i].transform.position))
-                        {
-                            collided = true;
-                        }
-                    }
-                }
-                if (!collided)
-                {
-                    transform.position += hello * speed;
-                }
-
-                if (prevhealth != health)
-                {
-                   // state = (int)States.CHASE;
-                    aggrotimer = 0;
-                }
+                //Debug.Log("Cavalry");
+                //health = PlayerPrefs.GetFloat("cavalryHealth");
+                //attckDmg = PlayerPrefs.GetFloat("cavalryDamage");
+                health = 
+                attckSpd = 0.2f;
+                speed = 75 * 0.016f;
+                vision = 100;
+                range = 100;
+                state = (int)States.CHARGE;
                 prevhealth = health;
-                float minNearest = 1000000;
-                nearest = null;
-                for (int i = 0; i < game.objects.Count; ++i)
+                activ = true;
+                _class = 3;
+                if (terrainName == "Hills")
                 {
-                    nearestAI = game.objects[i].GetComponent<TroopAI>();
-                    if (nearestAI.activ && nearestAI.team != team)
-                    {
-                        //Vector2 hello1 = new Vector2(game.objects[i].transform.position.x - transform.position.x, game.objects[i].transform.position.y - transform.position.y);
-                        //float dist = hello1.SqrMagnitude();
-                        //if (dist <= vision * vision && dist < minNearest)
-                        //{
-                        //    minNearest = dist;
-                        //    nearest = game.objects[i];
-                        //}
-                        if(game.objects[i].transform.position.x > transform.position.x - 150 && game.objects[i].transform.position.x < transform.position.x + 150 && (game.objects[i].transform.position - transform.position).magnitude < 110)
-                        {
-                            nearest = game.objects[i];
-                        }
-                    }
+                    attckDmg -= (attckDmg * 0.15f);
+                    speed -= (speed * 0.25f);
+                    attckSpd -= (attckSpd * 0.15f);
                 }
-                if (nearest != null)
+                else if (terrainName == "Forest")
                 {
-                    state = (int)States.ATTACK;
+                    attckDmg -= (attckDmg * 0.1f);
+                    speed -= (speed * 0.15f);
+                    attckSpd -= (attckSpd * 0.05f);
+                }
+                else if (terrainName == "River")
+                {
+                    attckDmg += (attckDmg * 0.1f);
+                    speed -= (speed * 0.1f);
+                    attckSpd -= (attckSpd * 0.1f);
+                }
+                else if (terrainName == "Plains")
+                {
+                    attckDmg += (attckDmg * 0.1f);
+                    speed += (speed * 0.15f);
+                    attckSpd += (attckSpd * 0.1f);
                 }
             }
-            if (state == (int)States.CHASE)
+            else if (type == "Infantry")
             {
-                aggrotimer += Time.deltaTime;
-                if (prevhealth == health && aggrotimer % 5 == 0 || aggrotimer % 5 == 0)
+                //Debug.Log("Infantry");
+                health = 50;
+                attckDmg = 20;
+               // health = PlayerPrefs.GetFloat("infantryHealth");
+              //  attckDmg = PlayerPrefs.GetFloat("infantryDamage");
+                attckSpd = 0.1f;
+                speed = 50 * 0.016f;
+                range = 100;
+                vision = 100;
+                state = (int)States.CHARGE;
+                prevhealth = health;
+                activ = true;
+                _class = 1;
+                if (terrainName == "Hills")
                 {
-                    state = (int)States.CHARGE;
+                    attckDmg -= (attckDmg * 0.1f);
+                    speed -= (speed * 0.15f);
+                    attckSpd -= (attckSpd * 0.1f);
                 }
-                if (nearest == null)
+                else if (terrainName == "Forest")
                 {
-                    state = (int)States.CHARGE;
+                    attckDmg += (attckDmg * 0.1f);
+                    speed -= (speed * 0.1f);
+                    attckSpd -= (attckSpd * 0.05f);
                 }
-                else
+                else if (terrainName == "River")
                 {
-                    if (nearestAI.activ)
+                    attckDmg -= (attckDmg * 0.1f);
+                    speed -= (speed * 0.15f);
+                    attckSpd -= (attckSpd * 0.1f);
+                }
+                else if (terrainName == "Plains")
+                {
+                    attckDmg += (attckDmg * 0.1f);
+                    speed += (speed * 0.2f);
+                    attckSpd += (attckSpd * 0.1f);
+                }
+            }
+            else if (type == "Bowmen")
+            {
+                //Debug.Log("Bowmen");
+                health = 30;
+                attckDmg = 10;
+                //health = PlayerPrefs.GetFloat("bowmenHealth");
+               // attckDmg = PlayerPrefs.GetFloat("bowmenDamage");
+                attckSpd = 0.2f;
+                speed = 50 * 0.016f;
+                range = 300;
+                vision = 300;
+                state = (int)States.CHARGE;
+                prevhealth = health;
+                activ = true;
+                _class = 2;
+                if (terrainName == "Hills")
+                {
+                    attckDmg += (attckDmg * 0.1f);
+                    speed += (speed * 0.05f);
+                    attckSpd -= (attckSpd * 0.1f);
+                }
+                else if (terrainName == "Forest")
+                {
+                    attckDmg -= (attckDmg * 0.15f);
+                    speed -= (speed * 0.1f);
+                    attckSpd -= (attckSpd * 0.15f);
+                }
+                else if (terrainName == "River")
+                {
+                    attckDmg -= (attckDmg * 0.1f);
+                    speed -= (speed * 0.1f);
+                    attckSpd -= (attckSpd * 0.1f);
+                }
+                else if (terrainName == "Plains")
+                {
+                    attckDmg += (attckDmg * 0.1f);
+                    speed += (speed * 0.1f);
+                    attckSpd += (attckSpd * 0.2f);
+                }
+            }
+            //Debug.Log(transform.position);
+            //targetPos = transform.position;
+    }
+        // Update is called once per frame
+       void Update (){
+            if (PauseAnimator.GetBool("PauseEnabled") == true)
+                return;
+            if (health <= 0)
+            {
+                //if (team == -1)
+                //    thePlayer.GetComponent<InGameCash>().addAmount(10);
+                activ = false;
+            }
+            if (activ)
+            {
+                if (state == (int)States.CHARGE)
+                {
+                    Vector3 hello = targetPos - transform.position;
+                    //hello.x = 0;
+                    //hello.y = team;
+                    //hello.z = 0;
+                    hello.Normalize();
+                    bool collided = false;
+                    for (int i = 0; i < game.objects.Count; ++i)
                     {
-                        float minNearest = 1000000;
-                        for (int i = 0; i < game.objects.Count; ++i)
+                        Vector3 nextPosition = transform.position + hello * speed;
+                        if (!(game.objects[i].transform.position.x == transform.position.x && game.objects[i].transform.position.y == transform.position.y))
                         {
-                            nearestAI = game.objects[i].GetComponent<TroopAI>();
-                            if (nearestAI.activ && nearestAI.team != team)
+                            if (Collided(nextPosition, game.objects[i].transform.position))
                             {
-                                Vector2 hello1 = new Vector2(game.objects[i].transform.position.x - transform.position.x, game.objects[i].transform.position.y - transform.position.y);
-                                float dist = hello1.SqrMagnitude();
-                                if (dist <= vision * vision && dist < minNearest)
-                                {
-                                    //Debug.Log(dist);
-                                    minNearest = dist;
-                                    nearest = game.objects[i];
-                                }
+                                collided = true;
                             }
                         }
-                        nearestAI = nearest.GetComponent<TroopAI>();
-                        float Xdistance = Mathf.Abs(nearest.transform.position.x - transform.position.x);
-                        float Ydistance = Mathf.Abs(nearest.transform.position.y - transform.position.y);
-                        if (Xdistance >= Ydistance)
+                    }
+                    if (!collided)
+                    {
+                        transform.position += hello * speed;
+                    }
+
+                    if (prevhealth != health)
+                    {
+                        // state = (int)States.CHASE;
+                        aggrotimer = 0;
+                    }
+                    prevhealth = health;
+                    float minNearest = 1000000;
+                    nearest = null;
+                    for (int i = 0; i < game.objects.Count; ++i)
+                    {
+                        nearestAI = game.objects[i].GetComponent<TroopAI>();
+                        if (nearestAI.activ && nearestAI.team != team)
                         {
-                            Vector3 hello2 = new Vector3(nearest.transform.position.x - transform.position.x, 0, 0);
-                            hello2.Normalize();
-                            bool collided = false;
+                            //Vector2 hello1 = new Vector2(game.objects[i].transform.position.x - transform.position.x, game.objects[i].transform.position.y - transform.position.y);
+                            //float dist = hello1.SqrMagnitude();
+                            //if (dist <= vision * vision && dist < minNearest)
+                            //{
+                            //    minNearest = dist;
+                            //    nearest = game.objects[i];
+                            //}
+                            if (game.objects[i].transform.position.x > transform.position.x - attackWidth && game.objects[i].transform.position.x < transform.position.x + attackWidth && (game.objects[i].transform.position - transform.position).magnitude < range + 20)
+                            {
+                                nearest = game.objects[i];
+                            }
+                        }
+                    }
+                    if (nearest != null)
+                    {
+                        state = (int)States.ATTACK;
+                    }
+                }
+                if (state == (int)States.CHASE)
+                {
+                    aggrotimer += Time.deltaTime;
+                    if (prevhealth == health && aggrotimer % 5 == 0 || aggrotimer % 5 == 0)
+                    {
+                        state = (int)States.CHARGE;
+                    }
+                    if (nearest == null)
+                    {
+                        state = (int)States.CHARGE;
+                    }
+                    else
+                    {
+                        if (nearestAI.activ)
+                        {
+                            float minNearest = 1000000;
                             for (int i = 0; i < game.objects.Count; ++i)
                             {
-                                Vector3 nextPosition = transform.position + hello2 * speed;
-                                if (game.objects[i].transform.position.x != transform.position.x || game.objects[i].transform.position.y != transform.position.y)
+                                nearestAI = game.objects[i].GetComponent<TroopAI>();
+                                if (nearestAI.activ && nearestAI.team != team)
                                 {
-                                    if (Collided(nextPosition, game.objects[i].transform.position))
+                                    Vector2 hello1 = new Vector2(game.objects[i].transform.position.x - transform.position.x, game.objects[i].transform.position.y - transform.position.y);
+                                    float dist = hello1.SqrMagnitude();
+                                    if (dist <= vision * vision && dist < minNearest)
                                     {
-                                        collided = true;
+                                        //Debug.Log(dist);
+                                        minNearest = dist;
+                                        nearest = game.objects[i];
                                     }
                                 }
                             }
-                            if (!collided)
+                            nearestAI = nearest.GetComponent<TroopAI>();
+                            float Xdistance = Mathf.Abs(nearest.transform.position.x - transform.position.x);
+                            float Ydistance = Mathf.Abs(nearest.transform.position.y - transform.position.y);
+                            if (Xdistance >= Ydistance)
                             {
-                                transform.position += hello2 * speed;
+                                Vector3 hello2 = new Vector3(nearest.transform.position.x - transform.position.x, 0, 0);
+                                hello2.Normalize();
+                                bool collided = false;
+                                for (int i = 0; i < game.objects.Count; ++i)
+                                {
+                                    Vector3 nextPosition = transform.position + hello2 * speed;
+                                    if (game.objects[i].transform.position.x != transform.position.x || game.objects[i].transform.position.y != transform.position.y)
+                                    {
+                                        if (Collided(nextPosition, game.objects[i].transform.position))
+                                        {
+                                            collided = true;
+                                        }
+                                    }
+                                }
+                                if (!collided)
+                                {
+                                    transform.position += hello2 * speed;
+                                }
+                            }
+                            else
+                            {
+                                Vector3 hello2 = new Vector3(0, nearest.transform.position.y - transform.position.y, 0);
+                                hello2.Normalize();
+                                bool collided = false;
+                                for (int i = 0; i < game.objects.Count; ++i)
+                                {
+                                    Vector3 nextPosition = transform.position + hello2 * speed;
+                                    if (game.objects[i].transform.position.x != transform.position.x || game.objects[i].transform.position.y != transform.position.y)
+                                    {
+                                        if (Collided(nextPosition, game.objects[i].transform.position))
+                                        {
+                                            collided = true;
+                                        }
+                                    }
+                                }
+                                if (!collided)
+                                {
+                                    transform.position += hello2 * speed;
+                                }
+                            }
+                            Vector3 hello3 = new Vector3(nearest.transform.position.x - transform.position.x, nearest.transform.position.y - transform.position.y, 0);
+                            float dis = hello3.sqrMagnitude;
+                            if (dis <= range * range)
+                            {
+                                state = (int)States.ATTACK;
+                                // attacktimer = 0.0f;
                             }
                         }
                         else
                         {
-                            Vector3 hello2 = new Vector3(0, nearest.transform.position.y - transform.position.y, 0);
-                            hello2.Normalize();
-                            bool collided = false;
-                            for (int i = 0; i < game.objects.Count; ++i)
+                            state = (int)States.CHARGE;
+                        }
+                    }
+                }
+
+                if (state == (int)States.ATTACK)
+                {
+                    attacktimer += Time.deltaTime;
+                    if (nearest != null)
+                    {
+                        nearestAI = nearest.GetComponent<TroopAI>();
+                        if (nearestAI.activ)
+                        {
+                            if (attacktimer > (attckSpd))
                             {
-                                Vector3 nextPosition = transform.position + hello2 * speed;
-                                if (game.objects[i].transform.position.x != transform.position.x || game.objects[i].transform.position.y != transform.position.y)
+                                //Class 1 = Infantry, Class 2 = Bowmen, Class 3 = Cavalry
+                                attacktimer = 0;
+                                if (_class == nearestAI._class)
                                 {
-                                    if (Collided(nextPosition, game.objects[i].transform.position))
-                                    {
-                                        collided = true;
-                                    }
+                                    nearestAI.health -= 100;
                                 }
-                            }
-                            if (!collided)
-                            {
-                                transform.position += hello2 * speed;
+                                if (_class == 1 && nearestAI._class == 3)
+                                {
+                                    nearestAI.health -= 100 * 1.2f;
+                                }
+                                if (_class == 1 && nearestAI._class == 2)
+                                {
+                                    nearestAI.health -= 100 * 1.2f;
+                                }
+                                if (_class == 2 && nearestAI._class == 1)
+                                {
+                                    nearestAI.health -= 100 * 1.2f;
+                                }
+                                if (_class == 2 && nearestAI._class == 3)
+                                {
+                                    nearestAI.health -= 100 * 1.2f;
+                                }
+                                if (_class == 3 && nearestAI._class == 1)
+                                {
+                                    nearestAI.health -= 100 * 1.2f;
+                                }
+                                if (_class == 3 && nearestAI._class == 2)
+                                {
+                                    nearestAI.health -= 100 * 1.2f;
+                                }
+                                attacktimer = 0;
                             }
                         }
-                        Vector3 hello3 = new Vector3(nearest.transform.position.x - transform.position.x, nearest.transform.position.y - transform.position.y, 0);
-                        float dis = hello3.sqrMagnitude;
-                        if (dis <= range * range)
+                        else
                         {
-                            state = (int)States.ATTACK;
-                           // attacktimer = 0.0f;
+                            state = (int)States.CHARGE;
                         }
                     }
                     else
@@ -317,62 +382,7 @@ public class TroopAI : MonoBehaviour {
                 }
             }
 
-            if (state == (int)States.ATTACK)
-            {
-                attacktimer += Time.deltaTime;
-                if (nearest != null)
-                {
-                    nearestAI = nearest.GetComponent<TroopAI>();
-                    if (nearestAI.activ)
-                    {
-                        if (attacktimer > (1.0f / attckSpd))
-                        {
-                            attacktimer = 0;
-                            if (_class == nearestAI._class)
-                            {
-                                nearestAI.health -= 100;
-                            }
-                            if (_class == 1 && nearestAI._class == 3)
-                            {
-                                nearestAI.health -= attckDmg * 1.2f;
-                            }
-                            if (_class == 1 && nearestAI._class == 2)
-                            {
-                                nearestAI.health -= attckDmg * 1.2f;
-                            }
-                            if (_class == 2 && nearestAI._class == 1)
-                            {
-                                nearestAI.health -= attckDmg * 1.2f;
-                            }
-                            if (_class == 2 && nearestAI._class == 3)
-                            {
-                                nearestAI.health -= attckDmg * 1.2f;
-                            }
-                            if (_class == 3 && nearestAI._class == 1)
-                            {
-                                nearestAI.health -= attckDmg * 1.2f;
-                            }
-                            if (_class == 3 && nearestAI._class == 2)
-                            {
-                                nearestAI.health -= attckDmg * 1.2f;
-                            }
-                            
-                        }
-                    }
-                    else
-                    {
-                        state = (int)States.CHARGE;
-                    }
-                }
-                else
-                {
-                    state = (int)States.CHARGE;
-                }
-            }
         }
-
-	}
-
     bool Collided(Vector3 firstTroop, Vector3 secondTroop)
     {
         if (firstTroop.x - (99 * 0.5f) < secondTroop.x + (99 * 0.5f) 
