@@ -44,128 +44,128 @@ public class TroopAI : MonoBehaviour {
         game = GameObject.Find("EventSystem").GetComponent<GameCode>();
         originPos = transform.position;
         attackWidth = 50;
-            //Debug.Log("Cavalry");
+        //Debug.Log("Cavalry");
+        if (type == "Cavalry")
+        {
             health = 40;
             attckDmg = 15;
-            if (type == "Cavalry")
+            //Debug.Log("Cavalry");
+            //health = PlayerPrefs.GetFloat("cavalryHealth");
+            //attckDmg = PlayerPrefs.GetFloat("cavalryDamage");
+            //health = 
+            attckSpd = 0.2f;
+            speed = 75 * 0.016f;
+            vision = 100;
+            range = 100;
+            state = (int)States.CHARGE;
+            prevhealth = health;
+            activ = true;
+            _class = 3;
+            if (terrainName == "Hills")
             {
-                //Debug.Log("Cavalry");
-                //health = PlayerPrefs.GetFloat("cavalryHealth");
-                //attckDmg = PlayerPrefs.GetFloat("cavalryDamage");
-                health = 
-                attckSpd = 0.2f;
-                speed = 75 * 0.016f;
-                vision = 100;
-                range = 100;
-                state = (int)States.CHARGE;
-                prevhealth = health;
-                activ = true;
-                _class = 3;
-                if (terrainName == "Hills")
-                {
-                    attckDmg -= (attckDmg * 0.15f);
-                    speed -= (speed * 0.25f);
-                    attckSpd -= (attckSpd * 0.15f);
-                }
-                else if (terrainName == "Forest")
-                {
-                    attckDmg -= (attckDmg * 0.1f);
-                    speed -= (speed * 0.15f);
-                    attckSpd -= (attckSpd * 0.05f);
-                }
-                else if (terrainName == "River")
-                {
-                    attckDmg += (attckDmg * 0.1f);
-                    speed -= (speed * 0.1f);
-                    attckSpd -= (attckSpd * 0.1f);
-                }
-                else if (terrainName == "Plains")
-                {
-                    attckDmg += (attckDmg * 0.1f);
-                    speed += (speed * 0.15f);
-                    attckSpd += (attckSpd * 0.1f);
-                }
+                attckDmg -= (attckDmg * 0.15f);
+                speed -= (speed * 0.25f);
+                attckSpd -= (attckSpd * 0.15f);
             }
-            else if (type == "Infantry")
+            else if (terrainName == "Forest")
             {
-                //Debug.Log("Infantry");
-                health = 50;
-                attckDmg = 20;
-               // health = PlayerPrefs.GetFloat("infantryHealth");
-              //  attckDmg = PlayerPrefs.GetFloat("infantryDamage");
-                attckSpd = 0.1f;
-                speed = 50 * 0.016f;
-                range = 100;
-                vision = 100;
-                state = (int)States.CHARGE;
-                prevhealth = health;
-                activ = true;
-                _class = 1;
-                if (terrainName == "Hills")
-                {
-                    attckDmg -= (attckDmg * 0.1f);
-                    speed -= (speed * 0.15f);
-                    attckSpd -= (attckSpd * 0.1f);
-                }
-                else if (terrainName == "Forest")
-                {
-                    attckDmg += (attckDmg * 0.1f);
-                    speed -= (speed * 0.1f);
-                    attckSpd -= (attckSpd * 0.05f);
-                }
-                else if (terrainName == "River")
-                {
-                    attckDmg -= (attckDmg * 0.1f);
-                    speed -= (speed * 0.15f);
-                    attckSpd -= (attckSpd * 0.1f);
-                }
-                else if (terrainName == "Plains")
-                {
-                    attckDmg += (attckDmg * 0.1f);
-                    speed += (speed * 0.2f);
-                    attckSpd += (attckSpd * 0.1f);
-                }
+                attckDmg -= (attckDmg * 0.1f);
+                speed -= (speed * 0.15f);
+                attckSpd -= (attckSpd * 0.05f);
             }
-            else if (type == "Bowmen")
+            else if (terrainName == "River")
             {
-                //Debug.Log("Bowmen");
-                health = 30;
-                attckDmg = 10;
-                //health = PlayerPrefs.GetFloat("bowmenHealth");
-               // attckDmg = PlayerPrefs.GetFloat("bowmenDamage");
-                attckSpd = 0.2f;
-                speed = 50 * 0.016f;
-                range = 300;
-                vision = 300;
-                state = (int)States.CHARGE;
-                prevhealth = health;
-                activ = true;
-                _class = 2;
-                if (terrainName == "Hills")
-                {
-                    attckDmg += (attckDmg * 0.1f);
-                    speed += (speed * 0.05f);
-                    attckSpd -= (attckSpd * 0.1f);
-                }
-                else if (terrainName == "Forest")
-                {
-                    attckDmg -= (attckDmg * 0.15f);
-                    speed -= (speed * 0.1f);
-                    attckSpd -= (attckSpd * 0.15f);
-                }
-                else if (terrainName == "River")
-                {
-                    attckDmg -= (attckDmg * 0.1f);
-                    speed -= (speed * 0.1f);
-                    attckSpd -= (attckSpd * 0.1f);
-                }
-                else if (terrainName == "Plains")
-                {
-                    attckDmg += (attckDmg * 0.1f);
-                    speed += (speed * 0.1f);
-                    attckSpd += (attckSpd * 0.2f);
-                }
+                attckDmg += (attckDmg * 0.1f);
+                speed -= (speed * 0.1f);
+                attckSpd -= (attckSpd * 0.1f);
             }
+            else if (terrainName == "Plains")
+            {
+                attckDmg += (attckDmg * 0.1f);
+                speed += (speed * 0.15f);
+                attckSpd += (attckSpd * 0.1f);
+            }
+        }
+        else if (type == "Infantry")
+        {
+            //Debug.Log("Infantry");
+            health = 50;
+            attckDmg = 20;
+            // health = PlayerPrefs.GetFloat("infantryHealth");
+            //  attckDmg = PlayerPrefs.GetFloat("infantryDamage");
+            attckSpd = 0.1f;
+            speed = 50 * 0.016f;
+            range = 100;
+            vision = 100;
+            state = (int)States.CHARGE;
+            prevhealth = health;
+            activ = true;
+            _class = 1;
+            if (terrainName == "Hills")
+            {
+                attckDmg -= (attckDmg * 0.1f);
+                speed -= (speed * 0.15f);
+                attckSpd -= (attckSpd * 0.1f);
+            }
+            else if (terrainName == "Forest")
+            {
+                attckDmg += (attckDmg * 0.1f);
+                speed -= (speed * 0.1f);
+                attckSpd -= (attckSpd * 0.05f);
+            }
+            else if (terrainName == "River")
+            {
+                attckDmg -= (attckDmg * 0.1f);
+                speed -= (speed * 0.15f);
+                attckSpd -= (attckSpd * 0.1f);
+            }
+            else if (terrainName == "Plains")
+            {
+                attckDmg += (attckDmg * 0.1f);
+                speed += (speed * 0.2f);
+                attckSpd += (attckSpd * 0.1f);
+            }
+        }
+        else if (type == "Bowmen")
+        {
+            //Debug.Log("Bowmen");
+            health = 30;
+            attckDmg = 10;
+            //health = PlayerPrefs.GetFloat("bowmenHealth");
+            // attckDmg = PlayerPrefs.GetFloat("bowmenDamage");
+            attckSpd = 0.2f;
+            speed = 50 * 0.016f;
+            range = 300;
+            vision = 300;
+            state = (int)States.CHARGE;
+            prevhealth = health;
+            activ = true;
+            _class = 2;
+            if (terrainName == "Hills")
+            {
+                attckDmg += (attckDmg * 0.1f);
+                speed += (speed * 0.05f);
+                attckSpd -= (attckSpd * 0.1f);
+            }
+            else if (terrainName == "Forest")
+            {
+                attckDmg -= (attckDmg * 0.15f);
+                speed -= (speed * 0.1f);
+                attckSpd -= (attckSpd * 0.15f);
+            }
+            else if (terrainName == "River")
+            {
+                attckDmg -= (attckDmg * 0.1f);
+                speed -= (speed * 0.1f);
+                attckSpd -= (attckSpd * 0.1f);
+            }
+            else if (terrainName == "Plains")
+            {
+                attckDmg += (attckDmg * 0.1f);
+                speed += (speed * 0.1f);
+                attckSpd += (attckSpd * 0.2f);
+            }
+        }
             //Debug.Log(transform.position);
             //targetPos = transform.position;
     }
