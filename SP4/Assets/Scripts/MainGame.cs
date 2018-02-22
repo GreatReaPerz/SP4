@@ -24,7 +24,7 @@ public class MainGame : MonoBehaviour {
     Image NeutralZone;
 
 
-    private GridSystem theGridSystem = null;
+    private GridSystem_Temp theGridSystem = null;
 
      public string NeutralZoneTerrainType;
 
@@ -32,7 +32,7 @@ public class MainGame : MonoBehaviour {
     public void Start()
     {
 
-        theGridSystem = GameObject.Find("PlayerTetrisGrid").GetComponent<GridSystem>();
+        theGridSystem = GameObject.Find("PlayerTetrisGrid").GetComponent<GridSystem_Temp>();
         Debug.Assert(theGridSystem != null);
 
         //Create neutral zone
