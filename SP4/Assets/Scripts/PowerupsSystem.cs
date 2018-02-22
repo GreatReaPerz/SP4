@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PowerupsSystem : MonoBehaviour {
 
@@ -9,9 +10,12 @@ public class PowerupsSystem : MonoBehaviour {
     [SerializeField]
     uint MaximumPowerUpsAmount = 10;
 
+    List<Image> PlayerGridPowerups = new List<Image>();
+    List<Image> EnemyGridPowerups = new List<Image>();
+
     public enum POWERUP_TYPE
     {
-       
+       TOTAL_POWERUPS
     }
 
     // Use this for initialization
@@ -32,7 +36,12 @@ public class PowerupsSystem : MonoBehaviour {
         }
     }
 
-    public void PlacePowerUp(Vector2 positon, POWERUP_TYPE powerType)
+    public void PlacePowerUp(Vector2 positon, POWERUP_TYPE powerType = POWERUP_TYPE.TOTAL_POWERUPS)
+    {
+
+    }
+
+    public void PlacePowerUp(GameObject theGrid, uint GridIndex, POWERUP_TYPE powerType = POWERUP_TYPE.TOTAL_POWERUPS)
     {
 
     }
@@ -40,6 +49,8 @@ public class PowerupsSystem : MonoBehaviour {
 
 class PowerUp
 {
-    //PowerupsSystem.POWERUP_TYPE
+    PowerupsSystem.POWERUP_TYPE powerType;
+    Vector2 powerupPosition = new Vector2();
+
 
 }
