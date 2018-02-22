@@ -514,6 +514,34 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 91818453}
+--- !u!1 &101590242
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 101590243}
+  m_Layer: 0
+  m_Name: Enemy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &101590243
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 101590242}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 750, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1056427395}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &108197347
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,7 +926,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &180120313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5112,7 +5140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &872766873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5133,8 +5161,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9c47c59c520ac3d45abb4b71a5c71672, type: 3}
   - {fileID: 21300000, guid: 4f643c63208a80d44a3745435136e4cc, type: 3}
   - {fileID: 21300000, guid: 765e09d691fdc4b45a52f76e12e77a7f, type: 3}
-  SomethingIsMoving: 0
-  IndexofMovingObject: 0
+  playerSpawner: {fileID: 1437678349}
+  enemySpawner: {fileID: 101590242}
+  playerIsMoving: 0
+  enemyIsMoving: 0
+  IndexofPlayerObject: 0
+  IndexofEnemyObject: 0
 --- !u!4 &872766874
 Transform:
   m_ObjectHideFlags: 0
@@ -6536,6 +6568,8 @@ RectTransform:
   - {fileID: 283525874}
   - {fileID: 1057013383}
   - {fileID: 2107304311}
+  - {fileID: 1437678350}
+  - {fileID: 101590243}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8654,6 +8688,34 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1395145704}
+--- !u!1 &1437678349
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1437678350}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1437678350
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1437678349}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -750, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1056427395}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1441315006
 GameObject:
   m_ObjectHideFlags: 0
@@ -11400,6 +11462,7 @@ GameObject:
   - component: {fileID: 1992708147}
   - component: {fileID: 1992708144}
   - component: {fileID: 1992708146}
+  - component: {fileID: 1992708152}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -11528,6 +11591,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1992708152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1992708142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d87b0bc424dc9f3419a42999eb6abb08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TetrisTypes:
+  - {fileID: 1592847256830460, guid: dc41c7ddc1e19ce468cc3ff9fe2dd14a, type: 2}
+  - {fileID: 1894050752949088, guid: 4dbdc46ae1494af4e922d23e03e723bf, type: 2}
+  - {fileID: 1678510967310458, guid: ab1d1303800e536468926588c0c7f4d5, type: 2}
+  - {fileID: 1923746785537824, guid: 39173d86ea493f048aa107d06fb48dd8, type: 2}
+  troopImages:
+  - {fileID: 21300000, guid: 9c47c59c520ac3d45abb4b71a5c71672, type: 3}
+  - {fileID: 21300000, guid: 4f643c63208a80d44a3745435136e4cc, type: 3}
+  - {fileID: 21300000, guid: 765e09d691fdc4b45a52f76e12e77a7f, type: 3}
+  playerSpawner: {fileID: 1437678349}
+  enemySpawner: {fileID: 101590242}
+  playerIsMoving: 0
+  enemyIsMoving: 0
+  IndexofPlayerObject: 0
+  IndexofEnemyObject: 0
 --- !u!1 &2003865437
 GameObject:
   m_ObjectHideFlags: 0

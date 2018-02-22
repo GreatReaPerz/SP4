@@ -4,375 +4,174 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class TetrisSpawner : MonoBehaviour{
+public class TetrisSpawner : MonoBehaviour
+{
 
-	[SerializeField]
-	GameObject[] TetrisTypes;
+    [SerializeField]
+    GameObject[] TetrisTypes;
 
     [SerializeField]
     Sprite[] troopImages;
 
-	public TetrisCube[] tetrisList = new TetrisCube[3]; 
-	float timer = 0;
-	int numSpawned = 0;
+    [SerializeField]
+    GameObject playerSpawner;
+
+    [SerializeField]
+    GameObject enemySpawner;
+
+    public TetrisCube[] playerList = new TetrisCube[3];
+    public TetrisCube[] enemyList = new TetrisCube[3];
+
+    float timer = 0;
+    int playerSpawned = 0;
+    int enemySpawned = 0;
     private Vector3 pil;
     private Vector3 pil1;
-    public bool SomethingIsMoving = false;
-    public uint IndexofMovingObject = 0;
+    public bool playerIsMoving = false;
+    public bool enemyIsMoving = false;
 
-  	// Use this for initialization
-	public void Start () {
-        numSpawned = 0;
-        for (int i = 0; i < 3; ++i) {
-            int rand = Random.Range (0, TetrisTypes.Length);
-			switch(rand)
-			{
-			case 0:
-				{
-					numSpawned = Spawn4x4Cube (numSpawned);
-					break;
-				}
-			case 1:
-				{
-					numSpawned = SpawnLShape (numSpawned);
-					break;
-				}
-			case 2:
-				{
-					numSpawned = SpawnTShape (numSpawned);
-					break;
-				}
-			case 3:
-				{
-					numSpawned = SpawnZShape (numSpawned);
-					break;
-				}
-			};
-		}
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        for(uint i = 0; i < 3; ++i)
+    public uint IndexofPlayerObject = 0;
+    public uint IndexofEnemyObject = 0;
+
+
+    // Use this for initialization
+    public void Start()
+    {
+        playerSpawned = 0;
+        enemySpawned = 0;
+        for (int i = 0; i < 3; ++i)
         {
-            SomethingIsMoving = false;
+            int rand = Random.Range (0, TetrisTypes.Length);
+            int randUnitType = Random.Range(0, 3);
 
-            if(tetrisList[i] == null)
+            switch (rand)
+            {
+                case 0:
+                    {
+                        //Key for setting instantiated unit in array 
+                        //Spawner for the pos of spawner in scene
+                        //Type for which team the unit is (0 for player , 1 for enemy)
+                        //Shape is the shape to instantiate
+                        playerSpawned = SpawnTetris(playerSpawned, playerSpawner, 0, randUnitType, TetrisTypes[0]);
+                        enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 1, randUnitType,TetrisTypes[0]);
+
+                        break;
+                    }
+                case 1:
+                    {
+                        playerSpawned = SpawnTetris(playerSpawned, playerSpawner, 0, randUnitType, TetrisTypes[1]);
+                        enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 1, randUnitType, TetrisTypes[1]);
+                        break;
+                    }
+                case 2:
+                    {
+                        playerSpawned = SpawnTetris(playerSpawned, playerSpawner, 0, randUnitType, TetrisTypes[2]);
+                        enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 1, randUnitType, TetrisTypes[2]);
+                        break;
+                    }
+                case 3:
+                    {
+                        playerSpawned = SpawnTetris(playerSpawned, playerSpawner, 0, randUnitType, TetrisTypes[3]);
+                        enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 1, randUnitType, TetrisTypes[3]);
+                        break;
+                    }
+            };
+        }
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        for (uint i = 0; i < 3; ++i)
+        {
+            playerIsMoving = false;
+
+            if (playerList[i] == null)
             {
                 continue;
             }
 
-            if (tetrisList[i].isMoving)
+            if (playerList[i].isMoving)
             {
-                SomethingIsMoving = true;
-                IndexofMovingObject = i;
+                playerIsMoving = true;
+                IndexofPlayerObject = i;
                 break;
             }
 
-            tetrisList[i].isMoving = false;
+            playerList[i].isMoving = false;
         }
-	}
-    
-	int Spawn4x4Cube (int key)
-	{
-        TetrisCube theCube = new TetrisCube();
-        theCube.parentCube = Instantiate (TetrisTypes [0], transform.position, Quaternion.identity);
 
-      
-        theCube.parentCube.transform.SetParent (GameObject.FindGameObjectWithTag ("Canvas").transform, true);
-        pil.Set(-300 + (key * 300), -300, 0);
-        pil1 = theCube.parentCube.transform.position + pil;
-        theCube.origin.Set(pil1.x, pil1.y, pil1.z);
-        theCube.parentCube.transform.position = theCube.origin;
-
-        //Set up the 4 cubes based on theCube.parentCube's child
-		theCube.setTheCubes (theCube.parentCube.transform.Find ("partOne").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partTwo").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partThree").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partFour").GetComponent<Rigidbody2D> ());
-		theCube.setTheObjectType (TetrisCube.objectType.TETRIS_4X4);
-
-        int rand = Random.Range(0, 2);
-        switch (rand)
+        for (uint i = 0; i < 3; ++i)
         {
-            case 0:
-                {
-                    theCube.troopName = "Cavalry";
-                    foreach (Transform child in theCube.parentCube.transform)
-                    {
-                        Image theSprite = child.GetComponent<Image>();
-                        theSprite.sprite = troopImages[0];
-                    }
-                    break;
-                }
-            case 1:
-                {
-                    theCube.troopName = "Infantry";
-                    foreach (Transform child in theCube.parentCube.transform)
-                    {
-                        Image theSprite = child.GetComponent<Image>();
-                        theSprite.sprite = troopImages[1];
-                    }
-                    break;
-                }
-            case 2:
-                {
-                    theCube.troopName = "Bowmen";
-                    foreach (Transform child in theCube.parentCube.transform)
-                    {
-                        Image theSprite = child.GetComponent<Image>();
-                        theSprite.sprite = troopImages[2];
-                    }
-                    break;
-                }
-        };
+            enemyIsMoving = false;
 
-        //Could use raycast instead 
-        //Also cause the only thing changing is the movement function, could try to make a switch instead
-        //Trigger and entry for bottom left 
-        EventTrigger BtmLTrig= theCube.parentCube.transform.Find("partOne").GetComponent<EventTrigger> ();
-		EventTrigger.Entry BtmLEntry = new EventTrigger.Entry ();
-		BtmLEntry.eventID = EventTriggerType.Drag;
-		BtmLEntry.callback.AddListener ((data) => {
-			theCube.DragObject (theCube.partOne);
-		});
-		BtmLTrig.triggers.Add (BtmLEntry);
-        theCube.origin = theCube.partOne.position;
+            if (enemyList[i] == null)
+            {
+                continue;
+            }
 
-        //Trigger and entry for bottom Right 
-		EventTrigger BtmRTrig = theCube.parentCube.transform.Find("partTwo").GetComponent<EventTrigger> ();
-		EventTrigger.Entry BtmREntry = new EventTrigger.Entry ();
-		BtmREntry.eventID = EventTriggerType.Drag;
-		BtmREntry.callback.AddListener ((data) => {
-			theCube.DragObject(theCube.partTwo);
-		});
-		BtmRTrig.triggers.Add (BtmREntry);
+            if (enemyList[i].isMoving)
+            {
+                enemyIsMoving = true;
+                IndexofEnemyObject = i;
+                break;
+            }
 
-		//Trigger and entry for top Left 
-		EventTrigger TopLTrig = theCube.parentCube.transform.Find("partThree").GetComponent<EventTrigger> ();
-		EventTrigger.Entry TopLEntry = new EventTrigger.Entry ();
-		TopLEntry.eventID = EventTriggerType.Drag;
-		TopLEntry.callback.AddListener ((data) => {
-			theCube.DragObject (theCube.partThree);
-		});
-		TopLTrig.triggers.Add (TopLEntry);
-
-		//Trigger and entry for top Right 
-		EventTrigger TopRTrig = theCube.parentCube.transform.Find("partFour").GetComponent<EventTrigger> ();
-		EventTrigger.Entry TopREntry = new EventTrigger.Entry ();
-		TopREntry.eventID = EventTriggerType.Drag;
-		TopREntry.callback.AddListener ((data) => {
-			theCube.DragObject (theCube.partFour);
-		});
-		TopRTrig.triggers.Add (TopREntry);
-
-		tetrisList [key] = theCube;
-		++key;
-        return key;
+            enemyList[i].isMoving = false;
+        }
     }
 
-	public int SpawnTShape(int key)
-	{
+    //Key for setting instantiated unit in array 
+    //Spawner for the pos of spawner in scene
+    //Team for which team the unit is (0 for player , 1 for enemy)
+    //Type is for unit type
+    //Shape is the shape to instantiate
+    int SpawnTetris(int key, GameObject spawner, int team, int type, GameObject shape)
+    {
         TetrisCube theCube = new TetrisCube();
-        theCube.parentCube = Instantiate (TetrisTypes [2], transform.position, Quaternion.identity);
+        //Instantiate base on spawner pos 
+        if (team == 0)
+            theCube.parentCube = Instantiate(shape, spawner.transform.position, spawner.transform.rotation);
+        else    //Rotate by 180 on x axis if is enemy piece to mirror player
+            theCube.parentCube = Instantiate(shape, spawner.transform.position, Quaternion.Euler(180, 0, 0));
 
-        theCube.parentCube.transform.SetParent (GameObject.FindGameObjectWithTag ("Canvas").transform, true);
-		pil.Set(-300 + (key * 300), -300, 0);
-		pil1 = theCube.parentCube.transform.position + pil;
-		theCube.origin.Set(pil1.x, pil1.y, pil1.z);
-		theCube.parentCube.transform.position = theCube.origin;
+        //So that it appears within canvas
+        theCube.parentCube.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, true);
 
-		//Set up the 4 cubes based on theCube.parentCube's child
-		theCube.setTheCubes (theCube.parentCube.transform.Find ("partOne").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partTwo").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partThree").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partFour").GetComponent<Rigidbody2D> ());
-		theCube.setTheObjectType (TetrisCube.objectType.TETRIS_T);
+        //Off set x pos base on key(index)
+        pil.Set(-300 + (key * 300), 0, 0);
+        //Set the origin (snapping)
+        pil1 = theCube.parentCube.transform.position + pil;
+        theCube.origin.Set(pil1.x, pil1.y, pil1.z);
+        //Translate to origin
+        theCube.parentCube.transform.position = theCube.origin;
 
-        int rand = Random.Range(0, 2);
-        switch (rand)
-        {
-            case 0:
-                {
-                    theCube.troopName = "Cavalry";
-                    foreach (Transform child in theCube.parentCube.transform)
-                    {
-                        Image theSprite = child.GetComponent<Image>();
-                        theSprite.sprite = troopImages[0];
-                    }
-                    break;
-                }
-            case 1:
-                {
-                    theCube.troopName = "Infantry";
-                    foreach (Transform child in theCube.parentCube.transform)
-                    {
-                        Image theSprite = child.GetComponent<Image>();
-                        theSprite.sprite = troopImages[1];
-                    }
-                    break;
-                }
-            case 2:
-                {
-                    theCube.troopName = "Bowmen";
-                    foreach (Transform child in theCube.parentCube.transform)
-                    {
-                        Image theSprite = child.GetComponent<Image>();
-                        theSprite.sprite = troopImages[2];
-                    }
-                    break;
-                }
-        };
+        //Store parts locally
+        GameObject cubeOne = theCube.parentCube.transform.Find("partOne").gameObject;
+        GameObject cubeTwo = theCube.parentCube.transform.Find("partTwo").gameObject;
+        GameObject cubeThree = theCube.parentCube.transform.Find("partThree").gameObject;
+        GameObject cubeFour = theCube.parentCube.transform.Find("partFour").gameObject;
 
-        //Could use raycast instead 
-        //Also cause the only thing changing is the movement function, could try to make a switch instead
-
-        //Trigger and entry for bottom left 
-        EventTrigger BtmLTrig = theCube.parentCube.transform.Find("partOne").GetComponent<EventTrigger> ();
-		EventTrigger.Entry BtmLEntry = new EventTrigger.Entry ();
-		BtmLEntry.eventID = EventTriggerType.Drag;
-		BtmLEntry.callback.AddListener ((data) => {
-			theCube.DragObject (theCube.partOne);
-		});
-		BtmLTrig.triggers.Add (BtmLEntry);
-        theCube.origin = theCube.partOne.position;
-        //Trigger and entry for bottom Right 
-		EventTrigger BtmRTrig = theCube.parentCube.transform.Find("partTwo").GetComponent<EventTrigger> ();
-		EventTrigger.Entry BtmREntry = new EventTrigger.Entry ();
-		BtmREntry.eventID = EventTriggerType.Drag;
-		BtmREntry.callback.AddListener ((data) => {
-			theCube.DragObject(theCube.partTwo);
-		});
-		BtmRTrig.triggers.Add (BtmREntry);
-
-		//Trigger and entry for top Left 
-		EventTrigger TopLTrig = theCube.parentCube.transform.Find("partThree").GetComponent<EventTrigger> ();
-		EventTrigger.Entry TopLEntry = new EventTrigger.Entry ();
-		TopLEntry.eventID = EventTriggerType.Drag;
-		TopLEntry.callback.AddListener ((data) => {
-			theCube.DragObject(theCube.partThree);
-		});
-		TopLTrig.triggers.Add (TopLEntry);
-
-		//Trigger and entry for top Right 
-		EventTrigger TopRTrig = theCube.parentCube.transform.Find("partFour").GetComponent<EventTrigger> ();
-		EventTrigger.Entry TopREntry = new EventTrigger.Entry ();
-		TopREntry.eventID = EventTriggerType.Drag;
-		TopREntry.callback.AddListener ((data) => {
-			theCube.DragObject(theCube.partFour);
-		});
-		TopRTrig.triggers.Add (TopREntry);
-
-		tetrisList [key] = theCube;
-		++key;
-
-		return key;
-	}
-
-	public int SpawnLShape(int key)
-	{
-        TetrisCube theCube = new TetrisCube();
-        theCube.parentCube = Instantiate (TetrisTypes [1], transform.position, Quaternion.identity);
-		theCube.parentCube.transform.SetParent (GameObject.FindGameObjectWithTag ("Canvas").transform, true);
-		pil.Set(-300 + (key * 300), -300, 0);
-		pil1 = theCube.parentCube.transform.position + pil;
-		theCube.origin.Set(pil1.x, pil1.y, pil1.z);
-		theCube.parentCube.transform.position = theCube.origin;
-
-		//Set up the 4 cubes based on theCube.parentCube's child
-		theCube.setTheCubes (theCube.parentCube.transform.Find ("partOne").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partTwo").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partThree").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partFour").GetComponent<Rigidbody2D> ());
-		theCube.setTheObjectType (TetrisCube.objectType.TETRIS_L);
-
-        int rand = Random.Range(0, 2);
-        switch (rand)
-        {
-            case 0:
-                {
-                    theCube.troopName = "Cavalry";
-                    foreach (Transform child in theCube.parentCube.transform)
-                    {
-                        Image theSprite = child.GetComponent<Image>();
-                        theSprite.sprite = troopImages[0];
-                    }
-                    break;
-                }
-            case 1:
-                {
-                    theCube.troopName = "Infantry";
-                    foreach (Transform child in theCube.parentCube.transform)
-                    {
-                        Image theSprite = child.GetComponent<Image>();
-                        theSprite.sprite = troopImages[1];
-                    }
-                    break;
-                }
-            case 2:
-                {
-                    theCube.troopName = "Bowmen";
-                    foreach (Transform child in theCube.parentCube.transform)
-                    {
-                        Image theSprite = child.GetComponent<Image>();
-                        theSprite.sprite = troopImages[2];
-                    }
-                    break;
-                }
-        };
-
-        //Could use raycast instead 
-        //Also cause the only thing changing is the movement function, could try to make a switch instead
-        //Trigger and entry for bottom left 
-        EventTrigger BtmLTrig= theCube.parentCube.transform.Find("partOne").GetComponent<EventTrigger> ();
-		EventTrigger.Entry BtmLEntry = new EventTrigger.Entry ();
-		BtmLEntry.eventID = EventTriggerType.Drag;
-		BtmLEntry.callback.AddListener ((data) => {
-			theCube.DragObject(theCube.partOne);
-		});
-		BtmLTrig.triggers.Add (BtmLEntry);
-        theCube.origin = theCube.partOne.position;
-        //Trigger and entry for bottom Right 
-		EventTrigger BtmRTrig = theCube.parentCube.transform.Find("partTwo").GetComponent<EventTrigger> ();
-		EventTrigger.Entry BtmREntry = new EventTrigger.Entry ();
-		BtmREntry.eventID = EventTriggerType.Drag;
-		BtmREntry.callback.AddListener ((data) => {
-			theCube.DragObject(theCube.partTwo);
-		});
-		BtmRTrig.triggers.Add (BtmREntry);
-
-		//Trigger and entry for top Left 
-		EventTrigger TopLTrig = theCube.parentCube.transform.Find("partThree").GetComponent<EventTrigger> ();
-		EventTrigger.Entry TopLEntry = new EventTrigger.Entry ();
-		TopLEntry.eventID = EventTriggerType.Drag;
-		TopLEntry.callback.AddListener ((data) => {
-			theCube.DragObject(theCube.partThree);
-		});
-		TopLTrig.triggers.Add (TopLEntry);
-
-		//Trigger and entry for top Right 
-		EventTrigger TopRTrig = theCube.parentCube.transform.Find("partFour").GetComponent<EventTrigger> ();
-		EventTrigger.Entry TopREntry = new EventTrigger.Entry ();
-		TopREntry.eventID = EventTriggerType.Drag;
-		TopREntry.callback.AddListener ((data) => {
-			theCube.DragObject(theCube.partFour);
-		});
-		TopRTrig.triggers.Add (TopREntry);
-
-		tetrisList [key] = theCube;
-		++key;
-
-		return key;
-	}
-		
-	public int SpawnZShape(int key)
-	{
-        TetrisCube theCube = new TetrisCube();
-        theCube.parentCube = Instantiate (TetrisTypes [3], transform.position, Quaternion.identity);
-		theCube.parentCube.transform.SetParent (GameObject.FindGameObjectWithTag ("Canvas").transform, true);
-		pil.Set(-300 + (key * 300), -300, 0);
-		pil1 = theCube.parentCube.transform.position + pil;
-		theCube.origin.Set(pil1.x, pil1.y, pil1.z);
-		theCube.parentCube.transform.position = theCube.origin;
 
         //Set up the 4 cubes based on theCube.parentCube's child
-        theCube.setTheCubes (theCube.parentCube.transform.Find ("partOne").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partTwo").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partThree").GetComponent<Rigidbody2D> (), theCube.parentCube.transform.Find ("partFour").GetComponent<Rigidbody2D> ());
-		theCube.setTheObjectType (TetrisCube.objectType.TETRIS_Z);
+        theCube.setTheCubes(cubeOne.GetComponent<Rigidbody2D>(), cubeTwo.GetComponent<Rigidbody2D>(), cubeThree.GetComponent<Rigidbody2D>(), cubeFour.GetComponent<Rigidbody2D>());
+
+        theCube.origin = theCube.partOne.position;
+
+        //Assigning types base on shape
+        if (shape == TetrisTypes[0])
+            theCube.setTheObjectType(TetrisCube.objectType.TETRIS_4X4);
+        else if (shape == TetrisTypes[1])
+            theCube.setTheObjectType(TetrisCube.objectType.TETRIS_L);
+        else if (shape == TetrisTypes[2])
+            theCube.setTheObjectType(TetrisCube.objectType.TETRIS_T);
+        else
+            theCube.setTheObjectType(TetrisCube.objectType.TETRIS_Z);
 
 
-        int rand = Random.Range(0, 2);
-        switch (rand)
+        //Set the unit's type
+        switch (type)
         {
             case 0:
                 {
@@ -406,47 +205,67 @@ public class TetrisSpawner : MonoBehaviour{
                 }
         };
 
+
         //Could use raycast instead 
         //Also cause the only thing changing is the movement function, could try to make a switch instead
         //Trigger and entry for bottom left 
-        EventTrigger BtmLTrig= theCube.parentCube.transform.Find("partOne").GetComponent<EventTrigger> ();
-		EventTrigger.Entry BtmLEntry = new EventTrigger.Entry ();
-		BtmLEntry.eventID = EventTriggerType.Drag;
-		BtmLEntry.callback.AddListener ((data) => {
-			theCube.DragObject(theCube.partOne);
-		});
-		BtmLTrig.triggers.Add (BtmLEntry);
-        theCube.origin = theCube.partOne.position;
+        EventTrigger BtmLTrig = cubeOne.GetComponent<EventTrigger>();
+        EventTrigger.Entry BtmLEntry = new EventTrigger.Entry();
+        BtmLEntry.eventID = EventTriggerType.Drag;
+
+        BtmLEntry.callback.AddListener((data) =>
+        {
+            theCube.DragObject(theCube.partOne);
+        });
+        BtmLTrig.triggers.Add(BtmLEntry);
+
         //Trigger and entry for bottom Right 
-		EventTrigger BtmRTrig = theCube.parentCube.transform.Find("partTwo").GetComponent<EventTrigger> ();
-		EventTrigger.Entry BtmREntry = new EventTrigger.Entry ();
-		BtmREntry.eventID = EventTriggerType.Drag;
-		BtmREntry.callback.AddListener ((data) => {
-			theCube.DragObject(theCube.partTwo);
-		});
-		BtmRTrig.triggers.Add (BtmREntry);
+        EventTrigger BtmRTrig = cubeTwo.GetComponent<EventTrigger>();
+        EventTrigger.Entry BtmREntry = new EventTrigger.Entry();
+        BtmREntry.eventID = EventTriggerType.Drag;
+        BtmREntry.callback.AddListener((data) =>
+        {
+            theCube.DragObject(theCube.partTwo);
+        });
+        BtmRTrig.triggers.Add(BtmREntry);
 
-		//Trigger and entry for top Left 
-		EventTrigger TopLTrig = theCube.parentCube.transform.Find("partThree").GetComponent<EventTrigger> ();
-		EventTrigger.Entry TopLEntry = new EventTrigger.Entry ();
-		TopLEntry.eventID = EventTriggerType.Drag;
-		TopLEntry.callback.AddListener ((data) => {
-			theCube.DragObject(theCube.partThree);
-		});
-		TopLTrig.triggers.Add (TopLEntry);
+        //Trigger and entry for top Left 
+        EventTrigger TopLTrig = cubeThree.GetComponent<EventTrigger>();
+        EventTrigger.Entry TopLEntry = new EventTrigger.Entry();
+        TopLEntry.eventID = EventTriggerType.Drag;
+        TopLEntry.callback.AddListener((data) =>
+        {
+            theCube.DragObject(theCube.partThree);
+        });
+        TopLTrig.triggers.Add(TopLEntry);
 
-		//Trigger and entry for top Right 
-		EventTrigger TopRTrig = theCube.parentCube.transform.Find("partFour").GetComponent<EventTrigger> ();
-		EventTrigger.Entry TopREntry = new EventTrigger.Entry ();
-		TopREntry.eventID = EventTriggerType.Drag;
-		TopREntry.callback.AddListener ((data) => {
-			theCube.DragObject(theCube.partFour);
-		});
-		TopRTrig.triggers.Add (TopREntry);
+        //Trigger and entry for top Right 
+        EventTrigger TopRTrig = cubeFour.GetComponent<EventTrigger>();
+        EventTrigger.Entry TopREntry = new EventTrigger.Entry();
+        TopREntry.eventID = EventTriggerType.Drag;
+        TopREntry.callback.AddListener((data) =>
+        {
+            theCube.DragObject(theCube.partFour);
+        });
+        TopRTrig.triggers.Add(TopREntry);
 
-		tetrisList [key] = theCube;
-		++key;
+        //Rotate the cubes back if is enemy (event trigger will not trigger if this is not done for enemy)
+        if (team == 1)
+        {
+            cubeOne.transform.localRotation = Quaternion.Euler(180, 0, 0);
+            cubeTwo.transform.localRotation = Quaternion.Euler(180, 0, 0);
+            cubeThree.transform.localRotation = Quaternion.Euler(180, 0, 0);
+            cubeFour.transform.localRotation = Quaternion.Euler(180, 0, 0);
+        }
 
-		return key;
-	}
+        //Storing into the respective lists
+        if (team == 0)
+            playerList[key] = theCube;
+        else
+            enemyList[key] = theCube;
+
+        //Increment index for next object 
+        ++key;
+        return key;
+    }
 }
