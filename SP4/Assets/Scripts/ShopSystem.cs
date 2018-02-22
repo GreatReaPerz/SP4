@@ -115,12 +115,12 @@ public class ShopSystem : MonoBehaviour {
         {
             case "UpgradeInfantryHealth":
                 {
-                    ItemDescription.text = "Infantry Health: " + PlayerPrefs.GetInt("Gold") + " (+" + UpgradeInfantryHealthAmount.ToString() + ")";
+                    ItemDescription.text = "Infantry Health: " + PlayerPrefs.GetFloat("infantryHealth") + " (+" + UpgradeInfantryHealthAmount.ToString() + ")";
                     break;
                 }
             case "UpgradeInfantryAttack":
                 {
-                    ItemDescription.text = "Infantry Damage: " + PlayerPrefs.GetInt("Gold") + " (+" + UpgradeInfantryDamageAmount.ToString() + ")";
+                    ItemDescription.text = "Infantry Damage: " + PlayerPrefs.GetFloat("infantryDamage") + " (+" + UpgradeInfantryDamageAmount.ToString() + ")";
                     break;
                 }
             default:
