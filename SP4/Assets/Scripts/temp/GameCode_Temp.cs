@@ -149,34 +149,18 @@ public class GameCode_Temp : MonoBehaviour {
                         objects.Add(newObj3);
                     }
                 }
-                //for (int i = 0; i < 3; ++i)
-                //{
-                //    //Destroying all 3 tetris blocks
-                //    //Destroy(theTetrisSpawner.tetrisList[i].parentCube);
-                //    //Destroy(enemyTetrisSpawner.tetrisList[i].parentCube);
-                //    //Debug.Log("Me isa gone:" + theTetrisSpawner.tetrisList[i].parentCube.name);
-                //    theTetrisSpawner.tetrisList[i].parentCube.SetActive(false);
-                //    enemyTetrisSpawner.tetrisList[i].parentCube.SetActive(false);
-                //    destroyed = true;
-                //}
-                List<int> indexToDelete = new List<int>();
-                for (int i = 0; i < theTetrisSpawner.tetrisList.Count; ++i)
+                List<int> indexToDelete = new List<int>();                  //Hold indexes to delete
+                for (int i = 0; i < theTetrisSpawner.tetrisList.Count; ++i) //Run through 
                 {
-                    //Debug.Log("l" + i + " of " + theTetrisSpawner.tetrisList.Count);
                     if (theGridSystem.InGridCheck(theTetrisSpawner.tetrisList[i]))
                     {
                         theTetrisSpawner.tetrisList[i].parentCube.SetActive(false);
-                        //theTetrisSpawner.tetrisList[i].movable = false;
                         detachEventTrigger(theTetrisSpawner.tetrisList[i].parentCube);
                         destroyed = true;
                     }
                     else
                     {
                         Destroy(theTetrisSpawner.tetrisList[i].parentCube);
-                        //if (theTetrisSpawner.tetrisList.Count != 1)
-                        //theTetrisSpawner.tetrisList.RemoveAt(i);
-                        //else
-                        //    theTetrisSpawner.tetrisList.Clear();
                         indexToDelete.Add(i);
                     }
                 }
@@ -196,22 +180,15 @@ public class GameCode_Temp : MonoBehaviour {
                 }
                 for (int i = 0; i < enemyTetrisSpawner.tetrisList.Count; ++i)
                 {
-                    //Debug.Log("d" + i + " of " + enemyTetrisSpawner.tetrisList.Count);
                     if (enemyGridSystem.InGridCheck(enemyTetrisSpawner.tetrisList[i]))
                     {
                         enemyTetrisSpawner.tetrisList[i].parentCube.SetActive(false);
-                        //enemyTetrisSpawner.tetrisList[i].movable = false;
                         detachEventTrigger(enemyTetrisSpawner.tetrisList[i].parentCube);
                         destroyed = true;
                     }
                     else
                     {
                         Destroy(enemyTetrisSpawner.tetrisList[i].parentCube);
-                        //if (enemyTetrisSpawner.tetrisList.Count != 1)
-                        //enemyTetrisSpawner.tetrisList.RemoveAt(i);
-                        //else
-                        //    enemyTetrisSpawner.tetrisList.Clear();
-
                         indexToDelete.Add(i);
                     }
                 }
