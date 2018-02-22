@@ -1094,12 +1094,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 280144281}
-        m_MethodName: IncrementHealth
-        m_Mode: 2
+      - m_Target: {fileID: 280144280}
+        m_MethodName: ReadyButton
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 161571068}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1846,6 +1846,7 @@ MonoBehaviour:
   Player1: {fileID: 376297939}
   Player2: {fileID: 161571068}
   UIPanelAnimator: {fileID: 1174336883}
+  ready: 0
   objects: []
 --- !u!114 &280144281
 MonoBehaviour:
