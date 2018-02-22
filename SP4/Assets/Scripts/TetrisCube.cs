@@ -73,24 +73,26 @@ public class TetrisCube {
 			isMoving = true;
 			returning = false;
 			Whatisbeingmoved = "partOne";
-		} else if (tetrisPart ==  partTwo) {
+        }
+        else if (tetrisPart ==  partTwo) {
 			partTwo.MovePosition (Input.mousePosition);
 			isMoving = true;
 			returning = false;
 			Whatisbeingmoved = "partTwo";
-		} else if (tetrisPart == partFour) {
+        }
+        else if (tetrisPart == partFour) {
 			partFour.MovePosition (Input.mousePosition);
 			isMoving = true;
 			returning = false;
 			Whatisbeingmoved = "partThree";
-		}
-		else if(tetrisPart ==  partThree){
+        }
+        else if(tetrisPart ==  partThree){
 			partThree.MovePosition(Input.mousePosition);
 			isMoving = true;
 			returning = false;
 			Whatisbeingmoved = "partFour";
-		}
-	}
+        }
+    }
 		
 	public void setTheCubes(Rigidbody2D _partOne,Rigidbody2D _partTwo,Rigidbody2D _partThree, Rigidbody2D _partFour)
 	{

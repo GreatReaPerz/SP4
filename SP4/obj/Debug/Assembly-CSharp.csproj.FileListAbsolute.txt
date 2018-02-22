@@ -92,3 +92,6 @@ C:\Users\161953p\Documents\SP4\SP4\Temp\bin\Debug\UnityEngine.VR.xml
 C:\Users\161953p\Documents\SP4\SP4\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 C:\Users\161953p\Documents\SP4\SP4\obj\Debug\Assembly-CSharp.dll
 C:\Users\161953p\Documents\SP4\SP4\obj\Debug\Assembly-CSharp.pdb
+C:\Users\162551P\Desktop\SP4\SP4\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
+C:\Users\162551P\Desktop\SP4\SP4\obj\Debug\Assembly-CSharp.dll
+C:\Users\162551P\Desktop\SP4\SP4\obj\Debug\Assembly-CSharp.pdb

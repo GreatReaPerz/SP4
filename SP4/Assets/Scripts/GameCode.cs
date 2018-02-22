@@ -24,9 +24,8 @@ public class GameCode : MonoBehaviour {
     };
     private float timer;
     private bool destroyed;
-    private TetrisSpawner theTetrisSpawner = null;
+    private TetrisSpawner theSpawner = null;
     private GridSystem theGridSystem = null;
-    private enemyTetrisSpawner enemyTetrisSpawner = null;
     private enemyGridSystem enemyGridSystem = null;
     private TroopAI troop = null;
     public bool ready = false;
@@ -36,10 +35,9 @@ public class GameCode : MonoBehaviour {
     int state;
     public List<GameObject> objects;
     // Use this for initialization
-    void Start() {
-        theTetrisSpawner = GameObject.Find("Spawner").GetComponent<TetrisSpawner>();
+    void Start () {
+        theSpawner = GameObject.Find("EventSystem").GetComponent<TetrisSpawner>();
         theGridSystem = GameObject.Find("PlayerTetrisGrid").GetComponent<GridSystem>();
-        enemyTetrisSpawner = GameObject.Find("enemySpawner").GetComponent<enemyTetrisSpawner>();
         enemyGridSystem = GameObject.Find("EnemyTetrisGrid").GetComponent<enemyGridSystem>();
         timer = 0;
         destroyed = false;
@@ -60,12 +58,12 @@ public class GameCode : MonoBehaviour {
             {
                 for (int i = 0; i < 3; ++i)
                 {
-                    if (theTetrisSpawner.tetrisList[i].sav)
+                    if (theSpawner.playerList[i].sav)
                     {
                         GameObject newObj;
-                        Vector3 hello = theTetrisSpawner.tetrisList[i].partOne.transform.position;
+                        Vector3 hello = theSpawner.playerList[i].partOne.transform.position;
                         hello.z = 100;
-                        newObj = (GameObject)Instantiate(GameObject.Find(theTetrisSpawner.tetrisList[i].troopName), hello, Quaternion.identity);
+                        newObj = (GameObject)Instantiate(GameObject.Find(theSpawner.playerList[i].troopName), hello, Quaternion.identity);
                         newObj.transform.parent = Ui.transform;
                         troop = newObj.GetComponent<TroopAI>();
                         troop.team = 1;
@@ -85,9 +83,9 @@ public class GameCode : MonoBehaviour {
                         objects.Add(newObj);
 
                         GameObject newObj1;
-                        hello = theTetrisSpawner.tetrisList[i].partTwo.transform.position;
+                        hello = theSpawner.playerList[i].partTwo.transform.position;
                         hello.z = 100;
-                        newObj1 = (GameObject)Instantiate(GameObject.Find(theTetrisSpawner.tetrisList[i].troopName), hello, Quaternion.identity);
+                        newObj1 = (GameObject)Instantiate(GameObject.Find(theSpawner.playerList[i].troopName), hello, Quaternion.identity);
                         newObj1.transform.parent = Ui.transform;
                         troop = newObj1.GetComponent<TroopAI>();
                         troop.team = 1;
@@ -106,9 +104,9 @@ public class GameCode : MonoBehaviour {
                         objects.Add(newObj1);
 
                         GameObject newObj2;
-                        hello = theTetrisSpawner.tetrisList[i].partThree.transform.position;
+                        hello = theSpawner.playerList[i].partThree.transform.position;
                         hello.z = 100;
-                        newObj2 = (GameObject)Instantiate(GameObject.Find(theTetrisSpawner.tetrisList[i].troopName), hello, Quaternion.identity);
+                        newObj2 = (GameObject)Instantiate(GameObject.Find(theSpawner.playerList[i].troopName), hello, Quaternion.identity);
                         newObj2.transform.parent = Ui.transform;
                         troop = newObj2.GetComponent<TroopAI>();
                         troop.team = 1;
@@ -127,9 +125,9 @@ public class GameCode : MonoBehaviour {
                         objects.Add(newObj2);
 
                         GameObject newObj3;
-                        hello = theTetrisSpawner.tetrisList[i].partFour.transform.position;
+                        hello = theSpawner.playerList[i].partFour.transform.position;
                         hello.z = 100;
-                        newObj3 = (GameObject)Instantiate(GameObject.Find(theTetrisSpawner.tetrisList[i].troopName), hello, Quaternion.identity);
+                        newObj3 = (GameObject)Instantiate(GameObject.Find(theSpawner.playerList[i].troopName), hello, Quaternion.identity);
                         newObj3.transform.parent = Ui.transform;
                         troop = newObj3.GetComponent<TroopAI>();
                         troop.team = 1;
@@ -150,12 +148,12 @@ public class GameCode : MonoBehaviour {
                 }
                 for (int i = 0; i < 3; ++i)
                 {
-                    if (enemyTetrisSpawner.tetrisList[i].sav)
+                    if (theSpawner.enemyList[i].sav)
                     {
                         GameObject newObj;
-                        Vector3 hello = enemyTetrisSpawner.tetrisList[i].partOne.transform.position;
+                        Vector3 hello = theSpawner.enemyList[i].partOne.transform.position;
                         hello.z = 100;
-                        newObj = (GameObject)Instantiate(GameObject.Find(enemyTetrisSpawner.tetrisList[i].troopName), hello, Quaternion.identity);
+                        newObj = (GameObject)Instantiate(GameObject.Find(theSpawner.enemyList[i].troopName), hello, Quaternion.identity);
                         newObj.transform.parent = Ui.transform;
                         troop = newObj.GetComponent<TroopAI>();
                         troop.team = -1;
@@ -174,9 +172,9 @@ public class GameCode : MonoBehaviour {
                         objects.Add(newObj);
 
                         GameObject newObj1;
-                        hello = enemyTetrisSpawner.tetrisList[i].partTwo.transform.position;
+                        hello = theSpawner.enemyList[i].partTwo.transform.position;
                         hello.z = 100;
-                        newObj1 = (GameObject)Instantiate(GameObject.Find(enemyTetrisSpawner.tetrisList[i].troopName), hello, Quaternion.identity);
+                        newObj1 = (GameObject)Instantiate(GameObject.Find(theSpawner.enemyList[i].troopName), hello, Quaternion.identity);
                         newObj1.transform.parent = Ui.transform;
                         troop = newObj1.GetComponent<TroopAI>();
                         troop.team = -1;
@@ -195,9 +193,9 @@ public class GameCode : MonoBehaviour {
                         objects.Add(newObj1);
 
                         GameObject newObj2;
-                        hello = enemyTetrisSpawner.tetrisList[i].partThree.transform.position;
+                        hello = theSpawner.enemyList[i].partThree.transform.position;
                         hello.z = 100;
-                        newObj2 = (GameObject)Instantiate(GameObject.Find(enemyTetrisSpawner.tetrisList[i].troopName), hello, Quaternion.identity);
+                        newObj2 = (GameObject)Instantiate(GameObject.Find(theSpawner.enemyList[i].troopName), hello, Quaternion.identity);
                         newObj2.transform.parent = Ui.transform;
                         troop = newObj2.GetComponent<TroopAI>();
                         troop.team = -1;
@@ -216,9 +214,9 @@ public class GameCode : MonoBehaviour {
                         objects.Add(newObj2);
 
                         GameObject newObj3;
-                        hello = enemyTetrisSpawner.tetrisList[i].partFour.transform.position;
+                        hello = theSpawner.enemyList[i].partFour.transform.position;
                         hello.z = 100;
-                        newObj3 = (GameObject)Instantiate(GameObject.Find(enemyTetrisSpawner.tetrisList[i].troopName), hello, Quaternion.identity);
+                        newObj3 = (GameObject)Instantiate(GameObject.Find(theSpawner.enemyList[i].troopName), hello, Quaternion.identity);
                         newObj3.transform.parent = Ui.transform;
                         troop = newObj3.GetComponent<TroopAI>();
                         troop.team = -1;
@@ -239,8 +237,8 @@ public class GameCode : MonoBehaviour {
                 }
                 for (int i = 0; i < 3; ++i)
                 {
-                    Destroy(theTetrisSpawner.tetrisList[i].parentCube);
-                    Destroy(enemyTetrisSpawner.tetrisList[i].parentCube);
+                    Destroy(theSpawner.playerList[i].parentCube);
+                    Destroy(theSpawner.enemyList[i].parentCube);
                     destroyed = true;
                 }
 
@@ -388,7 +386,7 @@ public class GameCode : MonoBehaviour {
             }
             if (objects.Count <= 0 && destroyed)
             {
-                theTetrisSpawner.Start();
+                theSpawner.Start();
                 for (int i = 0; i < enemyGridSystem.GridSize; ++i)
                 {
                     enemyGridSystem.taken[i] = false;
@@ -397,7 +395,7 @@ public class GameCode : MonoBehaviour {
                 {
                     theGridSystem.taken[i] = false;
                 }
-                enemyTetrisSpawner.Start();
+                //enemyTetrisSpawner.Start();
                 Terrain.GetComponent<MainGame>().Start();
                 TerrainName = Terrain.GetComponent<MainGame>().NeutralZoneTerrainType;
                 destroyed = false;

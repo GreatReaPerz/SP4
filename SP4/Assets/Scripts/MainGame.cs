@@ -24,7 +24,7 @@ public class MainGame : MonoBehaviour {
     Image NeutralZone;
 
 
-    private GridSystem_Temp theGridSystem = null;
+    private GridSystem theGridSystem = null;
 
      public string NeutralZoneTerrainType;
 
