@@ -41,11 +41,12 @@ public class TroopAI : MonoBehaviour {
         thePlayer = GameObject.Find("Player");
         game = GameObject.Find("EventSystem").GetComponent<GameCode>();
         originPos = transform.position;
+        
         if (type == "Cavalry")
         {
             //Debug.Log("Cavalry");
-            health = 400;
-            attckDmg = 15;
+            health = PlayerPrefs.GetFloat("cavalryHealth");
+            attckDmg = PlayerPrefs.GetFloat("cavalryDamage");
             attckSpd = 0.2f;
             speed = 75 * 0.016f;
             vision = 100;
@@ -82,8 +83,8 @@ public class TroopAI : MonoBehaviour {
         else if (type == "Infantry")
         {
             //Debug.Log("Infantry");
-            health = 500;
-            attckDmg = 20;
+            health = PlayerPrefs.GetFloat("infantryHealth");
+            attckDmg = PlayerPrefs.GetFloat("infantryDamage");
             attckSpd = 0.1f;
             speed = 50 * 0.016f;
             range = 100;
@@ -120,8 +121,8 @@ public class TroopAI : MonoBehaviour {
         else if (type == "Bowmen")
         {
             //Debug.Log("Bowmen");
-            health = 300;
-            attckDmg = 10;
+            health = PlayerPrefs.GetFloat("bowmenHealth");
+            attckDmg = PlayerPrefs.GetFloat("bowmenDamage");
             attckSpd = 0.2f;
             speed = 50 * 0.016f;
             range = 300;
@@ -327,6 +328,7 @@ public class TroopAI : MonoBehaviour {
                     {
                         if (attacktimer > (1.0f / attckSpd))
                         {
+                            //Class 1 = Infantry, Class 2 = Bowmen, Class 3 = Cavalry
                             attacktimer = 0;
                             if (_class == nearestAI._class)
                             {
@@ -334,27 +336,27 @@ public class TroopAI : MonoBehaviour {
                             }
                             if (_class == 1 && nearestAI._class == 3)
                             {
-                                nearestAI.health -= attckDmg * 1.2f;
+                                nearestAI.health -= 100 * 1.2f;
                             }
                             if (_class == 1 && nearestAI._class == 2)
                             {
-                                nearestAI.health -= attckDmg * 1.2f;
+                                nearestAI.health -= 100 * 1.2f;
                             }
                             if (_class == 2 && nearestAI._class == 1)
                             {
-                                nearestAI.health -= attckDmg * 1.2f;
+                                nearestAI.health -= 100 * 1.2f;
                             }
                             if (_class == 2 && nearestAI._class == 3)
                             {
-                                nearestAI.health -= attckDmg * 1.2f;
+                                nearestAI.health -= 100 * 1.2f;
                             }
                             if (_class == 3 && nearestAI._class == 1)
                             {
-                                nearestAI.health -= attckDmg * 1.2f;
+                                nearestAI.health -= 100 * 1.2f;
                             }
                             if (_class == 3 && nearestAI._class == 2)
                             {
-                                nearestAI.health -= attckDmg * 1.2f;
+                                nearestAI.health -= 100 * 1.2f;
                             }
                             
                         }
