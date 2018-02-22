@@ -841,7 +841,7 @@ public class enemyGridSystem : MonoBehaviour
         {
             isMouseMovingAnObject = false;
         }
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < theTetrisSpawner.enemyList.Count; ++i)
         {
 
             if (!InGridCheck(theTetrisSpawner.enemyList[i]) && theTetrisSpawner.enemyList[i].isMoving == false && !theTetrisSpawner.enemyList[i].returning)
@@ -863,7 +863,33 @@ public class enemyGridSystem : MonoBehaviour
             {
                 taken[j] = false;
             }
-            for (int k = 0; k < 3; ++k)
+            if (InGridCheck(theTetrisSpawner.enemyList[i]) && !theTetrisSpawner.enemyList[i].returning && theTetrisSpawner.enemyList[i].isMoving == false)
+            {
+                float nearest = 1000000;
+                int index = 0;
+                for (int j = 0; j < gridSize; ++j)
+                {
+                    Vector2 distance;
+                    distance.x = theTetrisSpawner.enemyList[i].partOne.position.x - grid[j].transform.position.x;
+                    distance.y = theTetrisSpawner.enemyList[i].partOne.position.y - grid[j].transform.position.y;
+                    float hello = distance.SqrMagnitude();
+                    if (hello < nearest)
+                    {
+                        nearest = hello;
+                        index = j;
+                    }
+                }
+                if (taken[index])
+                {
+                    theTetrisSpawner.enemyList[i].returning = true;
+                    theTetrisSpawner.enemyList[i].partOne.position = theTetrisSpawner.enemyList[i].origin;
+                }
+                else
+                {
+                    theTetrisSpawner.enemyList[i].partOne.MovePosition(grid[index].transform.position);
+                }
+            }
+            for (int k = 0; k < theTetrisSpawner.enemyList.Count; ++k)
             {
                 if (InGridCheck(theTetrisSpawner.enemyList[k]) && theTetrisSpawner.enemyList[k].isMoving == false && !theTetrisSpawner.enemyList[k].returning)
                 {
@@ -892,33 +918,7 @@ public class enemyGridSystem : MonoBehaviour
                     }
                 }
             }
-            if (InGridCheck(theTetrisSpawner.enemyList[i]) && !theTetrisSpawner.enemyList[i].returning && theTetrisSpawner.enemyList[i].isMoving == false)
-            {
-                float nearest = 1000000;
-                int index = 0;
-                for (int j = 0; j < gridSize; ++j)
-                {
-                    Vector2 distance;
-                    distance.x = theTetrisSpawner.enemyList[i].partOne.position.x - grid[j].transform.position.x;
-                    distance.y = theTetrisSpawner.enemyList[i].partOne.position.y - grid[j].transform.position.y;
-                    float hello = distance.SqrMagnitude();
-                    if (hello < nearest)
-                    {
-                        nearest = hello;
-                        index = j;
-                    }
-                }
-                if (taken[i])
-                {
-                    theTetrisSpawner.enemyList[i].returning = true;
-                    theTetrisSpawner.enemyList[i].partOne.position = theTetrisSpawner.enemyList[i].origin;
-                }
-                else
-                {
-                    theTetrisSpawner.enemyList[i].partOne.MovePosition(grid[index].transform.position);
-                }
-            }
-            for (int k = 0; k < 3; ++k)
+            for (int k = 0; k < theTetrisSpawner.enemyList.Count; ++k)
             {
                 if (InGridCheck(theTetrisSpawner.enemyList[k]) && theTetrisSpawner.enemyList[k].isMoving == false && !theTetrisSpawner.enemyList[k].returning)
                 {

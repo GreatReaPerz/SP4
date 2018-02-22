@@ -61,7 +61,7 @@ public class GameCode : MonoBehaviour {
             //}
             if (ready && !destroyed)
             {
-                for (int i = 0; i < 3; ++i)
+                for (int i = 0; i < theSpawner.playerList.Count; ++i)
                 {
                     if (theSpawner.playerList[i].sav)
                     {
@@ -151,7 +151,7 @@ public class GameCode : MonoBehaviour {
                         objects.Add(newObj3);
                     }
                 }
-                for (int i = 0; i < 3; ++i)
+                for (int i = 0; i < theSpawner.enemyList.Count; ++i)
                 {
                     if (theSpawner.enemyList[i].sav)
                     {
@@ -251,6 +251,7 @@ public class GameCode : MonoBehaviour {
                 }
                 else
                 {
+
                     List<int> indexToDelete = new List<int>();                  //Hold indexes to delete
                     for (int i = 0; i < theSpawner.playerList.Count; ++i) //Run through 
                     {
@@ -468,6 +469,11 @@ public class GameCode : MonoBehaviour {
                         theSpawner.enemyList[i].parentCube.SetActive(true);
                     }
 
+                }
+                else
+                {
+                    theSpawner.playerList.Clear();
+                    theSpawner.enemyList.Clear();
                 }
                 theSpawner.Start();
                 if (!blockRespawn)

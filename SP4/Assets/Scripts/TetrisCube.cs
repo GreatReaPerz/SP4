@@ -80,14 +80,15 @@ public class TetrisCube {
 			returning = false;
 			Whatisbeingmoved = "partTwo";
         }
-        else if (tetrisPart == partFour) {
-			partFour.MovePosition (Input.mousePosition);
+        else if (tetrisPart == partThree) {
+            partThree.MovePosition (Input.mousePosition);
 			isMoving = true;
 			returning = false;
 			Whatisbeingmoved = "partThree";
         }
-        else if(tetrisPart ==  partThree){
-			partThree.MovePosition(Input.mousePosition);
+        else if(tetrisPart == partFour)
+        {
+            partFour.MovePosition(Input.mousePosition);
 			isMoving = true;
 			returning = false;
 			Whatisbeingmoved = "partFour";
