@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class GameCode : MonoBehaviour {
 
@@ -28,9 +29,13 @@ public class GameCode : MonoBehaviour {
     private GridSystem theGridSystem = null;
     private enemyGridSystem enemyGridSystem = null;
     private TroopAI troop = null;
+
+
     public bool ready = false;
     public bool melee = false;
     public bool front = true;
+    public bool blockRespawn = false;
+
     private string TerrainName;
     int state;
     public List<GameObject> objects;
@@ -56,7 +61,7 @@ public class GameCode : MonoBehaviour {
             //}
             if (ready && !destroyed)
             {
-                for (int i = 0; i < 3; ++i)
+                for (int i = 0; i < theSpawner.playerList.Count; ++i)
                 {
                     if (theSpawner.playerList[i].sav)
                     {
@@ -146,7 +151,7 @@ public class GameCode : MonoBehaviour {
                         objects.Add(newObj3);
                     }
                 }
-                for (int i = 0; i < 3; ++i)
+                for (int i = 0; i < theSpawner.enemyList.Count; ++i)
                 {
                     if (theSpawner.enemyList[i].sav)
                     {
@@ -235,11 +240,75 @@ public class GameCode : MonoBehaviour {
                         objects.Add(newObj3);
                     }
                 }
-                for (int i = 0; i < 3; ++i)
+                if (!blockRespawn)
                 {
-                    Destroy(theSpawner.playerList[i].parentCube);
-                    Destroy(theSpawner.enemyList[i].parentCube);
-                    destroyed = true;
+                    for (int i = 0; i < 3; ++i)
+                    {
+                        Destroy(theSpawner.playerList[i].parentCube);
+                        Destroy(theSpawner.enemyList[i].parentCube);
+                        destroyed = true;
+                    }
+                }
+                else
+                {
+
+                    List<int> indexToDelete = new List<int>();                  //Hold indexes to delete
+                    for (int i = 0; i < theSpawner.playerList.Count; ++i) //Run through 
+                    {
+                        if (theGridSystem.InGridCheck(theSpawner.playerList[i]))
+                        {
+                            theSpawner.playerList[i].parentCube.SetActive(false);
+                            detachEventTrigger(theSpawner.playerList[i].parentCube);
+                            destroyed = true;
+                        }
+                        else
+                        {
+                            Destroy(theSpawner.playerList[i].parentCube);
+                            indexToDelete.Add(i);
+                        }
+                    }
+                    if (indexToDelete.Count > 0)
+                    {
+                        indexToDelete.Sort(new SortIntDescending()); //sort ascending order
+                        if (indexToDelete[0] == theSpawner.playerList.Count)
+                        {
+                            theSpawner.playerList.Clear();
+                        }
+                        else
+                            foreach (int i in indexToDelete)
+                            {
+                                theSpawner.playerList.RemoveAt(i);
+                            }
+                        indexToDelete.Clear();
+                    }
+                    for (int i = 0; i < theSpawner.enemyList.Count; ++i)
+                    {
+                        if (enemyGridSystem.InGridCheck(theSpawner.enemyList[i]))
+                        {
+                            theSpawner.enemyList[i].parentCube.SetActive(false);
+                            detachEventTrigger(theSpawner.enemyList[i].parentCube);
+                            destroyed = true;
+                        }
+                        else
+                        {
+                            Destroy(theSpawner.enemyList[i].parentCube);
+                            indexToDelete.Add(i);
+                        }
+                    }
+                    if (indexToDelete.Count > 0)
+                    {
+                        indexToDelete.Sort(new SortIntDescending()); //sort ascending order
+                        if (indexToDelete[0] == theSpawner.enemyList.Count)
+                        {
+                            theSpawner.enemyList.Clear();
+                        }
+                        else
+                            foreach (int i in indexToDelete)
+                            {
+                                theSpawner.enemyList.RemoveAt(i);
+                            }
+                        indexToDelete.Clear();
+                    }
                 }
 
                 //Destroy(theGridSystem);
@@ -386,14 +455,37 @@ public class GameCode : MonoBehaviour {
             }
             if (objects.Count <= 0 && destroyed)
             {
-                theSpawner.Start();
-                for (int i = 0; i < enemyGridSystem.GridSize; ++i)
+                if(blockRespawn)
                 {
-                    enemyGridSystem.taken[i] = false;
+                    for (int i = 0; i < theSpawner.playerList.Count; ++i)
+                    {
+                        //Debug.Log(theTetrisSpawner.tetrisList[i].parentCube);
+                        //Debug.Log("Isa Me again:" + theTetrisSpawner.tetrisList[i].parentCube.name);
+                        theSpawner.playerList[i].parentCube.SetActive(true);
+                    }
+                    for (int i = 0; i < theSpawner.enemyList.Count; ++i)
+                    {
+                        //Debug.Log("Isa Me again:" + theTetrisSpawner.tetrisList[i].parentCube.name);
+                        theSpawner.enemyList[i].parentCube.SetActive(true);
+                    }
+
                 }
-                for (int i = 0; i < theGridSystem.GridSize; ++i)
+                else
                 {
-                    theGridSystem.taken[i] = false;
+                    theSpawner.playerList.Clear();
+                    theSpawner.enemyList.Clear();
+                }
+                theSpawner.Start();
+                if (!blockRespawn)
+                {
+                    for (int i = 0; i < enemyGridSystem.GridSize; ++i)
+                    {
+                        enemyGridSystem.taken[i] = false;
+                    }
+                    for (int i = 0; i < theGridSystem.GridSize; ++i)
+                    {
+                        theGridSystem.taken[i] = false;
+                    }
                 }
                 //enemyTetrisSpawner.Start();
                 Terrain.GetComponent<MainGame>().Start();
@@ -430,5 +522,25 @@ public class GameCode : MonoBehaviour {
     public void Melee()
     {
         melee = true;
+    }
+
+    private class SortIntDescending : IComparer<int>
+    {
+        int IComparer<int>.Compare(int a, int b) //implement Compare
+        {
+            if (a > b)
+                return -1; //normally greater than = 1
+            if (a < b)
+                return 1; // normally smaller than = -1
+            else
+                return 0; // equal
+        }
+    }
+    void detachEventTrigger(GameObject parent)
+    {
+        Destroy(parent.transform.Find("partOne").GetComponent<EventTrigger>());
+        Destroy(parent.transform.Find("partTwo").GetComponent<EventTrigger>());
+        Destroy(parent.transform.Find("partThree").GetComponent<EventTrigger>());
+        Destroy(parent.transform.Find("partFour").GetComponent<EventTrigger>());
     }
 }

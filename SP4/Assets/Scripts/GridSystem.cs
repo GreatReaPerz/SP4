@@ -32,9 +32,14 @@ public class GridSystem : MonoBehaviour {
 
     // Use this for initialization
     public void Awake () {
-                for(int i = 0; i < gridSize; ++i)
+        bool respawnBlock = GameObject.Find("EventSystem").GetComponent<GameCode>().blockRespawn;
+
+        if (!respawnBlock)
         {
-            taken[i] = false;
+            for (int i = 0; i < gridSize; ++i)
+            {
+                taken[i] = false;
+            }
         }
         theTetrisSpawner = GameObject.Find("EventSystem").GetComponent<TetrisSpawner>();
         PlayerHealth = GameObject.Find("Player").GetComponent<HealthSystem>();
@@ -530,7 +535,7 @@ public class GridSystem : MonoBehaviour {
         {
             isMouseMovingAnObject = false;
         }
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < theTetrisSpawner.playerList.Count; ++i)
         {
 
             if (!InGridCheck(theTetrisSpawner.playerList[i]) && theTetrisSpawner.playerList[i].isMoving == false && !theTetrisSpawner.playerList[i].returning)
@@ -552,7 +557,33 @@ public class GridSystem : MonoBehaviour {
             {
                 taken[j] = false;
             }
-            for (int k = 0; k < 3; ++k)
+            if (InGridCheck(theTetrisSpawner.playerList[i]) && !theTetrisSpawner.playerList[i].returning && theTetrisSpawner.playerList[i].isMoving == false)
+            {
+                float nearest = 1000000;
+                int index = 0;
+                for (int j = 0; j < gridSize; ++j)
+                {
+                    Vector2 distance;
+                    distance.x = theTetrisSpawner.playerList[i].partOne.position.x - grid[j].transform.position.x;
+                    distance.y = theTetrisSpawner.playerList[i].partOne.position.y - grid[j].transform.position.y;
+                    float hello = distance.SqrMagnitude();
+                    if (hello < nearest)
+                    {
+                        nearest = hello;
+                        index = j;
+                    }
+                }
+                if (taken[index])
+                {
+                    theTetrisSpawner.playerList[i].returning = true;
+                    theTetrisSpawner.playerList[i].partOne.position = theTetrisSpawner.playerList[i].origin;
+                }
+                else
+                {
+                    theTetrisSpawner.playerList[i].partOne.MovePosition(grid[index].transform.position);
+                }
+            }
+            for (int k = 0; k < theTetrisSpawner.playerList.Count; ++k)
             {
                 if (InGridCheck(theTetrisSpawner.playerList[k]) && theTetrisSpawner.playerList[k].isMoving == false && !theTetrisSpawner.playerList[k].returning)
                 {
@@ -581,33 +612,7 @@ public class GridSystem : MonoBehaviour {
                     }
                 }
             }
-            if (InGridCheck(theTetrisSpawner.playerList[i]) && !theTetrisSpawner.playerList[i].returning && theTetrisSpawner.playerList[i].isMoving == false)
-            {
-                float nearest = 1000000;
-                int index = 0;
-                for (int j = 0; j < gridSize; ++j)
-                {
-                    Vector2 distance;
-                    distance.x = theTetrisSpawner.playerList[i].partOne.position.x - grid[j].transform.position.x;
-                    distance.y = theTetrisSpawner.playerList[i].partOne.position.y - grid[j].transform.position.y;
-                    float hello = distance.SqrMagnitude();
-                    if (hello < nearest)
-                    {
-                        nearest = hello;
-                        index = j;
-                    }
-                }
-                if (taken[i])
-                {
-                    theTetrisSpawner.playerList[i].returning = true;
-                    theTetrisSpawner.playerList[i].partOne.position = theTetrisSpawner.playerList[i].origin;
-                }
-                else
-                {
-                    theTetrisSpawner.playerList[i].partOne.MovePosition(grid[index].transform.position);
-                }
-            }
-            for (int k = 0; k < 3; ++k)
+            for (int k = 0; k < theTetrisSpawner.playerList.Count; ++k)
             {
                 if (InGridCheck(theTetrisSpawner.playerList[k]) && theTetrisSpawner.playerList[k].isMoving == false && !theTetrisSpawner.playerList[k].returning)
                 {
@@ -647,7 +652,7 @@ public class GridSystem : MonoBehaviour {
         }
     }
 
-    bool InGridCheck(TetrisCube cube)
+    public bool InGridCheck(TetrisCube cube)
     {
         if (cube.partOne.position.x > grid[0].transform.position.x - halfTileWidth && cube.partOne.position.x < grid[col - 1].transform.position.x + halfTileWidth
             && cube.partOne.position.y > grid[0].transform.position.y - halfTileHeight && cube.partOne.position.y < grid[gridSize - 1].transform.position.y + halfTileHeight
