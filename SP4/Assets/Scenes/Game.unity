@@ -1851,6 +1851,7 @@ MonoBehaviour:
   ready: 0
   melee: 0
   front: 1
+  blockRespawn: 1
   objects: []
 --- !u!114 &280144281
 MonoBehaviour:

@@ -19,8 +19,8 @@ public class TetrisSpawner : MonoBehaviour
     [SerializeField]
     GameObject enemySpawner;
 
-    public TetrisCube[] playerList = new TetrisCube[3];
-    public TetrisCube[] enemyList = new TetrisCube[3];
+    public List<TetrisCube> playerList = new List<TetrisCube>(3);
+    public List<TetrisCube> enemyList = new List<TetrisCube>(3);
 
     float timer = 0;
     int playerSpawned = 0;
@@ -30,8 +30,8 @@ public class TetrisSpawner : MonoBehaviour
     public bool playerIsMoving = false;
     public bool enemyIsMoving = false;
 
-    public uint IndexofPlayerObject = 0;
-    public uint IndexofEnemyObject = 0;
+    public int IndexofPlayerObject = 0;
+    public int IndexofEnemyObject = 0;
 
 
     // Use this for initialization
@@ -83,7 +83,7 @@ public class TetrisSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (uint i = 0; i < 3; ++i)
+        for (int i = 0; i < playerList.Count; ++i)
         {
             playerIsMoving = false;
 
@@ -102,7 +102,7 @@ public class TetrisSpawner : MonoBehaviour
             playerList[i].isMoving = false;
         }
 
-        for (uint i = 0; i < 3; ++i)
+        for (int i = 0; i < enemyList.Count; ++i)
         {
             enemyIsMoving = false;
 
@@ -260,9 +260,11 @@ public class TetrisSpawner : MonoBehaviour
 
         //Storing into the respective lists
         if (team == 0)
-            playerList[key] = theCube;
+            //playerList[key] = theCube;
+            playerList.Add(theCube);
         else
-            enemyList[key] = theCube;
+            //enemyList[key] = theCube;
+            enemyList.Add(theCube);
 
         //Increment index for next object 
         ++key;

@@ -35,10 +35,14 @@ public class enemyGridSystem : MonoBehaviour
     // Use this for initialization
     public void Start()
     {
+        bool respawnBlock = GameObject.Find("EventSystem").GetComponent<GameCode>().blockRespawn;
         check = false;
-        for (int i = 0; i < gridSize; ++i)
+        if (!respawnBlock)
         {
-            taken[i] = false;
+            for (int i = 0; i < gridSize; ++i)
+            {
+                taken[i] = false;
+            }
         }
         theTetrisSpawner = GameObject.Find("EventSystem").GetComponent<TetrisSpawner>();
         EnemyHealth = GameObject.Find("Enemy").GetComponent<HealthSystem>();
@@ -954,7 +958,7 @@ public class enemyGridSystem : MonoBehaviour
         }
     }
 
-    bool InGridCheck(TetrisCube cube)
+    public bool InGridCheck(TetrisCube cube)
     {
         //Debug.Log(grid[0].transform.position);
         //Debug.Log(grid[col - 1].transform.position.x + halfTileWidth);

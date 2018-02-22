@@ -32,9 +32,13 @@ public class GridSystem : MonoBehaviour {
 
     // Use this for initialization
     public void Start () {
-                for(int i = 0; i < gridSize; ++i)
+        bool respawnBlock = GameObject.Find("EventSystem").GetComponent<GameCode>().blockRespawn;
+        if (!respawnBlock)
         {
-            taken[i] = false;
+            for (int i = 0; i < gridSize; ++i)
+            {
+                taken[i] = false;
+            }
         }
         theTetrisSpawner = GameObject.Find("EventSystem").GetComponent<TetrisSpawner>();
         PlayerHealth = GameObject.Find("Player").GetComponent<HealthSystem>();
@@ -645,7 +649,7 @@ public class GridSystem : MonoBehaviour {
         }
     }
 
-    bool InGridCheck(TetrisCube cube)
+    public bool InGridCheck(TetrisCube cube)
     {
         if (cube.partOne.position.x > grid[0].transform.position.x - halfTileWidth && cube.partOne.position.x < grid[col - 1].transform.position.x + halfTileWidth
             && cube.partOne.position.y > grid[0].transform.position.y - halfTileHeight && cube.partOne.position.y < grid[gridSize - 1].transform.position.y + halfTileHeight
