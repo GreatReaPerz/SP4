@@ -29,11 +29,12 @@ public class GameCode : MonoBehaviour {
     private enemyTetrisSpawner enemyTetrisSpawner = null;
     private enemyGridSystem enemyGridSystem = null;
     private TroopAI troop = null;
+    public bool ready = false;
     private string TerrainName;
     int state;
     public List<GameObject> objects;
     // Use this for initialization
-    void Start () {
+    void Start() {
         theTetrisSpawner = GameObject.Find("Spawner").GetComponent<TetrisSpawner>();
         theGridSystem = GameObject.Find("PlayerTetrisGrid").GetComponent<GridSystem>();
         enemyTetrisSpawner = GameObject.Find("enemySpawner").GetComponent<enemyTetrisSpawner>();
@@ -43,13 +44,17 @@ public class GameCode : MonoBehaviour {
         state = (int)GameState.PLANNING;
         TerrainName = Terrain.GetComponent<MainGame>().NeutralZoneTerrainType;
     }
-	
-	// Update is called once per frame
-	void Update () {
-        if(state == (int)GameState.PLANNING)
+
+    // Update is called once per frame
+    void Update() {
+        if (state == (int)GameState.PLANNING)
         {
             UIPanelAnimator.SetBool("UIPanelEnabled", true);
-            if (timer > 10.0f && !destroyed)
+            //if (timer > 10.0f && !destroyed)
+            //{
+            //    ready = true;
+            //}
+            if (ready)
             {
                 for (int i = 0; i < 3; ++i)
                 {
@@ -64,7 +69,7 @@ public class GameCode : MonoBehaviour {
                         troop.team = 1;
                         troop.terrainName = TerrainName;
                         float dist = 0;
-                        for(uint j = 0; j< enemyGridSystem.GridSize; ++j)
+                        for (uint j = 0; j < enemyGridSystem.GridSize; ++j)
                         {
                             float yDist = enemyGridSystem.grid[j].transform.position.y - troop.originPos.y;
                             if (Mathf.Abs(enemyGridSystem.grid[j].transform.position.x - troop.originPos.x) < 10 && !enemyGridSystem.IsGreyedOut(j) && yDist > dist)
@@ -303,13 +308,13 @@ public class GameCode : MonoBehaviour {
                             //If the unit reaches its target grid
                             if (Mathf.Abs(troop.targetPos.y - troop.transform.position.y) < 10)
                             {
-                                if(troop.team == 1)
+                                if (troop.team == 1)
                                 {
                                     //Set the target grid to grey
                                     enemyGridSystem.SetIsGreyOut(troop.targetIndex);
                                     troop.activ = false;
                                 }
-                                if(troop.team == -1)
+                                if (troop.team == -1)
                                 {
                                     //Debug.Log("kill");
                                     //Set the target grid to grey
@@ -374,10 +379,16 @@ public class GameCode : MonoBehaviour {
                 TerrainName = Terrain.GetComponent<MainGame>().NeutralZoneTerrainType;
                 destroyed = false;
                 timer = 0.0f;
+                ready = true;
                 state = (int)GameState.PLANNING;
             }
         }
 
         timer += Time.deltaTime;
-	}
+    }
+
+    public void ReadyButton()
+    {
+        ready = true;
+    }
 }

@@ -1094,12 +1094,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 280144281}
-        m_MethodName: IncrementHealth
-        m_Mode: 2
+      - m_Target: {fileID: 280144280}
+        m_MethodName: ReadyButton
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 161571068}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1724,7 +1724,7 @@ MonoBehaviour:
   - {fileID: 1282603865}
   - {fileID: 469817296}
   thisCanvas: {fileID: 961660700}
-  GreyGridSprite: {fileID: 21300000, guid: c616bc0d5b326404f8b11ef19d6124fe, type: 3}
+  GreyGridSprite: {fileID: 21300000, guid: 510741c1e8710c1428cba48f72f5fa03, type: 3}
   BlueGridSprite: {fileID: 21300000, guid: c616bc0d5b326404f8b11ef19d6124fe, type: 3}
   gridData: 
 --- !u!1 &280144273
@@ -1846,6 +1846,7 @@ MonoBehaviour:
   Player1: {fileID: 376297939}
   Player2: {fileID: 161571068}
   UIPanelAnimator: {fileID: 1174336883}
+  ready: 0
   objects: []
 --- !u!114 &280144281
 MonoBehaviour:
@@ -5930,6 +5931,10 @@ MonoBehaviour:
   - {fileID: 1894050752949088, guid: 4dbdc46ae1494af4e922d23e03e723bf, type: 2}
   - {fileID: 1678510967310458, guid: ab1d1303800e536468926588c0c7f4d5, type: 2}
   - {fileID: 1923746785537824, guid: 39173d86ea493f048aa107d06fb48dd8, type: 2}
+  troopImages:
+  - {fileID: 21300000, guid: 9c47c59c520ac3d45abb4b71a5c71672, type: 3}
+  - {fileID: 21300000, guid: 4f643c63208a80d44a3745435136e4cc, type: 3}
+  - {fileID: 21300000, guid: 765e09d691fdc4b45a52f76e12e77a7f, type: 3}
   SomethingIsMoving: 0
   IndexofMovingObject: 0
 --- !u!4 &846226470
@@ -6342,7 +6347,7 @@ MonoBehaviour:
   attacktimer: 0
   terrainName: 
   originPos: {x: 0, y: 0, z: 0}
-  targetPos: {x: 0, y: 0, z: 0}
+  targetPos: {x: -1000, y: 0, z: 0}
 --- !u!114 &900728164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8228,7 +8233,7 @@ MonoBehaviour:
   attacktimer: 0
   terrainName: 
   originPos: {x: 0, y: 0, z: 0}
-  targetPos: {x: 0, y: 0, z: 0}
+  targetPos: {x: -1000, y: 0, z: 0}
 --- !u!114 &1213968305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10008,7 +10013,7 @@ MonoBehaviour:
   attacktimer: 0
   terrainName: 
   originPos: {x: 0, y: 0, z: 0}
-  targetPos: {x: 0, y: 0, z: 0}
+  targetPos: {x: -10000, y: 0, z: 0}
 --- !u!114 &1656381460
 MonoBehaviour:
   m_ObjectHideFlags: 0
