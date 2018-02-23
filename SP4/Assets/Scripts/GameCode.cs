@@ -487,6 +487,10 @@ public class GameCode : MonoBehaviour {
                         theGridSystem.taken[i] = false;
                     }
                 }
+                for (int i = 0; i < 3; ++i)
+                {
+                    enemyGridSystem.check[i] = false;
+                }
                 //enemyTetrisSpawner.Start();
                 Terrain.GetComponent<MainGame>().Start();
                 TerrainName = Terrain.GetComponent<MainGame>().NeutralZoneTerrainType;

@@ -54,7 +54,7 @@ public class TroopAI : MonoBehaviour {
             //attckDmg = PlayerPrefs.GetFloat("cavalryDamage");
             //health = 
             attckSpd = 0.2f;
-            speed = 75 * 0.016f;
+            speed = 175 * 0.016f;
             vision = 100;
             range = 100;
             state = (int)States.CHARGE;
@@ -94,7 +94,7 @@ public class TroopAI : MonoBehaviour {
             // health = PlayerPrefs.GetFloat("infantryHealth");
             //  attckDmg = PlayerPrefs.GetFloat("infantryDamage");
             attckSpd = 0.1f;
-            speed = 50 * 0.016f;
+            speed = 150 * 0.016f;
             range = 100;
             vision = 100;
             state = (int)States.CHARGE;
@@ -134,7 +134,7 @@ public class TroopAI : MonoBehaviour {
             //health = PlayerPrefs.GetFloat("bowmenHealth");
             // attckDmg = PlayerPrefs.GetFloat("bowmenDamage");
             attckSpd = 0.2f;
-            speed = 50 * 0.016f;
+            speed = 150 * 0.016f;
             range = 300;
             vision = 300;
             state = (int)States.CHARGE;
