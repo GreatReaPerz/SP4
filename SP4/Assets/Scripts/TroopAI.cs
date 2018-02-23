@@ -384,6 +384,7 @@ public class TroopAI : MonoBehaviour {
                         state = (int)States.CHARGE;
                     }
                 }
+
             //Powerups
             if (thePowerupsSystem)
             {
