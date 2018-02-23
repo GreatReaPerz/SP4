@@ -17,7 +17,7 @@ public class HealthSystem : MonoBehaviour {
 	void Update () {
 		
 	}
-    public void addHealth(int _amount)
+    public void addHealth(float _amount)
     {
         previousHealth = health;
         health += _amount;
