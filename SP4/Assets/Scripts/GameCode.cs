@@ -39,6 +39,15 @@ public class GameCode : MonoBehaviour {
     private string TerrainName;
     int state;
     public List<GameObject> objects;
+
+    [System.Serializable]
+    public struct TrapTypes
+    {
+        public string name;
+        public Sprite texture;
+    }
+    public List<TrapTypes> typesOfTraps; //Defines the individual kind of traps that will exist in game
+
     // Use this for initialization
     void Start () {
         theSpawner = GameObject.Find("EventSystem").GetComponent<TetrisSpawner>();
