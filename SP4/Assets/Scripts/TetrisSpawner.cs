@@ -258,6 +258,8 @@ public class TetrisSpawner : MonoBehaviour
             cubeFour.transform.localRotation = Quaternion.Euler(180, 0, 0);
         }
 
+        theCube.parentCube.transform.SetParent(spawner.transform);
+
         //Storing into the respective lists
         if (team == 0)
             //playerList[key] = theCube;
