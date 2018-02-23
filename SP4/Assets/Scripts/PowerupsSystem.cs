@@ -142,7 +142,7 @@ public class PowerUp
     public PowerupsSystem.POWERUP_TYPE powerType;
     public Vector2 powerupPosition = new Vector2();
     public Image PowerUpTexture;
-
+    
     public float AddedMoveSpeed = 0;
     public float AddedAttackSpeed = 0;
     public float AddedAttackDamage = 0;
