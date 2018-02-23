@@ -32,7 +32,7 @@ public class GameCode : MonoBehaviour {
 
 
     public bool ready = false;
-    public bool melee = false;
+    public bool melee = true;
     public bool front = true;
     public bool blockRespawn = false;
 

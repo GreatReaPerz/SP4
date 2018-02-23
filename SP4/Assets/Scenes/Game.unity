@@ -1853,6 +1853,7 @@ MonoBehaviour:
   front: 1
   blockRespawn: 0
   objects: []
+  typesOfTraps: []
 --- !u!114 &280144281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6256,6 +6257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GridSize: 40
+  check: 000000
   taken: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   grid:
   - {fileID: 875338519}

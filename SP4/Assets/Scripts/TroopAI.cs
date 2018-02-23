@@ -134,7 +134,7 @@ public class TroopAI : MonoBehaviour {
         {
             //Debug.Log("Bowmen");
             health = 30;
-            attckDmg = 10;
+            attckDmg = 2;
             //health = PlayerPrefs.GetFloat("bowmenHealth");
             // attckDmg = PlayerPrefs.GetFloat("bowmenDamage");
             attckSpd = 0.2f;
@@ -345,31 +345,31 @@ public class TroopAI : MonoBehaviour {
                                 attacktimer = 0;
                                 if (_class == nearestAI._class)
                                 {
-                                    nearestAI.health -= 100;
+                                    nearestAI.health -= attckDmg;
                                 }
                                 if (_class == 1 && nearestAI._class == 3)
                                 {
-                                    nearestAI.health -= 100 * 1.2f;
+                                    nearestAI.health -= attckDmg * 3;
                                 }
                                 if (_class == 1 && nearestAI._class == 2)
                                 {
-                                    nearestAI.health -= 100 * 1.2f;
+                                    nearestAI.health -= attckDmg;
                                 }
                                 if (_class == 2 && nearestAI._class == 1)
                                 {
-                                    nearestAI.health -= 100 * 1.2f;
+                                    nearestAI.health -= attckDmg * 5;
                                 }
                                 if (_class == 2 && nearestAI._class == 3)
                                 {
-                                    nearestAI.health -= 100 * 1.2f;
+                                    nearestAI.health -= attckDmg;
                                 }
                                 if (_class == 3 && nearestAI._class == 1)
                                 {
-                                    nearestAI.health -= 100 * 1.2f;
+                                    nearestAI.health -= attckDmg;
                                 }
                                 if (_class == 3 && nearestAI._class == 2)
                                 {
-                                    nearestAI.health -= 100 * 1.2f;
+                                    nearestAI.health -= attckDmg * 3;
                                 }
                                 attacktimer = 0;
                             }

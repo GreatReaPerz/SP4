@@ -966,7 +966,6 @@ public class enemyGridSystem : MonoBehaviour
                             }
                             else
                             {
-                                Debug.Log("choochoo");
                                 theTetrisSpawner.enemyList[i].partThree.MovePosition(grid[index].transform.position);
                             }
                             break;
@@ -993,7 +992,6 @@ public class enemyGridSystem : MonoBehaviour
                             }
                             else
                             {
-                                Debug.Log("choochoo");
                                 theTetrisSpawner.enemyList[i].partFour.MovePosition(grid[index].transform.position);
                             }
                             break;
