@@ -369,7 +369,7 @@ public class GridSystem : MonoBehaviour {
 
     public void GameUpdate()
     {
-        if (Input.GetMouseButton(0) == true)
+        if (Input.GetMouseButton(0)== true)
         {
             if (theTetrisSpawner.playerIsMoving == true)
             {
@@ -734,7 +734,7 @@ public class GridSystem : MonoBehaviour {
             }
             if (rowGreyed)
             {
-                PlayerHealth.addHealth(-10);
+                PlayerHealth.addHealth(-5);
                 for (uint numCol = 0; numCol < col; ++numCol)
                 {
                     UnSetIsGreyOut(numCol + y * 10);

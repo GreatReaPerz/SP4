@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ShopSystem : MonoBehaviour {
@@ -223,7 +224,8 @@ public class ShopSystem : MonoBehaviour {
         PlayerPrefs.Save();
 
         //Return to main menu
-
+        SceneManager.LoadScene("Game");
+        
     }
 
     //void CreateButton(string name)

@@ -68,27 +68,39 @@ public class TetrisCube {
 
 	public void DragObject(Rigidbody2D tetrisPart)
 	{
-		if (tetrisPart == partOne) {
-			partOne.MovePosition (Input.mousePosition);
+        Vector3 thePosition = new Vector3();
+        if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
+        {
+            //Get mouse position
+            thePosition = Input.mousePosition;
+        }
+        else
+        {
+            //Get android touch position
+            thePosition = Input.GetTouch(0).position; //NOT CONFIRMED
+        }
+
+        if (tetrisPart == partOne) {
+			partOne.MovePosition (thePosition);
 			isMoving = true;
 			returning = false;
 			Whatisbeingmoved = "partOne";
         }
         else if (tetrisPart ==  partTwo) {
-			partTwo.MovePosition (Input.mousePosition);
+			partTwo.MovePosition (thePosition);
 			isMoving = true;
 			returning = false;
 			Whatisbeingmoved = "partTwo";
         }
         else if (tetrisPart == partThree) {
-            partThree.MovePosition (Input.mousePosition);
+            partThree.MovePosition (thePosition);
 			isMoving = true;
 			returning = false;
 			Whatisbeingmoved = "partThree";
         }
         else if(tetrisPart == partFour)
         {
-            partFour.MovePosition(Input.mousePosition);
+            partFour.MovePosition(thePosition);
 			isMoving = true;
 			returning = false;
 			Whatisbeingmoved = "partFour";

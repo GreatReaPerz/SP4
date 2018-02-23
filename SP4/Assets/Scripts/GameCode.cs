@@ -330,8 +330,16 @@ public class GameCode : MonoBehaviour {
             }
             if (!destroyed)
             {
-                theGridSystem.GameUpdate();
-                enemyGridSystem.GameUpdate();
+                if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
+                {
+                    //If the platform is Windows
+                    theGridSystem.GameUpdate();
+                    enemyGridSystem.GameUpdate();
+                }
+                else if(Application.platform == RuntimePlatform.Android)
+                {
+                    //If the platform is android
+                }
             }
         }
 

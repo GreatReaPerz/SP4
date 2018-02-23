@@ -1190,7 +1190,7 @@ public class enemyGridSystem : MonoBehaviour
             }
             if (rowGreyed)
             {
-                EnemyHealth.addHealth(-10);
+                EnemyHealth.addHealth(-5);
                 for (uint numCol = 0; numCol < col; ++numCol)
                 {
                     UnSetIsGreyOut(numCol + y * 10);

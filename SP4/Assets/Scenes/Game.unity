@@ -1288,7 +1288,7 @@ RectTransform:
   - {fileID: 443666198}
   - {fileID: 1055992160}
   m_Father: {fileID: 961660701}
-  m_RootOrder: 10
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4861,7 +4861,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 961660701}
-  m_RootOrder: 14
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6412,7 +6412,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 961660701}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6432,7 +6432,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PauseAnimator: {fileID: 1001305501}
   type: Cavalry
-  health: 0
+  health: {fileID: 0}
   _class: 0
   attckDmg: 0
   attckSpd: 0
@@ -6442,7 +6442,6 @@ MonoBehaviour:
   targetIndex: 0
   team: 0
   state: 0
-  prevhealth: 0
   activ: 0
   aggrotimer: 0
   attacktimer: 0
@@ -6858,17 +6857,17 @@ RectTransform:
   - {fileID: 330318099}
   - {fileID: 599830711}
   - {fileID: 430057098}
-  - {fileID: 1903860802}
   - {fileID: 1174336882}
   - {fileID: 900728162}
   - {fileID: 1213968303}
   - {fileID: 1656381458}
-  - {fileID: 1001305500}
   - {fileID: 195718208}
   - {fileID: 1933782288}
   - {fileID: 1488964265}
   - {fileID: 1987068064}
   - {fileID: 666638202}
+  - {fileID: 1903860802}
+  - {fileID: 1001305500}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7356,7 +7355,7 @@ RectTransform:
   - {fileID: 82177923}
   - {fileID: 2029738182}
   m_Father: {fileID: 961660701}
-  m_RootOrder: 9
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -8236,7 +8235,7 @@ RectTransform:
   - {fileID: 945686483}
   - {fileID: 1914070379}
   m_Father: {fileID: 961660701}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8425,7 +8424,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 961660701}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8445,7 +8444,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PauseAnimator: {fileID: 1001305501}
   type: Infantry
-  health: 0
+  health: {fileID: 0}
   _class: 0
   attckDmg: 0
   attckSpd: 0
@@ -8455,7 +8454,6 @@ MonoBehaviour:
   targetIndex: 0
   team: 0
   state: 0
-  prevhealth: 0
   activ: 0
   aggrotimer: 0
   attacktimer: 0
@@ -10039,7 +10037,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 961660701}
-  m_RootOrder: 12
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10317,7 +10315,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 961660701}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10337,7 +10335,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PauseAnimator: {fileID: 1001305501}
   type: Bowmen
-  health: 0
+  health: {fileID: 0}
   _class: 0
   attckDmg: 0
   attckSpd: 0
@@ -10347,7 +10345,6 @@ MonoBehaviour:
   targetIndex: 0
   team: 0
   state: 0
-  prevhealth: 0
   activ: 0
   aggrotimer: 0
   attacktimer: 0
@@ -11195,7 +11192,7 @@ RectTransform:
   m_Children:
   - {fileID: 84479108}
   m_Father: {fileID: 961660701}
-  m_RootOrder: 4
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -11460,7 +11457,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 961660701}
-  m_RootOrder: 11
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11881,7 +11878,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 961660701}
-  m_RootOrder: 13
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
