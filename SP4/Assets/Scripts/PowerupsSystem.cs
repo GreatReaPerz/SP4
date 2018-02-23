@@ -187,21 +187,21 @@ public class PowerUp
             case PowerupsSystem.POWERUP_TYPE.POWERUP_MOVESPEED:
                 {
                     //Unit stats modify
-                    AddedMoveSpeed = 15;
+                    AddedMoveSpeed = 5;
                     PowerUpTexture.sprite = moveSpeedSprite;
                     break;
                 }
             case PowerupsSystem.POWERUP_TYPE.POWERUP_ATTACKSPEED:
                 {
                     //Unit stats modify
-                    AddedAttackSpeed = 15;
+                    AddedAttackSpeed = 10;
                     PowerUpTexture.sprite = attackSpeedSprite;
                     break;
                 }
             case PowerupsSystem.POWERUP_TYPE.POWERUP_ATTACKDAMAGE:
                 {
                     //Unit stats modify
-                    AddedAttackDamage = 15;
+                    AddedAttackDamage = 10;
                     PowerUpTexture.sprite = attackDamageSprite;
                     break;
                 }
