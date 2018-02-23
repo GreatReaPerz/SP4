@@ -29,7 +29,7 @@ public class RenderHealth : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (playerHealth.isHealthModified())
+        if (playerHealth.getUpdateHealthRender())
         {
             //theParent.transform.GetChild((int)playerHealth.getHealth() + 1);
 
@@ -58,7 +58,7 @@ public class RenderHealth : MonoBehaviour {
             ////transform.Translate(new Vector3(0.5f*((playerHealth.getHealth() / playerHealth.getMaxHealth()-1) ), 0, 0));
             ////transform.Translate(new Vector3(((currPercentage - 1f)) * prevScale.x, 0, 0));
             //Debug.Log("NewScale:" + transform.localScale + ", NewPos:" + transform.localPosition);
-            playerHealth.setHealthModifiedToFalse();
+            playerHealth.setUpdateHealthRender(false);
         }
     }
 

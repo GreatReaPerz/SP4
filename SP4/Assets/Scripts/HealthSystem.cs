@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour {
     public float health/* = 100*/;
-    float previousHealth;
+    private float previousHealth;
     [SerializeField]
     float maxHealth = 100f;
+
+    private bool updateHealthRender = false;
 	// Use this for initialization
 	void Start () {
-        health = maxHealth;
-        previousHealth = health;
+        InitHealth(maxHealth);
     }
 	
 	// Update is called once per frame
@@ -19,6 +20,9 @@ public class HealthSystem : MonoBehaviour {
 	}
     public void addHealth(float _amount)
     {
+        if (_amount == 0)
+            return;
+        setUpdateHealthRender(true);
         previousHealth = health;
         health += _amount;
         if (health > maxHealth)
@@ -49,5 +53,19 @@ public class HealthSystem : MonoBehaviour {
     public void setHealthModifiedToFalse()
     {
         previousHealth = health;
+    }
+    public void InitHealth(float _maxHealth)
+    {
+        health = _maxHealth;
+        maxHealth = _maxHealth;
+        previousHealth = health;
+    }
+    public bool getUpdateHealthRender()
+    {
+        return updateHealthRender;
+    }
+    public void setUpdateHealthRender(bool _newState)
+    {
+        updateHealthRender = _newState;
     }
 }

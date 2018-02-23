@@ -14,7 +14,8 @@ public class TroopAI : MonoBehaviour {
     };
     //public bool active;
     public string type;
-    public float health;
+    //public float health;
+    public HealthSystem health;
     public int _class;
     public float attckDmg;
     public float attckSpd;
@@ -24,7 +25,7 @@ public class TroopAI : MonoBehaviour {
     public uint targetIndex;
     public int team;
     public int state;
-    public float prevhealth;
+    //public float prevhealth;
     public bool activ;
     public float aggrotimer;
     public float attacktimer;
@@ -46,12 +47,15 @@ public class TroopAI : MonoBehaviour {
 
         thePlayer = GameObject.Find("Player");
         game = GameObject.Find("EventSystem").GetComponent<GameCode>();
+
+        health = this.gameObject.AddComponent<HealthSystem>();
+
         originPos = transform.position;
         attackWidth = 50;
         //Debug.Log("Cavalry");
         if (type == "Cavalry")
         {
-            health = 40;
+            health.InitHealth(40f);
             attckDmg = 15;
             //Debug.Log("Cavalry");
             //health = PlayerPrefs.GetFloat("cavalryHealth");
@@ -62,7 +66,7 @@ public class TroopAI : MonoBehaviour {
             vision = 100;
             range = 100;
             state = (int)States.CHARGE;
-            prevhealth = health;
+            //prevhealth = health;
             activ = true;
             _class = 3;
             if (terrainName == "Hills")
@@ -93,7 +97,7 @@ public class TroopAI : MonoBehaviour {
         else if (type == "Infantry")
         {
             //Debug.Log("Infantry");
-            health = 50;
+            health.InitHealth(50f);
             attckDmg = 20;
             // health = PlayerPrefs.GetFloat("infantryHealth");
             //  attckDmg = PlayerPrefs.GetFloat("infantryDamage");
@@ -102,7 +106,7 @@ public class TroopAI : MonoBehaviour {
             range = 100;
             vision = 100;
             state = (int)States.CHARGE;
-            prevhealth = health;
+            //prevhealth = health;
             activ = true;
             _class = 1;
             if (terrainName == "Hills")
@@ -133,7 +137,7 @@ public class TroopAI : MonoBehaviour {
         else if (type == "Bowmen")
         {
             //Debug.Log("Bowmen");
-            health = 30;
+            health.InitHealth(30f);
             attckDmg = 2;
             //health = PlayerPrefs.GetFloat("bowmenHealth");
             // attckDmg = PlayerPrefs.GetFloat("bowmenDamage");
@@ -142,7 +146,7 @@ public class TroopAI : MonoBehaviour {
             range = 300;
             vision = 300;
             state = (int)States.CHARGE;
-            prevhealth = health;
+            //prevhealth = health;
             activ = true;
             _class = 2;
             if (terrainName == "Hills")
@@ -177,7 +181,7 @@ public class TroopAI : MonoBehaviour {
        void Update (){
             if (PauseAnimator.GetBool("PauseEnabled") == true)
                 return;
-            if (health <= 0)
+            if (health.getHealth() <= 0)
             {
                 //if (team == -1)
                 //    thePlayer.GetComponent<InGameCash>().addAmount(10);
@@ -209,12 +213,13 @@ public class TroopAI : MonoBehaviour {
                         transform.position += hello * speed;
                     }
 
-                    if (prevhealth != health)
+                    if (/*prevhealth != health*/health.isHealthModified())
                     {
                         // state = (int)States.CHASE;
                         aggrotimer = 0;
                     }
-                    prevhealth = health;
+                    //prevhealth = health;
+                    health.setHealthModifiedToFalse();
                     float minNearest = 1000000;
                     nearest = null;
                     for (int i = 0; i < game.objects.Count; ++i)
@@ -243,7 +248,7 @@ public class TroopAI : MonoBehaviour {
                 if (state == (int)States.CHASE)
                 {
                     aggrotimer += Time.deltaTime;
-                    if (prevhealth == health && aggrotimer % 5 == 0 || aggrotimer % 5 == 0)
+                    if (/*prevhealth == health*/!health.isHealthModified() && aggrotimer % 5 == 0 || aggrotimer % 5 == 0)
                     {
                         state = (int)States.CHARGE;
                     }
@@ -345,31 +350,31 @@ public class TroopAI : MonoBehaviour {
                                 attacktimer = 0;
                                 if (_class == nearestAI._class)
                                 {
-                                    nearestAI.health -= attckDmg;
+                                    nearestAI.health.addHealth(-attckDmg);
                                 }
                                 if (_class == 1 && nearestAI._class == 3)
                                 {
-                                    nearestAI.health -= attckDmg * 3;
+                                    nearestAI.health.addHealth(-attckDmg * 3);
                                 }
                                 if (_class == 1 && nearestAI._class == 2)
                                 {
-                                    nearestAI.health -= attckDmg;
+                                    nearestAI.health.addHealth(-attckDmg);
                                 }
                                 if (_class == 2 && nearestAI._class == 1)
                                 {
-                                    nearestAI.health -= attckDmg * 5;
+                                    nearestAI.health.addHealth(-attckDmg * 5);
                                 }
                                 if (_class == 2 && nearestAI._class == 3)
                                 {
-                                    nearestAI.health -= attckDmg;
+                                    nearestAI.health.addHealth(-attckDmg);
                                 }
                                 if (_class == 3 && nearestAI._class == 1)
                                 {
-                                    nearestAI.health -= attckDmg;
+                                    nearestAI.health.addHealth(-attckDmg);
                                 }
                                 if (_class == 3 && nearestAI._class == 2)
                                 {
-                                    nearestAI.health -= attckDmg * 3;
+                                    nearestAI.health.addHealth(-attckDmg * 3);
                                 }
                                 attacktimer = 0;
                             }
