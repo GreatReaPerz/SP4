@@ -193,7 +193,6 @@ class PowerUp
                     //Unit stats modify
                     AddedAttackDamage = 15;
                     PowerUpTexture.sprite = attackDamageSprite;
-                    Debug.Log("BITCONNECT");
                     break;
                 }
             default:
