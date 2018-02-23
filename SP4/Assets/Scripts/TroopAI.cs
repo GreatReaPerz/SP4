@@ -36,10 +36,14 @@ public class TroopAI : MonoBehaviour {
     GameObject nearest;
     private TroopAI nearestAI = null;
 
+    private PowerupsSystem thePowerupsSystem = null;
+
     GameObject thePlayer;
     // Use this for initialization
     void Start()
     {
+        thePowerupsSystem = GameObject.Find("PowerUpSystem").GetComponent<PowerupsSystem>();
+
         thePlayer = GameObject.Find("Player");
         game = GameObject.Find("EventSystem").GetComponent<GameCode>();
         originPos = transform.position;
@@ -380,9 +384,82 @@ public class TroopAI : MonoBehaviour {
                         state = (int)States.CHARGE;
                     }
                 }
+            //Powerups
+            if (thePowerupsSystem)
+            {
+                //Search player powerups list
+                if (team == 1)
+                {
+                    for (int i = 0; i < thePowerupsSystem.PlayerGridPowerups.Count; ++i)
+                    {
+                        if (Collided(thePowerupsSystem.PlayerGridPowerups[i].powerupPosition, transform.position))
+                        {
+                            switch (thePowerupsSystem.PlayerGridPowerups[i].powerType)
+                            {
+                                case PowerupsSystem.POWERUP_TYPE.POWERUP_ATTACKDAMAGE:
+                                    {
+                                        attckDmg += thePowerupsSystem.PlayerGridPowerups[i].AddedAttackDamage;
+                                        break;
+                                    }
+                                case PowerupsSystem.POWERUP_TYPE.POWERUP_ATTACKSPEED:
+                                    {
+                                        attckSpd += thePowerupsSystem.PlayerGridPowerups[i].AddedAttackSpeed;
+                                        break;
+                                    }
+                                case PowerupsSystem.POWERUP_TYPE.POWERUP_MOVESPEED:
+                                    {
+                                        speed += thePowerupsSystem.PlayerGridPowerups[i].AddedMoveSpeed;
+                                        break;
+                                    }
+                                default:
+                                    break;
+                            }
+
+                            Destroy(thePowerupsSystem.PlayerGridPowerups[i].PowerUpTexture);
+                            thePowerupsSystem.PlayerGridPowerups.RemoveAt(i);
+                        }
+                    }
+
+                }
+                else  //Search enemy player grid list
+                {
+                    for (int i = 0; i < thePowerupsSystem.EnemyGridPowerups.Count; ++i)
+                    {
+                        if (Collided(thePowerupsSystem.EnemyGridPowerups[i].powerupPosition, transform.position))
+                        {
+                            switch (thePowerupsSystem.EnemyGridPowerups[i].powerType)
+                            {
+                                case PowerupsSystem.POWERUP_TYPE.POWERUP_ATTACKDAMAGE:
+                                    {
+                                        attckDmg += thePowerupsSystem.EnemyGridPowerups[i].AddedAttackDamage;
+                                        break;
+                                    }
+                                case PowerupsSystem.POWERUP_TYPE.POWERUP_ATTACKSPEED:
+                                    {
+                                        attckSpd += thePowerupsSystem.EnemyGridPowerups[i].AddedAttackSpeed;
+                                        break;
+                                    }
+                                case PowerupsSystem.POWERUP_TYPE.POWERUP_MOVESPEED:
+                                    {
+                                        speed += thePowerupsSystem.EnemyGridPowerups[i].AddedMoveSpeed;
+                                        break;
+                                    }
+                                default:
+                                    break;
+                            }
+
+                            Destroy(thePowerupsSystem.EnemyGridPowerups[i].PowerUpTexture);
+                            thePowerupsSystem.EnemyGridPowerups.RemoveAt(i);
+                        }
+                    }
+                }
+
             }
 
+
         }
+
+    }
     bool Collided(Vector3 firstTroop, Vector3 secondTroop)
     {
         if (firstTroop.x - (99 * 0.5f) < secondTroop.x + (99 * 0.5f) 
@@ -395,4 +472,22 @@ public class TroopAI : MonoBehaviour {
         }
         return false;
     }
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if(thePowerupsSystem == null)
+    //    {
+    //        return;
+    //    }
+
+    //    if(collision.gameObject.name == "PowerupSampleImage")
+    //    {
+    //        Destroy(collision.gameObject);
+            
+    //        //if(team == 1)
+    //        //{
+    //        //    thePowerupsSystem.PlayerGridPowerups.Remove(collision.gameObject);
+    //        //}
+    //    }
+    //}
 }

@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class PowerupsSystem : MonoBehaviour
 {
-
     private GridSystem theGridSystem = null;
     private enemyGridSystem theEnemyGridSystem = null;
 
@@ -23,8 +22,8 @@ public class PowerupsSystem : MonoBehaviour
     [SerializeField]
     public Sprite attackDamageSprite;
 
-    List<PowerUp> PlayerGridPowerups = new List<PowerUp>();
-    List<PowerUp> EnemyGridPowerups = new List<PowerUp>();
+    public List<PowerUp> PlayerGridPowerups = new List<PowerUp>();
+    public List<PowerUp> EnemyGridPowerups = new List<PowerUp>();
 
     public enum POWERUP_TYPE
     {
@@ -34,11 +33,7 @@ public class PowerupsSystem : MonoBehaviour
 
         TOTAL_POWERUPS
     }
-
-    private void OnEnable()
-    {
-        
-    }
+    
     // Use this for initialization
     void Start()
     {
@@ -47,8 +42,8 @@ public class PowerupsSystem : MonoBehaviour
 
         Debug.Assert(theGridSystem != null);
         Debug.Assert(theEnemyGridSystem != null);
+        SampleImage.enabled = false;
         
-
         CreatePowerups();
     }
 
@@ -56,6 +51,7 @@ public class PowerupsSystem : MonoBehaviour
     void Update()
     {
     }
+    
 
     public void CreatePowerups()
     {
@@ -71,10 +67,18 @@ public class PowerupsSystem : MonoBehaviour
             PlayerGridPowerups[(int)i].PowerUpTexture = Instantiate(SampleImage);
             //Decides the powerup modifiers based on powertype
             PlayerGridPowerups[(int)i].AssignType();
+
+            //Anchor to bottom
+            PlayerGridPowerups[(int)i].PowerUpTexture.rectTransform.anchorMin = new Vector2(0.5f, 0);
+            PlayerGridPowerups[(int)i].PowerUpTexture.rectTransform.anchorMax = new Vector2(0.5f, 0);
+            PlayerGridPowerups[(int)i].PowerUpTexture.rectTransform.pivot = new Vector2(0.5f, 0.5f);
+
             //Set the parent to canvas
             PlayerGridPowerups[(int)i].PowerUpTexture.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, true);
             //Change the position of powerup
             PlayerGridPowerups[(int)i].ChangePosition();
+
+            
         }
 
         //Enemy Grid
@@ -88,6 +92,12 @@ public class PowerupsSystem : MonoBehaviour
             EnemyGridPowerups[(int)i].PowerUpTexture = Instantiate(SampleImage);
             //Decides the powerup modifiers based on powertype
             EnemyGridPowerups[(int)i].AssignType();
+
+            //Anchor to top
+            EnemyGridPowerups[(int)i].PowerUpTexture.rectTransform.anchorMin = new Vector2(0.5f, 1);
+            EnemyGridPowerups[(int)i].PowerUpTexture.rectTransform.anchorMax = new Vector2(0.5f, 1);
+            EnemyGridPowerups[(int)i].PowerUpTexture.rectTransform.pivot = new Vector2(0.5f, 0.5f);
+
             //Set the parent to canvas
             EnemyGridPowerups[(int)i].PowerUpTexture.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, true);
             //Change the position of powerup
@@ -127,10 +137,10 @@ public class PowerupsSystem : MonoBehaviour
     }
 }
 
-class PowerUp
+public class PowerUp
 {
-    PowerupsSystem.POWERUP_TYPE powerType;
-    Vector2 powerupPosition = new Vector2();
+    public PowerupsSystem.POWERUP_TYPE powerType;
+    public Vector2 powerupPosition = new Vector2();
     public Image PowerUpTexture;
 
     public float AddedMoveSpeed = 0;
@@ -198,6 +208,8 @@ class PowerUp
             default:
                 break;
         }
+
+        PowerUpTexture.enabled = true;
 
     }
 
