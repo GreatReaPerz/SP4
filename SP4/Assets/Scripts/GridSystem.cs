@@ -7,16 +7,16 @@ using System;
 public class GridSystem : MonoBehaviour {
 
     //Note: Increasing the num of rows & col means that you also need to add more images into the array in the inspector
-    const ushort row = 4, col = 10;
+    public const ushort row = 4, col = 10;
     public const uint gridSize = row * col;
     public uint GridSize = gridSize;
-    const float tileWidth = 100;
-    const float tileHeight = 100;
+    public const float tileWidth = 100;
+    public const float tileHeight = 100;
     public bool[] taken = new bool[gridSize];
     private TetrisSpawner theTetrisSpawner = null;
     private HealthSystem PlayerHealth;
 
-    float halfTileWidth = tileWidth * 0.5f, halfTileHeight = tileHeight * 0.5f;
+    public const float halfTileWidth = tileWidth * 0.5f, halfTileHeight = tileHeight * 0.5f;
 
     [SerializeField]
     public Image[] grid = new Image[gridSize];
@@ -76,8 +76,6 @@ public class GridSystem : MonoBehaviour {
             }
         }
         Init();
-
-        GameObject.Find("PowerUpSystem").GetComponent<PowerupsSystem>().enabled = true;
     }
 
     private uint objectIndex = 0;

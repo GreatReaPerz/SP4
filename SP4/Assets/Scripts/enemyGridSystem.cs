@@ -7,7 +7,7 @@ public class enemyGridSystem : MonoBehaviour
 {
 
     //Note: Increasing the num of rows & col means that you also need to add more images into the array in the inspector
-    const ushort row = 4, col = 10;
+    public const ushort row = 4, col = 10;
     public const uint gridSize = row * col;
     public uint GridSize = gridSize;
     const float tileWidth = 100;
