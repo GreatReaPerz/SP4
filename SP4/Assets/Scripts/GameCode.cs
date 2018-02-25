@@ -29,7 +29,10 @@ public class GameCode : MonoBehaviour {
     private GridSystem theGridSystem = null;
     private enemyGridSystem enemyGridSystem = null;
     private TroopAI troop = null;
-
+    public bool player1 = false;
+    public bool player2 = false;
+    public int effect;
+    public string info;
 
     public bool ready = false;
     public bool melee = true;
@@ -57,6 +60,7 @@ public class GameCode : MonoBehaviour {
         destroyed = false;
         state = (int)GameState.PLANNING;
         TerrainName = Terrain.GetComponent<MainGame>().NeutralZoneTerrainType;
+        effect = 0;
     }
 
     // Update is called once per frame
@@ -68,6 +72,32 @@ public class GameCode : MonoBehaviour {
             //{
             //    ready = true;
             //}
+            effect = Random.Range(0, 5);
+            switch (effect)
+            {
+                case 0:
+                    info = "Normal";
+                    break;
+                case 1:
+                    info = "onlyfoward";
+                    break;
+                case 2:
+                    info = "onlyside";
+                    break;
+                case 3:
+                    info = "onlymelee";
+                    break;
+                case 4:
+                    info = "calvaryspeed";
+                    break;
+                case 5:
+                    info = "bowmenspeed";
+                    break;
+                case 6:
+                    info = "infantryspeed";
+                    break;
+            }
+
             if (ready && !destroyed)
             {
                 for (int i = 0; i < theSpawner.playerList.Count; ++i)

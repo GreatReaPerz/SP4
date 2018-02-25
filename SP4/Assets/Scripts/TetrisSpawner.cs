@@ -114,56 +114,57 @@ public class TetrisSpawner : MonoBehaviour
                         playerSpawned = SpawnTetris(playerSpawned, playerSpawner, 0, 2, TetrisTypes[rand]);
                     }
                 }
-                if (SpawnForEnemy)
+            }
+            if (SpawnForEnemy)
+            {
+                Debug.Log("SPAWN");
+                for (int count = 0; count < SpawnCountEnemy; ++count)
                 {
-                    for (int count = 0; count < SpawnCountEnemy; ++count)
+                    if (SpawnCavalry && SpawnInfantry)
                     {
-                        if (SpawnCavalry && SpawnInfantry)
-                        {
-                            int rand = Random.Range(0, TetrisTypes.Length);  //Rand Piece
-                            int randUnitType = Random.Range(0, 2); // Rand Unit
-                            if (randUnitType == 0)   //Spawn cavalry                      
-                                enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 0, 0, TetrisTypes[rand]);
-                            else //Spawn infantry                       
-                                enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 0, 1, TetrisTypes[rand]);
-                        }
-                        else if (SpawnCavalry && SpawnBowmen)
-                        {
-                            int rand = Random.Range(0, TetrisTypes.Length);  //Rand Piece
-                            int randUnitType = Random.Range(0, 2);
-                            if (randUnitType == 0)   //Spawn cavalry
-                                enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 0, 0, TetrisTypes[rand]);
-                            else //Spawn Bowmen 
-                                enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 0, 2, TetrisTypes[rand]);
-                        }
-                        else if (SpawnInfantry && SpawnBowmen)
-                        {
-                            int rand = Random.Range(0, TetrisTypes.Length);  //Rand Piece
-                            int randUnitType = Random.Range(0, 2);
-                            if (randUnitType == 0)   //Spawn infanry
-                                enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 0, 1, TetrisTypes[rand]);
-                            else //Spawn Bowmen 
-                                enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 0, 2, TetrisTypes[rand]);
-                        }
-                        else if (SpawnCavalry)
-                        {
-                            int rand = Random.Range(0, TetrisTypes.Length);  //Rand Piece
-                            enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 0, 0, TetrisTypes[rand]);
-                        }
-                        else if (SpawnInfantry)
-                        {
-                            int rand = Random.Range(0, TetrisTypes.Length);  //Rand Piece
-                            enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 0, 1, TetrisTypes[rand]);
-                        }
-
-                        else if (SpawnBowmen)
-                        {
-                            int rand = Random.Range(0, TetrisTypes.Length);  //Rand Piece
-                            enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 0, 2, TetrisTypes[rand]);
-                        }
+                        int rand = Random.Range(0, TetrisTypes.Length);  //Rand Piece
+                        int randUnitType = Random.Range(0, 2); // Rand Unit
+                        if (randUnitType == 0)   //Spawn cavalry                      
+                            enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 1, 0, TetrisTypes[rand]);
+                        else //Spawn infantry                       
+                            enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 1, 1, TetrisTypes[rand]);
+                    }
+                    else if (SpawnCavalry && SpawnBowmen)
+                    {
+                        int rand = Random.Range(0, TetrisTypes.Length);  //Rand Piece
+                        int randUnitType = Random.Range(0, 2);
+                        if (randUnitType == 0)   //Spawn cavalry
+                            enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 1, 0, TetrisTypes[rand]);
+                        else //Spawn Bowmen 
+                            enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 1, 2, TetrisTypes[rand]);
+                    }
+                    else if (SpawnInfantry && SpawnBowmen)
+                    {
+                        int rand = Random.Range(0, TetrisTypes.Length);  //Rand Piece
+                        int randUnitType = Random.Range(0, 2);
+                        if (randUnitType == 0)   //Spawn infanry
+                            enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 1, 1, TetrisTypes[rand]);
+                        else //Spawn Bowmen 
+                            enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 1, 2, TetrisTypes[rand]);
+                    }
+                    else if (SpawnCavalry)
+                    {
+                        int rand = Random.Range(0, TetrisTypes.Length);  //Rand Piece
+                        enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 0, 0, TetrisTypes[rand]);
+                    }
+                    else if (SpawnInfantry)
+                    {
+                        int rand = Random.Range(0, TetrisTypes.Length);  //Rand Piece
+                        enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 1, 1, TetrisTypes[rand]);
                     }
 
+                    else if (SpawnBowmen)
+                    {
+                        int rand = Random.Range(0, TetrisTypes.Length);  //Rand Piece
+                        enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 1, 2, TetrisTypes[rand]);
+                    }
                 }
+
             }
         }
     }
