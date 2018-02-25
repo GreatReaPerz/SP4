@@ -339,6 +339,8 @@ public class GameCode : MonoBehaviour {
                 else if(Application.platform == RuntimePlatform.Android)
                 {
                     //If the platform is android
+                    theGridSystem.GameUpdateAndroid();
+                    enemyGridSystem.GameUpdateAndroid();
                 }
             }
         }
