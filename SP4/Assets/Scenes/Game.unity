@@ -9132,7 +9132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisCanvas: {fileID: 961660700}
-  GridTileTexture: {fileID: 21300000, guid: 510741c1e8710c1428cba48f72f5fa03, type: 3}
+  GridTileTexture: {fileID: 21300000, guid: 2bbc6dd29e548e3429184442f604ff22, type: 3}
   SampleImage: {fileID: 1949675444}
   NeutralGrid:
   - {fileID: 2077563799}
