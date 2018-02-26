@@ -40,7 +40,7 @@ public class MainGame : MonoBehaviour {
         Vector2 canvasLocalScale = GameObject.FindGameObjectWithTag("Canvas").transform.localScale;
 
         NeutralZone.transform.position = objectRectTransform.transform.position;
-        NeutralZone.rectTransform.sizeDelta = new Vector2(objectRectTransform.rect.width * 0.92f * canvasLocalScale.x, objectRectTransform.rect.height * 0.25f * canvasLocalScale.y);
+        NeutralZone.rectTransform.sizeDelta = new Vector2((objectRectTransform.rect.width * 0.92f) * canvasLocalScale.x, (objectRectTransform.rect.height * 0.25f) * canvasLocalScale.y);
 
         float ranNum = Random.Range(0.0f, 4.0f);
 
