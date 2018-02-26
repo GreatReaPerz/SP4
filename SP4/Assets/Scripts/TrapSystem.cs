@@ -71,6 +71,13 @@ public class TrapSystem : MonoBehaviour {
             newTrapBut.transform.SetParent(trapSelectionPanel.transform);                                                                   //Parent to panel
             displacement.x += newTrapBut.GetComponent<RectTransform>().rect.width;                                                          //Increment displacement every iteration
         }
+        Button close = trapSelectionPanel.transform.Find("CloseButton").gameObject.GetComponent<Button>();
+        EventTrigger closeEV = close.gameObject.AddComponent<EventTrigger>();                                                              //Add EvenTrigger component
+        EventTrigger.Entry closeClick = new EventTrigger.Entry();                                                                           //Create trigger
+        closeClick.eventID = EventTriggerType.PointerClick;                                                                                 //Define trigger type   (Pointer click)
+        closeClick.callback.AddListener((data) => { resetVariables(); });                                                 //Add listener to call function/ do something(changes text)
+        closeEV.triggers.Add(closeClick);                                                                                                  //Add to Event Trigger
+
         //if (trapPrefab.Length > 0)
         //{
         //    GameObject newTrap = Instantiate(trapPrefab[0]);
@@ -124,13 +131,14 @@ public class TrapSystem : MonoBehaviour {
 
     Vector3 CheckClickedPosition(Vector3 _mousePos)
     {
-        if (theGridSystem)
+        if (theGridSystem)                                                                                          //If theGridSystem is not null
         {
-            foreach (Image element in theGridSystem.grid)
+            for(int i=0; i<theGridSystem.grid.Length; ++i)                                                          //For each grid(images)
             {
-                if(Mathf.Abs((_mousePos - element.transform.position).magnitude) < 50)
+                Image element = theGridSystem.grid[i];
+                if(Mathf.Abs((_mousePos - element.transform.position).magnitude) < 50 && !theGridSystem.taken[i])   //If the click position is within the grid
                 {
-                    return element.transform.position;
+                    return element.transform.position;                                                              //return the position of the grid
                 }
             }
         }
