@@ -69,7 +69,7 @@ public class RenderHealth : MonoBehaviour {
     {
         GameObject healthobj = Instantiate(healthTexture, new Vector3(0, 0, 0), Quaternion.identity);     //Instantiating new object
         healthobj.transform.localScale = new Vector3(healthobj.transform.localScale.x / playerHealth.getMaxHealth(), healthobj.transform.localScale.y, healthobj.transform.localScale.z);   //calculate new scale to always fit default size
-        Vector3 position = new Vector3(theParent.transform.position.x + i * healthobj.transform.localScale.x, theParent.transform.position.y, theParent.transform.position.z);              //calculate new position
+        Vector3 position = new Vector3(theParent.transform.position.x + ((i * healthobj.transform.localScale.x) * theCanvas.transform.localScale.x), theParent.transform.position.y, theParent.transform.position.z);              //calculate new position
         healthobj.transform.SetParent(theParent.transform);                                             //Set parent
         healthobj.transform.position = position;                                                        //Displacment
         healthobj.name = playerObj.transform.name + "health " + i;                                      //give each object unique names
