@@ -36,7 +36,7 @@ public class GameCode : MonoBehaviour {
 
     public bool ready = false;
     public bool melee = true;
-    public bool front = true;
+    public int side = 0;
     public bool blockRespawn = false;
 
     private string TerrainName;
@@ -77,15 +77,23 @@ public class GameCode : MonoBehaviour {
             {
                 case 0:
                     info = "Normal";
+                    melee = false;
+                    side = 0;
                     break;
                 case 1:
                     info = "onlyfoward";
+                    melee = false;
+                    side = 1;
                     break;
                 case 2:
                     info = "onlyside";
+                    melee = false;
+                    side = 2;
                     break;
                 case 3:
                     info = "onlymelee";
+                    melee = true;
+                    side = 0;
                     break;
                 case 4:
                     info = "calvaryspeed";
@@ -121,7 +129,27 @@ public class GameCode : MonoBehaviour {
                                 dist = yDist;
                                 troop.targetPos = enemyGridSystem.grid[j].transform.position;
                                 troop.targetIndex = j;
-                                Debug.Log(troop.health.getHealth());
+                                if(effect == 4)
+                                {
+                                    if(troop.type == "Calvary")
+                                    {
+                                        troop.speed *= 2;
+                                    }
+                                }
+                                else if(effect == 5)
+                                {
+                                    if (troop.type == "Bowmen")
+                                    {
+                                        troop.speed *= 2;
+                                    }
+                                }
+                                else if(effect == 6)
+                                {
+                                    if (troop.type == "Infantry")
+                                    {
+                                        troop.speed *= 2;
+                                    }
+                                }
                             }
                         }
 
@@ -144,6 +172,27 @@ public class GameCode : MonoBehaviour {
                                 dist = yDist;
                                 troop.targetPos = enemyGridSystem.grid[j].transform.position;
                                 troop.targetIndex = j;
+                                if (effect == 4)
+                                {
+                                    if (troop.type == "Calvary")
+                                    {
+                                        troop.speed *= 2;
+                                    }
+                                }
+                                else if (effect == 5)
+                                {
+                                    if (troop.type == "Bowmen")
+                                    {
+                                        troop.speed *= 2;
+                                    }
+                                }
+                                else if (effect == 6)
+                                {
+                                    if (troop.type == "Infantry")
+                                    {
+                                        troop.speed *= 2;
+                                    }
+                                }
                             }
                         }
                         objects.Add(newObj1);
@@ -165,6 +214,27 @@ public class GameCode : MonoBehaviour {
                                 dist = yDist;
                                 troop.targetPos = enemyGridSystem.grid[j].transform.position;
                                 troop.targetIndex = j;
+                                if (effect == 4)
+                                {
+                                    if (troop.type == "Calvary")
+                                    {
+                                        troop.speed *= 2;
+                                    }
+                                }
+                                else if (effect == 5)
+                                {
+                                    if (troop.type == "Bowmen")
+                                    {
+                                        troop.speed *= 2;
+                                    }
+                                }
+                                else if (effect == 6)
+                                {
+                                    if (troop.type == "Infantry")
+                                    {
+                                        troop.speed *= 2;
+                                    }
+                                }
                             }
                         }
                         objects.Add(newObj2);
@@ -186,6 +256,27 @@ public class GameCode : MonoBehaviour {
                                 dist = yDist;
                                 troop.targetPos = enemyGridSystem.grid[j].transform.position;
                                 troop.targetIndex = j;
+                                if (effect == 4)
+                                {
+                                    if (troop.type == "Calvary")
+                                    {
+                                        troop.speed *= 2;
+                                    }
+                                }
+                                else if (effect == 5)
+                                {
+                                    if (troop.type == "Bowmen")
+                                    {
+                                        troop.speed *= 2;
+                                    }
+                                }
+                                else if (effect == 6)
+                                {
+                                    if (troop.type == "Infantry")
+                                    {
+                                        troop.speed *= 2;
+                                    }
+                                }
                             }
                         }
                         objects.Add(newObj3);
@@ -212,6 +303,27 @@ public class GameCode : MonoBehaviour {
                                 dist = yDist;
                                 troop.targetPos = theGridSystem.grid[j].transform.position;
                                 troop.targetIndex = j;
+                                if (effect == 4)
+                                {
+                                    if (troop.type == "Calvary")
+                                    {
+                                        troop.speed *= 2;
+                                    }
+                                }
+                                else if (effect == 5)
+                                {
+                                    if (troop.type == "Bowmen")
+                                    {
+                                        troop.speed *= 2;
+                                    }
+                                }
+                                else if (effect == 6)
+                                {
+                                    if (troop.type == "Infantry")
+                                    {
+                                        troop.speed *= 2;
+                                    }
+                                }
                             }
                         }
                         objects.Add(newObj);
@@ -233,6 +345,27 @@ public class GameCode : MonoBehaviour {
                                 dist = yDist;
                                 troop.targetPos = theGridSystem.grid[j].transform.position;
                                 troop.targetIndex = j;
+                                if (effect == 4)
+                                {
+                                    if (troop.type == "Calvary")
+                                    {
+                                        troop.speed *= 2;
+                                    }
+                                }
+                                else if (effect == 5)
+                                {
+                                    if (troop.type == "Bowmen")
+                                    {
+                                        troop.speed *= 2;
+                                    }
+                                }
+                                else if (effect == 6)
+                                {
+                                    if (troop.type == "Infantry")
+                                    {
+                                        troop.speed *= 2;
+                                    }
+                                }
                             }
                         }
                         objects.Add(newObj1);
@@ -254,6 +387,27 @@ public class GameCode : MonoBehaviour {
                                 dist = yDist;
                                 troop.targetPos = theGridSystem.grid[j].transform.position;
                                 troop.targetIndex = j;
+                                if (effect == 4)
+                                {
+                                    if (troop.type == "Calvary")
+                                    {
+                                        troop.speed *= 2;
+                                    }
+                                }
+                                else if (effect == 5)
+                                {
+                                    if (troop.type == "Bowmen")
+                                    {
+                                        troop.speed *= 2;
+                                    }
+                                }
+                                else if (effect == 6)
+                                {
+                                    if (troop.type == "Infantry")
+                                    {
+                                        troop.speed *= 2;
+                                    }
+                                }
                             }
                         }
                         objects.Add(newObj2);
@@ -275,6 +429,27 @@ public class GameCode : MonoBehaviour {
                                 dist = yDist;
                                 troop.targetPos = theGridSystem.grid[j].transform.position;
                                 troop.targetIndex = j;
+                                if (effect == 4)
+                                {
+                                    if (troop.type == "Calvary")
+                                    {
+                                        troop.speed *= 2;
+                                    }
+                                }
+                                else if (effect == 5)
+                                {
+                                    if (troop.type == "Bowmen")
+                                    {
+                                        troop.speed *= 2;
+                                    }
+                                }
+                                else if (effect == 6)
+                                {
+                                    if (troop.type == "Infantry")
+                                    {
+                                        troop.speed *= 2;
+                                    }
+                                }
                             }
                         }
                         objects.Add(newObj3);
@@ -480,24 +655,34 @@ public class GameCode : MonoBehaviour {
                                     }
                                 }
                             }
-                            if(troop.type == "Bowmen")
+                            Debug.Log("chkec2k");
+                            if (troop.type == "Bowmen")
                             {
                                 if(melee)
                                 {
                                     troop.range = 100;
+                                    Debug.Log("chkeck");
                                 }
                                 else
                                 {
                                     troop.range = 300;
                                 }
                             }
-                            if (front)
-                            {
-                                troop.attackWidth = 50;
-                            }
-                            else
+                            if (side == 0)
                             {
                                 troop.attackWidth = 150;
+                                troop.attackHeight = troop.range;
+                            }
+                            else if(side == 1)
+                            {
+                                troop.attackWidth = 50;
+                                troop.attackHeight = troop.range;
+                                Debug.Log("chkeck1");
+                            }
+                            else if(side == 2)
+                            {
+                                troop.attackWidth = 50 * 2;
+                                troop.attackHeight = troop.range/2;
                             }
                         }
                     }
@@ -561,22 +746,22 @@ public class GameCode : MonoBehaviour {
             ready = true;
         }
     }
-    public void OnlyFront()
-    {
-        front = true;
-    }
-    public void Adj()
-    {
-        front = false;
-    }
-    public void ranged()
-    {
-        melee = false;
-    }
-    public void Melee()
-    {
-        melee = true;
-    }
+    //public void OnlyFront()
+    //{
+    //    front = true;
+    //}
+    //public void Adj()
+    //{
+    //    front = false;
+    //}
+    //public void ranged()
+    //{
+    //    melee = false;
+    //}
+    //public void Melee()
+    //{
+    //    melee = true;
+    //}
 
     private class SortIntDescending : IComparer<int>
     {
