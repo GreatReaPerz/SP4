@@ -2,10 +2,10 @@ Mono path[0] = 'C:/Users/syong/OneDrive/School/2017 S2/Game Development Projec
 Mono path[1] = 'C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Game_Data/Mono'
 Mono config path = 'C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Game_Data/Mono/etc'
 PlayerConnection initialized from C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Game_Data (debug = 0)
-PlayerConnection initialized network socket : 0.0.0.0 55207
-Multi-casting "[IP] 172.27.177.5 [Port] 55207 [Flags] 2 [Guid] 1045911979 [EditorId] 3385708986 [Version] 1048832 [Id] WindowsPlayer(DESKTOP-RPRDEO9) [Debug] 0" to [225.0.0.222:54997]...
-Started listening to [0.0.0.0:55207]
-PlayerConnection already initialized - listening to [0.0.0.0:55207]
+PlayerConnection initialized network socket : 0.0.0.0 55026
+Multi-casting "[IP] 172.27.177.5 [Port] 55026 [Flags] 2 [Guid] 2794100656 [EditorId] 3385708986 [Version] 1048832 [Id] WindowsPlayer(DESKTOP-RPRDEO9) [Debug] 0" to [225.0.0.222:54997]...
+Started listening to [0.0.0.0:55026]
+PlayerConnection already initialized - listening to [0.0.0.0:55026]
 Player data archive not found at `C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Game_Data/data.unity3d`, using local filesystemInitialize engine version: 5.6.3f1 (d3101c3b8468)
 GfxDevice: creating device client; threaded=1
 Direct3D:
@@ -25,14 +25,14 @@ Platform assembly: C:\Users\syong\OneDrive\School\2017 S2\Game Development Pro
 Loading C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Game_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Game_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
 Loading C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Game_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.071 seconds
+- Completed reload, in  0.022 seconds
 Platform assembly: C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Game_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Game_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 2.094220 ms
+UnloadTime: 2.403553 ms
 The referenced script on this Behaviour (Game Object 'PlayerTetrisGrid') is missing!
  
 (Filename: C:/buildslave/unity/build/Runtime/Mono/MonoBehaviour.cpp Line: 1743)
@@ -46,12 +46,12 @@ The referenced script on this Behaviour (Game Object 'EnemyTetrisGrid') is missi
 (Filename: C:/buildslave/unity/build/Runtime/Mono/MonoBehaviour.cpp Line: 1743)
 
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 6.157822 ms
-System memory in use before: 29.1 MB.
-System memory in use after: 29.1 MB.
+UnloadTime: 6.250661 ms
+System memory in use before: 29.7 MB.
+System memory in use after: 29.7 MB.
 
 Unloading 19 unused Assets to reduce memory usage. Loaded Objects now: 1132.
-Total: 0.713085 ms (FindLiveObjects: 0.059259 ms CreateObjectMapping: 0.030814 ms MarkObjects: 0.538468 ms  DeleteObjects: 0.079407 ms)
+Total: 0.775900 ms (FindLiveObjects: 0.067555 ms CreateObjectMapping: 0.039506 ms MarkObjects: 0.583110 ms  DeleteObjects: 0.081382 ms)
 
 15
 UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
@@ -81,7 +81,7 @@ TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Pr
 (Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 148)
 
 Setting up 4 worker threads for Enlighten.
-  Thread -> id: 8874 -> priority: 1 
-  Thread -> id: 496c -> priority: 1 
-  Thread -> id: 7164 -> priority: 1 
-  Thread -> id: 7848 -> priority: 1 
+  Thread -> id: 8e58 -> priority: 1 
+  Thread -> id: 8d28 -> priority: 1 
+  Thread -> id: 569c -> priority: 1 
+  Thread -> id: 2324 -> priority: 1 
