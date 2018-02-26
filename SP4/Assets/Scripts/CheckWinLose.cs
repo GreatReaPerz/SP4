@@ -21,4 +21,13 @@ public class CheckWinLose : MonoBehaviour {
         if (Player2.GetComponent<HealthSystem>().getHealth() <= 0)
             SceneManager.LoadScene("Win");
     }
+    public string CheckWin()
+    {
+        if (Player1.GetComponent<HealthSystem>().getHealth() <= 0)
+            return "Lose";
+        if (Player2.GetComponent<HealthSystem>().getHealth() <= 0)
+            return "Win";
+        else
+            return "";
+    }
 }

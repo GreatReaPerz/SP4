@@ -39,7 +39,7 @@ public class PlayerPrefScript : MonoBehaviour {
     void Start () {
         PlayerPrefs.SetFloat("Health", health);
         PlayerPrefs.SetFloat("Volume", volume);
-        PlayerPrefs.SetFloat("Gold", gold);
+        PlayerPrefs.SetInt("Gold", gold);
 
         PlayerPrefs.SetFloat("calvaryAtt", calvaryAtt);
         PlayerPrefs.SetFloat("calvaryHP", calvaryHP);

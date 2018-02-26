@@ -50,12 +50,18 @@ public class GameCode : MonoBehaviour {
         public GameObject trapPrefab;
     }
     public List<TrapTypes> typesOfTraps; //Defines the individual kind of traps that will exist in game
-
+    public bool Gameover = false;
+    //CheckWinLose winLoseChecker;
+    HealthSystem P1Health;
+    HealthSystem P2Health;
     // Use this for initialization
     void Start () {
         theSpawner = GameObject.Find("EventSystem").GetComponent<TetrisSpawner>();
         theGridSystem = GameObject.Find("PlayerTetrisGrid").GetComponent<GridSystem>();
         enemyGridSystem = GameObject.Find("EnemyTetrisGrid").GetComponent<enemyGridSystem>();
+        //winLoseChecker = GameObject.Find("EventSystem").GetComponent<CheckWinLose>();
+        P1Health = Player1.GetComponent<HealthSystem>();
+        P2Health = Player2.GetComponent<HealthSystem>();
         timer = 0;
         destroyed = false;
         state = (int)GameState.PLANNING;
@@ -65,6 +71,8 @@ public class GameCode : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        if (CheckWin())
+            return;
         if (state == (int)GameState.PLANNING)
         {
             UIPanelAnimator.SetBool("UIPanelEnabled", true);
@@ -803,5 +811,21 @@ public class GameCode : MonoBehaviour {
         Destroy(parent.transform.Find("partTwo").GetComponent<EventTrigger>());
         Destroy(parent.transform.Find("partThree").GetComponent<EventTrigger>());
         Destroy(parent.transform.Find("partFour").GetComponent<EventTrigger>());
+    }
+    bool CheckWin()
+    {
+        if (P1Health.getHealth() > 0 && P2Health.getHealth() > 0)
+            return false;
+        if(!Gameover)
+        {
+            Image background = Ui.gameObject.AddComponent<Image>();
+            Image resource1 = Resources.Load("Arts/Game UI/Paper") as Image;
+            background.sprite = resource1.sprite;
+            background.transform.position = Ui.transform.position;
+            background.transform.localScale = new Vector2(Ui.gameObject.transform.localScale.x, Ui.gameObject.transform.localScale.x);
+
+            Gameover = true;
+        }
+        return true;
     }
 }
