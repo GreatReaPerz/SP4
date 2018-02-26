@@ -21,6 +21,11 @@ public class SceneTransition : MonoBehaviour {
     {
         SceneManager.LoadScene("Game");
     }
+    public void TransitToShop()
+    {
+        SceneManager.LoadScene("Shop");
+    }
+
     public void ExitApplication()
     {
         Application.Quit();

@@ -41,4 +41,8 @@ public class UIEvents : MonoBehaviour {
         //if (thePlayer.GetComponent<InGameCash>().addAmount(this.GetComponentInParent<UpgradesButton>().getCostOfUpgrade()))
         theButton.GetComponent<UpgradesButton>().DoUpgradeStuff();
     }
+    public void addDialog(DialogBox _db)
+    {
+        _db.addDialog("Hello");
+    }
 }

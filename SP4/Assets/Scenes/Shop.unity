@@ -785,7 +785,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 440, y: 0.0000038146973}
-  m_SizeDelta: {x: 50, y: 1500}
+  m_SizeDelta: {x: 50, y: 1021}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &858429823
 MonoBehaviour:
@@ -825,8 +825,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 211697435}
   m_HandleRect: {fileID: 211697434}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1147,7 +1147,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 1
+  m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1080, y: 1920}
@@ -1247,7 +1247,6 @@ GameObject:
   - component: {fileID: 1053439811}
   - component: {fileID: 1053439810}
   - component: {fileID: 1053439809}
-  - component: {fileID: 1053439812}
   m_Layer: 5
   m_Name: HolderBackground
   m_TagString: Untagged
@@ -1272,8 +1271,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -59}
-  m_SizeDelta: {x: 991, y: 1521}
+  m_AnchoredPosition: {x: 0, y: -182}
+  m_SizeDelta: {x: 991, y: 1021}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1053439809
 MonoBehaviour:
@@ -1339,30 +1338,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1053439807}
---- !u!114 &1053439812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1053439807}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64e70a144d7f89646ac1b3f5d162c284, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UpgradeInfantryHealthPrice: 100
-  UpgradeInfantryHealthAmount: 10
-  UpgradeInfantryAttackPrice: 200
-  UpgradeInfantryDamageAmount: 10
-  UpgradeCavalryHealthPrice: 100
-  UpgradeCavalryHealthAmount: 10
-  UpgradeCavalryAttackPrice: 200
-  UpgradeCavalryDamageAmount: 10
-  UpgradeBowmenHealthPrice: 100
-  UpgradeBowmenHealthAmount: 10
-  UpgradeBowmenAttackPrice: 200
-  UpgradeBowmenDamageAmount: 10
-  GoldBorder: {fileID: 0}
 --- !u!1 &1196095264
 GameObject:
   m_ObjectHideFlags: 0
@@ -1587,7 +1562,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -37, y: -5}
-  m_SizeDelta: {x: 870, y: 1479}
+  m_SizeDelta: {x: 870, y: 1021}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1414598815
 MonoBehaviour:
