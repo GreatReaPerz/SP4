@@ -18,7 +18,7 @@ public class RenderHealth : MonoBehaviour {
     GameObject healthobjCopy;
     //Vector3 prevScale;
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         playerHealth = playerObj.GetComponent<HealthSystem>();
         theCanvas = GameObject.Find("GameCanvas");

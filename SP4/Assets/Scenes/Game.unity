@@ -4163,6 +4163,8 @@ MonoBehaviour:
   RiverSprite: {fileID: 21300000, guid: 5020ed49a29e4d746a2a4a82d68d6d36, type: 3}
   PlainsSprite: {fileID: 21300000, guid: fb52246fbe8c186488ac3929046b8280, type: 3}
   NeutralZone: {fileID: 740747259}
+  healthTexture: {fileID: 1974022535733052, guid: 4ec6f150674a2584fb95fac40a8969cf,
+    type: 2}
   NeutralZoneTerrainType: 
 --- !u!1 &611484603
 GameObject:
@@ -5543,6 +5545,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PauseAnimator: {fileID: 1001305501}
+  projectileOBJ: {fileID: 0}
   type: Cavalry
   health: {fileID: 0}
   _class: 0
@@ -5555,6 +5558,7 @@ MonoBehaviour:
   team: 0
   state: 0
   activ: 0
+  fireProj: 0
   aggrotimer: 0
   attacktimer: 0
   attackWidth: 0
@@ -7294,6 +7298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PauseAnimator: {fileID: 1001305501}
+  projectileOBJ: {fileID: 0}
   type: Infantry
   health: {fileID: 0}
   _class: 0
@@ -7306,6 +7311,7 @@ MonoBehaviour:
   team: 0
   state: 0
   activ: 0
+  fireProj: 0
   aggrotimer: 0
   attacktimer: 0
   attackWidth: 0
@@ -9194,6 +9200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PauseAnimator: {fileID: 1001305501}
+  projectileOBJ: {fileID: 0}
   type: Bowmen
   health: {fileID: 0}
   _class: 0
@@ -9206,6 +9213,7 @@ MonoBehaviour:
   team: 0
   state: 0
   activ: 0
+  fireProj: 0
   aggrotimer: 0
   attacktimer: 0
   attackWidth: 0
