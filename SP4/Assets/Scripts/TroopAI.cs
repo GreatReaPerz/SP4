@@ -30,6 +30,7 @@ public class TroopAI : MonoBehaviour {
     public float aggrotimer;
     public float attacktimer;
     public float attackWidth;
+    public float attackHeight;
     public string terrainName;
     private GameCode game = null;
     public Vector3 originPos;
@@ -54,8 +55,9 @@ public class TroopAI : MonoBehaviour {
 
         health = this.gameObject.AddComponent<HealthSystem>();
 
+        attackHeight = 40;
         originPos = transform.position;
-        attackWidth = 50;
+        attackWidth = 150;
         //Debug.Log("Cavalry");
         if (type == "Cavalry")
         {
@@ -233,7 +235,7 @@ public class TroopAI : MonoBehaviour {
                             //    minNearest = dist;
                             //    nearest = game.objects[i];
                             //}
-                            if (game.objects[i].transform.position.x > transform.position.x - attackWidth && game.objects[i].transform.position.x < transform.position.x + attackWidth && (game.objects[i].transform.position.y - transform.position.y) < range + 10)
+                            if (game.objects[i].transform.position.x > transform.position.x - attackWidth && game.objects[i].transform.position.x < transform.position.x + attackWidth && (game.objects[i].transform.position - transform.position).magnitude < range + 10 && Mathf.Abs(game.objects[i].transform.position.y - transform.position.y) < attackHeight + 10)
                             {
                                 nearest = game.objects[i];
                             }
