@@ -918,7 +918,6 @@ public class enemyGridSystem : MonoBehaviour
                             }
                             else
                             {
-                                Debug.Log("choochoo");
                                 theTetrisSpawner.enemyList[i].partOne.MovePosition(grid[index].transform.position);
                             }
                             break;

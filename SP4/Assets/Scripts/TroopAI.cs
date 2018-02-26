@@ -47,7 +47,7 @@ public class TroopAI : MonoBehaviour {
     void Start()
     {
         thePowerupsSystem = GameObject.Find("PowerUpSystem").GetComponent<PowerupsSystem>();
-        theTrapSystem = GameObject.Find("TrapSystem").GetComponent<TrapSystem>();
+       // theTrapSystem = GameObject.Find("TrapSystem").GetComponent<TrapSystem>();
 
         thePlayer = GameObject.Find("Player");
         game = GameObject.Find("EventSystem").GetComponent<GameCode>();
@@ -59,18 +59,15 @@ public class TroopAI : MonoBehaviour {
         //Debug.Log("Cavalry");
         if (type == "Cavalry")
         {
-            health.InitHealth(40f);
-            attckDmg = 15;
-            //Debug.Log("Cavalry");
-            //health = PlayerPrefs.GetFloat("cavalryHealth");
-            //attckDmg = PlayerPrefs.GetFloat("cavalryDamage");
-            //health = 
-            attckSpd = 0.2f;
-            speed = 175 * 0.016f;
+            health.InitHealth(PlayerPrefs.GetFloat("calvaryHP"));
+            attckDmg = PlayerPrefs.GetFloat("calvaryAtt");
+            attckSpd = PlayerPrefs.GetFloat("calvaryAttSpd");
+            speed = PlayerPrefs.GetFloat("calvarySpd");
             vision = 100;
             range = 100;
             state = (int)States.CHARGE;
             //prevhealth = health;
+           Debug.Log(attckDmg);
             activ = true;
             _class = 3;
             if (terrainName == "Hills")
@@ -100,13 +97,12 @@ public class TroopAI : MonoBehaviour {
         }
         else if (type == "Infantry")
         {
-            //Debug.Log("Infantry");
-            health.InitHealth(50f);
-            attckDmg = 20;
-            // health = PlayerPrefs.GetFloat("infantryHealth");
-            //  attckDmg = PlayerPrefs.GetFloat("infantryDamage");
-            attckSpd = 0.1f;
-            speed = 150 * 0.016f;
+           // Debug.Log("Infantry");
+            health.InitHealth(PlayerPrefs.GetFloat("infantryHP"));
+            attckDmg = PlayerPrefs.GetFloat("infantryAtt", attckDmg);
+            attckSpd = PlayerPrefs.GetFloat("infantryAttSpd");
+            speed = PlayerPrefs.GetFloat("infantrySpd");
+            Debug.Log(attckDmg);
             range = 100;
             vision = 100;
             state = (int)States.CHARGE;
@@ -140,15 +136,14 @@ public class TroopAI : MonoBehaviour {
         }
         else if (type == "Bowmen")
         {
-            //Debug.Log("Bowmen");
-            health.InitHealth(30f);
-            attckDmg = 2;
-            //health = PlayerPrefs.GetFloat("bowmenHealth");
-            // attckDmg = PlayerPrefs.GetFloat("bowmenDamage");
-            attckSpd = 0.2f;
-            speed = 150 * 0.016f;
+           // Debug.Log("Bowmen");
+            health.InitHealth(PlayerPrefs.GetFloat("bowmenHP"));
+            attckDmg = PlayerPrefs.GetFloat("bowmenAtt", attckDmg);
+            attckSpd = PlayerPrefs.GetFloat("bowmenAttSpd");
+            speed = PlayerPrefs.GetFloat("bowmenSpd");
             range = 300;
             vision = 300;
+            Debug.Log(attckDmg);
             state = (int)States.CHARGE;
             //prevhealth = health;
             activ = true;

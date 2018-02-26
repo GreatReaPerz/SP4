@@ -11,11 +11,51 @@ public class PlayerPrefScript : MonoBehaviour {
 
     private float volume = 10.0f;
 
-	// Use this for initialization
-	void Start () {
-        health = PlayerPrefs.GetFloat("Health", health);
-        volume = PlayerPrefs.GetFloat("Volume", volume);
-        gold = PlayerPrefs.GetInt("Gold", gold);
+    private float calvaryAtt = 15;
+
+    private float calvaryHP = 40;
+
+    private float calvaryAttSpd = 0.2f;
+
+    private float calvarySpd = 175 * 0.016f;
+
+    private float infantryAtt = 20;
+
+    private float infantryHP = 50;
+
+    private float infantryAttSpd = 0.1f;
+
+    private float infantrySpd = 150 * 0.016f;
+
+    private float bowmenAtt = 2;
+
+    private float bowmenHP = 30;
+
+    private float bowmenAttSpd = 0.2f;
+
+    private float bowmenSpd = 150 * 0.016f;
+
+    // Use this for initialization
+    void Start () {
+        PlayerPrefs.SetFloat("Health", health);
+        PlayerPrefs.SetFloat("Volume", volume);
+        PlayerPrefs.SetFloat("Gold", gold);
+
+        PlayerPrefs.SetFloat("calvaryAtt", calvaryAtt);
+        PlayerPrefs.SetFloat("calvaryHP", calvaryHP);
+        PlayerPrefs.SetFloat("calvaryAttSpd", calvaryAttSpd);
+        PlayerPrefs.SetFloat("calvarySpd", calvarySpd);
+
+        PlayerPrefs.SetFloat("infantryAtt", infantryAtt);
+        PlayerPrefs.SetFloat("infantryHP", infantryHP);
+        PlayerPrefs.SetFloat("infantryAttSpd", infantryAttSpd);
+        PlayerPrefs.SetFloat("infantrySpd", infantrySpd);
+
+        PlayerPrefs.SetFloat("bowmenAtt", bowmenAtt);
+        PlayerPrefs.SetFloat("bowmenHP", bowmenHP);
+        PlayerPrefs.SetFloat("bowmenAttSpd", bowmenAttSpd);
+        PlayerPrefs.SetFloat("bowmenSpd", bowmenSpd);
+        PlayerPrefs.Save();
     }
 	
 	// Update is called once per frame

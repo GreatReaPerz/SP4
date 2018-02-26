@@ -121,6 +121,7 @@ public class GameCode : MonoBehaviour {
                                 dist = yDist;
                                 troop.targetPos = enemyGridSystem.grid[j].transform.position;
                                 troop.targetIndex = j;
+                                Debug.Log(troop.health.getHealth());
                             }
                         }
 
