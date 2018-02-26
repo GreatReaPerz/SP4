@@ -368,4 +368,9 @@ public class TetrisSpawner : MonoBehaviour
         ++key;
         return key;
     }
+
+    public void TetrisSpawnOffset()
+    {
+
+    }
 }

@@ -73,7 +73,7 @@ public class NeutralZoneGrid : MonoBehaviour {
             NeutralGrid[i].rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
             NeutralGrid[i].rectTransform.pivot = new Vector2(0.5f, 0.5f);
 
-            NeutralGrid[i].transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, true);
+            NeutralGrid[i].transform.SetParent(GameObject.Find("NeutralZoneGrids").transform, true);
             
             NeutralGrid[i].sprite = GridTileTexture;
 
