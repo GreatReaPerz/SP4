@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RenderHealth : MonoBehaviour {
     
@@ -21,7 +22,11 @@ public class RenderHealth : MonoBehaviour {
         {
             createHealthobj(i);
         }
-
+        //float canvasWidth = GameObject.Find("GameCanvas").GetComponent<RectTransform>().rect.width;
+        //float canvasHeight = GameObject.Find("GameCanvas").GetComponent<RectTransform>().rect.height;
+        Rect canvasRect = GameObject.Find("GameCanvas").GetComponent<RectTransform>().rect;
+        Vector3 healthScale = healthTexture.GetComponent<Image>().transform.localScale;
+        healthScale = new Vector2( healthScale.x * (healthScale.x / canvasRect.x), healthScale.y * (healthScale.y / canvasRect.y));
         //prevScale = transform.localScale;
         //defaultSize = transform.localScale.x;
     }
