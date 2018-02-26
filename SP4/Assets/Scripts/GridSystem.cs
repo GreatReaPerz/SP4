@@ -748,7 +748,7 @@ public class GridSystem : MonoBehaviour {
 
     public void GameUpdateAndroid()
     {
-        if (Input.GetMouseButton(0) == true)
+        if (Input.touchCount > 0)
         {
             if (theTetrisSpawner.playerIsMoving == true)
             {
@@ -898,7 +898,7 @@ public class GridSystem : MonoBehaviour {
             }
 
         }
-        else if (isMouseMovingAnObject && Input.GetMouseButtonUp(0)) //When the touch is released, it saves the tetris data into the data grid tile
+        else if (isMouseMovingAnObject && Input.touchCount == 0) //When the touch is released, it saves the tetris data into the data grid tile
         {
             //Set the tetris block to not moving
             //tetrisBlock.isMoving = false;
@@ -910,7 +910,7 @@ public class GridSystem : MonoBehaviour {
 
         }
         //When the tetris block is picked up from the grid, it removes the data from that tile
-        if (isMouseMovingAnObject && Input.GetMouseButtonDown(0))
+        if (isMouseMovingAnObject && Input.touchCount > 0)
         {
             isMouseMovingAnObject = false;
         }

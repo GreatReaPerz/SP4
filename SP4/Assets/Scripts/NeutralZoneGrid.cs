@@ -48,9 +48,10 @@ public class NeutralZoneGrid : MonoBehaviour {
         NeutralGrid[0] = Instantiate(SampleImage);
 
         RectTransform objectRectTransform = thisCanvas.GetComponent<RectTransform>();
+        Vector2 canvasLocalScale = GameObject.FindGameObjectWithTag("Canvas").transform.localScale;
 
-        Vector2 Grid0Pos = new Vector2(objectRectTransform.transform.position.x - (0.5f * (NeutralZoneGridsColNum - 1) * GridSystem.tileWidth), 
-            objectRectTransform.transform.position.y - ((NeutralZoneGridsRowNum * GridSystem.tileHeight) * 0.5f) + GridSystem.halfTileHeight);
+        Vector2 Grid0Pos = new Vector2(objectRectTransform.transform.localPosition.x - (0.5f * (NeutralZoneGridsColNum - 1) * GridSystem.tileWidth * canvasLocalScale.x), 
+            objectRectTransform.transform.localPosition.y - ((NeutralZoneGridsRowNum * GridSystem.tileHeight * canvasLocalScale.y) * 0.5f) + GridSystem.halfTileHeight * canvasLocalScale.y);
 
         NeutralGrid[0].transform.position = Grid0Pos;
 
@@ -61,15 +62,19 @@ public class NeutralZoneGrid : MonoBehaviour {
                 NeutralGrid[i] = Instantiate(SampleImage);
             }
 
+            //Enable it
+            NeutralGrid[i].enabled = true;
+
             //Adjusts the individual NeutralGrid block's size
-            NeutralGrid[i].rectTransform.sizeDelta = new Vector2(GridSystem.tileWidth, GridSystem.tileHeight);
+            NeutralGrid[i].rectTransform.sizeDelta = new Vector2(GridSystem.tileWidth * canvasLocalScale.x, GridSystem.tileHeight * canvasLocalScale.y);
 
             //Anchor to middle
             NeutralGrid[i].rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
             NeutralGrid[i].rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
             NeutralGrid[i].rectTransform.pivot = new Vector2(0.5f, 0.5f);
 
-            NeutralGrid[i].transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, true);
+            NeutralGrid[i].transform.SetParent(GameObject.Find("NeutralZoneGrids").transform, true);
+            
             NeutralGrid[i].sprite = GridTileTexture;
 
             if (i == 0)
@@ -80,11 +85,11 @@ public class NeutralZoneGrid : MonoBehaviour {
             //Adjusts the individual NeutralGrid block's position
             if (i < NeutralZoneGridsColNum)
             {
-                NeutralGrid[i].transform.position = new Vector2(NeutralGrid[0].transform.position.x + (i * GridSystem.tileWidth), NeutralGrid[0].transform.position.y);
+                NeutralGrid[i].transform.position = new Vector2(NeutralGrid[0].transform.position.x + (i * GridSystem.tileWidth * canvasLocalScale.x), NeutralGrid[0].transform.position.y);
             }
             else
             {
-                NeutralGrid[i].transform.position = new Vector2(NeutralGrid[i - NeutralZoneGridsColNum].transform.position.x, NeutralGrid[i - NeutralZoneGridsColNum].transform.position.y +  GridSystem.tileHeight);
+                NeutralGrid[i].transform.position = new Vector2(NeutralGrid[i - NeutralZoneGridsColNum].transform.position.x, NeutralGrid[i - NeutralZoneGridsColNum].transform.position.y + (GridSystem.tileHeight * canvasLocalScale.y));
             }
         }
     }

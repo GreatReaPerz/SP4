@@ -346,6 +346,14 @@ public class TetrisSpawner : MonoBehaviour
             cubeFour.transform.localRotation = Quaternion.Euler(180, 0, 0);
         }
 
+        Vector2 currentCubeSIze = cubeOne.GetComponent<RectTransform>().sizeDelta;
+        Vector2 canvasLocalScale = GameObject.FindGameObjectWithTag("Canvas").transform.localScale;
+
+        cubeOne.GetComponent<RectTransform>().sizeDelta = new Vector2(currentCubeSIze.x * canvasLocalScale.x, currentCubeSIze.y * canvasLocalScale.y);
+        cubeTwo.GetComponent<RectTransform>().sizeDelta = new Vector2(currentCubeSIze.x * canvasLocalScale.x, currentCubeSIze.y * canvasLocalScale.y);
+        cubeThree.GetComponent<RectTransform>().sizeDelta = new Vector2(currentCubeSIze.x * canvasLocalScale.x, currentCubeSIze.y * canvasLocalScale.y);
+        cubeFour.GetComponent<RectTransform>().sizeDelta = new Vector2(currentCubeSIze.x * canvasLocalScale.x, currentCubeSIze.y * canvasLocalScale.y);
+
         theCube.parentCube.transform.SetParent(spawner.transform);
 
         //Storing into the respective lists
@@ -359,5 +367,10 @@ public class TetrisSpawner : MonoBehaviour
         //Increment index for next object 
         ++key;
         return key;
+    }
+
+    public void TetrisSpawnOffset()
+    {
+
     }
 }

@@ -74,11 +74,9 @@ public class PowerupsSystem : MonoBehaviour
             PlayerGridPowerups[(int)i].PowerUpTexture.rectTransform.pivot = new Vector2(0.5f, 0.5f);
 
             //Set the parent to canvas
-            PlayerGridPowerups[(int)i].PowerUpTexture.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, true);
+            PlayerGridPowerups[(int)i].PowerUpTexture.transform.SetParent(GameObject.Find("PowerUpSystem").transform, true);
             //Change the position of powerup
             PlayerGridPowerups[(int)i].ChangePosition();
-
-            
         }
 
         //Enemy Grid
@@ -99,7 +97,7 @@ public class PowerupsSystem : MonoBehaviour
             EnemyGridPowerups[(int)i].PowerUpTexture.rectTransform.pivot = new Vector2(0.5f, 0.5f);
 
             //Set the parent to canvas
-            EnemyGridPowerups[(int)i].PowerUpTexture.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, true);
+            EnemyGridPowerups[(int)i].PowerUpTexture.transform.SetParent(GameObject.Find("PowerUpSystem").transform, true);
             //Change the position of powerup
             EnemyGridPowerups[(int)i].ChangePosition();
         }
@@ -211,6 +209,8 @@ public class PowerUp
 
         PowerUpTexture.enabled = true;
 
+        Vector2 canvasLocalScale = GameObject.FindGameObjectWithTag("Canvas").transform.localScale;
+        PowerUpTexture.rectTransform.sizeDelta = new Vector2(GridSystem.tileWidth * canvasLocalScale.x, GridSystem.tileHeight * canvasLocalScale.y);
     }
 
     public void ChangePosition(Vector2 NewPosition)

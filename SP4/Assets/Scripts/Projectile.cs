@@ -53,7 +53,7 @@ public class Projectile : MonoBehaviour
         //theProjectile = new GameObject();
         enemy = theEnemy;
         thisArcher = theArcher;
-        theArcher.fireProj = true;
+        //theArcher.fireProj = true;
         projDmg = damage;
         dir = (theEnemy.transform.position - theArcher.transform.position).normalized;
         Vector3 offset = new Vector3(0, theArcher.range / 4, 0);
