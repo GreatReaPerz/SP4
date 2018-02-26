@@ -40,9 +40,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TrapName: TrapDoor
+  texture: {fileID: 21300000, guid: ac4404341f082fd4586bb244194ce482, type: 3}
   instantKill: 1
   dealsDamage: 0
   damageAmount: 0
+  isactive: 1
+  isPlaced: 0
 --- !u!222 &222861019814790226
 CanvasRenderer:
   m_ObjectHideFlags: 1

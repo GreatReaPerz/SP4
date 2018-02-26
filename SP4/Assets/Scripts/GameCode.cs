@@ -47,7 +47,7 @@ public class GameCode : MonoBehaviour {
     public struct TrapTypes
     {
         public string name;
-        public Sprite texture;
+        public GameObject trapPrefab;
     }
     public List<TrapTypes> typesOfTraps; //Defines the individual kind of traps that will exist in game
 

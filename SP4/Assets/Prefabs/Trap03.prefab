@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114947709056220082}
   - component: {fileID: 222861019814790226}
   m_Layer: 5
-  m_Name: Trap02
+  m_Name: Trap03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,9 +42,9 @@ MonoBehaviour:
   TrapName: Stun
   texture: {fileID: 0}
   instantKill: 0
-  dealsDamage: 0
+  dealsDamage: 1
   damageAmount: 10
-  stun: 1
+  stun: 0
   isactive: 1
   isPlaced: 0
   team: 0

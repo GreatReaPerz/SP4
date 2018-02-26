@@ -39,11 +39,15 @@ public class TroopAI : MonoBehaviour {
 
     private PowerupsSystem thePowerupsSystem = null;
 
+    private TrapSystem theTrapSystem = null;
+
+
     GameObject thePlayer;
     // Use this for initialization
     void Start()
     {
         thePowerupsSystem = GameObject.Find("PowerUpSystem").GetComponent<PowerupsSystem>();
+        theTrapSystem = GameObject.Find("TrapSystem").GetComponent<TrapSystem>();
 
         thePlayer = GameObject.Find("Player");
         game = GameObject.Find("EventSystem").GetComponent<GameCode>();
@@ -461,7 +465,24 @@ public class TroopAI : MonoBehaviour {
                 }
 
             }
-
+            if (theTrapSystem)
+            {
+                foreach (GameObject go in theTrapSystem.myTraps)
+                {
+                    Trap theTrap = go.GetComponent<Trap>();
+                    if (!theTrap.isactive)
+                        continue;
+                    if (theTrap.team == team)
+                        continue;
+                    if (Collided(go.transform.position, transform.position))
+                    {
+                        theTrap.activateTrap(this);
+                        //Destroy(theTrap);
+                        theTrap.isactive = false;
+                    }
+                }
+                theTrapSystem.cleanUpTraps();
+            }
 
         }
 
