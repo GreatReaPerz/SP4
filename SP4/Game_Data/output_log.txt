@@ -2,10 +2,10 @@ Mono path[0] = 'C:/Users/syong/OneDrive/School/2017 S2/Game Development Projec
 Mono path[1] = 'C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Game_Data/Mono'
 Mono config path = 'C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Game_Data/Mono/etc'
 PlayerConnection initialized from C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Game_Data (debug = 0)
-PlayerConnection initialized network socket : 0.0.0.0 55043
-Multi-casting "[IP] 172.27.177.5 [Port] 55043 [Flags] 2 [Guid] 3940568058 [EditorId] 3385708986 [Version] 1048832 [Id] WindowsPlayer(DESKTOP-RPRDEO9) [Debug] 0" to [225.0.0.222:54997]...
-Started listening to [0.0.0.0:55043]
-PlayerConnection already initialized - listening to [0.0.0.0:55043]
+PlayerConnection initialized network socket : 0.0.0.0 55042
+Multi-casting "[IP] 172.27.177.5 [Port] 55042 [Flags] 2 [Guid] 2298078861 [EditorId] 3385708986 [Version] 1048832 [Id] WindowsPlayer(DESKTOP-RPRDEO9) [Debug] 0" to [225.0.0.222:54997]...
+Started listening to [0.0.0.0:55042]
+PlayerConnection already initialized - listening to [0.0.0.0:55042]
 Player data archive not found at `C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Game_Data/data.unity3d`, using local filesystemInitialize engine version: 5.6.3f1 (d3101c3b8468)
 GfxDevice: creating device client; threaded=1
 Direct3D:
@@ -25,14 +25,14 @@ Platform assembly: C:\Users\syong\OneDrive\School\2017 S2\Game Development Pro
 Loading C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Game_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Game_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
 Loading C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Game_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.083 seconds
+- Completed reload, in  0.030 seconds
 Platform assembly: C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Game_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Game_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 2.277134 ms
+UnloadTime: 1.886418 ms
 The referenced script on this Behaviour (Game Object 'PlayerTetrisGrid') is missing!
  
 (Filename: C:/buildslave/unity/build/Runtime/Mono/MonoBehaviour.cpp Line: 1743)
@@ -46,42 +46,56 @@ The referenced script on this Behaviour (Game Object 'EnemyTetrisGrid') is missi
 (Filename: C:/buildslave/unity/build/Runtime/Mono/MonoBehaviour.cpp Line: 1743)
 
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 5.772242 ms
-System memory in use before: 29.1 MB.
-System memory in use after: 29.1 MB.
+UnloadTime: 7.611253 ms
+System memory in use before: 29.2 MB.
+System memory in use after: 29.2 MB.
 
 Unloading 19 unused Assets to reduce memory usage. Loaded Objects now: 1132.
-Total: 0.775505 ms (FindLiveObjects: 0.096790 ms CreateObjectMapping: 0.068740 ms MarkObjects: 0.531752 ms  DeleteObjects: 0.075061 ms)
+Total: 1.125529 ms (FindLiveObjects: 0.132345 ms CreateObjectMapping: 0.074666 ms MarkObjects: 0.805530 ms  DeleteObjects: 0.107061 ms)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at MainGame.Start () [0x000a2] in C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\MainGame.cs:46 
+ 
+(Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/MainGame.cs Line: 46)
 
 15
 UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
 UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
 UnityEngine.Logger:Log(LogType, Object)
 UnityEngine.Debug:Log(Object)
-TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\TroopAI.cs:72)
+TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\TroopAI.cs:79)
  
-(Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 72)
+(Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 79)
 
 20
 UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
 UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
 UnityEngine.Logger:Log(LogType, Object)
 UnityEngine.Debug:Log(Object)
-TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\TroopAI.cs:107)
+TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\TroopAI.cs:114)
  
-(Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 107)
+(Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 114)
 
-2
+30
 UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
 UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
 UnityEngine.Logger:Log(LogType, Object)
 UnityEngine.Debug:Log(Object)
-TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\TroopAI.cs:148)
+TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\TroopAI.cs:150)
  
-(Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 148)
+(Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 150)
+
+10
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\TroopAI.cs:157)
+ 
+(Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 157)
 
 Setting up 4 worker threads for Enlighten.
-  Thread -> id: 92fc -> priority: 1 
-  Thread -> id: a4cc -> priority: 1 
-  Thread -> id: a50c -> priority: 1 
-  Thread -> id: a508 -> priority: 1 
+  Thread -> id: aafc -> priority: 1 
+  Thread -> id: aaf0 -> priority: 1 
+  Thread -> id: aa70 -> priority: 1 
+  Thread -> id: a894 -> priority: 1 
