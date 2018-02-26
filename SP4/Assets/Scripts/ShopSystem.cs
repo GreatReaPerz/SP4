@@ -224,7 +224,7 @@ public class ShopSystem : MonoBehaviour {
         PlayerPrefs.Save();
 
         //Return to main menu
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Menu");
         
     }
 
