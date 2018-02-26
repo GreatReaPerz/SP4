@@ -26,7 +26,7 @@ public class RenderHealth : MonoBehaviour {
         //float canvasHeight = GameObject.Find("GameCanvas").GetComponent<RectTransform>().rect.height;
         Rect canvasRect = GameObject.Find("GameCanvas").GetComponent<RectTransform>().rect;
         Vector3 healthScale = healthTexture.GetComponent<Image>().transform.localScale;
-        healthScale = new Vector2( healthScale.x * (healthScale.x / canvasRect.x), healthScale.y * (healthScale.y / canvasRect.y));
+        healthScale = new Vector2( healthScale.x * (healthScale.x / canvasRect.width), healthScale.y * (healthScale.y / canvasRect.height));
         //prevScale = transform.localScale;
         //defaultSize = transform.localScale.x;
     }
