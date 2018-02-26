@@ -55,7 +55,7 @@ public class TroopAI : MonoBehaviour {
     void Start()
     {
         thePowerupsSystem = GameObject.Find("PowerUpSystem").GetComponent<PowerupsSystem>();
-       // theTrapSystem = GameObject.Find("TrapSystem").GetComponent<TrapSystem>();
+        theTrapSystem = GameObject.Find("TrapSystem").GetComponent<TrapSystem>();
 
         thePlayer = GameObject.Find("Player");
         game = GameObject.Find("EventSystem").GetComponent<GameCode>();

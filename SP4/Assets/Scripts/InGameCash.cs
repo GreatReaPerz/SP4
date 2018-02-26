@@ -7,7 +7,7 @@ public class InGameCash : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        amount = PlayerPrefs.GetInt("IGC", 0);
 	}
 	
 	// Update is called once per frame
@@ -22,7 +22,7 @@ public class InGameCash : MonoBehaviour {
 
     public bool addAmount(int _amount)
     {
-        Debug.Log("Amount:" + amount + ",_Amount:" + _amount);
+        //Debug.Log("Amount:" + amount + ",_Amount:" + _amount);
         if (_amount < 0 && amount == 0)
             return false;
         if(amount + _amount < 0)
@@ -31,6 +31,8 @@ public class InGameCash : MonoBehaviour {
             return false;
         }
         amount += _amount;
+        PlayerPrefs.SetInt("IGC", amount);
+        PlayerPrefs.Save();
         return true;
     }
 

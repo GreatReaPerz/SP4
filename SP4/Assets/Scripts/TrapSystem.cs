@@ -39,6 +39,7 @@ public class TrapSystem : MonoBehaviour {
         Debug.Assert(theEnemyGridSystem != null);
         gameCanvas = GameObject.Find("GameCanvas");
         Debug.Assert(gameCanvas != null);
+
         //trapSelectionPanel = GameObject.Find("TrapSelectionPanel");
         //Debug.Assert(trapSelectionPanel != null);
 
@@ -53,7 +54,7 @@ public class TrapSystem : MonoBehaviour {
             EventTrigger buttonEV = newTrapBut.gameObject.AddComponent<EventTrigger>();                                                     //Add EvenTrigger component
 
             EventTrigger.Entry mouseEnter = new EventTrigger.Entry();                                                                       //Create trigger
-            mouseEnter.eventID = EventTriggerType.PointerEnter;                                                                             //Define trigger type   (Pointer Enter)
+            mouseEnter.eventID = EventTriggerType.PointerDown;                                                                              //Define trigger type   (Pointer down)
             mouseEnter.callback.AddListener((data)=> { newTrapBut.transform.Find("Text").GetComponent<Text>().text = "My cost"; });         //Add listener to call function/ do something(changes text)
             buttonEV.triggers.Add(mouseEnter);                                                                                              //Add to Event Trigger
 
@@ -63,7 +64,7 @@ public class TrapSystem : MonoBehaviour {
             buttonEV.triggers.Add(mouseClick);                                                                                              //Add to Event Trigger
 
             EventTrigger.Entry mouseExit = new EventTrigger.Entry();                                                                        //Create trigger
-            mouseExit.eventID = EventTriggerType.PointerExit;                                                                               //Define trigger type   (Pointer Exit)
+            mouseExit.eventID = EventTriggerType.PointerUp;                                                                                 //Define trigger type   (Pointer up)
             mouseExit.callback.AddListener((data) => { newTrapBut.transform.Find("Text").GetComponent<Text>().text = theTrap.getName(); }); //Add listener to call function/ do something(changes text)
             buttonEV.triggers.Add(mouseExit);                                                                                               //Add to Event Trigger
 
@@ -72,41 +73,31 @@ public class TrapSystem : MonoBehaviour {
             displacement.x += newTrapBut.GetComponent<RectTransform>().rect.width;                                                          //Increment displacement every iteration
         }
         Button close = trapSelectionPanel.transform.Find("CloseButton").gameObject.GetComponent<Button>();
-        EventTrigger closeEV = close.gameObject.AddComponent<EventTrigger>();                                                              //Add EvenTrigger component
+        EventTrigger closeEV = close.gameObject.AddComponent<EventTrigger>();                                                               //Add EvenTrigger component
         EventTrigger.Entry closeClick = new EventTrigger.Entry();                                                                           //Create trigger
         closeClick.eventID = EventTriggerType.PointerClick;                                                                                 //Define trigger type   (Pointer click)
-        closeClick.callback.AddListener((data) => { resetVariables(); });                                                 //Add listener to call function/ do something(changes text)
-        closeEV.triggers.Add(closeClick);                                                                                                  //Add to Event Trigger
-
-        //if (trapPrefab.Length > 0)
-        //{
-        //    GameObject newTrap = Instantiate(trapPrefab[0]);
-        //    newTrap.transform.position = theGridSystem.grid[1].transform.position;
-        //    newTrap.transform.SetParent(GameObject.Find("GameCanvas").transform);
-        //    myTraps.Add(newTrap);
-        //}
+        closeClick.callback.AddListener((data) => { resetVariables(); });                                                                   //Add listener to call function/ do something(changes text)
+        closeEV.triggers.Add(closeClick);                                                                                                   //Add to Event Trigger
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if(myTraps.Count==1)
-        //{
-        //    if (!myTraps[0].GetComponent<Trap>().isactive)
-        //        myTraps.Clear();
-        //}
-        //else
-        //{
-        //    myTraps.Sort(new SortTrapActiveFirst());
-        //    myTraps.
-        //}
         switch (myState)
         {
             case executionState.GRID_CHOOSING:
-                if (Input.GetMouseButtonDown(0))
+                Vector3 pos = new Vector3(0, 0, 0);
+                if (Input.GetMouseButtonDown(0) )                           //if mouse input
                 {
+                    pos = Input.mousePosition;
+                }
+                    if( Input.touchCount>0)                                 //if phone input
+                {
+                    pos = Input.GetTouch(0).position;
+                }
+                if(pos != new Vector3(0,0,0)){
                     //Instantiate(trapPrefab[0]);
-                    trapPos = CheckClickedPosition(Input.mousePosition);    //Get position for trap to be placed
+                    trapPos = CheckClickedPosition(pos);                    //Get position for trap to be placed
                     if (trapPos != new Vector3(0, 0, 0))                    //If trap position is (0,0,0), do nothing
                     {
                         myState = executionState.TRAP_CHOOSING;             //Change state
@@ -115,18 +106,18 @@ public class TrapSystem : MonoBehaviour {
                 }
                 break;
             case executionState.TRAP_CHOOSING:
-                if (trapToBePlaced)
+                if (trapToBePlaced)                                         //if trapToBePlaced is assigned
                 {
-                    GameObject trap = Instantiate(trapToBePlaced);
-                    trap.transform.position = trapPos;
-                    trap.transform.SetParent(gameCanvas.transform);
-                    trap.GetComponent<Trap>().team = 1;
-                    myTraps.Add(trap);
-                    resetVariables();
+                    GameObject trap = Instantiate(trapToBePlaced);          //Creates trap 
+                    trap.transform.position = trapPos;                      //sets trap pos to grid pos(where the player clicked)
+                    //trap.transform.SetParent(gameCanvas.transform);         
+                    trap.GetComponent<Trap>().team = 1;                     //Set which team the trap belongs to to prevent own troop activating it
+                    myTraps.Add(trap);                                      //Add to list of existing traps
+                    trap.transform.SetParent(this.gameObject.transform);    //Parent to this.gameobject, so there will be no overlay issue
+                    resetVariables();                                       //Reset variable to prepare for next trap placement
                 }
                 break;
         }
-        //cleanUpTraps();
     }
 
     Vector3 CheckClickedPosition(Vector3 _mousePos)
@@ -162,17 +153,17 @@ public class TrapSystem : MonoBehaviour {
     {
         if (myTraps.Count == 0)
             return;
-        myTraps.Sort(new SortTrapNotActiveFirst());
-        while(!myTraps[0].GetComponent<Trap>().isactive)
+        myTraps.Sort(new SortTrapNotActiveFirst());             //sorts not active trap first
+        while(!myTraps[0].GetComponent<Trap>().isactive)        //while the first element is not active
         {
-            if(myTraps.Count ==1)
+            if(myTraps.Count ==1)                               //if only 1 trap in list
             {
                 Destroy(myTraps[0]);
                 myTraps.Clear();
                 break;
             }
-            Destroy(myTraps[0]);
-            myTraps.RemoveAt(0);
+            Destroy(myTraps[0]);                                //Destroys first trap
+            myTraps.RemoveAt(0);                                //Removes the first element
         }
     }
     private class SortTrapNotActiveFirst : IComparer<GameObject>
