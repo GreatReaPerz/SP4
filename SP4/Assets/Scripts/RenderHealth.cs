@@ -22,8 +22,7 @@ public class RenderHealth : MonoBehaviour {
     {
         playerHealth = playerObj.GetComponent<HealthSystem>();
         theCanvas = GameObject.Find("GameCanvas");
-        healthobjCopy = healthTexture;
-        healthobjCopy.GetComponent<Image>().rectTransform.sizeDelta = new Vector2(healthobjCopy.GetComponent<Image>().rectTransform.rect.width * theCanvas.transform.localScale.x, healthobjCopy.GetComponent<Image>().rectTransform.rect.height * theCanvas.transform.localScale.y);
+        //healthTexture.GetComponent<Image>().rectTransform.sizeDelta = new Vector2(healthTexture.GetComponent<Image>().rectTransform.rect.width * theCanvas.transform.localScale.x, healthTexture.GetComponent<Image>().rectTransform.rect.height * theCanvas.transform.localScale.y);
         for (int i = 0; i < playerHealth.getMaxHealth(); ++i)
         {
             createHealthobj(i);
@@ -70,11 +69,14 @@ public class RenderHealth : MonoBehaviour {
 
     void createHealthobj(int i)
     {
-        GameObject healthobj = Instantiate(healthobjCopy, new Vector3(0, 0, 0), Quaternion.identity);     //Instantiating new object
+        healthobjCopy = healthTexture;
+        healthTexture.GetComponent<Image>().rectTransform.sizeDelta = new Vector2(healthTexture.GetComponent<Image>().rectTransform.rect.width * theCanvas.transform.localScale.x, healthTexture.GetComponent<Image>().rectTransform.rect.height * theCanvas.transform.localScale.y);
+        GameObject healthobj = Instantiate(healthTexture, new Vector3(0, 0, 0), Quaternion.identity);     //Instantiating new object
         healthobj.transform.localScale = new Vector3(healthobj.transform.localScale.x / playerHealth.getMaxHealth(), healthobj.transform.localScale.y, healthobj.transform.localScale.z);   //calculate new scale to always fit default size
         Vector3 position = new Vector3(theParent.transform.position.x + ((i * healthobj.transform.localScale.x) * theCanvas.transform.localScale.x), theParent.transform.position.y, theParent.transform.position.z);              //calculate new position
         healthobj.transform.SetParent(theParent.transform);                                             //Set parent
         healthobj.transform.position = position;                                                        //Displacment
         healthobj.name = playerObj.transform.name + "health " + i;                                      //give each object unique names
+        healthTexture = healthobjCopy;
     }
 }
