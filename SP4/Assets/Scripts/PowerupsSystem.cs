@@ -208,7 +208,9 @@ public class PowerUp
         }
 
         PowerUpTexture.enabled = true;
-        PowerUpTexture.rectTransform.sizeDelta = new Vector2(GridSystem.tileWidth * GameObject.FindGameObjectWithTag("Canvas").transform.localScale.x, GridSystem.tileHeight * GameObject.FindGameObjectWithTag("Canvas").transform.localScale.y);
+
+        Vector2 canvasLocalScale = GameObject.FindGameObjectWithTag("Canvas").transform.localScale;
+        PowerUpTexture.rectTransform.sizeDelta = new Vector2(GridSystem.tileWidth * canvasLocalScale.x, GridSystem.tileHeight * canvasLocalScale.y);
     }
 
     public void ChangePosition(Vector2 NewPosition)
