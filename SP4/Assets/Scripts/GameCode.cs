@@ -60,7 +60,7 @@ public class GameCode : MonoBehaviour {
         destroyed = false;
         state = (int)GameState.PLANNING;
         TerrainName = Terrain.GetComponent<MainGame>().NeutralZoneTerrainType;
-        effect = 0;
+        //effect = 0;
     }
 
     // Update is called once per frame
@@ -72,7 +72,7 @@ public class GameCode : MonoBehaviour {
             //{
             //    ready = true;
             //}
-            effect = Random.Range(0, 5);
+            //effect = 1;// Random.Range(0, 0);
             switch (effect)
             {
                 case 0:
@@ -120,6 +120,9 @@ public class GameCode : MonoBehaviour {
                         troop = newObj.GetComponent<TroopAI>();
                         troop.team = 1;
                         troop.terrainName = TerrainName;
+                        if(troop.type == "Bowmen")               
+                            troop.gameObject.AddComponent<Projectile>();
+                        
                         float dist = 0;
                         for (uint j = 0; j < enemyGridSystem.GridSize; ++j)
                         {
@@ -163,6 +166,9 @@ public class GameCode : MonoBehaviour {
                         troop = newObj1.GetComponent<TroopAI>();
                         troop.team = 1;
                         troop.terrainName = TerrainName;
+                        if (troop.type == "Bowmen")
+                            troop.gameObject.AddComponent<Projectile>();
+
                         dist = 0;
                         for (uint j = 0; j < enemyGridSystem.GridSize; ++j)
                         {
@@ -205,6 +211,9 @@ public class GameCode : MonoBehaviour {
                         troop = newObj2.GetComponent<TroopAI>();
                         troop.team = 1;
                         troop.terrainName = TerrainName;
+                        if (troop.type == "Bowmen")
+                            troop.gameObject.AddComponent<Projectile>();
+
                         dist = 0;
                         for (uint j = 0; j < enemyGridSystem.GridSize; ++j)
                         {
@@ -247,6 +256,9 @@ public class GameCode : MonoBehaviour {
                         troop = newObj3.GetComponent<TroopAI>();
                         troop.team = 1;
                         troop.terrainName = TerrainName;
+                        if (troop.type == "Bowmen")
+                            troop.gameObject.AddComponent<Projectile>();
+
                         dist = 0;
                         for (uint j = 0; j < enemyGridSystem.GridSize; ++j)
                         {
@@ -294,6 +306,9 @@ public class GameCode : MonoBehaviour {
                         troop = newObj.GetComponent<TroopAI>();
                         troop.team = -1;
                         troop.terrainName = TerrainName;
+                        if (troop.type == "Bowmen")
+                            troop.gameObject.AddComponent<Projectile>();
+
                         float dist = 0;
                         for (uint j = 0; j < theGridSystem.GridSize; ++j)
                         {
@@ -336,6 +351,9 @@ public class GameCode : MonoBehaviour {
                         troop = newObj1.GetComponent<TroopAI>();
                         troop.team = -1;
                         troop.terrainName = TerrainName;
+                        if (troop.type == "Bowmen")
+                            troop.gameObject.AddComponent<Projectile>();
+
                         dist = 0;
                         for (uint j = 0; j < theGridSystem.GridSize; ++j)
                         {
@@ -378,6 +396,9 @@ public class GameCode : MonoBehaviour {
                         troop = newObj2.GetComponent<TroopAI>();
                         troop.team = -1;
                         troop.terrainName = TerrainName;
+                        if (troop.type == "Bowmen")
+                            troop.gameObject.AddComponent<Projectile>();
+
                         dist = 0;
                         for (uint j = 0; j < theGridSystem.GridSize; ++j)
                         {
@@ -420,6 +441,9 @@ public class GameCode : MonoBehaviour {
                         troop = newObj3.GetComponent<TroopAI>();
                         troop.team = -1;
                         troop.terrainName = TerrainName;
+                        if (troop.type == "Bowmen")
+                            troop.gameObject.AddComponent<Projectile>();
+
                         dist = 0;
                         for (uint j = 0; j < theGridSystem.GridSize; ++j)
                         {
@@ -655,7 +679,6 @@ public class GameCode : MonoBehaviour {
                                     }
                                 }
                             }
-                            Debug.Log("chkec2k");
                             if (troop.type == "Bowmen")
                             {
                                 if(melee)
@@ -677,7 +700,6 @@ public class GameCode : MonoBehaviour {
                             {
                                 troop.attackWidth = 50;
                                 troop.attackHeight = troop.range;
-                                Debug.Log("chkeck1");
                             }
                             else if(side == 2)
                             {

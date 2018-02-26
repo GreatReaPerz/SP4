@@ -6,6 +6,10 @@ public class TroopAI : MonoBehaviour {
 
     [SerializeField]
     Animator PauseAnimator;
+
+    [SerializeField]
+    GameObject projectileOBJ;
+
     enum States
     {
         CHARGE,
@@ -27,6 +31,7 @@ public class TroopAI : MonoBehaviour {
     public int state;
     //public float prevhealth;
     public bool activ;
+    public bool fireProj= false;
     public float aggrotimer;
     public float attacktimer;
     public float attackWidth;
@@ -37,6 +42,8 @@ public class TroopAI : MonoBehaviour {
     public Vector3 targetPos;
     GameObject nearest;
     private TroopAI nearestAI = null;
+
+    private Projectile theProjectile = null;
 
     private PowerupsSystem thePowerupsSystem = null;
 
@@ -140,9 +147,11 @@ public class TroopAI : MonoBehaviour {
         {
            // Debug.Log("Bowmen");
             health.InitHealth(PlayerPrefs.GetFloat("bowmenHP"));
+            Debug.Log(health.getHealth());
             attckDmg = PlayerPrefs.GetFloat("bowmenAtt", attckDmg);
             attckSpd = PlayerPrefs.GetFloat("bowmenAttSpd");
             speed = PlayerPrefs.GetFloat("bowmenSpd");
+            theProjectile = GetComponent<Projectile>();
             range = 300;
             vision = 300;
             Debug.Log(attckDmg);
@@ -351,7 +360,10 @@ public class TroopAI : MonoBehaviour {
                                 attacktimer = 0;
                                 if (_class == nearestAI._class)
                                 {
-                                    nearestAI.health.addHealth(-attckDmg);
+                                if (!fireProj && _class == 2)                                
+                                    theProjectile.CreateProjectile(projectileOBJ,this, nearestAI, attckDmg);                              
+                                else
+                                    nearestAI.health.addHealth(-attckDmg );
                                 }
                                 if (_class == 1 && nearestAI._class == 3)
                                 {
@@ -363,10 +375,16 @@ public class TroopAI : MonoBehaviour {
                                 }
                                 if (_class == 2 && nearestAI._class == 1)
                                 {
+                                if (!fireProj)
+                                    theProjectile.CreateProjectile(projectileOBJ, this, nearestAI, attckDmg + 10);
+                                else
                                     nearestAI.health.addHealth(-attckDmg * 5);
                                 }
                                 if (_class == 2 && nearestAI._class == 3)
                                 {
+                                if (!fireProj)
+                                    theProjectile.CreateProjectile(projectileOBJ, this, nearestAI, attckDmg);
+                                else
                                     nearestAI.health.addHealth(-attckDmg);
                                 }
                                 if (_class == 3 && nearestAI._class == 1)

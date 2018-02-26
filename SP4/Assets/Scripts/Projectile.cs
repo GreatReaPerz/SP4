@@ -8,9 +8,6 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     float moveSpeed = 0;
 
-    [SerializeField]
-    GameObject projectileObject;
-
     private GameObject theProjectile;
     private TroopAI enemy;
     private TroopAI thisArcher;
@@ -19,7 +16,6 @@ public class Projectile : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Debug.Log(projectileObject.name);
     }
 
     // Update is called once per frame
@@ -28,38 +24,44 @@ public class Projectile : MonoBehaviour
 
         if (theProjectile != null)
         {
-            Debug.Log("Update 1");
             if (thisArcher.health.getHealth() <= 0)
             {
                 Destroy(theProjectile);
+                thisArcher.fireProj = false;
+                return;
+            }
+            else if(enemy.health.getHealth() <= 0)
+            {
+                Destroy(theProjectile);
+                thisArcher.fireProj = false;
                 return;
             }
             if (Collided(theProjectile, enemy))
             {
                 Destroy(theProjectile);
-                enemy.health.addHealth(projDmg);
-                //thisArcher.fireProj = false;
+                enemy.health.addHealth(-projDmg);
+                thisArcher.fireProj = false;
                 return;
             }
             theProjectile.transform.position += dir * Time.deltaTime * 300;
         }
     }
 
-    public void CreateProjectile(TroopAI theArcher, TroopAI theEnemy,float damage)
+    public void CreateProjectile(GameObject ProjectileOBJ ,TroopAI theArcher, TroopAI theEnemy,float damage)
     {
-        Debug.Log("Create");
-        theProjectile = new GameObject();
+        //Debug.Log("Spawn");
+        //theProjectile = new GameObject();
         enemy = theEnemy;
         thisArcher = theArcher;
         //theArcher.fireProj = true;
         projDmg = damage;
         dir = (theEnemy.transform.position - theArcher.transform.position).normalized;
-        Debug.Log(dir);
         Vector3 offset = new Vector3(0, theArcher.range / 4, 0);
-        if (dir.y == -1)
-            theProjectile = Instantiate(projectileObject, theArcher.transform.position - offset, theArcher.transform.rotation);
-        else
-            theProjectile = Instantiate(projectileObject, theArcher.transform.position + offset, theArcher.transform.rotation);
+        Debug.Log(dir.y);
+        if (dir.y < 0)
+            theProjectile = Instantiate(ProjectileOBJ, theArcher.transform.position - offset, theArcher.transform.rotation);
+         else
+            theProjectile = Instantiate(ProjectileOBJ, theArcher.transform.position + offset, theArcher.transform.rotation);
 
         theProjectile.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, true);
         //Instantiate(projectile, position, rotation);

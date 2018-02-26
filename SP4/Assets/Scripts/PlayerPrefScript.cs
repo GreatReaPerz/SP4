@@ -15,23 +15,23 @@ public class PlayerPrefScript : MonoBehaviour {
 
     private float calvaryHP = 40;
 
-    private float calvaryAttSpd = 0.2f;
+    private float calvaryAttSpd = 1;//0.2f;
 
     private float calvarySpd = 175 * 0.016f;
 
     private float infantryAtt = 20;
 
-    private float infantryHP = 50;
+    private float infantryHP = 35;//50;
 
-    private float infantryAttSpd = 0.1f;
+    private float infantryAttSpd = 1;//0.1f;
 
     private float infantrySpd = 150 * 0.016f;
 
-    private float bowmenAtt = 2;
+    private float bowmenAtt = 10;
 
     private float bowmenHP = 30;
 
-    private float bowmenAttSpd = 0.2f;
+    private float bowmenAttSpd = 1;//0.5f;
 
     private float bowmenSpd = 150 * 0.016f;
 
