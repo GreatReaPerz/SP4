@@ -4452,7 +4452,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &740747258
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5902,7 +5902,7 @@ MonoBehaviour:
   m_ScaleFactor: 0.99
   m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -8927,48 +8927,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thisCanvas: {fileID: 961660700}
   GridTileTexture: {fileID: 21300000, guid: 510741c1e8710c1428cba48f72f5fa03, type: 3}
-  SampleImage: {fileID: 740747259}
+  SampleImage: {fileID: 1949675444}
   NeutralGrid:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
+  - {fileID: 2077563799}
 --- !u!1 &1488964264
 GameObject:
   m_ObjectHideFlags: 0

@@ -77,8 +77,6 @@ public class PowerupsSystem : MonoBehaviour
             PlayerGridPowerups[(int)i].PowerUpTexture.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, true);
             //Change the position of powerup
             PlayerGridPowerups[(int)i].ChangePosition();
-
-            
         }
 
         //Enemy Grid
@@ -210,7 +208,7 @@ public class PowerUp
         }
 
         PowerUpTexture.enabled = true;
-
+        PowerUpTexture.rectTransform.sizeDelta = new Vector2(GridSystem.tileWidth * GameObject.FindGameObjectWithTag("Canvas").transform.localScale.x, GridSystem.tileHeight * GameObject.FindGameObjectWithTag("Canvas").transform.localScale.y);
     }
 
     public void ChangePosition(Vector2 NewPosition)
