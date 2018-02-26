@@ -41,6 +41,9 @@ public class MainGame : MonoBehaviour {
 
         NeutralZone.transform.position = objectRectTransform.transform.position;
         NeutralZone.rectTransform.sizeDelta = new Vector2((objectRectTransform.rect.width * 0.92f) * canvasLocalScale.x, (objectRectTransform.rect.height * 0.25f) * canvasLocalScale.y);
+        GameObject healthTexture = Resources.Load("Health") as GameObject;
+
+        healthTexture.GetComponent<Image>().rectTransform.sizeDelta = new Vector2(healthTexture.GetComponent<Image>().rectTransform.rect.width * canvasLocalScale.x, healthTexture.GetComponent<Image>().rectTransform.rect.height * canvasLocalScale.y);
 
         float ranNum = Random.Range(0.0f, 4.0f);
 
