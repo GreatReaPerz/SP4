@@ -172,7 +172,7 @@ MonoBehaviour:
   UIPanelAnimator: {fileID: 2118894230}
   player1: 0
   player2: 0
-  effect: 1
+  effect: 0
   info: 
   ready: 0
   melee: 0
@@ -221,8 +221,8 @@ MonoBehaviour:
   SpawnInfantry: 0
   SpawnBowmen: 0
   SpawnCavalry: 0
-  SpawnCountPlayer: 0
-  SpawnCountEnemy: 0
+  SpawnCountPlayer: 3
+  SpawnCountEnemy: 3
 --- !u!114 &7053129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -951,6 +951,7 @@ MonoBehaviour:
   RiverSprite: {fileID: 21300000, guid: 5020ed49a29e4d746a2a4a82d68d6d36, type: 3}
   PlainsSprite: {fileID: 21300000, guid: fb52246fbe8c186488ac3929046b8280, type: 3}
   NeutralZone: {fileID: 304806267}
+  healthTexture: {fileID: 0}
   NeutralZoneTerrainType: 
 --- !u!224 &178512023
 RectTransform:
@@ -4164,7 +4165,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &731350749
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5479,7 +5480,7 @@ MonoBehaviour:
   attackHeight: 0
   terrainName: 
   originPos: {x: 0, y: 0, z: 0}
-  targetPos: {x: -10000, y: 0, z: 0}
+  targetPos: {x: 0, y: 0, z: 0}
 --- !u!114 &980477109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7281,7 +7282,7 @@ MonoBehaviour:
   attackHeight: 0
   terrainName: 
   originPos: {x: 0, y: 0, z: 0}
-  targetPos: {x: -1000, y: 0, z: 0}
+  targetPos: {x: 0, y: 0, z: 0}
 --- !u!114 &1370232442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10976,7 +10977,7 @@ MonoBehaviour:
   attackHeight: 0
   terrainName: 
   originPos: {x: 0, y: 0, z: 0}
-  targetPos: {x: -1000, y: 0, z: 0}
+  targetPos: {x: 0, y: 0, z: 0}
 --- !u!114 &2092787663
 MonoBehaviour:
   m_ObjectHideFlags: 0

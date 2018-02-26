@@ -26,18 +26,23 @@ public class Projectile : MonoBehaviour
         {
             if (thisArcher.health.getHealth() <= 0)
             {
+                Debug.Log("HERE");
                 Destroy(theProjectile);
                 thisArcher.fireProj = false;
                 return;
             }
             else if(enemy.health.getHealth() <= 0)
             {
+                Debug.Log("HERE2");
                 Destroy(theProjectile);
                 thisArcher.fireProj = false;
                 return;
             }
+            Debug.Log("Projectile " + theProjectile.transform.position);
+            Debug.Log("Enemy " + enemy.transform.position);
             if (Collided(theProjectile, enemy))
             {
+                Debug.Log("Collide");
                 Destroy(theProjectile);
                 enemy.health.addHealth(-projDmg);
                 thisArcher.fireProj = false;
@@ -47,27 +52,21 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    public void CreateProjectile(GameObject ProjectileOBJ ,TroopAI theArcher, TroopAI theEnemy,float damage)
+    public void CreateProjectile(GameObject ProjectileOBJ, TroopAI theArcher, TroopAI theEnemy, float damage)
     {
-        //Debug.Log("Spawn");
-        //theProjectile = new GameObject();
         enemy = theEnemy;
         thisArcher = theArcher;
-        //theArcher.fireProj = true;
+        thisArcher.fireProj = true;
         projDmg = damage;
         dir = (theEnemy.transform.position - theArcher.transform.position).normalized;
         Vector3 offset = new Vector3(0, theArcher.range / 4, 0);
-        Debug.Log(dir.y);
         if (dir.y < 0)
             theProjectile = Instantiate(ProjectileOBJ, theArcher.transform.position - offset, theArcher.transform.rotation);
-         else
+        else
             theProjectile = Instantiate(ProjectileOBJ, theArcher.transform.position + offset, theArcher.transform.rotation);
 
         theProjectile.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, true);
-        //Instantiate(projectile, position, rotation);
-        //transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform.transform);
     }
-
     bool Collided(GameObject projectile, TroopAI theEnemy)
     {
         if (projectile.transform.position.x < theEnemy.transform.position.x + (99 * 0.5f)

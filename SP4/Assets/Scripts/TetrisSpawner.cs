@@ -160,7 +160,7 @@ public class TetrisSpawner : MonoBehaviour
                     else if (SpawnBowmen)
                     {
                         int rand = Random.Range(0, TetrisTypes.Length);  //Rand Piece
-                        enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 1, 2, TetrisTypes[rand]);
+                        enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 1, 2, TetrisTypes[rand]);                        
                     }
                 }
 

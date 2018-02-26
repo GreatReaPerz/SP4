@@ -76,7 +76,6 @@ public class TroopAI : MonoBehaviour {
             range = 100;
             state = (int)States.CHARGE;
             //prevhealth = health;
-           Debug.Log(attckDmg);
             activ = true;
             _class = 3;
             if (terrainName == "Hills")
@@ -111,7 +110,6 @@ public class TroopAI : MonoBehaviour {
             attckDmg = PlayerPrefs.GetFloat("infantryAtt", attckDmg);
             attckSpd = PlayerPrefs.GetFloat("infantryAttSpd");
             speed = PlayerPrefs.GetFloat("infantrySpd");
-            Debug.Log(attckDmg);
             range = 100;
             vision = 100;
             state = (int)States.CHARGE;
@@ -147,14 +145,12 @@ public class TroopAI : MonoBehaviour {
         {
            // Debug.Log("Bowmen");
             health.InitHealth(PlayerPrefs.GetFloat("bowmenHP"));
-            Debug.Log(health.getHealth());
             attckDmg = PlayerPrefs.GetFloat("bowmenAtt", attckDmg);
             attckSpd = PlayerPrefs.GetFloat("bowmenAttSpd");
             speed = PlayerPrefs.GetFloat("bowmenSpd");
             theProjectile = GetComponent<Projectile>();
             range = 300;
             vision = 300;
-            Debug.Log(attckDmg);
             state = (int)States.CHARGE;
             //prevhealth = health;
             activ = true;
@@ -201,6 +197,7 @@ public class TroopAI : MonoBehaviour {
             {
                 if (state == (int)States.CHARGE)
                 {
+               
                     Vector3 hello = targetPos - transform.position;
                     //hello.x = 0;
                     //hello.y = team;
@@ -362,7 +359,7 @@ public class TroopAI : MonoBehaviour {
                                 {
                                 if (!fireProj && _class == 2)                                
                                     theProjectile.CreateProjectile(projectileOBJ,this, nearestAI, attckDmg);                              
-                                else
+                                else if(_class != 2)
                                     nearestAI.health.addHealth(-attckDmg );
                                 }
                                 if (_class == 1 && nearestAI._class == 3)
