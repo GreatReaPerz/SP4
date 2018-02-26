@@ -42,7 +42,15 @@ public class MainGame : MonoBehaviour {
         Vector2 canvasLocalScale = GameObject.FindGameObjectWithTag("Canvas").transform.localScale;
 
         NeutralZone.transform.position = objectRectTransform.transform.position;
-        NeutralZone.rectTransform.sizeDelta = new Vector2((objectRectTransform.rect.width * 0.92f) * canvasLocalScale.x, (objectRectTransform.rect.height * 0.25f) * canvasLocalScale.y);
+        if (Application.platform == RuntimePlatform.WindowsPlayer)
+        {
+            //If the platform is Windows
+            NeutralZone.rectTransform.sizeDelta = new Vector2((objectRectTransform.rect.width * 0.62f) * canvasLocalScale.x, (objectRectTransform.rect.height * canvasLocalScale.y) * 0.54f);
+        }
+        else if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.WindowsEditor)
+        {
+            NeutralZone.rectTransform.sizeDelta = new Vector2((objectRectTransform.rect.width * 0.92f) * canvasLocalScale.x, (objectRectTransform.rect.height * canvasLocalScale.y) * 0.25f);
+        }
         //GameObject healthTexture = Resources.Load("prefabs/Health") as GameObject;
 
         healthTexture.GetComponent<Image>().rectTransform.sizeDelta = new Vector2(healthTexture.GetComponent<Image>().rectTransform.rect.width * canvasLocalScale.x, healthTexture.GetComponent<Image>().rectTransform.rect.height * canvasLocalScale.y);
