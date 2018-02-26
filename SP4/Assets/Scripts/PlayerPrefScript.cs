@@ -9,7 +9,7 @@ public class PlayerPrefScript : MonoBehaviour {
 
     private int gold = 0;
 
-    private float volume = 10.0f;
+    private float volume = 0.0f;
 
     private float calvaryAtt = 15;
 

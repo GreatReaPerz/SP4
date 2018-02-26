@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class DialogBox : MonoBehaviour {
 
@@ -23,6 +24,8 @@ public class DialogBox : MonoBehaviour {
     /*****Useful holders***/
     Image myImageElement;
     Text  myTextElement;
+    Image RightButton;
+    Image LeftButton;
     /**********************/
 
     // Use this for initialization
@@ -32,6 +35,21 @@ public class DialogBox : MonoBehaviour {
         //myImageElement.sprite = Background;
         myImageElement = this.gameObject.transform.Find("Image").GetComponent<Image>(); //Getting component for usage
         myTextElement = this.gameObject.transform.Find("Text").GetComponent<Text>();    //Getting component for usage
+
+        RightButton = this.gameObject.transform.Find("Right").GetComponent<Image>();
+        EventTrigger RbuttonEV = RightButton.gameObject.AddComponent<EventTrigger>();
+        EventTrigger.Entry RmouseClick = new EventTrigger.Entry();                       //Create trigger
+        RmouseClick.eventID = EventTriggerType.PointerClick;                             //Define trigger type   (Pointer click)
+        RmouseClick.callback.AddListener((data) => { rbuttonStuff(); });                   //Add listener to call function/ do something(changes text)
+        RbuttonEV.triggers.Add(RmouseClick);                                             //Add to Event Trigger
+
+        LeftButton = this.gameObject.transform.Find("Left").GetComponent<Image>();
+        EventTrigger LbuttonEV = LeftButton.gameObject.AddComponent<EventTrigger>();
+        EventTrigger.Entry LmouseClick = new EventTrigger.Entry();                       //Create trigger
+        LmouseClick.eventID = EventTriggerType.PointerClick;                             //Define trigger type   (Pointer click)
+        LmouseClick.callback.AddListener((data) => { lbuttonStuff(); });                   //Add listener to call function/ do something(changes text)
+        LbuttonEV.triggers.Add(LmouseClick);                                             //Add to Event Trigger
+
         ChangeDialog();                                                                 //Calls the function for the first time, to assign the first dialog
     }
 	
@@ -41,11 +59,11 @@ public class DialogBox : MonoBehaviour {
         {
             this.gameObject.SetActive(false);   //Sets the Dialog box GameObject to false (hides from the player's view)
         }
-		else if(Input.GetMouseButtonUp(0))      //Gets input
-        {
-            ++currDialog;                       //Increment currDialog
-            ChangeDialog();                     //Calls function to do the necessary
-        }
+		//else if(Input.GetMouseButtonUp(0))      //Gets input
+  //      {
+  //          ++currDialog;                       //Increment currDialog
+  //          ChangeDialog();                     //Calls function to do the necessary
+  //      }
 
 	}
     void ChangeDialog()
@@ -72,6 +90,21 @@ public class DialogBox : MonoBehaviour {
             myImageElement.gameObject.SetActive(false);                                                                                     //Set Image to not active so there will not be white patch
         }
         myTextElement.text = dialogs[currDialog].text;                                                                                      //Set the text of the Text element to the provided string of words
+        if(currDialog==0)
+        {
+            LeftButton.gameObject.SetActive(false);
+            RightButton.gameObject.SetActive(true);
+        }
+        else if(currDialog == dialogs.Count)
+        {
+            LeftButton.gameObject.SetActive(true);
+            RightButton.gameObject.SetActive(false);
+        }
+        else
+        {
+            LeftButton.gameObject.SetActive(true);
+            RightButton.gameObject.SetActive(true);
+        }
     }
     //Function to allow adding of dialog to existing dialogs externally
     public void addDialog(string textForDialog, Sprite relevantImage = null)
@@ -82,5 +115,16 @@ public class DialogBox : MonoBehaviour {
             this.gameObject.SetActive(true);                                                //Set DialogBox to active
             ChangeDialog();                                                                 //Set-up the information so DialogBox will display appropriate informations
         }
+    }
+
+    void rbuttonStuff()
+    {
+        ++currDialog;
+        ChangeDialog();
+    }
+    void lbuttonStuff()
+    {
+        --currDialog;
+        ChangeDialog();
     }
 }

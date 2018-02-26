@@ -117,7 +117,6 @@ public class TetrisSpawner : MonoBehaviour
             }
             if (SpawnForEnemy)
             {
-                Debug.Log("SPAWN");
                 for (int count = 0; count < SpawnCountEnemy; ++count)
                 {
                     if (SpawnCavalry && SpawnInfantry)
