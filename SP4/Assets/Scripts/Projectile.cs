@@ -38,7 +38,7 @@ public class Projectile : MonoBehaviour
             {
                 Destroy(theProjectile);
                 enemy.health.addHealth(projDmg);
-                thisArcher.fireProj = false;
+                //thisArcher.fireProj = false;
                 return;
             }
             theProjectile.transform.position += dir * Time.deltaTime * 300;
@@ -51,7 +51,7 @@ public class Projectile : MonoBehaviour
         theProjectile = new GameObject();
         enemy = theEnemy;
         thisArcher = theArcher;
-        theArcher.fireProj = true;
+        //theArcher.fireProj = true;
         projDmg = damage;
         dir = (theEnemy.transform.position - theArcher.transform.position).normalized;
         Debug.Log(dir);
