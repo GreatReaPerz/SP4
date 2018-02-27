@@ -18,6 +18,8 @@ public class GameCode : MonoBehaviour {
     GameObject Player2;
     [SerializeField]
     Animator UIPanelAnimator;
+    [SerializeField]
+    Sprite PaperBG;
     enum GameState
     {
         PLANNING,
@@ -816,16 +818,69 @@ public class GameCode : MonoBehaviour {
     {
         if (P1Health.getHealth() > 0 && P2Health.getHealth() > 0)
             return false;
-        if(!Gameover)
+        if (!Gameover)
         {
-            Image background = Ui.gameObject.AddComponent<Image>();
-            Image resource1 = Resources.Load("Arts/Game UI/Paper") as Image;
-            background.sprite = resource1.sprite;
-            background.transform.position = Ui.transform.position;
-            background.transform.localScale = new Vector2(Ui.gameObject.transform.localScale.x, Ui.gameObject.transform.localScale.x);
+            Image background = new GameObject().AddComponent<Image>();                                                                                  //Create empty Go with Image element
+            background.gameObject.transform.SetParent(Ui.gameObject.transform);                                                                         //Parent to UI canvas
+            background.transform.name = "Win/Lose";                                                                                                     //Give it a name
+            background.sprite = PaperBG;                                                                                                                //Assign background image
+            background.transform.position = Ui.transform.position;                                                                                      //Centralise image
+            background.transform.localScale = new Vector2(Ui.gameObject.transform.localScale.x, Ui.gameObject.transform.localScale.x);                  //
+            background.rectTransform.sizeDelta = new Vector2(Ui.GetComponent<RectTransform>().rect.width, Ui.GetComponent<RectTransform>().rect.width); //Scale by canvas width
 
-            Gameover = true;
+            //Text text = new GameObject().AddComponent<Text>();                                                                                      //Create rmpty Go wtith Text component
+            //text.transform.SetParent(background.gameObject.transform);                                                                              //Parent to background
+            //text.transform.position = background.gameObject.transform.position + new Vector3(0, 360, 0);                                            //Reposition text placement
+            //text.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;                                                            //Set font
+            //text.rectTransform.localScale = Ui.gameObject.transform.localScale;                                                                     //
+            //text.resizeTextForBestFit = true;                                                                                                       //Allow text to resize to fit to rectTranform scaling
+            Text text = CreateText(background.gameObject, new Vector3(0, 360, 0));                                                                                          //Create text object
+            text.resizeTextForBestFit = true;
+            text.resizeTextMaxSize = 150;                                                                                                           //Set maximum size of text
+            text.rectTransform.sizeDelta = new Vector2(0.7f * background.rectTransform.sizeDelta.x, 0.2f * background.rectTransform.sizeDelta.y);   //Scale based on background width
+            if (P1Health.getHealth() <= 0)                                                                                                          //Choose to set text to lose or win
+            {
+                text.text = "You Lose";
+            }
+            else if (P2Health.getHealth() <= 0)
+            {
+                text.text = "You Win";
+            }
+            text.transform.name = "Outcome";
+
+            Text currGoldText = CreateText(background.gameObject, new Vector3(0, 200, 0));                                                      //Create text object
+            currGoldText.rectTransform.sizeDelta = new Vector2(text.rectTransform.sizeDelta.x, 0.5f * text.rectTransform.sizeDelta.y);          //Size from 'text' object
+            currGoldText.fontSize = 50;                                                                                                         //Set text size to 50
+            currGoldText.text = "Your current Gold balance: " + Player1.GetComponent<GoldSystem>().getGold();                                   //Set text to display
+            currGoldText.transform.name = "CurrentBalance";                                                                                     //Give the gameObject a unique name
+
+            Text Earnings = CreateText(background.gameObject, new Vector3(0, 100, 0));                                                          //Create text object
+            Earnings.rectTransform.sizeDelta = currGoldText.rectTransform.sizeDelta;                                                            //Size base on currGoldText
+            Earnings.fontSize = 50;                                                                                                             //Set text size to 50
+            Earnings.text = "Gold earned in this game: " + Player1.GetComponent<InGameCash>().getAmount();                                      //Set text to display
+            Earnings.transform.name = "Earnings";                                                                                               //Give the gameObject a unique name
+
+            Player1.GetComponent<InGameCash>().cashoutToGold();                                                                                 //Function call to output to gold
+
+            Text Balance = CreateText(background.gameObject, new Vector3(0, 0, 0));                                                             //Create text object
+            Balance.rectTransform.sizeDelta = currGoldText.rectTransform.sizeDelta;                                                             //Size base on currGoldText
+            Balance.fontSize = 50;                                                                                                              //Set text size to 50
+            Balance.text = "Your final balance: " + Player1.GetComponent<GoldSystem>().getGold();                                                //Set text to display
+            Balance.transform.name = "Balance";                                                                                                 //Give the gameObject a unique name
+
+            Gameover = true;                                                                                                                    //To prevent more instatiation of this panel
         }
         return true;
+    }
+    Text CreateText(GameObject _parent, Vector3 _displacement)
+    {
+        Text text = new GameObject().AddComponent<Text>();                                                                                      //Create empty Go wtith Text component
+        text.transform.SetParent(_parent.transform);                                                                                            //Parent to background
+        text.transform.position = _parent.transform.position + _displacement;                                                                   //Reposition text placement
+        text.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;                                                            //Set font
+        text.rectTransform.localScale = Ui.gameObject.transform.localScale;                                                                     //
+        //text.resizeTextForBestFit = true;                                                                                                     //Allow text to resize to fit to rectTranform scaling
+        text.color = Color.black;                                                                                                               //Default text colour to black
+        return text;
     }
 }

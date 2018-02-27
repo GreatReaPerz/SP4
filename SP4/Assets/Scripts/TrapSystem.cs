@@ -29,6 +29,8 @@ public class TrapSystem : MonoBehaviour {
     Vector3 trapPos = new Vector3(0, 0, 0);
     GameObject trapToBePlaced;
 
+    public bool trapSystemActive = true;
+
     List<Button> trapButtons;
     // Use this for initialization
     void Start()
@@ -83,6 +85,8 @@ public class TrapSystem : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if (!trapSystemActive)
+            return;
         switch (myState)
         {
             case executionState.GRID_CHOOSING:
