@@ -1721,14 +1721,14 @@ MonoBehaviour:
   enemyIsMoving: 0
   IndexofPlayerObject: 0
   IndexofEnemyObject: 0
-  SpawnSpecific: 0
-  SpawnForEnemy: 0
-  SpawnForPlayer: 0
+  SpawnSpecific: 1
+  SpawnForEnemy: 1
+  SpawnForPlayer: 1
   SpawnInfantry: 0
-  SpawnBowmen: 0
-  SpawnCavalry: 0
-  SpawnCountPlayer: 0
-  SpawnCountEnemy: 0
+  SpawnBowmen: 1
+  SpawnCavalry: 1
+  SpawnCountPlayer: 3
+  SpawnCountEnemy: 3
 --- !u!1 &288717486
 GameObject:
   m_ObjectHideFlags: 0
@@ -2841,6 +2841,15 @@ Prefab:
       propertyPath: trapSelectionPanel
       value: 
       objectReference: {fileID: 1840217299}
+    - target: {fileID: 1561253652759704, guid: 3f3cf5fc7b73f5443a5db6250f73c13d, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114036406870690560, guid: 3f3cf5fc7b73f5443a5db6250f73c13d,
+        type: 2}
+      propertyPath: trapSystemActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3f3cf5fc7b73f5443a5db6250f73c13d, type: 2}
   m_IsPrefabParent: 0
@@ -6669,12 +6678,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 280144280}
-        m_MethodName: Melee
-        m_Mode: 1
+      - m_Target: {fileID: 280144281}
+        m_MethodName: IncrementHealth
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 261397399}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -11206,7 +11215,7 @@ Prefab:
     - target: {fileID: 114331979080955744, guid: 5f92a8f13258f8348b70c270f5a37893,
         type: 2}
       propertyPath: dialogs.Array.size
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 224611013852941758, guid: 5f92a8f13258f8348b70c270f5a37893,
         type: 2}
@@ -11302,27 +11311,42 @@ Prefab:
         type: 2}
       propertyPath: dialogs.Array.data[0].relevantImage
       value: 
-      objectReference: {fileID: 21300000, guid: ebc9c7b892ae19f4392fcedb21bd73bd,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 114331979080955744, guid: 5f92a8f13258f8348b70c270f5a37893,
         type: 2}
       propertyPath: dialogs.Array.data[0].text
-      value: Hello
+      value: Hi again, Welcome to Level 2
       objectReference: {fileID: 0}
     - target: {fileID: 114331979080955744, guid: 5f92a8f13258f8348b70c270f5a37893,
         type: 2}
       propertyPath: dialogs.Array.data[1].relevantImage
       value: 
-      objectReference: {fileID: 21300000, guid: 4248e7fa20b7a104c8820ce69d4e7c33,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 114331979080955744, guid: 5f92a8f13258f8348b70c270f5a37893,
         type: 2}
       propertyPath: dialogs.Array.data[1].text
-      value: This is Dialog Box
+      value: In this level you will learn 2 new game features
       objectReference: {fileID: 0}
     - target: {fileID: 1090240229609458, guid: 5f92a8f13258f8348b70c270f5a37893, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114331979080955744, guid: 5f92a8f13258f8348b70c270f5a37893,
+        type: 2}
+      propertyPath: dialogs.Array.data[2].text
+      value: 1. Cavalry is stronger than Bowmen, so keep that in mind
+      objectReference: {fileID: 0}
+    - target: {fileID: 114331979080955744, guid: 5f92a8f13258f8348b70c270f5a37893,
+        type: 2}
+      propertyPath: dialogs.Array.data[3].text
+      value: 2. Neutral Zone. The fancy graphic you willl see after this message is
+        not for decoration. It actually affects your troops statistics. Tap on it
+        to get more information
+      objectReference: {fileID: 0}
+    - target: {fileID: 114331979080955744, guid: 5f92a8f13258f8348b70c270f5a37893,
+        type: 2}
+      propertyPath: dialogs.Array.data[4].text
+      value: -end-
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5f92a8f13258f8348b70c270f5a37893, type: 2}

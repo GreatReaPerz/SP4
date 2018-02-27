@@ -1597,7 +1597,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &280144277
 MonoBehaviour:
@@ -5192,7 +5192,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &865375311
 GameObject:
@@ -6089,7 +6089,7 @@ RectTransform:
   - {fileID: 2127044439}
   - {fileID: 195718208}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -7843,7 +7843,7 @@ GameObject:
   - component: {fileID: 1276743106}
   m_Layer: 5
   m_Name: UI Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7866,7 +7866,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 88.670456
   orthographic: 0
   orthographic size: 5
   m_Depth: 1
@@ -7916,7 +7916,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1282603863
 GameObject:
@@ -8183,7 +8183,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1403777911
 GameObject:
@@ -10621,7 +10621,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1975077610
 GameObject:
@@ -11206,7 +11206,7 @@ Prefab:
     - target: {fileID: 114331979080955744, guid: 5f92a8f13258f8348b70c270f5a37893,
         type: 2}
       propertyPath: dialogs.Array.size
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 224611013852941758, guid: 5f92a8f13258f8348b70c270f5a37893,
         type: 2}
@@ -11302,27 +11302,46 @@ Prefab:
         type: 2}
       propertyPath: dialogs.Array.data[0].relevantImage
       value: 
-      objectReference: {fileID: 21300000, guid: ebc9c7b892ae19f4392fcedb21bd73bd,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 114331979080955744, guid: 5f92a8f13258f8348b70c270f5a37893,
         type: 2}
       propertyPath: dialogs.Array.data[0].text
-      value: Hello
+      value: How's your experience with the game so far?
       objectReference: {fileID: 0}
     - target: {fileID: 114331979080955744, guid: 5f92a8f13258f8348b70c270f5a37893,
         type: 2}
       propertyPath: dialogs.Array.data[1].relevantImage
       value: 
-      objectReference: {fileID: 21300000, guid: 4248e7fa20b7a104c8820ce69d4e7c33,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 114331979080955744, guid: 5f92a8f13258f8348b70c270f5a37893,
         type: 2}
       propertyPath: dialogs.Array.data[1].text
-      value: This is Dialog Box
+      value: Here's the second last thing you will need to learn
       objectReference: {fileID: 0}
     - target: {fileID: 1090240229609458, guid: 5f92a8f13258f8348b70c270f5a37893, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114331979080955744, guid: 5f92a8f13258f8348b70c270f5a37893,
+        type: 2}
+      propertyPath: dialogs.Array.data[2].text
+      value: Traps. Tap on any grid during the planning phase to bring out a panel
+        and choose a trap to place and twat your opponents advancing in your land.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114331979080955744, guid: 5f92a8f13258f8348b70c270f5a37893,
+        type: 2}
+      propertyPath: dialogs.Array.data[3].text
+      value: They aren't free by the way
+      objectReference: {fileID: 0}
+    - target: {fileID: 114331979080955744, guid: 5f92a8f13258f8348b70c270f5a37893,
+        type: 2}
+      propertyPath: dialogs.Array.data[4].text
+      value: -end-
+      objectReference: {fileID: 0}
+    - target: {fileID: 114331979080955744, guid: 5f92a8f13258f8348b70c270f5a37893,
+        type: 2}
+      propertyPath: dialogs.Array.data[5].text
+      value: -end-
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5f92a8f13258f8348b70c270f5a37893, type: 2}
@@ -11332,95 +11351,6 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224611013852941758, guid: 5f92a8f13258f8348b70c270f5a37893,
     type: 2}
   m_PrefabInternal: {fileID: 2127044438}
---- !u!1 &2139959264
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 2139959269}
-  - component: {fileID: 2139959268}
-  - component: {fileID: 2139959267}
-  - component: {fileID: 2139959266}
-  - component: {fileID: 2139959265}
-  m_Layer: 0
-  m_Name: Main Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!81 &2139959265
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2139959264}
-  m_Enabled: 1
---- !u!124 &2139959266
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2139959264}
-  m_Enabled: 1
---- !u!92 &2139959267
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2139959264}
-  m_Enabled: 1
---- !u!20 &2139959268
-Camera:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2139959264}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 1
-  orthographic size: 5
-  m_Depth: -1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
-  m_StereoMirrorMode: 0
---- !u!4 &2139959269
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2139959264}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 322.8, y: 270, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2140670255
 GameObject:
   m_ObjectHideFlags: 0

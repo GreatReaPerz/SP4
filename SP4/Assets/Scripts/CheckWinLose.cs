@@ -16,10 +16,10 @@ public class CheckWinLose : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Player1.GetComponent<HealthSystem>().getHealth() <= 0)
-            SceneManager.LoadScene("Lose");
-        if (Player2.GetComponent<HealthSystem>().getHealth() <= 0)
-            SceneManager.LoadScene("Win");
+        //if (Player1.GetComponent<HealthSystem>().getHealth() <= 0)
+        //    SceneManager.LoadScene("Lose");
+        //if (Player2.GetComponent<HealthSystem>().getHealth() <= 0)
+        //    SceneManager.LoadScene("Win");
     }
     public string CheckWin()
     {
