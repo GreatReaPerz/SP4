@@ -682,7 +682,7 @@ public class enemyGridSystem : MonoBehaviour
         {
             if (!check[0] || !check[1] || !check[2])
             {
-                for (int i = 0; i < theTetrisSpawner.enemyList.Count; ++i)
+                for (int i = 0; i < 3; ++i)
                 {
                     if (!check[i])
                     {

@@ -37,25 +37,55 @@ public class PlayerPrefScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        PlayerPrefs.SetFloat("Health", health);
-        PlayerPrefs.SetFloat("Volume", volume);
-        PlayerPrefs.SetInt("Gold", gold);
+        if(PlayerPrefs.GetInt("check") != 3)
+        {
+            PlayerPrefs.SetFloat("Health", health);
+            PlayerPrefs.SetFloat("Volume", volume);
+            PlayerPrefs.SetInt("Gold", gold);
 
-        PlayerPrefs.SetFloat("calvaryAtt", calvaryAtt);
-        PlayerPrefs.SetFloat("calvaryHP", calvaryHP);
-        PlayerPrefs.SetFloat("calvaryAttSpd", calvaryAttSpd);
-        PlayerPrefs.SetFloat("calvarySpd", calvarySpd);
+            PlayerPrefs.SetFloat("calvaryAtt", calvaryAtt);
+            PlayerPrefs.SetFloat("calvaryHP", calvaryHP);
+            PlayerPrefs.SetFloat("calvaryAttSpd", calvaryAttSpd);
+            PlayerPrefs.SetFloat("calvarySpd", calvarySpd);
 
-        PlayerPrefs.SetFloat("infantryAtt", infantryAtt);
-        PlayerPrefs.SetFloat("infantryHP", infantryHP);
-        PlayerPrefs.SetFloat("infantryAttSpd", infantryAttSpd);
-        PlayerPrefs.SetFloat("infantrySpd", infantrySpd);
+            PlayerPrefs.SetFloat("infantryAtt", infantryAtt);
+            PlayerPrefs.SetFloat("infantryHP", infantryHP);
+            PlayerPrefs.SetFloat("infantryAttSpd", infantryAttSpd);
+            PlayerPrefs.SetFloat("infantrySpd", infantrySpd);
 
-        PlayerPrefs.SetFloat("bowmenAtt", bowmenAtt);
-        PlayerPrefs.SetFloat("bowmenHP", bowmenHP);
-        PlayerPrefs.SetFloat("bowmenAttSpd", bowmenAttSpd);
-        PlayerPrefs.SetFloat("bowmenSpd", bowmenSpd);
+            PlayerPrefs.SetFloat("bowmenAtt", bowmenAtt);
+            PlayerPrefs.SetFloat("bowmenHP", bowmenHP);
+            PlayerPrefs.SetFloat("bowmenAttSpd", bowmenAttSpd);
+            PlayerPrefs.SetFloat("bowmenSpd", bowmenSpd);
+
+            PlayerPrefs.SetInt("check", 3);
+
+        }
+        else
+        {
+
+            health = PlayerPrefs.GetFloat("Health", health);
+            volume = PlayerPrefs.GetFloat("Volume", volume);
+            gold = PlayerPrefs.GetInt("Gold", gold);
+
+            calvaryAtt = PlayerPrefs.GetFloat("calvaryAtt", calvaryAtt);
+            calvaryHP = PlayerPrefs.GetFloat("calvaryHP", calvaryHP);
+            calvaryAttSpd = PlayerPrefs.GetFloat("calvaryAttSpd", calvaryAttSpd);
+            calvarySpd = PlayerPrefs.GetFloat("calvarySpd", calvarySpd);
+
+            infantryAtt = PlayerPrefs.GetFloat("infantryAtt", infantryAtt);
+            infantryHP = PlayerPrefs.GetFloat("infantryHP", infantryHP);
+            infantryAttSpd = PlayerPrefs.GetFloat("infantryAttSpd", infantryAttSpd);
+            infantrySpd = PlayerPrefs.GetFloat("infantrySpd", infantrySpd);
+
+            bowmenAtt = PlayerPrefs.GetFloat("bowmenAtt", bowmenAtt);
+            bowmenHP = PlayerPrefs.GetFloat("bowmenHP", bowmenHP);
+            bowmenAttSpd = PlayerPrefs.GetFloat("bowmenAttSpd", bowmenAttSpd);
+            bowmenSpd = PlayerPrefs.GetFloat("bowmenSpd", bowmenSpd);
+        }
+
         PlayerPrefs.Save();
+
     }
 	
 	// Update is called once per frame

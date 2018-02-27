@@ -55,7 +55,7 @@ public class ShopSystem : MonoBehaviour {
         //for (int i = 0; i < 10; ++i)
         //    CreateButton("New Button " + i);
 
-        PlayerPrefs.SetInt("Gold", 1000);
+        //PlayerPrefs.SetInt("Gold", 1000);
         //Get the gold the player and save it to text gameobject to display on screen
         playerGold = PlayerPrefs.GetInt("Gold");
         playerGoldText = GameObject.Find("GoldAmount");
@@ -93,49 +93,56 @@ public class ShopSystem : MonoBehaviour {
             case "UpgradeInfantryHealth":
                 {
                     //Increase base health of infantry
+                    PlayerPrefs.SetFloat("infantryHP", PlayerPrefs.GetFloat("infantryHP") + UpgradeInfantryHealthAmount);
+
 
                     //Update the item description with the new stats
-                    ItemDescription.text = "Infantry Health: " + PlayerPrefs.GetFloat("infantryHealth") + " (+" + UpgradeInfantryHealthAmount.ToString() + ")";
+                    ItemDescription.text = "Infantry Health: " + PlayerPrefs.GetFloat("infantryHP") + " (+" + UpgradeInfantryHealthAmount.ToString() + ")";
                     break;
                 }
             case "UpgradeInfantryAttack":
                 {
                     //Increase base damage of infantry
+                    PlayerPrefs.SetFloat("infantryAtt", PlayerPrefs.GetFloat("infantryAtt") + UpgradeInfantryDamageAmount);
 
                     //Update the item description with the new stats
-                    ItemDescription.text = "Infantry Damage: " + PlayerPrefs.GetFloat("infantryDamage") + " (+" + UpgradeInfantryDamageAmount.ToString() + ")";
+                    ItemDescription.text = "Infantry Damage: " + PlayerPrefs.GetFloat("infantryAtt") + " (+" + UpgradeInfantryDamageAmount.ToString() + ")";
                     break;
                 }
             case "UpgradeCavalryHealth":
                 {
                     //Increase base health of cavalry
+                    PlayerPrefs.SetFloat("calvaryHP", PlayerPrefs.GetFloat("calvaryHP") + UpgradeCavalryHealthAmount);
 
                     //Update the item description with the new stats
-                    ItemDescription.text = "Cavalry Health: " + PlayerPrefs.GetFloat("cavalryHealth") + " (+" + UpgradeCavalryHealthAmount.ToString() + ")";
+                    ItemDescription.text = "Cavalry Health: " + PlayerPrefs.GetFloat("calvaryHP") + " (+" + UpgradeCavalryHealthAmount.ToString() + ")";
                     break;
                 }
             case "UpgradeCavalryAttack":
                 {
                     //Increase base damage of cavalry
+                    PlayerPrefs.SetFloat("calvaryAtt", PlayerPrefs.GetFloat("calvaryAtt") + UpgradeCavalryDamageAmount);
 
                     //Update the item description with the new stats
-                    ItemDescription.text = "Cavalry Damage: " + PlayerPrefs.GetFloat("cavalryDamage") + " (+" + UpgradeCavalryDamageAmount.ToString() + ")";
+                    ItemDescription.text = "Cavalry Damage: " + PlayerPrefs.GetFloat("calvaryAtt") + " (+" + UpgradeCavalryDamageAmount.ToString() + ")";
                     break;
                 }
             case "UpgradeBowmenHealth":
                 {
                     //Increase base health of bowmen
+                    PlayerPrefs.SetFloat("bowmenHP", PlayerPrefs.GetFloat("bowmenHP") + UpgradeBowmenHealthAmount);
 
                     //Update the item description with the new stats
-                    ItemDescription.text = "Bowmen Health: " + PlayerPrefs.GetFloat("bowmenHealth") + " (+" + UpgradeBowmenHealthAmount.ToString() + ")";
+                    ItemDescription.text = "Bowmen Health: " + PlayerPrefs.GetFloat("bowmenHP") + " (+" + UpgradeBowmenHealthAmount.ToString() + ")";
                     break;
                 }
             case "UpgradeBowmenAttack":
                 {
                     //Increase base damage of bowmen
+                    PlayerPrefs.SetFloat("bowmenAtt", PlayerPrefs.GetFloat("bowmenAtt") + UpgradeBowmenDamageAmount);
 
                     //Update the item description with the new stats
-                    ItemDescription.text = "Bowmen Damage: " + PlayerPrefs.GetFloat("bowmenDamage") + " (+" + UpgradeBowmenDamageAmount.ToString() + ")";
+                    ItemDescription.text = "Bowmen Damage: " + PlayerPrefs.GetFloat("bowmenAtt") + " (+" + UpgradeBowmenDamageAmount.ToString() + ")";
                     break;
                 }
             default:
@@ -171,34 +178,38 @@ public class ShopSystem : MonoBehaviour {
         {
             case "UpgradeInfantryHealth":
                 {
-                    ItemDescription.text = "Infantry Health: " + PlayerPrefs.GetFloat("infantryHealth") + " (+" + UpgradeInfantryHealthAmount.ToString() + ")";
+                    //Update the item description with the new stats
+                    ItemDescription.text = "Infantry Health: " + PlayerPrefs.GetFloat("infantryHP") + " (+" + UpgradeInfantryHealthAmount.ToString() + ")";
                     break;
                 }
             case "UpgradeInfantryAttack":
                 {
-                    ItemDescription.text = "Infantry Damage: " + PlayerPrefs.GetFloat("infantryDamage") + " (+" + UpgradeInfantryDamageAmount.ToString() + ")";
+                    //Update the item description with the new stats
+                    ItemDescription.text = "Infantry Damage: " + PlayerPrefs.GetFloat("infantryAtt") + " (+" + UpgradeInfantryDamageAmount.ToString() + ")";
                     break;
                 }
-
             case "UpgradeCavalryHealth":
                 {
-                    ItemDescription.text = "Cavalry Health: " + PlayerPrefs.GetFloat("cavalryHealth") + " (+" + UpgradeCavalryHealthAmount.ToString() + ")";
+                    //Update the item description with the new stats
+                    ItemDescription.text = "Cavalry Health: " + PlayerPrefs.GetFloat("calvaryHP") + " (+" + UpgradeCavalryHealthAmount.ToString() + ")";
                     break;
                 }
             case "UpgradeCavalryAttack":
                 {
-                    ItemDescription.text = "Cavalry Damage: " + PlayerPrefs.GetFloat("cavalryDamage") + " (+" + UpgradeCavalryDamageAmount.ToString() + ")";
+                    //Update the item description with the new stats
+                    ItemDescription.text = "Cavalry Damage: " + PlayerPrefs.GetFloat("calvaryAtt") + " (+" + UpgradeCavalryDamageAmount.ToString() + ")";
                     break;
                 }
-
             case "UpgradeBowmenHealth":
                 {
-                    ItemDescription.text = "Bowmen Health: " + PlayerPrefs.GetFloat("bowmenHealth") + " (+" + UpgradeBowmenHealthAmount.ToString() + ")";
+                    //Update the item description with the new stats
+                    ItemDescription.text = "Bowmen Health: " + PlayerPrefs.GetFloat("bowmenHP") + " (+" + UpgradeBowmenHealthAmount.ToString() + ")";
                     break;
                 }
             case "UpgradeBowmenAttack":
                 {
-                    ItemDescription.text = "Bowmen Damage: " + PlayerPrefs.GetFloat("bowmenDamage") + " (+" + UpgradeBowmenDamageAmount.ToString() + ")";
+                    //Update the item description with the new stats
+                    ItemDescription.text = "Bowmen Damage: " + PlayerPrefs.GetFloat("bowmenAtt") + " (+" + UpgradeBowmenDamageAmount.ToString() + ")";
                     break;
                 }
             default:
@@ -227,13 +238,4 @@ public class ShopSystem : MonoBehaviour {
         SceneManager.LoadScene("Menu");
         
     }
-
-    //void CreateButton(string name)
-    //{
-    //    GameObject newButton = Instantiate(ButtonPrefab) as GameObject;
-    //    newButton.transform.SetParent(ContentGrid.gameObject.transform, false);
-    //    newButton.transform.name = name;
-    //    newButton.GetComponentInChildren<Text>().text = name;
-    //}
-
 }
