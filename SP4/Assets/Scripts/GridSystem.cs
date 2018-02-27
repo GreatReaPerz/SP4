@@ -367,7 +367,7 @@ public class GridSystem : MonoBehaviour {
 
     public void GameUpdate()
     {
-        if (Input.GetMouseButton(0)== true)
+        if (Input.GetMouseButton(0) == true)
         {
             if (theTetrisSpawner.playerIsMoving == true)
             {
@@ -750,13 +750,13 @@ public class GridSystem : MonoBehaviour {
     {
         if (Input.touchCount > 0)
         {
+            Vector2 touchposition = Input.GetTouch(0).position;
+
             if (theTetrisSpawner.playerIsMoving == true)
             {
                 //theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].sav = false;
                 uint colNum = 0, rowNum = 0;
-
-                Vector2 touchposition = Input.GetTouch(0).position;
-
+                
                 //Check col
                 for (uint it = 0; it < col; ++it)
                 {
