@@ -907,7 +907,7 @@ public class GridSystem : MonoBehaviour {
             }
 
         }
-        else if (isMouseMovingAnObject && Input.touchCount == 0) //When the touch is released, it saves the tetris data into the data grid tile
+        else if (isMouseMovingAnObject) //When the touch is released, it saves the tetris data into the data grid tile
         {
             //Set the tetris block to not moving
             //tetrisBlock.isMoving = false;
@@ -916,13 +916,13 @@ public class GridSystem : MonoBehaviour {
             {
                 theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].returning = true;
             }
-
-        }
-        //When the tetris block is picked up from the grid, it removes the data from that tile
-        if (isMouseMovingAnObject && Input.touchCount > 0)
-        {
             isMouseMovingAnObject = false;
         }
+        //When the tetris block is picked up from the grid, it removes the data from that tile
+        //if (isMouseMovingAnObject && Input.touchCount > 0)
+        //{
+        //    isMouseMovingAnObject = false;
+        //}
         for (int i = 0; i < theTetrisSpawner.playerList.Count; ++i)
         {
 

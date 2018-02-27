@@ -1206,287 +1206,422 @@ public class enemyGridSystem : MonoBehaviour
 
     public void GameUpdateAndroid()
     {
-        if (Input.GetMouseButton(0) == true)
+        if (!multi)
         {
-            if (theTetrisSpawner.playerIsMoving == true)
+            if (!check[0] || !check[1] || !check[2])
             {
-                //theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].sav = false;
-                uint colNum = 0, rowNum = 0;
-
-                Vector2 touchposition = Input.GetTouch(0).position;
-
-                //Check col
-                for (uint it = 0; it < col; ++it)
+                for (int i = 0; i < 3; ++i)
                 {
-                    if (grid[0].transform.position.x + ((tileWidth * (it + 1)) - halfTileWidth) > touchposition.x)
+                    if (!check[i])
                     {
-                        colNum = it;
-                        break;
+                        theTetrisSpawner.enemyList[i].isMoving = true;
+                        theTetrisSpawner.enemyList[i].partOne.MovePosition(grid[(i * 3) + 22].transform.position);
+                        theTetrisSpawner.enemyList[i].Whatisbeingmoved = "partOne";
+                        if (Mathf.Abs(theTetrisSpawner.enemyList[i].partOne.position.x - grid[(i * 3) + 22].transform.position.x) < 10
+                            && (Mathf.Abs(theTetrisSpawner.enemyList[i].partOne.position.y - grid[(i * 3) + 22].transform.position.y) < 10))
+                        {
+                            check[i] = true;
+                            theTetrisSpawner.enemyList[i].isMoving = false;
+                            theTetrisSpawner.enemyList[i].returning = false;
+                        }
                     }
                 }
-
-                //Check row
-                for (uint it = 0; it < row; ++it)
+                // check = true;
+            }
+        }
+        else
+        {
+            if (Input.touchCount > 0)
+            {
+                if (theTetrisSpawner.enemyIsMoving == true)
                 {
-                    if (grid[0].transform.position.y + ((tileHeight * (it + 1)) - halfTileHeight) > touchposition.y)
+                    //theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].sav = false;
+                    uint colNum = 0, rowNum = 0;
+
+                    //Check col
+                    for (uint it = 0; it < col; ++it)
                     {
-                        rowNum = it;
-                        break;
-                    }
-                }
-
-
-
-                objectIndex = colNum + (rowNum * col);
-                //FirstTetrisBlock.transform.position = grid[objectIndex].transform.position;
-                bool mouse = false;
-
-                if (touchposition.x < grid[0].transform.position.x - halfTileWidth - 50 || touchposition.x > grid[col - 1].transform.position.x + halfTileWidth + 50
-                 && touchposition.y < grid[0].transform.position.y - halfTileHeight - 50 && touchposition.y > grid[gridSize - 1].transform.position.y + halfTileHeight + 50)
-                {
-                    mouse = true;
-                }
-                if (InGridCheck(theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject]) && !theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].returning && !mouse)
-                {
-                    switch (theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].Whatisbeingmoved)
-                    {
-                        case "partOne":
-                            {
-                                if (taken[objectIndex])
-                                {
-                                    theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].returning = true;
-                                    theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].partOne.MovePosition(touchposition);
-                                    //  theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].btmLeft.position = theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].origin;
-                                }
-                                else
-                                {
-                                    theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].partOne.MovePosition(grid[objectIndex].transform.position);
-                                }
-
-                                //theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].btmLeft.position = grid[objectIndex].transform.position;
-                                break;
-                            }
-                        case "partTwo":
-                            {
-                                if (taken[objectIndex])
-                                {
-                                    theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].returning = true;
-                                    theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].partTwo.MovePosition(touchposition);
-                                    // theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].btmLeft.position = theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].origin;
-                                }
-                                else
-                                {
-                                    theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].partTwo.MovePosition(grid[objectIndex].transform.position);
-                                }
-                                //theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].btmRight.position = grid[objectIndex].transform.position;
-                                break;
-                            }
-                        case "partThree":
-                            {
-                                if (taken[objectIndex])
-                                {
-                                    theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].returning = true;
-                                    theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].partThree.MovePosition(touchposition);
-                                    // theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].btmLeft.position = theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].origin;
-                                }
-                                else
-                                {
-                                    theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].partThree.MovePosition(grid[objectIndex].transform.position);
-                                }
-                                //theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].topLeft.position = grid[objectIndex].transform.position;
-                                break;
-                            }
-                        case "partFour":
-                            {
-                                if (taken[objectIndex])
-                                {
-                                    theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].returning = true;
-                                    theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].partFour.MovePosition(touchposition);
-                                    // theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].btmLeft.position = theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].origin;
-                                }
-                                else
-                                {
-                                    theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].partFour.MovePosition(grid[objectIndex].transform.position);
-                                }
-                                //theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].topRight.position = grid[objectIndex].transform.position;
-                                break;
-                            }
-                        default:
+                        if (grid[0].transform.position.x - ((tileWidth * (it + 1)) - halfTileWidth) < Input.GetTouch(0).position.x)
+                        {
+                            colNum = it;
                             break;
-                    };
-                    for (int j = 0; j < gridSize; ++j)
+                        }
+                    }
+
+                    //Check row
+                    for (uint it = 0; it < row; ++it)
                     {
-                        if (Mathf.Abs(theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].partOne.transform.position.x - grid[j].transform.position.x) < 50
-                            && (Mathf.Abs(theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].partOne.transform.position.y - grid[j].transform.position.y) < 50))
+                        if (grid[0].transform.position.y - ((tileHeight * (it + 1)) - halfTileHeight) < Input.GetTouch(0).position.y)
                         {
-                            if (taken[j])
-                            {
-                                theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].returning = true;
-                                // theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].btmLeft.position = theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].origin;
-                            }
+                            rowNum = it;
+                            break;
                         }
-                        if (Mathf.Abs(theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].partTwo.transform.position.x - grid[j].transform.position.x) < 50
-                            && (Mathf.Abs(theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].partTwo.transform.position.y - grid[j].transform.position.y) < 50))
+                    }
+
+
+
+                    objectIndex = colNum + (rowNum * col);
+                    //FirstTetrisBlock.transform.position = grid[objectIndex].transform.position;
+                    bool mouse = false;
+
+                    if (Input.GetTouch(0).position.x > grid[0].transform.position.x - halfTileWidth - 50 || Input.GetTouch(0).position.x < grid[col - 1].transform.position.x + halfTileWidth + 50
+                     && Input.GetTouch(0).position.y > grid[0].transform.position.y - halfTileHeight - 50 && Input.GetTouch(0).position.y < grid[gridSize - 1].transform.position.y + halfTileHeight + 50)
+                    {
+                        mouse = true;
+                    }
+                    if (InGridCheck(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject]) && !theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].returning && !mouse)
+                    {
+                        switch (theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].Whatisbeingmoved)
                         {
-                            if (taken[j])
+                            case "partOne":
+                                {
+                                    if (taken[objectIndex])
+                                    {
+                                        theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].returning = true;
+                                        theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partOne.MovePosition(Input.GetTouch(0).position);
+                                        //  theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].btmLeft.position = theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].origin;
+                                    }
+                                    else
+                                    {
+                                        theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partOne.MovePosition(grid[objectIndex].transform.position);
+                                    }
+
+                                    //theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].btmLeft.position = grid[objectIndex].transform.position;
+                                    break;
+                                }
+                            case "partTwo":
+                                {
+                                    if (taken[objectIndex])
+                                    {
+                                        theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].returning = true;
+                                        theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partTwo.MovePosition(Input.GetTouch(0).position);
+                                        // theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].btmLeft.position = theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].origin;
+                                    }
+                                    else
+                                    {
+                                        theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partTwo.MovePosition(grid[objectIndex].transform.position);
+                                    }
+                                    //theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].btmRight.position = grid[objectIndex].transform.position;
+                                    break;
+                                }
+                            case "partThree":
+                                {
+                                    if (taken[objectIndex])
+                                    {
+                                        theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].returning = true;
+                                        theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partThree.MovePosition(Input.GetTouch(0).position);
+                                        // theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].btmLeft.position = theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].origin;
+                                    }
+                                    else
+                                    {
+                                        theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partThree.MovePosition(grid[objectIndex].transform.position);
+                                    }
+                                    //theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].topLeft.position = grid[objectIndex].transform.position;
+                                    break;
+                                }
+                            case "partFour":
+                                {
+                                    if (taken[objectIndex])
+                                    {
+                                        theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].returning = true;
+                                        theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partFour.MovePosition(Input.GetTouch(0).position);
+                                        // theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].btmLeft.position = theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].origin;
+                                    }
+                                    else
+                                    {
+                                        theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partFour.MovePosition(grid[objectIndex].transform.position);
+                                    }
+                                    //theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].topRight.position = grid[objectIndex].transform.position;
+                                    break;
+                                }
+                            default:
+                                break;
+                        };
+                        for (int j = 0; j < gridSize; ++j)
+                        {
+                            if (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partOne.transform.position.x - grid[j].transform.position.x) < 50
+                                && (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partOne.transform.position.y - grid[j].transform.position.y) < 50))
                             {
-                                theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].returning = true;
-                                //theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].btmLeft.position = theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].origin;
+                                if (taken[j])
+                                {
+                                    theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].returning = true;
+                                    // theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].btmLeft.position = theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].origin;
+                                }
                             }
-                        }
-                        if (Mathf.Abs(theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].partThree.transform.position.x - grid[j].transform.position.x) < 50
-                            && (Mathf.Abs(theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].partThree.transform.position.y - grid[j].transform.position.y) < 50))
-                        {
-                            if (taken[j])
+                            if (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partTwo.transform.position.x - grid[j].transform.position.x) < 50
+                                && (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partTwo.transform.position.y - grid[j].transform.position.y) < 50))
                             {
-                                theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].returning = true;
-                                // theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].btmLeft.position = theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].origin;
+                                if (taken[j])
+                                {
+                                    theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].returning = true;
+                                    //theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].btmLeft.position = theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].origin;
+                                }
                             }
-                        }
-                        if (Mathf.Abs(theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].partFour.transform.position.x - grid[j].transform.position.x) < 50
-                            && (Mathf.Abs(theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].partFour.transform.position.y - grid[j].transform.position.y) < 50))
-                        {
-                            if (taken[j])
+                            if (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partThree.transform.position.x - grid[j].transform.position.x) < 50
+                                && (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partThree.transform.position.y - grid[j].transform.position.y) < 50))
                             {
-                                theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].returning = true;
-                                //  theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].btmLeft.position = theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].origin;
+                                if (taken[j])
+                                {
+                                    theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].returning = true;
+                                    // theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].btmLeft.position = theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].origin;
+                                }
+                            }
+                            if (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partFour.transform.position.x - grid[j].transform.position.x) < 50
+                                && (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partFour.transform.position.y - grid[j].transform.position.y) < 50))
+                            {
+                                if (taken[j])
+                                {
+                                    theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].returning = true;
+                                    //  theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].btmLeft.position = theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].origin;
+                                }
                             }
                         }
                     }
+                    isMouseMovingAnObject = true;
                 }
-                isMouseMovingAnObject = true;
-            }
 
+            }
+            else if (isMouseMovingAnObject && Input.GetTouch(0).phase == TouchPhase.Ended) //When the touch is released, it saves the tetris data into the data grid tile
+            {
+                //Set the tetris block to not moving
+                //tetrisBlock.isMoving = false;
+                theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].isMoving = false;
+                if (!InGridCheck(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject]))
+                {
+                    theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].returning = true;
+                }
+
+            }
+            //When the tetris block is picked up from the grid, it removes the data from that tile
+            if (isMouseMovingAnObject && Input.touchCount > 0)
+            {
+                isMouseMovingAnObject = false;
+            }
         }
-        else if (isMouseMovingAnObject && Input.GetMouseButtonUp(0)) //When the touch is released, it saves the tetris data into the data grid tile
-        {
-            //Set the tetris block to not moving
-            //tetrisBlock.isMoving = false;
-            theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].isMoving = false;
-            if (!InGridCheck(theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject]))
-            {
-                theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].returning = true;
-            }
-
-        }
-        //When the tetris block is picked up from the grid, it removes the data from that tile
-        if (isMouseMovingAnObject && Input.GetMouseButtonDown(0))
-        {
-            isMouseMovingAnObject = false;
-        }
-        for (int i = 0; i < theTetrisSpawner.playerList.Count; ++i)
+        for (int i = 0; i < theTetrisSpawner.enemyList.Count; ++i)
         {
 
-            if (!InGridCheck(theTetrisSpawner.playerList[i]) && theTetrisSpawner.playerList[i].isMoving == false && !theTetrisSpawner.playerList[i].returning)
+            if (!InGridCheck(theTetrisSpawner.enemyList[i]) && theTetrisSpawner.enemyList[i].isMoving == false && !theTetrisSpawner.enemyList[i].returning)
             {
-                theTetrisSpawner.playerList[i].returning = true;
-                theTetrisSpawner.playerList[i].partOne.position = theTetrisSpawner.playerList[i].origin;
+                theTetrisSpawner.enemyList[i].returning = true;
+                theTetrisSpawner.enemyList[i].partOne.position = theTetrisSpawner.enemyList[i].origin;
             }
-            if (theTetrisSpawner.playerList[i].returning && theTetrisSpawner.playerList[i].isMoving == false)
+            if (theTetrisSpawner.enemyList[i].returning && theTetrisSpawner.enemyList[i].isMoving == false)
             {
 
-                theTetrisSpawner.playerList[i].partOne.position = theTetrisSpawner.playerList[i].origin;
+                theTetrisSpawner.enemyList[i].partOne.position = theTetrisSpawner.enemyList[i].origin;
             }
-            if (theTetrisSpawner.playerList[i].partOne.transform.position.x == theTetrisSpawner.playerList[i].origin.x
-                && theTetrisSpawner.playerList[i].partOne.transform.position.y == theTetrisSpawner.playerList[i].origin.y)
+            if (theTetrisSpawner.enemyList[i].partOne.transform.position.x == theTetrisSpawner.enemyList[i].origin.x
+                && theTetrisSpawner.enemyList[i].partOne.transform.position.y == theTetrisSpawner.enemyList[i].origin.y)
             {
-                theTetrisSpawner.playerList[i].returning = false;
+                theTetrisSpawner.enemyList[i].returning = false;
             }
             for (int j = 0; j < gridSize; ++j)
             {
                 taken[j] = false;
             }
-            if (InGridCheck(theTetrisSpawner.playerList[i]) && !theTetrisSpawner.playerList[i].returning && theTetrisSpawner.playerList[i].isMoving == false)
+            if (InGridCheck(theTetrisSpawner.enemyList[i]) && !theTetrisSpawner.enemyList[i].returning && theTetrisSpawner.enemyList[i].isMoving == false)
             {
-                float nearest = 1000000;
-                int index = 0;
-                for (int j = 0; j < gridSize; ++j)
+                switch (theTetrisSpawner.enemyList[i].Whatisbeingmoved)
                 {
-                    Vector2 distance;
-                    distance.x = theTetrisSpawner.playerList[i].partOne.position.x - grid[j].transform.position.x;
-                    distance.y = theTetrisSpawner.playerList[i].partOne.position.y - grid[j].transform.position.y;
-                    float hello = distance.SqrMagnitude();
-                    if (hello < nearest)
-                    {
-                        nearest = hello;
-                        index = j;
-                    }
-                }
-                if (taken[index])
-                {
-                    theTetrisSpawner.playerList[i].returning = true;
-                    theTetrisSpawner.playerList[i].partOne.position = theTetrisSpawner.playerList[i].origin;
-                }
-                else
-                {
-                    theTetrisSpawner.playerList[i].partOne.MovePosition(grid[index].transform.position);
-                }
+                    case "partOne":
+                        {
+                            float nearest = 1000000;
+                            int index = 0;
+                            for (int j = 0; j < gridSize; ++j)
+                            {
+                                Vector2 distance;
+                                distance.x = theTetrisSpawner.enemyList[i].partOne.position.x - grid[j].transform.position.x;
+                                distance.y = theTetrisSpawner.enemyList[i].partOne.position.y - grid[j].transform.position.y;
+                                float hello = distance.SqrMagnitude();
+                                if (hello < nearest)
+                                {
+                                    nearest = hello;
+                                    index = j;
+                                }
+                            }
+                            if (taken[index])
+                            {
+                                theTetrisSpawner.enemyList[i].returning = true;
+                            }
+                            else
+                            {
+                                theTetrisSpawner.enemyList[i].partOne.MovePosition(grid[index].transform.position);
+                            }
+                            break;
+                        }
+                    case "partTwo":
+                        {
+                            float nearest = 1000000;
+                            int index = 0;
+                            for (int j = 0; j < gridSize; ++j)
+                            {
+                                Vector2 distance;
+                                distance.x = theTetrisSpawner.enemyList[i].partTwo.position.x - grid[j].transform.position.x;
+                                distance.y = theTetrisSpawner.enemyList[i].partTwo.position.y - grid[j].transform.position.y;
+                                float hello = distance.SqrMagnitude();
+                                if (hello < nearest)
+                                {
+                                    nearest = hello;
+                                    index = j;
+                                }
+                            }
+                            if (taken[index])
+                            {
+                                theTetrisSpawner.enemyList[i].returning = true;
+                            }
+                            else
+                            {
+                                Debug.Log("choochoo");
+                                theTetrisSpawner.enemyList[i].partTwo.MovePosition(grid[index].transform.position);
+                            }
+                            break;
+                        }
+                    case "partThree":
+                        {
+                            float nearest = 1000000;
+                            int index = 0;
+                            for (int j = 0; j < gridSize; ++j)
+                            {
+                                Vector2 distance;
+                                distance.x = theTetrisSpawner.enemyList[i].partThree.position.x - grid[j].transform.position.x;
+                                distance.y = theTetrisSpawner.enemyList[i].partThree.position.y - grid[j].transform.position.y;
+                                float hello = distance.SqrMagnitude();
+                                if (hello < nearest)
+                                {
+                                    nearest = hello;
+                                    index = j;
+                                }
+                            }
+                            if (taken[index])
+                            {
+                                theTetrisSpawner.enemyList[i].returning = true;
+                            }
+                            else
+                            {
+                                theTetrisSpawner.enemyList[i].partThree.MovePosition(grid[index].transform.position);
+                            }
+                            break;
+                        }
+                    case "partFour":
+                        {
+                            float nearest = 1000000;
+                            int index = 0;
+                            for (int j = 0; j < gridSize; ++j)
+                            {
+                                Vector2 distance;
+                                distance.x = theTetrisSpawner.enemyList[i].partFour.position.x - grid[j].transform.position.x;
+                                distance.y = theTetrisSpawner.enemyList[i].partFour.position.y - grid[j].transform.position.y;
+                                float hello = distance.SqrMagnitude();
+                                if (hello < nearest)
+                                {
+                                    nearest = hello;
+                                    index = j;
+                                }
+                            }
+                            if (taken[index])
+                            {
+                                theTetrisSpawner.enemyList[i].returning = true;
+                            }
+                            else
+                            {
+                                theTetrisSpawner.enemyList[i].partFour.MovePosition(grid[index].transform.position);
+                            }
+                            break;
+                        }
+                    default:
+                        break;
+                };
+                //float nearest = 1000000;
+                //int index = 0;
+                //for (int j = 0; j < gridSize; ++j)
+                //{
+                //    Vector2 distance;
+                //    distance.x = theTetrisSpawner.enemyList[i].partOne.position.x - grid[j].transform.position.x;
+                //    distance.y = theTetrisSpawner.enemyList[i].partOne.position.y - grid[j].transform.position.y;
+                //    float hello = distance.SqrMagnitude();
+                //    if (hello < nearest)
+                //    {
+                //        nearest = hello;
+                //        index = j;
+                //    }
+                //}
+                //if (taken[index])
+                //{
+                //    theTetrisSpawner.enemyList[i].returning = true;
+                //    theTetrisSpawner.enemyList[i].partOne.position = theTetrisSpawner.enemyList[i].origin;
+                //}
+                //else
+                //{
+                //    Debug.Log("choochoo");
+                //    theTetrisSpawner.enemyList[i].partOne.MovePosition(grid[index].transform.position);
+                //}
             }
-            for (int k = 0; k < theTetrisSpawner.playerList.Count; ++k)
+            for (int k = 0; k < theTetrisSpawner.enemyList.Count; ++k)
             {
-                if (InGridCheck(theTetrisSpawner.playerList[k]) && theTetrisSpawner.playerList[k].isMoving == false && !theTetrisSpawner.playerList[k].returning)
+                if (InGridCheck(theTetrisSpawner.enemyList[k]) && theTetrisSpawner.enemyList[k].isMoving == false && !theTetrisSpawner.enemyList[k].returning)
                 {
                     for (int j = 0; j < gridSize; ++j)
                     {
-                        if (Mathf.Abs(theTetrisSpawner.playerList[k].partOne.transform.position.x - grid[j].transform.position.x) < 50
-                            && (Mathf.Abs(theTetrisSpawner.playerList[k].partOne.transform.position.y - grid[j].transform.position.y) < 50))
+                        if (Mathf.Abs(theTetrisSpawner.enemyList[k].partOne.transform.position.x - grid[j].transform.position.x) < 50
+                            && (Mathf.Abs(theTetrisSpawner.enemyList[k].partOne.transform.position.y - grid[j].transform.position.y) < 50))
                         {
                             taken[j] = true;
                         }
-                        if (Mathf.Abs(theTetrisSpawner.playerList[k].partTwo.transform.position.x - grid[j].transform.position.x) < 50
-                            && (Mathf.Abs(theTetrisSpawner.playerList[k].partTwo.transform.position.y - grid[j].transform.position.y) < 50))
+                        if (Mathf.Abs(theTetrisSpawner.enemyList[k].partTwo.transform.position.x - grid[j].transform.position.x) < 50
+                            && (Mathf.Abs(theTetrisSpawner.enemyList[k].partTwo.transform.position.y - grid[j].transform.position.y) < 50))
                         {
                             taken[j] = true;
                         }
-                        if (Mathf.Abs(theTetrisSpawner.playerList[k].partThree.transform.position.x - grid[j].transform.position.x) < 50
-                            && (Mathf.Abs(theTetrisSpawner.playerList[k].partThree.transform.position.y - grid[j].transform.position.y) < 50))
+                        if (Mathf.Abs(theTetrisSpawner.enemyList[k].partThree.transform.position.x - grid[j].transform.position.x) < 50
+                            && (Mathf.Abs(theTetrisSpawner.enemyList[k].partThree.transform.position.y - grid[j].transform.position.y) < 50))
                         {
                             taken[j] = true;
                         }
-                        if (Mathf.Abs(theTetrisSpawner.playerList[k].partFour.transform.position.x - grid[j].transform.position.x) < 50
-                            && (Mathf.Abs(theTetrisSpawner.playerList[k].partFour.transform.position.y - grid[j].transform.position.y) < 50))
+                        if (Mathf.Abs(theTetrisSpawner.enemyList[k].partFour.transform.position.x - grid[j].transform.position.x) < 50
+                            && (Mathf.Abs(theTetrisSpawner.enemyList[k].partFour.transform.position.y - grid[j].transform.position.y) < 50))
                         {
                             taken[j] = true;
                         }
                     }
                 }
             }
-            for (int k = 0; k < theTetrisSpawner.playerList.Count; ++k)
+            for (int k = 0; k < theTetrisSpawner.enemyList.Count; ++k)
             {
-                if (InGridCheck(theTetrisSpawner.playerList[k]) && theTetrisSpawner.playerList[k].isMoving == false && !theTetrisSpawner.playerList[k].returning)
+                if (InGridCheck(theTetrisSpawner.enemyList[k]) && theTetrisSpawner.enemyList[k].isMoving == false && !theTetrisSpawner.enemyList[k].returning)
                 {
                     for (int j = 0; j < gridSize; ++j)
                     {
-                        if (Mathf.Abs(theTetrisSpawner.playerList[k].partOne.transform.position.x - grid[j].transform.position.x) < 50
-                            && (Mathf.Abs(theTetrisSpawner.playerList[k].partOne.transform.position.y - grid[j].transform.position.y) < 50))
+                        if (Mathf.Abs(theTetrisSpawner.enemyList[k].partOne.transform.position.x - grid[j].transform.position.x) < 50
+                            && (Mathf.Abs(theTetrisSpawner.enemyList[k].partOne.transform.position.y - grid[j].transform.position.y) < 50))
                         {
                             taken[j] = true;
                         }
-                        if (Mathf.Abs(theTetrisSpawner.playerList[k].partTwo.transform.position.x - grid[j].transform.position.x) < 50
-                            && (Mathf.Abs(theTetrisSpawner.playerList[k].partTwo.transform.position.y - grid[j].transform.position.y) < 50))
+                        if (Mathf.Abs(theTetrisSpawner.enemyList[k].partTwo.transform.position.x - grid[j].transform.position.x) < 50
+                            && (Mathf.Abs(theTetrisSpawner.enemyList[k].partTwo.transform.position.y - grid[j].transform.position.y) < 50))
                         {
                             taken[j] = true;
                         }
-                        if (Mathf.Abs(theTetrisSpawner.playerList[k].partThree.transform.position.x - grid[j].transform.position.x) < 50
-                            && (Mathf.Abs(theTetrisSpawner.playerList[k].partThree.transform.position.y - grid[j].transform.position.y) < 50))
+                        if (Mathf.Abs(theTetrisSpawner.enemyList[k].partThree.transform.position.x - grid[j].transform.position.x) < 50
+                            && (Mathf.Abs(theTetrisSpawner.enemyList[k].partThree.transform.position.y - grid[j].transform.position.y) < 50))
                         {
                             taken[j] = true;
                         }
-                        if (Mathf.Abs(theTetrisSpawner.playerList[k].partFour.transform.position.x - grid[j].transform.position.x) < 50
-                            && (Mathf.Abs(theTetrisSpawner.playerList[k].partFour.transform.position.y - grid[j].transform.position.y) < 50))
+                        if (Mathf.Abs(theTetrisSpawner.enemyList[k].partFour.transform.position.x - grid[j].transform.position.x) < 50
+                            && (Mathf.Abs(theTetrisSpawner.enemyList[k].partFour.transform.position.y - grid[j].transform.position.y) < 50))
                         {
                             taken[j] = true;
                         }
                     }
                 }
             }
-            if (InGridCheck(theTetrisSpawner.playerList[i]) && theTetrisSpawner.playerList[i].isMoving == false)
+            if (InGridCheck(theTetrisSpawner.enemyList[i]) && theTetrisSpawner.enemyList[i].isMoving == false)
             {
-                theTetrisSpawner.playerList[i].sav = true;
+                theTetrisSpawner.enemyList[i].sav = true;
             }
             else
             {
-                theTetrisSpawner.playerList[i].sav = false;
+                theTetrisSpawner.enemyList[i].sav = false;
             }
         }
     }

@@ -590,8 +590,8 @@ public class GameCode : MonoBehaviour {
                 if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
                 {
                     //If the platform is Windows
-                    theGridSystem.GameUpdate();
-                    enemyGridSystem.GameUpdate();
+                      theGridSystem.GameUpdate();
+                      enemyGridSystem.GameUpdate();
                 }
                 else if(Application.platform == RuntimePlatform.Android)
                 {
