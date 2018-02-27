@@ -217,7 +217,7 @@ public class TroopAI : MonoBehaviour {
                     }
                     if (!collided)
                     {
-                        transform.position += hello * speed;
+                        transform.localPosition += hello * speed;
                     }
 
                     if (/*prevhealth != health*/health.isHealthModified())
