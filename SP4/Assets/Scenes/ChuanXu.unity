@@ -189,6 +189,7 @@ MonoBehaviour:
   - name: Damage
     trapPrefab: {fileID: 1906492468089352, guid: 35047877ca906134b8a1b62877caeaac,
       type: 2}
+  Gameover: 0
 --- !u!114 &7053128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6982,7 +6983,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1358841343
 Transform:
   m_ObjectHideFlags: 0

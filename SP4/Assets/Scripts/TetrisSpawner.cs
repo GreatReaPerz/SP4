@@ -226,6 +226,7 @@ public class TetrisSpawner : MonoBehaviour
 
         //So that it appears within canvas
         theCube.parentCube.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, true);
+                theCube.parentCube.transform.SetParent(spawner.transform);
 
         //Off set x pos base on key(index)
         pil.Set(-300 + (key * 300), 0, 0);
@@ -256,6 +257,21 @@ public class TetrisSpawner : MonoBehaviour
             theCube.setTheObjectType(TetrisCube.objectType.TETRIS_T);
         else
             theCube.setTheObjectType(TetrisCube.objectType.TETRIS_Z);
+
+        Vector2 currentCubeSIze = cubeOne.GetComponent<RectTransform>().sizeDelta;
+        Vector2 canvasLocalScale = GameObject.FindGameObjectWithTag("Canvas").transform.localScale;
+
+        //Debug.Log(GameObject.FindGameObjectWithTag("Canvas"))
+
+        cubeOne.GetComponent<RectTransform>().sizeDelta = new Vector2(currentCubeSIze.x * canvasLocalScale.x, currentCubeSIze.y * canvasLocalScale.y);
+        cubeTwo.GetComponent<RectTransform>().sizeDelta = new Vector2(currentCubeSIze.x * canvasLocalScale.x, currentCubeSIze.y * canvasLocalScale.y);
+        cubeThree.GetComponent<RectTransform>().sizeDelta = new Vector2(currentCubeSIze.x * canvasLocalScale.x, currentCubeSIze.y * canvasLocalScale.y);
+        cubeFour.GetComponent<RectTransform>().sizeDelta = new Vector2(currentCubeSIze.x * canvasLocalScale.x, currentCubeSIze.y * canvasLocalScale.y);
+
+        cubeOne.transform.localPosition = new Vector3(cubeOne.transform.localPosition.x * canvasLocalScale.x, cubeOne.transform.localPosition.y * canvasLocalScale.y, 0);
+        cubeTwo.transform.localPosition = new Vector3(cubeTwo.transform.localPosition.x * canvasLocalScale.x, cubeTwo.transform.localPosition.y * canvasLocalScale.y, 0);
+        cubeThree.transform.localPosition = new Vector3(cubeThree.transform.localPosition.x * canvasLocalScale.x, cubeThree.transform.localPosition.y * canvasLocalScale.y, 0);
+        cubeFour.transform.localPosition = new Vector3(cubeFour.transform.localPosition.x * canvasLocalScale.x, cubeFour.transform.localPosition.y * canvasLocalScale.y, 0);
 
 
         //Set the unit's type
@@ -292,7 +308,6 @@ public class TetrisSpawner : MonoBehaviour
                     break;
                 }
         };
-
 
         //Could use raycast instead 
         //Also cause the only thing changing is the movement function, could try to make a switch instead
@@ -345,16 +360,6 @@ public class TetrisSpawner : MonoBehaviour
             cubeThree.transform.localRotation = Quaternion.Euler(180, 0, 0);
             cubeFour.transform.localRotation = Quaternion.Euler(180, 0, 0);
         }
-
-        Vector2 currentCubeSIze = cubeOne.GetComponent<RectTransform>().sizeDelta;
-        Vector2 canvasLocalScale = GameObject.FindGameObjectWithTag("Canvas").transform.localScale;
-
-        cubeOne.GetComponent<RectTransform>().sizeDelta = new Vector2(currentCubeSIze.x * canvasLocalScale.x, currentCubeSIze.y * canvasLocalScale.y);
-        cubeTwo.GetComponent<RectTransform>().sizeDelta = new Vector2(currentCubeSIze.x * canvasLocalScale.x, currentCubeSIze.y * canvasLocalScale.y);
-        cubeThree.GetComponent<RectTransform>().sizeDelta = new Vector2(currentCubeSIze.x * canvasLocalScale.x, currentCubeSIze.y * canvasLocalScale.y);
-        cubeFour.GetComponent<RectTransform>().sizeDelta = new Vector2(currentCubeSIze.x * canvasLocalScale.x, currentCubeSIze.y * canvasLocalScale.y);
-
-        theCube.parentCube.transform.SetParent(spawner.transform);
 
         //Storing into the respective lists
         if (team == 0)

@@ -1,38 +1,38 @@
-Mono path[0] = 'C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Game_Data/Managed'
-Mono path[1] = 'C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Game_Data/Mono'
-Mono config path = 'C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Game_Data/Mono/etc'
-PlayerConnection initialized from C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Game_Data (debug = 0)
-PlayerConnection initialized network socket : 0.0.0.0 55167
-Multi-casting "[IP] 172.27.177.5 [Port] 55167 [Flags] 2 [Guid] 1746520355 [EditorId] 3385708986 [Version] 1048832 [Id] WindowsPlayer(DESKTOP-RPRDEO9) [Debug] 0" to [225.0.0.222:54997]...
-Started listening to [0.0.0.0:55167]
-PlayerConnection already initialized - listening to [0.0.0.0:55167]
-Player data archive not found at `C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Game_Data/data.unity3d`, using local filesystemInitialize engine version: 5.6.3f1 (d3101c3b8468)
+Mono path[0] = 'C:/Users/162551P/Desktop/SP4/SP4/Game_Data/Managed'
+Mono path[1] = 'C:/Users/162551P/Desktop/SP4/SP4/Game_Data/Mono'
+Mono config path = 'C:/Users/162551P/Desktop/SP4/SP4/Game_Data/Mono/etc'
+PlayerConnection initialized from C:/Users/162551P/Desktop/SP4/SP4/Game_Data (debug = 0)
+PlayerConnection initialized network socket : 0.0.0.0 55406
+Multi-casting "[IP] 172.21.132.50 [Port] 55406 [Flags] 2 [Guid] 4110223288 [EditorId] 3385708986 [Version] 1048832 [Id] WindowsPlayer(M413G103) [Debug] 0" to [225.0.0.222:54997]...
+Started listening to [0.0.0.0:55406]
+PlayerConnection already initialized - listening to [0.0.0.0:55406]
+Player data archive not found at `C:/Users/162551P/Desktop/SP4/SP4/Game_Data/data.unity3d`, using local filesystemInitialize engine version: 5.6.3f1 (d3101c3b8468)
 GfxDevice: creating device client; threaded=1
 Direct3D:
-    Version:  Direct3D 11.0 [level 11.1]
-    Renderer: NVIDIA GeForce GTX 970M (ID=0x13d8)
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA Quadro K2200 (ID=0x13ba)
     Vendor:   NVIDIA
-    VRAM:     3029 MB
-    Driver:   23.21.13.9077
+    VRAM:     4034 MB
+    Driver:   21.21.13.7662
 Begin MonoManager ReloadAssembly
-Platform assembly: C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Game_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Game_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Game_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Game_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Game_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Game_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-Platform assembly: C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Game_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
-Loading C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Game_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-Platform assembly: C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Game_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
-Loading C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Game_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.027 seconds
-Platform assembly: C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Game_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Game_Data\Managed\System.dll (this message is harmless)
+Platform assembly: C:\Users\162551P\Desktop\SP4\SP4\Game_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\162551P\Desktop\SP4\SP4\Game_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\162551P\Desktop\SP4\SP4\Game_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\162551P\Desktop\SP4\SP4\Game_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\162551P\Desktop\SP4\SP4\Game_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\162551P\Desktop\SP4\SP4\Game_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\162551P\Desktop\SP4\SP4\Game_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\162551P\Desktop\SP4\SP4\Game_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\162551P\Desktop\SP4\SP4\Game_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading C:\Users\162551P\Desktop\SP4\SP4\Game_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+- Completed reload, in  0.036 seconds
+Platform assembly: C:\Users\162551P\Desktop\SP4\SP4\Game_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\162551P\Desktop\SP4\SP4\Game_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 3.790614 ms
+UnloadTime: 0.897335 ms
 The referenced script on this Behaviour (Game Object 'PlayerTetrisGrid') is missing!
  
 (Filename: C:/buildslave/unity/build/Runtime/Mono/MonoBehaviour.cpp Line: 1743)
@@ -46,12 +46,12 @@ The referenced script on this Behaviour (Game Object 'EnemyTetrisGrid') is missi
 (Filename: C:/buildslave/unity/build/Runtime/Mono/MonoBehaviour.cpp Line: 1743)
 
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 5.773427 ms
-System memory in use before: 28.9 MB.
-System memory in use after: 29.0 MB.
+UnloadTime: 6.501281 ms
+System memory in use before: 30.4 MB.
+System memory in use after: 30.5 MB.
 
-Unloading 19 unused Assets to reduce memory usage. Loaded Objects now: 1214.
-Total: 0.843456 ms (FindLiveObjects: 0.092839 ms CreateObjectMapping: 0.034765 ms MarkObjects: 0.585481 ms  DeleteObjects: 0.126814 ms)
+Unloading 19 unused Assets to reduce memory usage. Loaded Objects now: 1213.
+Total: 0.616404 ms (FindLiveObjects: 0.041934 ms CreateObjectMapping: 0.027271 ms MarkObjects: 0.478872 ms  DeleteObjects: 0.067740 ms)
 
 15
 UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
@@ -89,8 +89,426 @@ TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Pr
  
 (Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 157)
 
-Setting up 4 worker threads for Enlighten.
-  Thread -> id: b00c -> priority: 1 
-  Thread -> id: b9e4 -> priority: 1 
-  Thread -> id: a944 -> priority: 1 
-  Thread -> id: 7354 -> priority: 1 
+Parent of RectTransform is being set with parent property. Consider using the SetParent method instead, with the worldPositionStays argument set to false. This will retain local orientation and scale rather than world orientation and scale, which can prevent common UI scaling issues.
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object, Object)
+UnityEngine.Debug:LogWarning(Object, Object)
+UnityEngine.Transform:set_parent(Transform) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\TransformBindings.gen.cs:153)
+GameCode:Update() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\GameCode.cs:305)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/TransformBindings.gen.cs Line: 153)
+
+Parent of RectTransform is being set with parent property. Consider using the SetParent method instead, with the worldPositionStays argument set to false. This will retain local orientation and scale rather than world orientation and scale, which can prevent common UI scaling issues.
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object, Object)
+UnityEngine.Debug:LogWarning(Object, Object)
+UnityEngine.Transform:set_parent(Transform) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\TransformBindings.gen.cs:153)
+GameCode:Update() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\GameCode.cs:350)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/TransformBindings.gen.cs Line: 153)
+
+Parent of RectTransform is being set with parent property. Consider using the SetParent method instead, with the worldPositionStays argument set to false. This will retain local orientation and scale rather than world orientation and scale, which can prevent common UI scaling issues.
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object, Object)
+UnityEngine.Debug:LogWarning(Object, Object)
+UnityEngine.Transform:set_parent(Transform) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\TransformBindings.gen.cs:153)
+GameCode:Update() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\GameCode.cs:395)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/TransformBindings.gen.cs Line: 153)
+
+Parent of RectTransform is being set with parent property. Consider using the SetParent method instead, with the worldPositionStays argument set to false. This will retain local orientation and scale rather than world orientation and scale, which can prevent common UI scaling issues.
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object, Object)
+UnityEngine.Debug:LogWarning(Object, Object)
+UnityEngine.Transform:set_parent(Transform) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\TransformBindings.gen.cs:153)
+GameCode:Update() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\GameCode.cs:440)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/TransformBindings.gen.cs Line: 153)
+
+30
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\TroopAI.cs:150)
+ 
+(Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 150)
+
+10
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\TroopAI.cs:157)
+ 
+(Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 157)
+
+30
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\TroopAI.cs:150)
+ 
+(Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 150)
+
+10
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\TroopAI.cs:157)
+ 
+(Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 157)
+
+30
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\TroopAI.cs:150)
+ 
+(Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 150)
+
+10
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\TroopAI.cs:157)
+ 
+(Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 157)
+
+30
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\TroopAI.cs:150)
+ 
+(Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 150)
+
+10
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\TroopAI.cs:157)
+ 
+(Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 157)
+
+Parent of RectTransform is being set with parent property. Consider using the SetParent method instead, with the worldPositionStays argument set to false. This will retain local orientation and scale rather than world orientation and scale, which can prevent common UI scaling issues.
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object, Object)
+UnityEngine.Debug:LogWarning(Object, Object)
+UnityEngine.Transform:set_parent(Transform) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\TransformBindings.gen.cs:153)
+GameCode:Update() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\GameCode.cs:305)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/TransformBindings.gen.cs Line: 153)
+
+Parent of RectTransform is being set with parent property. Consider using the SetParent method instead, with the worldPositionStays argument set to false. This will retain local orientation and scale rather than world orientation and scale, which can prevent common UI scaling issues.
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object, Object)
+UnityEngine.Debug:LogWarning(Object, Object)
+UnityEngine.Transform:set_parent(Transform) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\TransformBindings.gen.cs:153)
+GameCode:Update() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\GameCode.cs:350)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/TransformBindings.gen.cs Line: 153)
+
+Parent of RectTransform is being set with parent property. Consider using the SetParent method instead, with the worldPositionStays argument set to false. This will retain local orientation and scale rather than world orientation and scale, which can prevent common UI scaling issues.
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object, Object)
+UnityEngine.Debug:LogWarning(Object, Object)
+UnityEngine.Transform:set_parent(Transform) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\TransformBindings.gen.cs:153)
+GameCode:Update() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\GameCode.cs:395)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/TransformBindings.gen.cs Line: 153)
+
+Parent of RectTransform is being set with parent property. Consider using the SetParent method instead, with the worldPositionStays argument set to false. This will retain local orientation and scale rather than world orientation and scale, which can prevent common UI scaling issues.
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object, Object)
+UnityEngine.Debug:LogWarning(Object, Object)
+UnityEngine.Transform:set_parent(Transform) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\TransformBindings.gen.cs:153)
+GameCode:Update() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\GameCode.cs:440)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/TransformBindings.gen.cs Line: 153)
+
+15
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\TroopAI.cs:79)
+ 
+(Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 79)
+
+15
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\TroopAI.cs:79)
+ 
+(Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 79)
+
+15
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\TroopAI.cs:79)
+ 
+(Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 79)
+
+15
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\TroopAI.cs:79)
+ 
+(Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 79)
+
+Parent of RectTransform is being set with parent property. Consider using the SetParent method instead, with the worldPositionStays argument set to false. This will retain local orientation and scale rather than world orientation and scale, which can prevent common UI scaling issues.
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object, Object)
+UnityEngine.Debug:LogWarning(Object, Object)
+UnityEngine.Transform:set_parent(Transform) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\TransformBindings.gen.cs:153)
+GameCode:Update() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\GameCode.cs:305)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/TransformBindings.gen.cs Line: 153)
+
+Parent of RectTransform is being set with parent property. Consider using the SetParent method instead, with the worldPositionStays argument set to false. This will retain local orientation and scale rather than world orientation and scale, which can prevent common UI scaling issues.
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object, Object)
+UnityEngine.Debug:LogWarning(Object, Object)
+UnityEngine.Transform:set_parent(Transform) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\TransformBindings.gen.cs:153)
+GameCode:Update() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\GameCode.cs:350)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/TransformBindings.gen.cs Line: 153)
+
+Parent of RectTransform is being set with parent property. Consider using the SetParent method instead, with the worldPositionStays argument set to false. This will retain local orientation and scale rather than world orientation and scale, which can prevent common UI scaling issues.
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object, Object)
+UnityEngine.Debug:LogWarning(Object, Object)
+UnityEngine.Transform:set_parent(Transform) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\TransformBindings.gen.cs:153)
+GameCode:Update() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\GameCode.cs:395)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/TransformBindings.gen.cs Line: 153)
+
+Parent of RectTransform is being set with parent property. Consider using the SetParent method instead, with the worldPositionStays argument set to false. This will retain local orientation and scale rather than world orientation and scale, which can prevent common UI scaling issues.
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object, Object)
+UnityEngine.Debug:LogWarning(Object, Object)
+UnityEngine.Transform:set_parent(Transform) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\TransformBindings.gen.cs:153)
+GameCode:Update() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\GameCode.cs:440)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/TransformBindings.gen.cs Line: 153)
+
+20
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\TroopAI.cs:114)
+ 
+(Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 114)
+
+20
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\TroopAI.cs:114)
+ 
+(Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 114)
+
+20
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\TroopAI.cs:114)
+ 
+(Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 114)
+
+20
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\TroopAI.cs:114)
+ 
+(Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 114)
+
+Parent of RectTransform is being set with parent property. Consider using the SetParent method instead, with the worldPositionStays argument set to false. This will retain local orientation and scale rather than world orientation and scale, which can prevent common UI scaling issues.
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object, Object)
+UnityEngine.Debug:LogWarning(Object, Object)
+UnityEngine.Transform:set_parent(Transform) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\TransformBindings.gen.cs:153)
+GameCode:Update() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\GameCode.cs:305)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/TransformBindings.gen.cs Line: 153)
+
+Parent of RectTransform is being set with parent property. Consider using the SetParent method instead, with the worldPositionStays argument set to false. This will retain local orientation and scale rather than world orientation and scale, which can prevent common UI scaling issues.
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object, Object)
+UnityEngine.Debug:LogWarning(Object, Object)
+UnityEngine.Transform:set_parent(Transform) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\TransformBindings.gen.cs:153)
+GameCode:Update() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\GameCode.cs:350)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/TransformBindings.gen.cs Line: 153)
+
+Parent of RectTransform is being set with parent property. Consider using the SetParent method instead, with the worldPositionStays argument set to false. This will retain local orientation and scale rather than world orientation and scale, which can prevent common UI scaling issues.
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object, Object)
+UnityEngine.Debug:LogWarning(Object, Object)
+UnityEngine.Transform:set_parent(Transform) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\TransformBindings.gen.cs:153)
+GameCode:Update() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\GameCode.cs:395)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/TransformBindings.gen.cs Line: 153)
+
+Parent of RectTransform is being set with parent property. Consider using the SetParent method instead, with the worldPositionStays argument set to false. This will retain local orientation and scale rather than world orientation and scale, which can prevent common UI scaling issues.
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object, Object)
+UnityEngine.Debug:LogWarning(Object, Object)
+UnityEngine.Transform:set_parent(Transform) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\TransformBindings.gen.cs:153)
+GameCode:Update() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\GameCode.cs:440)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/TransformBindings.gen.cs Line: 153)
+
+Parent of RectTransform is being set with parent property. Consider using the SetParent method instead, with the worldPositionStays argument set to false. This will retain local orientation and scale rather than world orientation and scale, which can prevent common UI scaling issues.
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object, Object)
+UnityEngine.Debug:LogWarning(Object, Object)
+UnityEngine.Transform:set_parent(Transform) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\TransformBindings.gen.cs:153)
+GameCode:Update() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\GameCode.cs:305)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/TransformBindings.gen.cs Line: 153)
+
+Parent of RectTransform is being set with parent property. Consider using the SetParent method instead, with the worldPositionStays argument set to false. This will retain local orientation and scale rather than world orientation and scale, which can prevent common UI scaling issues.
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object, Object)
+UnityEngine.Debug:LogWarning(Object, Object)
+UnityEngine.Transform:set_parent(Transform) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\TransformBindings.gen.cs:153)
+GameCode:Update() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\GameCode.cs:350)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/TransformBindings.gen.cs Line: 153)
+
+Parent of RectTransform is being set with parent property. Consider using the SetParent method instead, with the worldPositionStays argument set to false. This will retain local orientation and scale rather than world orientation and scale, which can prevent common UI scaling issues.
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object, Object)
+UnityEngine.Debug:LogWarning(Object, Object)
+UnityEngine.Transform:set_parent(Transform) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\TransformBindings.gen.cs:153)
+GameCode:Update() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\GameCode.cs:395)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/TransformBindings.gen.cs Line: 153)
+
+Parent of RectTransform is being set with parent property. Consider using the SetParent method instead, with the worldPositionStays argument set to false. This will retain local orientation and scale rather than world orientation and scale, which can prevent common UI scaling issues.
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object, Object)
+UnityEngine.Debug:LogWarning(Object, Object)
+UnityEngine.Transform:set_parent(Transform) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\TransformBindings.gen.cs:153)
+GameCode:Update() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\GameCode.cs:440)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/TransformBindings.gen.cs Line: 153)
+
+15
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\TroopAI.cs:79)
+ 
+(Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 79)
+
+15
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\TroopAI.cs:79)
+ 
+(Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 79)
+
+15
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\TroopAI.cs:79)
+ 
+(Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 79)
+
+15
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\TroopAI.cs:79)
+ 
+(Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 79)
+
+20
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\TroopAI.cs:114)
+ 
+(Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 114)
+
+20
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\TroopAI.cs:114)
+ 
+(Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 114)
+
+20
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\TroopAI.cs:114)
+ 
+(Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 114)
+
+20
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+TroopAI:Start() (at C:\Users\syong\OneDrive\School\2017 S2\Game Development Project (SP4)\SP4\Assets\Scripts\TroopAI.cs:114)
+ 
+(Filename: C:/Users/syong/OneDrive/School/2017 S2/Game Development Project (SP4)/SP4/Assets/Scripts/TroopAI.cs Line: 114)
+
+Setting up 6 worker threads for Enlighten.
+  Thread -> id: 2bb0 -> priority: 1 
+  Thread -> id: 2bb4 -> priority: 1 
+  Thread -> id: 2bb8 -> priority: 1 
+  Thread -> id: 2bbc -> priority: 1 
+  Thread -> id: 2bc0 -> priority: 1 
+  Thread -> id: 2bc4 -> priority: 1 

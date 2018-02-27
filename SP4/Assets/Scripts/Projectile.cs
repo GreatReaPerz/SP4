@@ -26,23 +26,18 @@ public class Projectile : MonoBehaviour
         {
             if (thisArcher.health.getHealth() <= 0)
             {
-                Debug.Log("HERE");
                 Destroy(theProjectile);
                 thisArcher.fireProj = false;
                 return;
             }
             else if(enemy.health.getHealth() <= 0)
             {
-                Debug.Log("HERE2");
                 Destroy(theProjectile);
                 thisArcher.fireProj = false;
                 return;
             }
-            Debug.Log("Projectile " + theProjectile.transform.position);
-            Debug.Log("Enemy " + enemy.transform.position);
             if (Collided(theProjectile, enemy))
             {
-                Debug.Log("Collide");
                 Destroy(theProjectile);
                 enemy.health.addHealth(-projDmg);
                 thisArcher.fireProj = false;
@@ -65,7 +60,12 @@ public class Projectile : MonoBehaviour
         else
             theProjectile = Instantiate(ProjectileOBJ, theArcher.transform.position + offset, theArcher.transform.rotation);
 
-        theProjectile.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, true);
+        GameObject theCanvas = GameObject.FindGameObjectWithTag("Canvas");
+        Vector2 canvasLocalScale = theCanvas.transform.localScale;
+
+
+        theProjectile.transform.SetParent(theCanvas.transform, true);
+        theProjectile.transform.localScale = new Vector3(theProjectile.transform.localScale.x * canvasLocalScale.x, theProjectile.transform.localScale.y * canvasLocalScale.y, 0);
     }
     bool Collided(GameObject projectile, TroopAI theEnemy)
     {
