@@ -1128,13 +1128,13 @@ public class enemyGridSystem : MonoBehaviour
         //    && cube.topLeft.position.y > grid[0].transform.position.y - halfTileHeight && cube.topLeft.position.y < grid[gridSize - 1].transform.position.y + halfTileHeight
         //    && cube.topRight.position.x > grid[0].transform.position.x - halfTileWidth && cube.topRight.position.x < grid[col - 1].transform.position.x + halfTileWidth
         //    && cube.topRight.position.y > grid[0].transform.position.y - halfTileHeight && cube.topRight.position.y < grid[gridSize - 1].transform.position.y + halfTileHeight)
-        if (cube.partOne.position.x < grid[0].transform.position.x + halfTileWidth && cube.partOne.position.x > grid[col - 1].transform.position.x + halfTileWidth
+        if (cube.partOne.position.x < grid[0].transform.position.x + halfTileWidth && cube.partOne.position.x > grid[col - 1].transform.position.x - halfTileWidth
     && cube.partOne.position.y < grid[0].transform.position.y + halfTileHeight && cube.partOne.position.y > grid[gridSize - 1].transform.position.y - halfTileHeight
-    && cube.partTwo.position.x < grid[0].transform.position.x + halfTileWidth && cube.partTwo.position.x > grid[col - 1].transform.position.x + halfTileWidth
+    && cube.partTwo.position.x < grid[0].transform.position.x + halfTileWidth && cube.partTwo.position.x > grid[col - 1].transform.position.x - halfTileWidth
     && cube.partTwo.position.y < grid[0].transform.position.y + halfTileHeight && cube.partTwo.position.y > grid[gridSize - 1].transform.position.y - halfTileHeight
-    && cube.partThree.position.x < grid[0].transform.position.x + halfTileWidth && cube.partThree.position.x > grid[col - 1].transform.position.x + halfTileWidth
+    && cube.partThree.position.x < grid[0].transform.position.x + halfTileWidth && cube.partThree.position.x > grid[col - 1].transform.position.x - halfTileWidth
     && cube.partThree.position.y < grid[0].transform.position.y + halfTileHeight && cube.partThree.position.y > grid[gridSize - 1].transform.position.y - halfTileHeight
-    && cube.partFour.position.x < grid[0].transform.position.x + halfTileWidth && cube.partFour.position.x > grid[col - 1].transform.position.x + halfTileWidth
+    && cube.partFour.position.x < grid[0].transform.position.x + halfTileWidth && cube.partFour.position.x > grid[col - 1].transform.position.x - halfTileWidth
     && cube.partFour.position.y < grid[0].transform.position.y + halfTileHeight && cube.partFour.position.y > grid[gridSize - 1].transform.position.y - halfTileHeight)
         {
             return true;
