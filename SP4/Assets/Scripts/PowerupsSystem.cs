@@ -40,6 +40,11 @@ public class PowerupsSystem : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        if(!PowerupsIsActive)
+        {
+            return;
+        }
+
         theGridSystem = GameObject.Find("PlayerTetrisGrid").GetComponent<GridSystem>();
         theEnemyGridSystem = GameObject.Find("EnemyTetrisGrid").GetComponent<enemyGridSystem>();
 
@@ -58,6 +63,11 @@ public class PowerupsSystem : MonoBehaviour
 
     public void CreatePowerups()
     {
+        if (!PowerupsIsActive)
+        {
+            return;
+        }
+
         //Player Grid
         for (uint i = 0; i <= MaximumPowerUpsAmount; ++i)
         {
