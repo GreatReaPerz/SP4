@@ -729,6 +729,17 @@ public class GridSystem : MonoBehaviour {
         //Check Column
         for (uint x = 0; x < col; ++x)
         {
+            for (uint numRow = 1; numRow < row; ++numRow)
+            {
+                if (IsGreyedOut(x + numRow * 10) && IsGreyedOut((x - 1) + numRow * 10))
+                {
+                    UnSetIsGreyOut(x + numRow * 10);
+                    SetIsGreyOut((x - 1) + numRow * 10);
+                }
+            }
+        }
+        for (uint x = 0; x < col; ++x)
+        {
             bool colGreyed = true;
             for (uint numRow = 0; numRow < row; ++numRow)
             {
