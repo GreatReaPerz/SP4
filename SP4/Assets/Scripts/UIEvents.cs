@@ -5,6 +5,14 @@ using UnityEngine;
 public class UIEvents : MonoBehaviour {
     string boolToCheck;
 
+    private void Awake()
+    {
+        if(Application.platform == RuntimePlatform.WindowsPlayer)
+        {
+            Screen.SetResolution(540, 960, false);
+        }
+    }
+
     //Used for animation
     //Sets the boolean(assigned through SetBoolToCheck(string) function) to true
     public void BoolToCheckEnable(Animator _anim)

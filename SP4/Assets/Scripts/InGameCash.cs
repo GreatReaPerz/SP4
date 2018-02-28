@@ -41,6 +41,7 @@ public class InGameCash : MonoBehaviour {
     public void cashoutToGold()
     {
         this.gameObject.GetComponent<GoldSystem>().addGold(amount);
+        amount = 0;
     }
 
 }
