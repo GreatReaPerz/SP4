@@ -11,6 +11,10 @@ public class TroopAI : MonoBehaviour {
     [SerializeField]
     GameObject projectileOBJ;
 
+
+    //[SerializeField]
+    //GameObject parenting;
+
     enum States
     {
         CHARGE,
@@ -40,7 +44,8 @@ public class TroopAI : MonoBehaviour {
     public string terrainName;
     private GameCode game = null;
     public Vector3 originPos;
-    public Vector3 targetPos;
+    private Vector3 targetPos;
+    public Vector3 Pos;
     GameObject nearest;
     private TroopAI nearestAI = null;
 
@@ -50,11 +55,16 @@ public class TroopAI : MonoBehaviour {
 
     private TrapSystem theTrapSystem = null;
 
+    private GridSystem theGridSystem = null;
+    private enemyGridSystem enemyGridSystem = null;
+
 
     GameObject thePlayer;
     // Use this for initialization
     void Start()
     {
+        theGridSystem = GameObject.Find("PlayerTetrisGrid").GetComponent<GridSystem>();
+        enemyGridSystem = GameObject.Find("EnemyTetrisGrid").GetComponent<enemyGridSystem>();
         thePowerupsSystem = GameObject.Find("PowerUpSystem").GetComponent<PowerupsSystem>();
         theTrapSystem = GameObject.Find("TrapSystem").GetComponent<TrapSystem>();
 
@@ -65,8 +75,9 @@ public class TroopAI : MonoBehaviour {
 
         attackHeight = 40;
         originPos = transform.position;
+        Pos = originPos;
 
-        
+
         //Attack adjacent tiles
         attackWidth = 150;
 
@@ -185,11 +196,18 @@ public class TroopAI : MonoBehaviour {
                 attckSpd = (attckSpd * game.TMV_Bowmen.attackSpeed);
             }
         }
-            //Debug.Log(transform.position);
-            //targetPos = transform.position;
+            //Debug.Log(transform.position
     }
-        // Update is called once per frame
-       void Update (){
+    // Update is called once per frame
+    public void SetTarget(Vector3 hi)
+    {
+        targetPos = hi;
+    }
+    public Vector3 GetTarget()
+    {
+        return targetPos;
+    }
+    void Update (){
             if (PauseAnimator.GetBool("PauseEnabled") == true)
                 return;
             if (health.getHealth() <= 0)
@@ -202,8 +220,36 @@ public class TroopAI : MonoBehaviour {
             {
                 if (state == (int)States.CHARGE)
                 {
-               
-                    Vector3 hello = targetPos - transform.position;
+                float dist = 0;
+                if(team == 1)
+                {
+                    for (uint j = 0; j < enemyGridSystem.GridSize; ++j)
+                    {
+                        float yDist = enemyGridSystem.grid[j].transform.position.y - originPos.y;
+                        if (Mathf.Abs(enemyGridSystem.grid[j].transform.position.x - originPos.x) < 20 && !enemyGridSystem.IsGreyedOut(j) && Mathf.Abs(yDist) > dist)
+                        {
+                            dist = Mathf.Abs(yDist);
+                            targetPos = enemyGridSystem.grid[j].transform.position;
+                            targetIndex = j;
+                        }
+                    }
+                }
+                else if(team == -1)
+                {
+                    for (uint j = 0; j < theGridSystem.GridSize; ++j)
+                    {
+                        float yDist = theGridSystem.grid[j].transform.position.y - originPos.y;
+                        if (Mathf.Abs(theGridSystem.grid[j].transform.position.x - originPos.x) < 20 && !theGridSystem.IsGreyedOut(j) && Mathf.Abs(yDist) > dist)
+                        {
+                            dist = Mathf.Abs(yDist);
+                            targetPos = theGridSystem.grid[j].transform.position;
+                            targetIndex = j;
+                        }
+                    }
+                }
+
+
+                Vector3 hello = targetPos - Pos;
                     //hello.x = 0;
                     //hello.y = team;
                     //hello.z = 0;
@@ -211,8 +257,8 @@ public class TroopAI : MonoBehaviour {
                     bool collided = false;
                     for (int i = 0; i < game.objects.Count; ++i)
                     {
-                        Vector3 nextPosition = transform.position + hello * speed;
-                        if (!(game.objects[i].transform.position.x == transform.position.x && game.objects[i].transform.position.y == transform.position.y))
+                        Vector3 nextPosition = Pos + hello * speed;
+                        if (!(game.objects[i].transform.position.x == Pos.x && game.objects[i].transform.position.y == Pos.y))
                         {
                             if (Collided(nextPosition, game.objects[i].transform.position))
                             {
@@ -222,9 +268,12 @@ public class TroopAI : MonoBehaviour {
                     }
                     if (!collided)
                     {
-                        transform.localPosition += hello * speed;
-                    }
+                        Debug.Log(Pos);
+                    Pos += hello * speed;
 
+                    }
+            
+                transform.position = Pos;
                     if (/*prevhealth != health*/health.isHealthModified())
                     {
                         // state = (int)States.CHASE;
@@ -507,10 +556,11 @@ public class TroopAI : MonoBehaviour {
     }
     bool Collided(Vector3 firstTroop, Vector3 secondTroop)
     {
-        if (firstTroop.x - (99 * 0.5f) < secondTroop.x + (99 * 0.5f) 
-            &&  firstTroop.x + (99 * 0.5f) > secondTroop.x - (99 * 0.5f)
-            && firstTroop.y - (99 * 0.5f) < secondTroop.y + (99 * 0.5f)
-            && (99 * 0.5f) + firstTroop.y > secondTroop.y - (99 * 0.5f))
+        Vector2 canvasLocalScale = GameObject.FindGameObjectWithTag("Canvas").transform.localScale;
+        if (firstTroop.x - (99 * 0.5f * canvasLocalScale.x) < secondTroop.x + (99 * 0.5f * canvasLocalScale.x) 
+            &&  firstTroop.x + (99 * 0.5f * canvasLocalScale.x) > secondTroop.x - (99 * 0.5f * canvasLocalScale.x)
+            && firstTroop.y - (99 * 0.5f * canvasLocalScale.x) < secondTroop.y + (99 * 0.5f * canvasLocalScale.x)
+            && (99 * 0.5f * canvasLocalScale.x) + firstTroop.y > secondTroop.y - (99 * 0.5f * canvasLocalScale.x))
         {
             //Debug.Log("collided");
             return true;
