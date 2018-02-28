@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour
 
     [SerializeField]
     float moveSpeed = 0;
+    private float lifeTime = 0;
 
     private GameObject theProjectile;
     private TroopAI enemy;
@@ -21,9 +22,15 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (theProjectile != null)
         {
+            if (Collided(theProjectile, enemy))
+            {
+                Destroy(theProjectile);
+                enemy.health.addHealth(-projDmg);
+                thisArcher.fireProj = false;
+                return;
+            }
             if (thisArcher.health.getHealth() <= 0)
             {
                 Destroy(theProjectile);
@@ -36,19 +43,25 @@ public class Projectile : MonoBehaviour
                 thisArcher.fireProj = false;
                 return;
             }
-            if (Collided(theProjectile, enemy))
+
+            theProjectile.transform.position += dir * Time.deltaTime * 500;
+            lifeTime += Time.deltaTime;
+            if(lifeTime > 1.5f)
             {
                 Destroy(theProjectile);
-                enemy.health.addHealth(-projDmg);
+                lifeTime = 0.0f;
                 thisArcher.fireProj = false;
-                return;
+
             }
-            theProjectile.transform.position += dir * Time.deltaTime * 300;
         }
+
+
     }
 
     public void CreateProjectile(GameObject ProjectileOBJ, TroopAI theArcher, TroopAI theEnemy, float damage)
     {
+        if (theProjectile != null)
+            Destroy(theProjectile);
         enemy = theEnemy;
         thisArcher = theArcher;
         thisArcher.fireProj = true;
@@ -77,5 +90,4 @@ public class Projectile : MonoBehaviour
 
         return false;
     }
-
 }

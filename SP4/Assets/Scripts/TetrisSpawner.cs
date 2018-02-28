@@ -11,7 +11,7 @@ public class TetrisSpawner : MonoBehaviour
     GameObject[] TetrisTypes;
 
     [SerializeField]
-    Sprite[] troopImages;
+    public Sprite[] troopImages;
 
     [SerializeField]
     GameObject playerSpawner;
@@ -58,7 +58,7 @@ public class TetrisSpawner : MonoBehaviour
                 int randUnitType = Random.Range(0, 3);  //Rand unit 
                 //Key for setting instantiated unit in array 
                 //Spawner for the pos of spawner in scene
-                //Type for which team the unit is (0 for player , 1 for enemy)
+                //Team for which team the unit is (0 for player , 1 for enemy)
                 //Shape is the shape to instantiate
                 playerSpawned = SpawnTetris(playerSpawned, playerSpawner, 0, randUnitType, TetrisTypes[rand]);
                 enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 1, randUnitType, TetrisTypes[rand]);
@@ -279,31 +279,58 @@ public class TetrisSpawner : MonoBehaviour
         {
             case 0:
                 {
-                    theCube.troopName = "Cavalry";
+                    //theCube.troopName = "Cavalry";
                     foreach (Transform child in theCube.parentCube.transform)
                     {
                         Image theSprite = child.GetComponent<Image>();
-                        theSprite.sprite = troopImages[0];
+                        if (team == 0)
+                        {
+                            theSprite.sprite = troopImages[2];
+                            theCube.troopName = "BlueCavalry";
+                        }
+                        else
+                        {
+                            theSprite.sprite = troopImages[5];
+                            theCube.troopName = "RedCavalry";
+                        }
                     }
                     break;
                 }
             case 1:
                 {
-                    theCube.troopName = "Infantry";
+                    //theCube.troopName = "Bowmen";
                     foreach (Transform child in theCube.parentCube.transform)
                     {
                         Image theSprite = child.GetComponent<Image>();
-                        theSprite.sprite = troopImages[1];
+                        if (team == 0)
+                        {
+                            theSprite.sprite = troopImages[0];
+                            theCube.troopName = "BlueInfantry";
+                        }
+                        else
+                        {
+                            theSprite.sprite = troopImages[3];
+                            theCube.troopName = "RedInfantry";
+                        }
                     }
-                    break;
+                        break;
                 }
             case 2:
                 {
-                    theCube.troopName = "Bowmen";
+
                     foreach (Transform child in theCube.parentCube.transform)
                     {
                         Image theSprite = child.GetComponent<Image>();
-                        theSprite.sprite = troopImages[2];
+                        if (team == 0)
+                        {
+                            theSprite.sprite = troopImages[1];
+                            theCube.troopName = "BlueBowmen";
+                        }
+                        else
+                        {
+                            theSprite.sprite = troopImages[4];
+                            theCube.troopName = "RedBowmen";                                                   
+                        }
                     }
                     break;
                 }

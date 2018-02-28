@@ -1484,7 +1484,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GridSize: 40
+  tileWidth: 0
+  tileHeight: 0
   taken: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  halfTileWidth: 0
+  halfTileHeight: 0
   grid:
   - {fileID: 1949675444}
   - {fileID: 1662286197}
@@ -1529,6 +1533,7 @@ MonoBehaviour:
   thisCanvas: {fileID: 961660700}
   GreyGridSprite: {fileID: 21300000, guid: 510741c1e8710c1428cba48f72f5fa03, type: 3}
   BlueGridSprite: {fileID: 21300000, guid: c616bc0d5b326404f8b11ef19d6124fe, type: 3}
+  theTrapSystem: {fileID: 0}
   gridData: 
 --- !u!1 &280144273
 GameObject:
@@ -1646,11 +1651,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Ui: {fileID: 961660700}
+  LevelNo: 0
   Terrain: {fileID: 599830710}
   Player1: {fileID: 261397399}
   Player2: {fileID: 1480803532}
   UIPanelAnimator: {fileID: 1174336883}
   PaperBG: {fileID: 21300000, guid: 23216051f7ba81f4ea7ffadf0cd8dad6, type: 3}
+  ButtonImage: {fileID: 0}
   player1: 0
   player2: 0
   effect: 0
@@ -1712,9 +1719,12 @@ MonoBehaviour:
   - {fileID: 1678510967310458, guid: ab1d1303800e536468926588c0c7f4d5, type: 2}
   - {fileID: 1923746785537824, guid: 39173d86ea493f048aa107d06fb48dd8, type: 2}
   troopImages:
-  - {fileID: 21300000, guid: 9c47c59c520ac3d45abb4b71a5c71672, type: 3}
-  - {fileID: 21300000, guid: 4f643c63208a80d44a3745435136e4cc, type: 3}
-  - {fileID: 21300000, guid: 765e09d691fdc4b45a52f76e12e77a7f, type: 3}
+  - {fileID: 21300000, guid: dd797071940c4264e873aa72a3bcb795, type: 3}
+  - {fileID: 21300000, guid: d654a65973d0cee47af5bb6911c619f2, type: 3}
+  - {fileID: 21300000, guid: b35d42e1f97706d4aa08edc0239c537b, type: 3}
+  - {fileID: 21300000, guid: 5a482c9165be03e4f90c066e26e81012, type: 3}
+  - {fileID: 21300000, guid: 677c1715d7dbc9c4595ad0f446fda859, type: 3}
+  - {fileID: 21300000, guid: 6def584d600d9b044a30de2e79a1c603, type: 3}
   playerSpawner: {fileID: 1933782287}
   enemySpawner: {fileID: 1488964264}
   playerIsMoving: 0
@@ -6088,6 +6098,7 @@ RectTransform:
   - {fileID: 1001305500}
   - {fileID: 2127044439}
   - {fileID: 195718208}
+  - {fileID: 1544319438}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9277,6 +9288,80 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1534947700}
+--- !u!1 &1544319437
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1544319438}
+  - component: {fileID: 1544319440}
+  - component: {fileID: 1544319439}
+  m_Layer: 5
+  m_Name: THIS
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1544319438
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1544319437}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 6.455677, y: 6.4556723, z: 6.4556723}
+  m_Children: []
+  m_Father: {fileID: 961660701}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -788, y: 0}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1544319439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1544319437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 24
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: New Text
+--- !u!222 &1544319440
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1544319437}
 --- !u!1 &1614071562
 GameObject:
   m_ObjectHideFlags: 0

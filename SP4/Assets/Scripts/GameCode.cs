@@ -197,7 +197,6 @@ public class GameCode : MonoBehaviour {
                     {
                         //theSpawner.playerList[i].partOne.transform.localscale
                         GameObject theTetrisObject = GameObject.Find(theSpawner.playerList[i].troopName);
-
                         GameObject newObj;
                         Vector3 hello = theSpawner.playerList[i].partOne.transform.position;
                         hello.z = 100;
@@ -210,6 +209,7 @@ public class GameCode : MonoBehaviour {
                         troop.terrainName = TerrainName;
                         if(troop.type == "Bowmen")               
                             troop.gameObject.AddComponent<Projectile>();
+
                         
                         float dist = 0;
                         for (uint j = 0; j < enemyGridSystem.GridSize; ++j)

@@ -353,6 +353,7 @@ public class TroopAI : MonoBehaviour {
                         {
                             if (attacktimer > (attckSpd))
                             {
+                           
                                 //Class 1 = Infantry, Class 2 = Bowmen, Class 3 = Cavalry
                                 attacktimer = 0;
                                 if (_class == nearestAI._class)
@@ -425,7 +426,7 @@ public class TroopAI : MonoBehaviour {
                                     }
                                 case PowerupsSystem.POWERUP_TYPE.POWERUP_ATTACKSPEED:
                                     {
-                                        attckSpd += thePowerupsSystem.PlayerGridPowerups[i].AddedAttackSpeed;
+                                        attckSpd -= thePowerupsSystem.PlayerGridPowerups[i].AddedAttackSpeed;
                                         break;
                                     }
                                 case PowerupsSystem.POWERUP_TYPE.POWERUP_MOVESPEED:
