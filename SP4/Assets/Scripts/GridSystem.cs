@@ -402,17 +402,34 @@ public class GridSystem : MonoBehaviour {
                         break;
                     }
                 }
+                float nearest = 1000000;
+                uint index = 0;
+                for (uint j = 0; j < gridSize; ++j)
+                {
+                    Vector2 distance;
+                    distance.x = Input.mousePosition.x - grid[j].transform.position.x;
+                    distance.y = Input.mousePosition.y - grid[j].transform.position.y;
+                    float hello = distance.SqrMagnitude();
+                    if (hello < nearest)
+                    {
+                        nearest = hello;
+                        index = j;
+                    }
+                }
 
 
 
-                objectIndex = colNum + (rowNum * col);
+                objectIndex = index;
                 //FirstTetrisBlock.transform.position = grid[objectIndex].transform.position;
                 bool mouse = false;
-
-                if(Input.mousePosition.x < grid[0].transform.position.x - halfTileWidth - 50 || Input.mousePosition.x > grid[col - 1].transform.position.x + halfTileWidth + 50
-                 && Input.mousePosition.y < grid[0].transform.position.y - halfTileHeight - 50 && Input.mousePosition.y > grid[gridSize - 1].transform.position.y + halfTileHeight + 50)
+                Debug.Log(grid[0].transform.position);
+                Debug.Log(grid[gridSize -1].transform.position);
+                Debug.Log(Input.mousePosition);
+                if (Input.mousePosition.x < grid[0].transform.position.x - tileWidth || Input.mousePosition.x > grid[col - 1].transform.position.x + tileWidth
+                 && Input.mousePosition.y < grid[0].transform.position.y - tileHeight && Input.mousePosition.y > grid[gridSize - 1].transform.position.y + tileHeight)
                 {
                     mouse = true;
+                    Debug.Log("hello");
                 }
                 if (InGridCheck(theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject]) && !theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].returning && !mouse)
                 {
@@ -430,7 +447,6 @@ public class GridSystem : MonoBehaviour {
                                 {
                                     theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].partOne.MovePosition(grid[objectIndex].transform.position);
                                 }
-
                                 //theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].btmLeft.position = grid[objectIndex].transform.position;
                                 break;
                             }
@@ -481,6 +497,9 @@ public class GridSystem : MonoBehaviour {
                             }
                         default:
                             break;
+
+
+                           // Debug.Log(theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].partOne.transform.position);
                     };
                     for (int j = 0; j < gridSize; ++j)
                     {
