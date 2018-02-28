@@ -3796,9 +3796,6 @@ MonoBehaviour:
   - name: TrapDoor
     trapPrefab: {fileID: 1906492468089352, guid: ac7ee6cf29379e741a3b5ba1eec82668,
       type: 2}
-  - name: Stun
-    trapPrefab: {fileID: 1906492468089352, guid: 25519e11863ed4c4e843c5b9be42dc73,
-      type: 2}
   - name: Damage
     trapPrefab: {fileID: 1906492468089352, guid: 35047877ca906134b8a1b62877caeaac,
       type: 2}
