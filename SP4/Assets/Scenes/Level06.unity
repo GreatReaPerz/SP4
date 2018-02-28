@@ -8560,6 +8560,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaximumPowerUpsAmount: 10
   SampleImage: {fileID: 2014186791}
+  PowerupsIsActive: 1
   moveSpeedSprite: {fileID: 21300000, guid: 47a9cf70e36b28a4cb750d465f8732b2, type: 3}
   attackSpeedSprite: {fileID: 21300000, guid: 4bc4094b8b2bb044297d61cb1b683234, type: 3}
   attackDamageSprite: {fileID: 21300000, guid: 48417c9ef04c1b84992ee080d47228a4, type: 3}
