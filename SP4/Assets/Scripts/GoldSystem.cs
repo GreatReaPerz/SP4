@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GoldSystem : MonoBehaviour {
 
-    int gold = 0;
+    int gold = 7000;
 	// Use this for initialization
 	void Start () {
         gold = PlayerPrefs.GetInt("Gold", gold);

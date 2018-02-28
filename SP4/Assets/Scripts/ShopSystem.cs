@@ -68,6 +68,26 @@ public class ShopSystem : MonoBehaviour {
         //Set the gold border such that it doesn't appear at first
         GoldBorder.enabled = false;
 
+        //PlayerPrefs.SetInt("Gold", 7000);
+        //PlayerPrefs.SetInt("UpgradeInfantryHealth", UpgradeInfantryHealthPrice);
+        //PlayerPrefs.SetInt("UpgradeInfantryAttack", UpgradeInfantryAttackPrice);
+        //PlayerPrefs.SetInt("UpgradeCavalryHealth", UpgradeCavalryHealthPrice);
+        //PlayerPrefs.SetInt("UpgradeCavalryAttack", UpgradeCavalryAttackPrice);
+        //PlayerPrefs.SetInt("UpgradeBowmenHealth", UpgradeBowmenHealthPrice);
+        //PlayerPrefs.SetInt("UpgradeBowmenAttack", UpgradeBowmenAttackPrice);
+        //PlayerPrefs.Save();
+
+        //PlayerPrefs.SetFloat("calvaryHP", 50);
+        //PlayerPrefs.SetFloat("infantryHP", 60);
+        //PlayerPrefs.Save();
+
+        UpgradeInfantryHealthPrice = PlayerPrefs.GetInt("UpgradeInfantryHealth");
+        UpgradeInfantryAttackPrice = PlayerPrefs.GetInt("UpgradeInfantryAttack");
+        UpgradeCavalryHealthPrice = PlayerPrefs.GetInt("UpgradeCavalryHealth");
+        UpgradeCavalryAttackPrice = PlayerPrefs.GetInt("UpgradeCavalryAttack");
+        UpgradeBowmenHealthPrice = PlayerPrefs.GetInt("UpgradeBowmenHealth");
+        UpgradeBowmenAttackPrice = PlayerPrefs.GetInt("UpgradeBowmenAttack");
+
         //Add shop items that the player can buy
         shopItems.Add("UpgradeInfantryHealth", UpgradeInfantryHealthPrice);
         shopItems.Add("UpgradeInfantryAttack", UpgradeInfantryAttackPrice);
@@ -90,7 +110,7 @@ public class ShopSystem : MonoBehaviour {
 
         //Update the amount of gold the player has left after buying
         playerGold -= (int)shopItems[ItemName];
-        playerGoldText.GetComponent<Text>().text = playerGold.ToString();
+        //playerGoldText.GetComponent<Text>().text = playerGold.ToString();
 
         //The bought item modifications to player
         switch(ItemName)
@@ -99,10 +119,19 @@ public class ShopSystem : MonoBehaviour {
                 {
                     //Increase base health of infantry
                     PlayerPrefs.SetFloat("infantryHP", PlayerPrefs.GetFloat("infantryHP") + UpgradeInfantryHealthAmount);
-
-
+                    
                     //Update the item description with the new stats
                     ItemDescription.text = "Infantry Health: " + PlayerPrefs.GetFloat("infantryHP") + " (+" + UpgradeInfantryHealthAmount.ToString() + ")";
+
+                    //Update the new gold price
+                    PlayerPrefs.SetInt("UpgradeInfantryHealth", PlayerPrefs.GetInt("UpgradeInfantryHealth") + 50);
+                    UpgradeInfantryHealthPrice = PlayerPrefs.GetInt("UpgradeInfantryHealth");
+
+                    shopItems["UpgradeInfantryHealth"] = UpgradeInfantryHealthPrice;
+
+
+                    //Update the gold text
+                    playerGoldText.GetComponent<Text>().text = playerGold.ToString() + " (-" + UpgradeInfantryHealthPrice.ToString() + ")";
                     break;
                 }
             case "UpgradeInfantryAttack":
@@ -112,6 +141,15 @@ public class ShopSystem : MonoBehaviour {
 
                     //Update the item description with the new stats
                     ItemDescription.text = "Infantry Damage: " + PlayerPrefs.GetFloat("infantryAtt") + " (+" + UpgradeInfantryDamageAmount.ToString() + ")";
+                    
+                    //Update the new gold price
+                    PlayerPrefs.SetInt("UpgradeInfantryAttack", PlayerPrefs.GetInt("UpgradeInfantryAttack") + 50);
+                    UpgradeInfantryAttackPrice = PlayerPrefs.GetInt("UpgradeInfantryAttack");
+
+                    shopItems["UpgradeInfantryAttack"] = UpgradeInfantryAttackPrice;
+
+                    //Update the gold text
+                    playerGoldText.GetComponent<Text>().text = playerGold.ToString() + " (-" + UpgradeInfantryAttackPrice.ToString() + ")";
                     break;
                 }
             case "UpgradeCavalryHealth":
@@ -121,6 +159,15 @@ public class ShopSystem : MonoBehaviour {
 
                     //Update the item description with the new stats
                     ItemDescription.text = "Cavalry Health: " + PlayerPrefs.GetFloat("calvaryHP") + " (+" + UpgradeCavalryHealthAmount.ToString() + ")";
+                    
+                    //Update the new gold price
+                    PlayerPrefs.SetInt("UpgradeCavalryHealth", PlayerPrefs.GetInt("UpgradeCavalryHealth") + 50);
+                    UpgradeCavalryHealthPrice = PlayerPrefs.GetInt("UpgradeCavalryHealth");
+
+                    shopItems["UpgradeCavalryHealth"] = UpgradeCavalryHealthPrice;
+
+                    //Update the gold text
+                    playerGoldText.GetComponent<Text>().text = playerGold.ToString() + " (-" + UpgradeCavalryHealthPrice.ToString() + ")";
                     break;
                 }
             case "UpgradeCavalryAttack":
@@ -130,6 +177,15 @@ public class ShopSystem : MonoBehaviour {
 
                     //Update the item description with the new stats
                     ItemDescription.text = "Cavalry Damage: " + PlayerPrefs.GetFloat("calvaryAtt") + " (+" + UpgradeCavalryDamageAmount.ToString() + ")";
+                    
+                    //Update the new gold price
+                    PlayerPrefs.SetInt("UpgradeCavalryAttack", PlayerPrefs.GetInt("UpgradeCavalryAttack") + 50);
+                    UpgradeCavalryAttackPrice = PlayerPrefs.GetInt("UpgradeCavalryAttack");
+
+                    shopItems["UpgradeCavalryAttack"] = UpgradeCavalryAttackPrice;
+
+                    //Update the gold text
+                    playerGoldText.GetComponent<Text>().text = playerGold.ToString() + " (-" + UpgradeCavalryAttackPrice.ToString() + ")";
                     break;
                 }
             case "UpgradeBowmenHealth":
@@ -139,6 +195,15 @@ public class ShopSystem : MonoBehaviour {
 
                     //Update the item description with the new stats
                     ItemDescription.text = "Bowmen Health: " + PlayerPrefs.GetFloat("bowmenHP") + " (+" + UpgradeBowmenHealthAmount.ToString() + ")";
+
+                    //Update the new gold price
+                    PlayerPrefs.SetInt("UpgradeBowmenHealth", PlayerPrefs.GetInt("UpgradeBowmenHealth") + 50);
+                    UpgradeBowmenHealthPrice = PlayerPrefs.GetInt("UpgradeBowmenHealth");
+
+                    shopItems["UpgradeBowmenHealth"] = UpgradeBowmenHealthPrice;
+
+                    //Update the gold text
+                    playerGoldText.GetComponent<Text>().text = playerGold.ToString() + " (-" + UpgradeBowmenHealthPrice.ToString() + ")";
                     break;
                 }
             case "UpgradeBowmenAttack":
@@ -148,12 +213,23 @@ public class ShopSystem : MonoBehaviour {
 
                     //Update the item description with the new stats
                     ItemDescription.text = "Bowmen Damage: " + PlayerPrefs.GetFloat("bowmenAtt") + " (+" + UpgradeBowmenDamageAmount.ToString() + ")";
+                    
+                    //Update the new gold price
+                    PlayerPrefs.SetInt("UpgradeBowmenAttack", PlayerPrefs.GetInt("UpgradeBowmenAttack") + 50);
+                    UpgradeBowmenAttackPrice = PlayerPrefs.GetInt("UpgradeBowmenAttack");
+
+                    shopItems["UpgradeBowmenAttack"] = UpgradeBowmenAttackPrice;
+
+                    //Update the gold text
+                    playerGoldText.GetComponent<Text>().text = playerGold.ToString() + " (-" + UpgradeBowmenAttackPrice.ToString() + ")";
+                    
                     break;
                 }
             default:
                 break;
         }
 
+        PlayerPrefs.Save();
         return playerGold;
     }
 
@@ -185,36 +261,54 @@ public class ShopSystem : MonoBehaviour {
                 {
                     //Update the item description with the new stats
                     ItemDescription.text = "Infantry Health: " + PlayerPrefs.GetFloat("infantryHP") + " (+" + UpgradeInfantryHealthAmount.ToString() + ")";
+
+                    //Update the gold text
+                    playerGoldText.GetComponent<Text>().text = playerGold.ToString() + " (-" + UpgradeInfantryHealthPrice.ToString() + ")";
                     break;
                 }
             case "UpgradeInfantryAttack":
                 {
                     //Update the item description with the new stats
                     ItemDescription.text = "Infantry Damage: " + PlayerPrefs.GetFloat("infantryAtt") + " (+" + UpgradeInfantryDamageAmount.ToString() + ")";
+
+                    //Update the gold text
+                    playerGoldText.GetComponent<Text>().text = playerGold.ToString() + " (-" + UpgradeInfantryAttackPrice.ToString() + ")";
                     break;
                 }
             case "UpgradeCavalryHealth":
                 {
                     //Update the item description with the new stats
                     ItemDescription.text = "Cavalry Health: " + PlayerPrefs.GetFloat("calvaryHP") + " (+" + UpgradeCavalryHealthAmount.ToString() + ")";
+
+                    //Update the gold text
+                    playerGoldText.GetComponent<Text>().text = playerGold.ToString() + " (-" + UpgradeCavalryHealthPrice.ToString() + ")";
                     break;
                 }
             case "UpgradeCavalryAttack":
                 {
                     //Update the item description with the new stats
                     ItemDescription.text = "Cavalry Damage: " + PlayerPrefs.GetFloat("calvaryAtt") + " (+" + UpgradeCavalryDamageAmount.ToString() + ")";
+
+                    //Update the gold text
+                    playerGoldText.GetComponent<Text>().text = playerGold.ToString() + " (-" + UpgradeInfantryAttackPrice.ToString() + ")";
                     break;
                 }
             case "UpgradeBowmenHealth":
                 {
                     //Update the item description with the new stats
                     ItemDescription.text = "Bowmen Health: " + PlayerPrefs.GetFloat("bowmenHP") + " (+" + UpgradeBowmenHealthAmount.ToString() + ")";
+
+                    //Update the gold text
+                    playerGoldText.GetComponent<Text>().text = playerGold.ToString() + " (-" + UpgradeBowmenHealthPrice.ToString() + ")";
                     break;
                 }
             case "UpgradeBowmenAttack":
                 {
                     //Update the item description with the new stats
                     ItemDescription.text = "Bowmen Damage: " + PlayerPrefs.GetFloat("bowmenAtt") + " (+" + UpgradeBowmenDamageAmount.ToString() + ")";
+
+                    //Update the gold text
+                    playerGoldText.GetComponent<Text>().text = playerGold.ToString() + " (-" + UpgradeBowmenAttackPrice.ToString() + ")";
                     break;
                 }
             default:
