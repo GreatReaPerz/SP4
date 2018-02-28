@@ -67,6 +67,7 @@ public class GameCode : MonoBehaviour {
     public MainGame.TerrainModifierValue TMV_Cavalry;
     public MainGame.TerrainModifierValue TMV_Infantry;
     public MainGame.TerrainModifierValue TMV_Bowmen;
+    Vector2 canvasLocalScale;
     MainGame m_game;
     // Use this for initialization
     void Start () {
@@ -85,6 +86,7 @@ public class GameCode : MonoBehaviour {
         TMV_Cavalry = m_game.TMV_Cavalry;
         TMV_Infantry = m_game.TMV_Infantry;
         TMV_Bowmen = m_game.TMV_Bowmen;
+        canvasLocalScale = GameObject.FindGameObjectWithTag("Canvas").transform.localScale;
         //if (TerrainName == "Hills")
         //{
         //    TMV_Cavalry.attackDamage = 0.15f;
@@ -862,13 +864,18 @@ public class GameCode : MonoBehaviour {
                             {
                                 if(melee)
                                 {
-                                    troop.range = 100;
+                                    troop.range = 100 * canvasLocalScale.x;
                                     Debug.Log("chkeck");
                                 }
                                 else
                                 {
-                                    troop.range = 300;
+
+                                    troop.range = 300 * canvasLocalScale.x;
                                 }
+                            }
+                            else
+                            {
+                                troop.range = 100 * canvasLocalScale.x;
                             }
 
 
@@ -878,29 +885,29 @@ public class GameCode : MonoBehaviour {
                             {
                                 if (SceneManager.GetActiveScene().name == "Level01" || SceneManager.GetActiveScene().name == "Level02" || SceneManager.GetActiveScene().name == "Level03")
                                 {
-                                    troop.attackWidth = 50;
+                                    troop.attackWidth = 50 * canvasLocalScale.x;
                                 }
                                 else
                                 {
-                                    troop.attackWidth = 150;
+                                    troop.attackWidth = 150 * canvasLocalScale.x;
                                 }
                                 troop.attackHeight = troop.range;
                                 
                             }
                             else if (side == 1)
                             {
-                                troop.attackWidth = 50;
+                                troop.attackWidth = 50 * canvasLocalScale.x;
                                 troop.attackHeight = troop.range;
                             }
                             else if (side == 2)
                             {
                                 if (SceneManager.GetActiveScene().name == "Level01" || SceneManager.GetActiveScene().name == "Level02" || SceneManager.GetActiveScene().name == "Level03")
                                 {
-                                    troop.attackWidth = 50;
+                                    troop.attackWidth = 50 * canvasLocalScale.x;
                                 }
                                 else
                                 {
-                                    troop.attackWidth = 50 * 2;
+                                    troop.attackWidth = 50 * 2 * canvasLocalScale.x;
                                 }
                                 troop.attackHeight = troop.range / 2;
                             }
