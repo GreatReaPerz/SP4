@@ -13,6 +13,7 @@ public class enemyGridSystem : MonoBehaviour
     const float tileWidth = 100;
     const float tileHeight = 100;
     public bool multi;
+    public float timer = 0;
     private TetrisSpawner theTetrisSpawner = null;
     public bool[] check = new bool[3];
     float halfTileWidth = tileWidth * 0.5f, halfTileHeight = tileHeight * 0.5f;
@@ -689,7 +690,14 @@ public class enemyGridSystem : MonoBehaviour
                     if (!check[i])
                     {
                         theTetrisSpawner.enemyList[i].isMoving = true;
-                        theTetrisSpawner.enemyList[i].partOne.MovePosition(grid[(i * 3) + 22].transform.position);
+                        if(i == 2)
+                        {
+                            theTetrisSpawner.enemyList[i].partOne.MovePosition(grid[(i * 3) + 22].transform.position);
+                        }
+                        else
+                        {
+                            theTetrisSpawner.enemyList[i].partOne.MovePosition(grid[(i * 3) + 22].transform.position);
+                        }
                         theTetrisSpawner.enemyList[i].Whatisbeingmoved = "partOne";
                         if (Mathf.Abs(theTetrisSpawner.enemyList[i].partOne.position.x - grid[(i * 3) + 22].transform.position.x) < 10
                             && (Mathf.Abs(theTetrisSpawner.enemyList[i].partOne.position.y - grid[(i * 3) + 22].transform.position.y) < 10))
@@ -701,6 +709,10 @@ public class enemyGridSystem : MonoBehaviour
                     }
                 }
                 // check = true;
+            }
+            else
+            {
+                timer++;
             }
         }
         else
@@ -946,7 +958,6 @@ public class enemyGridSystem : MonoBehaviour
                             }
                             else
                             {
-                                Debug.Log("choochoo");
                                 theTetrisSpawner.enemyList[i].partTwo.MovePosition(grid[index].transform.position);
                             }
                             break;
@@ -1117,13 +1128,13 @@ public class enemyGridSystem : MonoBehaviour
         //    && cube.topLeft.position.y > grid[0].transform.position.y - halfTileHeight && cube.topLeft.position.y < grid[gridSize - 1].transform.position.y + halfTileHeight
         //    && cube.topRight.position.x > grid[0].transform.position.x - halfTileWidth && cube.topRight.position.x < grid[col - 1].transform.position.x + halfTileWidth
         //    && cube.topRight.position.y > grid[0].transform.position.y - halfTileHeight && cube.topRight.position.y < grid[gridSize - 1].transform.position.y + halfTileHeight)
-        if (cube.partOne.position.x < grid[0].transform.position.x + halfTileWidth && cube.partOne.position.x > grid[col - 1].transform.position.x - halfTileWidth
+        if (cube.partOne.position.x < grid[0].transform.position.x + halfTileWidth && cube.partOne.position.x > grid[col - 1].transform.position.x + halfTileWidth
     && cube.partOne.position.y < grid[0].transform.position.y + halfTileHeight && cube.partOne.position.y > grid[gridSize - 1].transform.position.y - halfTileHeight
-    && cube.partTwo.position.x < grid[0].transform.position.x + halfTileWidth && cube.partTwo.position.x > grid[col - 1].transform.position.x - halfTileWidth
+    && cube.partTwo.position.x < grid[0].transform.position.x + halfTileWidth && cube.partTwo.position.x > grid[col - 1].transform.position.x + halfTileWidth
     && cube.partTwo.position.y < grid[0].transform.position.y + halfTileHeight && cube.partTwo.position.y > grid[gridSize - 1].transform.position.y - halfTileHeight
-    && cube.partThree.position.x < grid[0].transform.position.x + halfTileWidth && cube.partThree.position.x > grid[col - 1].transform.position.x - halfTileWidth
+    && cube.partThree.position.x < grid[0].transform.position.x + halfTileWidth && cube.partThree.position.x > grid[col - 1].transform.position.x + halfTileWidth
     && cube.partThree.position.y < grid[0].transform.position.y + halfTileHeight && cube.partThree.position.y > grid[gridSize - 1].transform.position.y - halfTileHeight
-    && cube.partFour.position.x < grid[0].transform.position.x + halfTileWidth && cube.partFour.position.x > grid[col - 1].transform.position.x - halfTileWidth
+    && cube.partFour.position.x < grid[0].transform.position.x + halfTileWidth && cube.partFour.position.x > grid[col - 1].transform.position.x + halfTileWidth
     && cube.partFour.position.y < grid[0].transform.position.y + halfTileHeight && cube.partFour.position.y > grid[gridSize - 1].transform.position.y - halfTileHeight)
         {
             return true;

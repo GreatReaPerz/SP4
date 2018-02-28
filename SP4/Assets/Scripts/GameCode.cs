@@ -43,6 +43,7 @@ public class GameCode : MonoBehaviour {
     public string info;
 
     public bool ready = false;
+    public bool ready1 = false;
     public bool melee = true;
     public int side = 0;
     public bool blockRespawn = false;
@@ -191,8 +192,9 @@ public class GameCode : MonoBehaviour {
                     break;
             }
 
-            if (ready && !destroyed)
+            if (ready && ready1 && !destroyed && ((enemyGridSystem.check[0] && enemyGridSystem.check[1] && enemyGridSystem.check[2] && enemyGridSystem.timer>3) || enemyGridSystem.multi))
             {
+                enemyGridSystem.timer = 0;
                 Vector2 currentCubeSIze = theSpawner.playerList[0].partOne.GetComponent<RectTransform>().sizeDelta;
                 Vector2 canvasLocalScale = GameObject.FindGameObjectWithTag("Canvas").transform.localScale;
 
@@ -654,7 +656,7 @@ public class GameCode : MonoBehaviour {
 
                 //Destroy(theGridSystem);
                 //Destroy(enemyGridSystem);
-                if (ready && destroyed)
+                if (ready && destroyed && ready1 && ((enemyGridSystem.check[0] && enemyGridSystem.check[1] && enemyGridSystem.check[2]) || enemyGridSystem.multi))
                 {
                     timer = 0.0f;
                     state = (int)GameState.ATTACK;
@@ -665,14 +667,21 @@ public class GameCode : MonoBehaviour {
                 if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
                 {
                     //If the platform is Windows
-                      theGridSystem.GameUpdate();
-                      enemyGridSystem.GameUpdate();
+                    theGridSystem.GameUpdate();
+                    if (ready1 || enemyGridSystem.multi)
+                    {
+                        enemyGridSystem.GameUpdate();
+                    }
+
                 }
                 else if(Application.platform == RuntimePlatform.Android)
                 {
                     //If the platform is android
                     theGridSystem.GameUpdateAndroid();
-                    enemyGridSystem.GameUpdateAndroid();
+                    if (ready1 || enemyGridSystem.multi)
+                    {
+                        enemyGridSystem.GameUpdateAndroid();
+                    }
                 }
             }
         }
@@ -707,6 +716,15 @@ public class GameCode : MonoBehaviour {
                                     Player1.GetComponent<HealthSystem>().addHealth(-1);
                                 }
                             }
+                        }
+                    }
+                    timer += Time.deltaTime;
+                    if (timer >= 30)
+                    {
+                        for (int i = 0; i < objects.Count; i++)
+                        {
+                            troop = objects[i].GetComponent<TroopAI>();
+                            troop.activ = false;
                         }
                     }
                     for (int i = 0; i < objects.Count;) //Remove dead/not needed troops from scene
@@ -876,11 +894,12 @@ public class GameCode : MonoBehaviour {
                 destroyed = false;
                 timer = 0.0f;
                 ready = false;
+                ready1 = false;
                 state = (int)GameState.PLANNING;
             }
         }
 
-        timer += Time.deltaTime;
+
     }
 
     public void ReadyButton()
@@ -888,6 +907,7 @@ public class GameCode : MonoBehaviour {
         if(!ready && !destroyed)
         {
             ready = true;
+            ready1 = true;
         }
     }
     //public void OnlyFront()
