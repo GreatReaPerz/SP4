@@ -83,6 +83,11 @@ public class ShopSystem : MonoBehaviour {
 
     public int BuyItem(string ItemName)
     {
+        if(playerGold < (int)shopItems[ItemName])
+        {
+            return playerGold;
+        }
+
         //Update the amount of gold the player has left after buying
         playerGold -= (int)shopItems[ItemName];
         playerGoldText.GetComponent<Text>().text = playerGold.ToString();
