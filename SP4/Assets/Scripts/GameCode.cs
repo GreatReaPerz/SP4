@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GameCode : MonoBehaviour {
 
@@ -792,21 +793,41 @@ public class GameCode : MonoBehaviour {
                                     troop.range = 300;
                                 }
                             }
+
+
+
+
                             if (side == 0)
                             {
-                                troop.attackWidth = 150;
+                                if (SceneManager.GetActiveScene().name == "Level01" || SceneManager.GetActiveScene().name == "Level02" || SceneManager.GetActiveScene().name == "Level03")
+                                {
+                                    troop.attackWidth = 50;
+                                }
+                                else
+                                {
+                                    troop.attackWidth = 150;
+                                }
                                 troop.attackHeight = troop.range;
+                                
                             }
-                            else if(side == 1)
+                            else if (side == 1)
                             {
                                 troop.attackWidth = 50;
                                 troop.attackHeight = troop.range;
                             }
-                            else if(side == 2)
+                            else if (side == 2)
                             {
-                                troop.attackWidth = 50 * 2;
-                                troop.attackHeight = troop.range/2;
+                                if (SceneManager.GetActiveScene().name == "Level01" || SceneManager.GetActiveScene().name == "Level02" || SceneManager.GetActiveScene().name == "Level03")
+                                {
+                                    troop.attackWidth = 50;
+                                }
+                                else
+                                {
+                                    troop.attackWidth = 50 * 2;
+                                }
+                                troop.attackHeight = troop.range / 2;
                             }
+                            
                         }
                     }
                 }

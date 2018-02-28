@@ -42,6 +42,7 @@ public class PowerupsSystem : MonoBehaviour
     {
         if(!PowerupsIsActive)
         {
+            SampleImage.enabled = false;
             return;
         }
 
