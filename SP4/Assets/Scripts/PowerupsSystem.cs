@@ -192,7 +192,7 @@ public class PowerUp
             case PowerupsSystem.POWERUP_TYPE.POWERUP_ATTACKSPEED:
                 {
                     //Unit stats modify
-                    AddedAttackSpeed = 10;
+                    AddedAttackSpeed = 0.5f;
                     PowerUpTexture.sprite = attackSpeedSprite;
                     break;
                 }

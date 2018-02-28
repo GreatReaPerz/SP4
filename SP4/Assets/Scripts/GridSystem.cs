@@ -422,9 +422,6 @@ public class GridSystem : MonoBehaviour {
                 objectIndex = index;
                 //FirstTetrisBlock.transform.position = grid[objectIndex].transform.position;
                 bool mouse = false;
-                Debug.Log(grid[0].transform.position);
-                Debug.Log(grid[gridSize -1].transform.position);
-                Debug.Log(Input.mousePosition);
                 if (Input.mousePosition.x < grid[0].transform.position.x - tileWidth || Input.mousePosition.x > grid[col - 1].transform.position.x + tileWidth
                  && Input.mousePosition.y < grid[0].transform.position.y - tileHeight && Input.mousePosition.y > grid[gridSize - 1].transform.position.y + tileHeight)
                 {

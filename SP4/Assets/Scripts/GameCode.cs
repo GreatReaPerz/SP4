@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System;
 
 public class GameCode : MonoBehaviour {
 
@@ -15,9 +16,9 @@ public class GameCode : MonoBehaviour {
     [SerializeField]
     GameObject Terrain;
     [SerializeField]
-    GameObject Player1;
+    public GameObject Player1;
     [SerializeField]
-    GameObject Player2;
+    public GameObject Player2;
     [SerializeField]
     Animator UIPanelAnimator;
     [SerializeField]
@@ -196,7 +197,6 @@ public class GameCode : MonoBehaviour {
                     {
                         //theSpawner.playerList[i].partOne.transform.localscale
                         GameObject theTetrisObject = GameObject.Find(theSpawner.playerList[i].troopName);
-
                         GameObject newObj;
                         Vector3 hello = theSpawner.playerList[i].partOne.transform.position;
                         hello.z = 100;
@@ -209,6 +209,7 @@ public class GameCode : MonoBehaviour {
                         troop.terrainName = TerrainName;
                         if(troop.type == "Bowmen")               
                             troop.gameObject.AddComponent<Projectile>();
+
                         
                         float dist = 0;
                         for (uint j = 0; j < enemyGridSystem.GridSize; ++j)
@@ -1006,5 +1007,58 @@ public class GameCode : MonoBehaviour {
         theButton.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(380, 100);                                                   //Scaling button
 
         return theButton;
+    }
+    public void ShowPlayerInfo()
+    {
+        GameObject thePanel = GameObject.Find("UpgradesPanel");
+        Text GoldInfo;
+        try
+        {
+            GoldInfo = GameObject.Find("GoldInfo").GetComponent<Text>();
+        }
+        catch(NullReferenceException e)
+        {
+            GoldInfo = CreateText(thePanel, new Vector3(0, 165));
+            GoldInfo.rectTransform.sizeDelta = new Vector2(220, 67);
+            GoldInfo.fontSize = 30;
+            GoldInfo.transform.name = "GoldInfo";
+        }
+        GoldInfo.text = "Gold:" + Player1.GetComponent<GoldSystem>().getGold().ToString()
+            + "\nIGC:" + Player1.GetComponent<InGameCash>().getAmount().ToString();
+        //Text IGCInfo;
+        //try
+        //{
+        //    IGCInfo= GameObject.Find("IGCInfo").GetComponent<Text>();
+        //}
+        //catch(NullReferenceException e)
+        //{
+        //    IGCInfo = CreateText(thePanel, new Vector3(0, 100));
+        //    IGCInfo.rectTransform.sizeDelta = new Vector2(220, 33);
+        //    IGCInfo.fontSize = 30;
+        //    IGCInfo.transform.name = "IGCInfo";
+        //}
+        //IGCInfo.text = "IGC:" + Player1.GetComponent<InGameCash>().getAmount().ToString();
+        Text CavalryHP;
+        try
+        {
+            CavalryHP = GameObject.Find("CavalryHP").GetComponent<Text>();
+        }
+        catch (NullReferenceException e)
+        {
+            CavalryHP = CreateText(thePanel, new Vector3(0, 3));
+            CavalryHP.rectTransform.sizeDelta = new Vector2(220, 206);
+            CavalryHP.fontSize = 20;
+            CavalryHP.transform.name = "CavalryHP";
+        }
+        CavalryHP.text = "Cavalry HP:" + PlayerPrefs.GetFloat("calvaryHP") 
+            + "\nCavalry Attack:" + PlayerPrefs.GetFloat("calvaryAtt")
+            + "\nCavalry AttackSpeed:" + PlayerPrefs.GetFloat("calvaryAttSpd")
+            + "\nInfantry HP:" + PlayerPrefs.GetFloat("infantryHP")
+            + "\nInfantry Attack:" + PlayerPrefs.GetFloat("infantryAtt")
+            + "\nInfantry AttackSpeed:" + PlayerPrefs.GetFloat("infantryAttSpd")
+            + "\nBowmen HP:" + PlayerPrefs.GetFloat("bowmenHP")
+            + "\nBowmen Attack:" + PlayerPrefs.GetFloat("bowmenAtt")
+            + "\nBowmen AttackSpeed:" + PlayerPrefs.GetFloat("bowmenAttSpd");
+
     }
 }
