@@ -478,7 +478,7 @@ public class TroopAI : MonoBehaviour {
                 }
 
             }
-            if (theTrapSystem.trapSystemActive)
+            if (theTrapSystem && theTrapSystem.trapSystemActive)
             {
                 foreach (GameObject go in theTrapSystem.myTraps)
                 {
