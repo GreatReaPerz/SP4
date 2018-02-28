@@ -33,6 +33,17 @@ public class MainGame : MonoBehaviour {
 
     GameObject TerrainInformation = null;
 
+    public struct TerrainModifierValue
+    {
+        public float attackDamage;
+        public float speed;
+        public float attackSpeed;
+    }
+
+    public TerrainModifierValue TMV_Cavalry;
+    public TerrainModifierValue TMV_Infantry;
+    public TerrainModifierValue TMV_Bowmen;
+
     // Use this for initialization
     public void Start()
     {
@@ -63,32 +74,67 @@ public class MainGame : MonoBehaviour {
         if (ranNum > 3.0f)
         {
             NeutralZoneTerrainType = "Plains";
+            TMV_Cavalry.attackDamage = 0.1f;
+            TMV_Infantry.attackDamage = 0.1f;
+            TMV_Bowmen.attackDamage = 0.1f;
+
+            TMV_Cavalry.speed = 0.15f;
+            TMV_Infantry.speed = 0.2f;
+            TMV_Bowmen.speed = 0.1f;
+
+            TMV_Cavalry.attackSpeed = 0.1f;
+            TMV_Infantry.attackSpeed = 0.1f;
+            TMV_Bowmen.attackSpeed = 0.2f;
             NeutralZone.sprite = PlainsSprite;
         }
         else if (ranNum > 2.0f)
         {
             NeutralZoneTerrainType = "River";
+            TMV_Cavalry.attackDamage = 0.1f;
+            TMV_Infantry.attackDamage = 0.1f;
+            TMV_Bowmen.attackDamage = 0.1f;
+
+            TMV_Cavalry.speed = 0.1f;
+            TMV_Infantry.speed = 0.15f;
+            TMV_Bowmen.speed = 0.1f;
+
+            TMV_Cavalry.attackSpeed = 0.1f;
+            TMV_Infantry.attackSpeed = 0.1f;
+            TMV_Bowmen.attackSpeed = 0.1f;
             NeutralZone.sprite = RiverSprite;
         }
         else if (ranNum > 1.0f)
         {
             NeutralZoneTerrainType = "Hills";
+            TMV_Cavalry.attackDamage = 0.15f;
+            TMV_Infantry.attackDamage = 0.1f;
+            TMV_Bowmen.attackDamage = 0.1f;
+
+            TMV_Cavalry.speed = 0.25f;
+            TMV_Infantry.speed = 0.15f;
+            TMV_Bowmen.speed = 0.05f;
+
+            TMV_Cavalry.attackSpeed = 0.15f;
+            TMV_Infantry.attackSpeed = 0.1f;
+            TMV_Bowmen.attackSpeed = 0.1f;
             NeutralZone.sprite = HillsSprite;
         }
         else if (ranNum > 0.0f)
         {
             NeutralZoneTerrainType = "Forest";
+            TMV_Cavalry.attackDamage = 0.1f;
+            TMV_Infantry.attackDamage = 0.1f;
+            TMV_Bowmen.attackDamage = 0.15f;
+
+            TMV_Cavalry.speed = 0.15f;
+            TMV_Infantry.speed = 0.1f;
+            TMV_Bowmen.speed = 0.1f;
+
+            TMV_Cavalry.attackSpeed = 0.05f;
+            TMV_Infantry.attackSpeed = 0.05f;
+            TMV_Bowmen.attackSpeed = 0.15f;
             NeutralZone.sprite = ForestSprite;
         }
-        EventTrigger neutralZonetrigger = NeutralZone.gameObject.AddComponent<EventTrigger>();
-        EventTrigger.Entry mouseEnter = new EventTrigger.Entry();                               //Create trigger
-        mouseEnter.eventID = EventTriggerType.PointerDown;                                      //Define trigger type   (Pointer down)
-        mouseEnter.callback.AddListener((data) => { ShowInfo(); });                             //Add listener to call function/ do something(changes text)
-        neutralZonetrigger.triggers.Add(mouseEnter);                                            //Add to Event Trigger
-        EventTrigger.Entry mouseExit = new EventTrigger.Entry();                                //Create trigger
-        mouseExit.eventID = EventTriggerType.PointerUp;                                         //Define trigger type   (Pointer up)
-        mouseExit.callback.AddListener((data) => { HideInfo(); });                              //Add listener to call function/ do something(changes text)
-        neutralZonetrigger.triggers.Add(mouseExit);                                             //Add to Event Trigger
         //for (uint i = 0; i < GridSystem.gridSize; ++i)
         //{
         //    if (theGridSystem.theGridData.gridData[i] == null)
@@ -156,16 +202,16 @@ public class MainGame : MonoBehaviour {
         //        }
         //    }
     }
-    void ShowInfo()
+    public void ShowInfo()
     {
         if (!TerrainInformation)                                                        //If TerrainInformation is null, create the necessary
         {
             TerrainInformation = new GameObject("TerrainInfo");                         //Creates new blank Gameobject with a name
             TerrainInformation.transform.SetParent(thisCanvas.transform);               //Parent to this canvas
             TerrainInformation.transform.position = NeutralZone.transform.position;     //Centralise on NeutralZoneImage position
-            CreateTerrainInfoFor("Cavalry", new Vector2(-350, 0), TerrainInformation);  //Create texts for "Cavalry"
-            CreateTerrainInfoFor("Infantry", new Vector2(0, 0), TerrainInformation);    //Create texts for "Infantry"
-            CreateTerrainInfoFor("Bowmen", new Vector2(350, 0), TerrainInformation);    //Create texts for "Bowmen"
+            CreateTerrainInfoFor("Cavalry", new Vector2(-350, 0), TerrainInformation, TMV_Cavalry);  //Create texts for "Cavalry"
+            CreateTerrainInfoFor("Infantry", new Vector2(0, 0), TerrainInformation, TMV_Infantry);    //Create texts for "Infantry"
+            CreateTerrainInfoFor("Bowmen", new Vector2(350, 0), TerrainInformation, TMV_Bowmen);    //Create texts for "Bowmen"
             SetTerrainInfo();                                                           //Sets information to be displayed to player
         }
         if (TerrainInformation.activeInHierarchy)                                       //If already active dont do anything
@@ -175,7 +221,7 @@ public class MainGame : MonoBehaviour {
             SetTerrainInfo();                                                           //Calls function to asign variables to appropriate string
         }
     }
-    void HideInfo()
+    public void HideInfo()
     {
         ResetTerrainInfo();                     //Calls function to reset string 
         TerrainInformation.SetActive(false);    //Set parent to not active(so cannot be seen)
@@ -191,7 +237,7 @@ public class MainGame : MonoBehaviour {
         text.color = Color.black;                                                                                                               //Default text colour to black
         return text;
     }
-    void CreateTerrainInfoFor(string _troopName, Vector2 _textPos, GameObject _parent)
+    void CreateTerrainInfoFor(string _troopName, Vector2 _textPos, GameObject _parent, TerrainModifierValue _myTMV)
     {
         Text result = CreateText(_parent, _textPos);            //Create text object
         result.rectTransform.sizeDelta = new Vector2(300, 56);  //Size from 'text' object
@@ -201,7 +247,7 @@ public class MainGame : MonoBehaviour {
 
         Text Info1 = CreateText(result.gameObject, new Vector2(0, -result.rectTransform.sizeDelta.y));          //Create text object
         Info1.rectTransform.sizeDelta = result.rectTransform.sizeDelta;                                         //Size from 'text' object
-        Info1.fontSize = 30;                                                                                    //Set text size to 50
+        Info1.fontSize = 27;                                                                                    //Set text size to 50
         Info1.text = "Attack Damage:";                                                                          //Set text to display
         Info1.transform.name = "Info1";                                                                         //Give the gameObject a unique name
 
@@ -220,19 +266,19 @@ public class MainGame : MonoBehaviour {
     }
     void SetTerrainInfo()
     {
-        SetTerrainInfo("Cavalry");         //Sets info for each troop
-        SetTerrainInfo("Infantry");
-        SetTerrainInfo("Bowmen");
+        SetTerrainInfo("Cavalry", TMV_Cavalry);         //Sets info for each troop
+        SetTerrainInfo("Infantry", TMV_Infantry);
+        SetTerrainInfo("Bowmen", TMV_Bowmen);
         TerrainInformation.SetActive(true); //Set parent active to true
     }
-    void SetTerrainInfo(string _name)
+    void SetTerrainInfo(string _name, TerrainModifierValue _myTMV)
     {
         GameObject objParent = TerrainInformation.transform.Find(_name).gameObject;             //Find for GO with [_name] name
         if (objParent)                                                                          //If found
         {
-            objParent.transform.Find("Info1").gameObject.GetComponent<Text>().text += "10";     //Append to string the values
-            objParent.transform.Find("Info2").gameObject.GetComponent<Text>().text += "20";     //
-            objParent.transform.Find("Info3").gameObject.GetComponent<Text>().text += "30";     //
+            objParent.transform.Find("Info1").gameObject.GetComponent<Text>().text += _myTMV.attackDamage.ToString();     //Append to string the values
+            objParent.transform.Find("Info2").gameObject.GetComponent<Text>().text += _myTMV.speed.ToString();     //
+            objParent.transform.Find("Info3").gameObject.GetComponent<Text>().text += _myTMV.attackSpeed.ToString();     //
         }
     }
     void ResetTerrainInfo()

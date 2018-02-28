@@ -61,6 +61,9 @@ public class GameCode : MonoBehaviour {
     HealthSystem P1Health;
     HealthSystem P2Health;
     SceneTransition sceneTransition;
+    public MainGame.TerrainModifierValue TMV_Cavalry;
+    public MainGame.TerrainModifierValue TMV_Infantry;
+    public MainGame.TerrainModifierValue TMV_Bowmen;
     // Use this for initialization
     void Start () {
         theSpawner = GameObject.Find("EventSystem").GetComponent<TetrisSpawner>();
@@ -73,8 +76,68 @@ public class GameCode : MonoBehaviour {
         timer = 0;
         destroyed = false;
         state = (int)GameState.PLANNING;
-        TerrainName = Terrain.GetComponent<MainGame>().NeutralZoneTerrainType;
-        //effect = 0;
+        MainGame m_game = Terrain.GetComponent<MainGame>();
+        TerrainName = m_game.NeutralZoneTerrainType;
+        TMV_Cavalry = m_game.TMV_Cavalry;
+        TMV_Infantry = m_game.TMV_Infantry;
+        TMV_Bowmen = m_game.TMV_Bowmen;
+        //if (TerrainName == "Hills")
+        //{
+        //    TMV_Cavalry.attackDamage = 0.15f;
+        //    TMV_Infantry.attackDamage = 0.1f;
+        //    TMV_Bowmen.attackDamage = 0.1f;
+
+        //    TMV_Cavalry.speed= 0.25f;
+        //    TMV_Infantry.speed = 0.15f;
+        //    TMV_Bowmen.speed = 0.05f;
+
+        //    TMV_Cavalry.attackSpeed = 0.15f;
+        //    TMV_Infantry.attackSpeed = 0.1f;
+        //    TMV_Bowmen.attackSpeed = 0.1f;
+        //}
+        //else if (TerrainName == "Forest")
+        //{
+        //    TMV_Cavalry.attackDamage = 0.1f;
+        //    TMV_Infantry.attackDamage = 0.1f;
+        //    TMV_Bowmen.attackDamage = 0.15f;
+
+        //    TMV_Cavalry.speed = 0.15f;
+        //    TMV_Infantry.speed = 0.1f;
+        //    TMV_Bowmen.speed = 0.1f;
+
+        //    TMV_Cavalry.attackSpeed = 0.05f;
+        //    TMV_Infantry.attackSpeed = 0.05f;
+        //    TMV_Bowmen.attackSpeed = 0.15f;
+        //}
+        //else if (TerrainName == "River")
+        //{
+        //    TMV_Cavalry.attackDamage = 0.1f;
+        //    TMV_Infantry.attackDamage = 0.1f;
+        //    TMV_Bowmen.attackDamage = 0.1f;
+
+        //    TMV_Cavalry.speed = 0.1f;
+        //    TMV_Infantry.speed = 0.15f;
+        //    TMV_Bowmen.speed = 0.1f;
+
+        //    TMV_Cavalry.attackSpeed = 0.1f;
+        //    TMV_Infantry.attackSpeed = 0.1f;
+        //    TMV_Bowmen.attackSpeed = 0.1f;
+        //}
+        //else if (TerrainName == "Plains")
+        //{
+        //    TMV_Cavalry.attackDamage = 0.1f;
+        //    TMV_Infantry.attackDamage = 0.1f;
+        //    TMV_Bowmen.attackDamage = 0.1f;
+
+        //    TMV_Cavalry.speed = 0.15f;
+        //    TMV_Infantry.speed = 0.2f;
+        //    TMV_Bowmen.speed = 0.1f;
+
+        //    TMV_Cavalry.attackSpeed = 0.1f;
+        //    TMV_Infantry.attackSpeed = 0.1f;
+        //    TMV_Bowmen.attackSpeed = 0.2f;
+        //}
+        effect = 0;
     }
 
     // Update is called once per frame

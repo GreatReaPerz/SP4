@@ -17,6 +17,9 @@ public class TrapSystem : MonoBehaviour {
     [SerializeField]
     GameObject trapSelectionPanel;
 
+    [SerializeField]
+    GameObject theDialogBox;
+
     enum executionState
     {
         GRID_CHOOSING,
@@ -85,28 +88,29 @@ public class TrapSystem : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (!trapSystemActive)
+        if (!trapSystemActive || theDialogBox.activeInHierarchy)
             return;
         switch (myState)
         {
             case executionState.GRID_CHOOSING:
-                //Vector3 pos = new Vector3(0, 0, 0);
-                //if (Input.GetMouseButtonDown(0) )                           //if mouse input
-                //{
-                //    pos = Input.mousePosition;
-                //}
-                //    if( Input.touchCount>0)                                 //if phone input
-                //{
-                //    pos = Input.GetTouch(0).position;
-                //}
-                //if(pos != new Vector3(0,0,0)){
-                //    //Instantiate(trapPrefab[0]);
-                //    trapPos = CheckClickedPosition(pos);                    //Get position for trap to be placed
-                //    if (trapPos != new Vector3(0, 0, 0))                    //If trap position is (0,0,0), do nothing
-                //    {
-                //        setToChooseTrap();
-                //    }
-                //}
+                Vector3 pos = new Vector3(0, 0, 0);
+                if (Input.GetMouseButtonDown(0))                           //if mouse input
+                {
+                    pos = Input.mousePosition;
+                }
+                if (Input.touchCount > 0)                                 //if phone input
+                {
+                    pos = Input.GetTouch(0).position;
+                }
+                if (pos != new Vector3(0, 0, 0))
+                {
+                    //Instantiate(trapPrefab[0]);
+                    trapPos = CheckClickedPosition(pos);                    //Get position for trap to be placed
+                    if (trapPos != new Vector3(0, 0, 0))                    //If trap position is (0,0,0), do nothing
+                    {
+                        setToChooseTrap();
+                    }
+                }
                 break;
             case executionState.TRAP_CHOOSING:
                 if (trapToBePlaced)                                         //if trapToBePlaced is assigned

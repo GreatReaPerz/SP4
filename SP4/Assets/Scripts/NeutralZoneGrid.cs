@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class NeutralZoneGrid : MonoBehaviour {
 
@@ -13,6 +14,9 @@ public class NeutralZoneGrid : MonoBehaviour {
 
     [SerializeField]
     public Image SampleImage;
+
+    [SerializeField]
+    MainGame theMainGame;
 
     uint PossibleRowTilesinCanvas = 0;
     uint NeutralZoneGridsColNum = 0, NeutralZoneGridsRowNum = 0;
@@ -38,7 +42,15 @@ public class NeutralZoneGrid : MonoBehaviour {
         NeutralZoneGridsColNum = GridSystem.col;
 
         NeutralGrid = new Image[NeutralZoneGridsRowNum * NeutralZoneGridsColNum];
-
+        EventTrigger neutralZonetrigger = this.gameObject.AddComponent<EventTrigger>();
+        EventTrigger.Entry mouseEnter = new EventTrigger.Entry();                               //Create trigger
+        mouseEnter.eventID = EventTriggerType.PointerDown;                                      //Define trigger type   (Pointer down)
+        mouseEnter.callback.AddListener((data) => { theMainGame.ShowInfo(); });                 //Add listener to call function/ do something(calls function in MainGame to show terrain info)
+        neutralZonetrigger.triggers.Add(mouseEnter);                                            //Add to Event Trigger
+        EventTrigger.Entry mouseExit = new EventTrigger.Entry();                                //Create trigger
+        mouseExit.eventID = EventTriggerType.PointerUp;                                         //Define trigger type   (Pointer up)
+        mouseExit.callback.AddListener((data) => { theMainGame.HideInfo(); });                  //Add listener to call function/ do something(calls function in MainGame to hide terrain info)
+        neutralZonetrigger.triggers.Add(mouseExit);                                             //Add to Event Trigger
         //Initialize the images in NeutralGrid
         InitGrid();
     }
