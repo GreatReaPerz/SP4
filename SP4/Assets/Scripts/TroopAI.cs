@@ -129,27 +129,27 @@ public class TroopAI : MonoBehaviour {
             _class = 1;
             if (terrainName == "Hills")
             {
-                attckDmg -= (attckDmg * game.TMV_Infantry.attackDamage);
-                speed -= (speed * game.TMV_Infantry.speed);
-                attckSpd -= (attckSpd * game.TMV_Infantry.attackSpeed);
+                attckDmg = (attckDmg * game.TMV_Infantry.attackDamage);
+                speed = (speed * game.TMV_Infantry.speed);
+                attckSpd = (attckSpd * game.TMV_Infantry.attackSpeed);
             }
             else if (terrainName == "Forest")
             {
-                attckDmg += (attckDmg * game.TMV_Infantry.attackDamage);
-                speed -= (speed * game.TMV_Infantry.speed);
-                attckSpd -= (attckSpd * game.TMV_Infantry.attackSpeed);
+                attckDmg = (attckDmg * game.TMV_Infantry.attackDamage);
+                speed = (speed * game.TMV_Infantry.speed);
+                attckSpd = (attckSpd * game.TMV_Infantry.attackSpeed);
             }
             else if (terrainName == "River")
             {
-                attckDmg -= (attckDmg * game.TMV_Infantry.attackDamage);
-                speed -= (speed * game.TMV_Infantry.speed);
-                attckSpd -= (attckSpd * game.TMV_Infantry.attackSpeed);
+                attckDmg = (attckDmg * game.TMV_Infantry.attackDamage);
+                speed = (speed * game.TMV_Infantry.speed);
+                attckSpd = (attckSpd * game.TMV_Infantry.attackSpeed);
             }
             else if (terrainName == "Plains")
             {
-                attckDmg += (attckDmg * game.TMV_Infantry.attackDamage);
-                speed += (speed * game.TMV_Infantry.speed);
-                attckSpd += (attckSpd * game.TMV_Infantry.attackSpeed);
+                attckDmg = (attckDmg * game.TMV_Infantry.attackDamage);
+                speed = (speed * game.TMV_Infantry.speed);
+                attckSpd = (attckSpd * game.TMV_Infantry.attackSpeed);
             }
         }
         else if (type == "Bowmen")
