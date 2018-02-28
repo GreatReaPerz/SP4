@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TroopAI : MonoBehaviour {
 
@@ -64,7 +65,17 @@ public class TroopAI : MonoBehaviour {
 
         attackHeight = 40;
         originPos = transform.position;
-        attackWidth = 150;
+
+        if(SceneManager.GetActiveScene().name == "Level01" || SceneManager.GetActiveScene().name == "Level02" || SceneManager.GetActiveScene().name == "Level03")
+        {
+            attackWidth = 50;
+        }
+        else
+        {
+            //Attack adjacent tiles
+            attackWidth = 150;
+        }
+
         //Debug.Log("Cavalry");
         if (type == "Cavalry")
         {
@@ -408,7 +419,7 @@ public class TroopAI : MonoBehaviour {
                 }
 
             //Powerups
-            if (thePowerupsSystem)
+            if (thePowerupsSystem && thePowerupsSystem.PowerupsIsActive == true)
             {
                 //Search player powerups list
                 if (team == 1)

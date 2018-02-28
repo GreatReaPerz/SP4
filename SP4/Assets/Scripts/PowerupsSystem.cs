@@ -14,6 +14,9 @@ public class PowerupsSystem : MonoBehaviour
     [SerializeField]
     public Image SampleImage;
 
+    [SerializeField]
+    public bool PowerupsIsActive = false;
+
     //Sprites
     [SerializeField]
     public Sprite moveSpeedSprite;
