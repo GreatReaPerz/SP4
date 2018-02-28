@@ -427,7 +427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b51b9a92d2fb14e969226844b2c9e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PauseAnimator: {fileID: 0}
+  PauseAnimator: {fileID: 2097774977}
   projectileOBJ: {fileID: 0}
   type: Cavalry
   health: {fileID: 0}
@@ -1852,7 +1852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b51b9a92d2fb14e969226844b2c9e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PauseAnimator: {fileID: 0}
+  PauseAnimator: {fileID: 2097774977}
   projectileOBJ: {fileID: 1802979874108198, guid: 491f68eb7734ba049a7d12a406bb9caa,
     type: 2}
   type: Bowmen
@@ -2089,7 +2089,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b51b9a92d2fb14e969226844b2c9e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PauseAnimator: {fileID: 0}
+  PauseAnimator: {fileID: 2097774977}
   projectileOBJ: {fileID: 0}
   type: Infantry
   health: {fileID: 0}
@@ -3329,7 +3329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b51b9a92d2fb14e969226844b2c9e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PauseAnimator: {fileID: 0}
+  PauseAnimator: {fileID: 2097774977}
   projectileOBJ: {fileID: 0}
   type: Infantry
   health: {fileID: 0}
@@ -6447,7 +6447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b51b9a92d2fb14e969226844b2c9e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PauseAnimator: {fileID: 0}
+  PauseAnimator: {fileID: 2097774977}
   projectileOBJ: {fileID: 1802979874108198, guid: 491f68eb7734ba049a7d12a406bb9caa,
     type: 2}
   type: Bowmen
@@ -6796,7 +6796,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b51b9a92d2fb14e969226844b2c9e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PauseAnimator: {fileID: 0}
+  PauseAnimator: {fileID: 2097774977}
   projectileOBJ: {fileID: 0}
   type: Cavalry
   health: {fileID: 0}
