@@ -32,10 +32,12 @@ public class enemyGridSystem : MonoBehaviour
     [SerializeField]
     Sprite BlueGridSprite;
 
+    GameCode theGameCode;
     // Use this for initialization
     public void Awake()
     {
-        bool respawnBlock = GameObject.Find("EventSystem").GetComponent<GameCode>().blockRespawn;
+        theGameCode = GameObject.Find("EventSystem").GetComponent<GameCode>();
+        bool respawnBlock = theGameCode.blockRespawn;
         for(int i =0; i< 3; ++ i)
         {
             check[i] = false;
@@ -1186,6 +1188,7 @@ public class enemyGridSystem : MonoBehaviour
             if (colGreyed)
             {
                 EnemyHealth.addHealth(-2);
+                theGameCode.Player1.GetComponent<InGameCash>().addAmount(40);
                 for (uint numRow = 0; numRow < row; ++numRow)
                 {
                     UnSetIsGreyOut(x + numRow * 10);
@@ -1207,6 +1210,7 @@ public class enemyGridSystem : MonoBehaviour
             if (rowGreyed)
             {
                 EnemyHealth.addHealth(-5);
+                theGameCode.Player1.GetComponent<InGameCash>().addAmount(100);
                 for (uint numCol = 0; numCol < col; ++numCol)
                 {
                     UnSetIsGreyOut(numCol + y * 10);

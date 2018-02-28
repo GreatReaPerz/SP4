@@ -27,6 +27,8 @@ public class MainGame : MonoBehaviour {
     [SerializeField]
     GameObject healthTexture;
 
+    [SerializeField]
+    Sprite PaperBg;
     private GridSystem theGridSystem = null;
 
      public string NeutralZoneTerrainType;
@@ -74,65 +76,65 @@ public class MainGame : MonoBehaviour {
         if (ranNum > 3.0f)
         {
             NeutralZoneTerrainType = "Plains";
-            TMV_Cavalry.attackDamage = 0.1f;
-            TMV_Infantry.attackDamage = 0.1f;
-            TMV_Bowmen.attackDamage = 0.1f;
+            TMV_Cavalry.attackDamage = 1.1f;
+            TMV_Infantry.attackDamage = 1.1f;
+            TMV_Bowmen.attackDamage = 1.1f;
 
-            TMV_Cavalry.speed = 0.15f;
-            TMV_Infantry.speed = 0.2f;
-            TMV_Bowmen.speed = 0.1f;
+            TMV_Cavalry.speed = 1.15f;
+            TMV_Infantry.speed = 1.2f;
+            TMV_Bowmen.speed = 1.1f;
 
-            TMV_Cavalry.attackSpeed = 0.1f;
-            TMV_Infantry.attackSpeed = 0.1f;
-            TMV_Bowmen.attackSpeed = 0.2f;
+            TMV_Cavalry.attackSpeed = 1.1f;
+            TMV_Infantry.attackSpeed = 1.1f;
+            TMV_Bowmen.attackSpeed = 1.2f;
             NeutralZone.sprite = PlainsSprite;
         }
         else if (ranNum > 2.0f)
         {
             NeutralZoneTerrainType = "River";
-            TMV_Cavalry.attackDamage = 0.1f;
-            TMV_Infantry.attackDamage = 0.1f;
-            TMV_Bowmen.attackDamage = 0.1f;
+            TMV_Cavalry.attackDamage = 1.1f;
+            TMV_Infantry.attackDamage = 0.9f;
+            TMV_Bowmen.attackDamage = 0.9f;
 
-            TMV_Cavalry.speed = 0.1f;
-            TMV_Infantry.speed = 0.15f;
-            TMV_Bowmen.speed = 0.1f;
+            TMV_Cavalry.speed = 0.9f;
+            TMV_Infantry.speed = 0.85f;
+            TMV_Bowmen.speed = 0.9f;
 
-            TMV_Cavalry.attackSpeed = 0.1f;
-            TMV_Infantry.attackSpeed = 0.1f;
-            TMV_Bowmen.attackSpeed = 0.1f;
+            TMV_Cavalry.attackSpeed = 0.9f;
+            TMV_Infantry.attackSpeed = 0.9f;
+            TMV_Bowmen.attackSpeed = 0.9f;
             NeutralZone.sprite = RiverSprite;
         }
         else if (ranNum > 1.0f)
         {
             NeutralZoneTerrainType = "Hills";
-            TMV_Cavalry.attackDamage = 0.15f;
-            TMV_Infantry.attackDamage = 0.1f;
-            TMV_Bowmen.attackDamage = 0.1f;
+            TMV_Cavalry.attackDamage = 0.85f;
+            TMV_Infantry.attackDamage = 0.9f;
+            TMV_Bowmen.attackDamage = 1.1f;
 
-            TMV_Cavalry.speed = 0.25f;
-            TMV_Infantry.speed = 0.15f;
-            TMV_Bowmen.speed = 0.05f;
+            TMV_Cavalry.speed = 0.75f;
+            TMV_Infantry.speed = 0.75f;
+            TMV_Bowmen.speed = 1.05f;
 
-            TMV_Cavalry.attackSpeed = 0.15f;
-            TMV_Infantry.attackSpeed = 0.1f;
-            TMV_Bowmen.attackSpeed = 0.1f;
+            TMV_Cavalry.attackSpeed = 0.85f;
+            TMV_Infantry.attackSpeed = 0.9f;
+            TMV_Bowmen.attackSpeed = 0.9f;
             NeutralZone.sprite = HillsSprite;
         }
         else if (ranNum > 0.0f)
         {
             NeutralZoneTerrainType = "Forest";
-            TMV_Cavalry.attackDamage = 0.1f;
-            TMV_Infantry.attackDamage = 0.1f;
-            TMV_Bowmen.attackDamage = 0.15f;
+            TMV_Cavalry.attackDamage = 0.9f;
+            TMV_Infantry.attackDamage = 1.1f;
+            TMV_Bowmen.attackDamage = 0.85f;
 
-            TMV_Cavalry.speed = 0.15f;
-            TMV_Infantry.speed = 0.1f;
-            TMV_Bowmen.speed = 0.1f;
+            TMV_Cavalry.speed = 0.85f;
+            TMV_Infantry.speed = 0.9f;
+            TMV_Bowmen.speed = 0.9f;
 
-            TMV_Cavalry.attackSpeed = 0.05f;
-            TMV_Infantry.attackSpeed = 0.05f;
-            TMV_Bowmen.attackSpeed = 0.15f;
+            TMV_Cavalry.attackSpeed = 0.95f;
+            TMV_Infantry.attackSpeed = 0.95f;
+            TMV_Bowmen.attackSpeed = 0.85f;
             NeutralZone.sprite = ForestSprite;
         }
         //for (uint i = 0; i < GridSystem.gridSize; ++i)
@@ -207,11 +209,17 @@ public class MainGame : MonoBehaviour {
         if (!TerrainInformation)                                                        //If TerrainInformation is null, create the necessary
         {
             TerrainInformation = new GameObject("TerrainInfo");                         //Creates new blank Gameobject with a name
-            TerrainInformation.transform.SetParent(thisCanvas.transform);               //Parent to this canvas
+            TerrainInformation.transform.SetParent(GameObject.Find("UIPanelsHolder").transform);               //Parent to this canvas
             TerrainInformation.transform.position = NeutralZone.transform.position;     //Centralise on NeutralZoneImage position
-            CreateTerrainInfoFor("Cavalry", new Vector2(-350, 0), TerrainInformation, TMV_Cavalry);  //Create texts for "Cavalry"
-            CreateTerrainInfoFor("Infantry", new Vector2(0, 0), TerrainInformation, TMV_Infantry);    //Create texts for "Infantry"
-            CreateTerrainInfoFor("Bowmen", new Vector2(350, 0), TerrainInformation, TMV_Bowmen);    //Create texts for "Bowmen"
+            Image BG = TerrainInformation.AddComponent<Image>();
+            BG.sprite = PaperBg;
+            BG.rectTransform.sizeDelta = NeutralZone.rectTransform.sizeDelta;
+            Color BGColor = BG.color;
+            BGColor.a = 0.6f;
+            BG.color = BGColor;
+            CreateTerrainInfoFor("Cavalry", new Vector2(-320, 100), TerrainInformation, TMV_Cavalry);  //Create texts for "Cavalry"
+            CreateTerrainInfoFor("Infantry", new Vector2(0, 100), TerrainInformation, TMV_Infantry);    //Create texts for "Infantry"
+            CreateTerrainInfoFor("Bowmen", new Vector2(330, 100), TerrainInformation, TMV_Bowmen);    //Create texts for "Bowmen"
             SetTerrainInfo();                                                           //Sets information to be displayed to player
         }
         if (TerrainInformation.activeInHierarchy)                                       //If already active dont do anything
@@ -240,14 +248,14 @@ public class MainGame : MonoBehaviour {
     void CreateTerrainInfoFor(string _troopName, Vector2 _textPos, GameObject _parent, TerrainModifierValue _myTMV)
     {
         Text result = CreateText(_parent, _textPos);            //Create text object
-        result.rectTransform.sizeDelta = new Vector2(300, 56);  //Size from 'text' object
+        result.rectTransform.sizeDelta = new Vector2(350, 56);  //Size from 'text' object
         result.fontSize = 50;                                   //Set text size to 50
         result.text = _troopName + ":";                         //Set text to display
         result.transform.name = _troopName;                     //Give the gameObject a unique name
 
         Text Info1 = CreateText(result.gameObject, new Vector2(0, -result.rectTransform.sizeDelta.y));          //Create text object
         Info1.rectTransform.sizeDelta = result.rectTransform.sizeDelta;                                         //Size from 'text' object
-        Info1.fontSize = 27;                                                                                    //Set text size to 50
+        Info1.fontSize = 30;                                                                                    //Set text size to 50
         Info1.text = "Attack Damage:";                                                                          //Set text to display
         Info1.transform.name = "Info1";                                                                         //Give the gameObject a unique name
 
@@ -276,9 +284,9 @@ public class MainGame : MonoBehaviour {
         GameObject objParent = TerrainInformation.transform.Find(_name).gameObject;             //Find for GO with [_name] name
         if (objParent)                                                                          //If found
         {
-            objParent.transform.Find("Info1").gameObject.GetComponent<Text>().text += _myTMV.attackDamage.ToString();     //Append to string the values
-            objParent.transform.Find("Info2").gameObject.GetComponent<Text>().text += _myTMV.speed.ToString();     //
-            objParent.transform.Find("Info3").gameObject.GetComponent<Text>().text += _myTMV.attackSpeed.ToString();     //
+            objParent.transform.Find("Info1").gameObject.GetComponent<Text>().text += ((int)(_myTMV.attackDamage * 100f)).ToString() + "%";     //Append to string the values
+            objParent.transform.Find("Info2").gameObject.GetComponent<Text>().text += ((int)(_myTMV.speed * 100f)).ToString() + "%";     //
+            objParent.transform.Find("Info3").gameObject.GetComponent<Text>().text += ((int)(_myTMV.attackSpeed * 100f)).ToString() + "%";     //
         }
     }
     void ResetTerrainInfo()

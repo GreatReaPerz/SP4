@@ -80,27 +80,27 @@ public class TroopAI : MonoBehaviour {
             _class = 3;
             if (terrainName == "Hills")
             {
-                attckDmg -= (attckDmg * game.TMV_Cavalry.attackDamage);
-                speed -= (speed * game.TMV_Cavalry.speed);
-                attckSpd -= (attckSpd * game.TMV_Cavalry.attackSpeed);
+                attckDmg = (attckDmg * game.TMV_Cavalry.attackDamage);
+                speed = (speed * game.TMV_Cavalry.speed);
+                attckSpd = (attckSpd * game.TMV_Cavalry.attackSpeed);
             }
             else if (terrainName == "Forest")
             {
-                attckDmg -= (attckDmg * game.TMV_Cavalry.attackDamage);
-                speed -= (speed * game.TMV_Cavalry.speed);
-                attckSpd -= (attckSpd * game.TMV_Cavalry.attackSpeed);
+                attckDmg = (attckDmg * game.TMV_Cavalry.attackDamage);
+                speed = (speed * game.TMV_Cavalry.speed);
+                attckSpd = (attckSpd * game.TMV_Cavalry.attackSpeed);
             }
             else if (terrainName == "River")
             {
-                attckDmg += (attckDmg * game.TMV_Cavalry.attackDamage);
-                speed -= (speed * game.TMV_Cavalry.speed);
-                attckSpd -= (attckSpd * game.TMV_Cavalry.attackSpeed);
+                attckDmg = (attckDmg * game.TMV_Cavalry.attackDamage);
+                speed = (speed * game.TMV_Cavalry.speed);
+                attckSpd = (attckSpd * game.TMV_Cavalry.attackSpeed);
             }
             else if (terrainName == "Plains")
             {
-                attckDmg += (attckDmg * game.TMV_Cavalry.attackDamage);
-                speed += (speed * game.TMV_Cavalry.speed);
-                attckSpd += (attckSpd * game.TMV_Cavalry.attackSpeed);
+                attckDmg = (attckDmg * game.TMV_Cavalry.attackDamage);
+                speed = (speed * game.TMV_Cavalry.speed);
+                attckSpd = (attckSpd * game.TMV_Cavalry.attackSpeed);
             }
         }
         else if (type == "Infantry")
@@ -189,9 +189,9 @@ public class TroopAI : MonoBehaviour {
                 return;
             if (health.getHealth() <= 0)
             {
-                //if (team == -1)
-                //    thePlayer.GetComponent<InGameCash>().addAmount(10);
-                activ = false;
+            if (team == -1)
+                thePlayer.GetComponent<InGameCash>().addAmount(10);
+            activ = false;
             }
             if (activ)
             {
