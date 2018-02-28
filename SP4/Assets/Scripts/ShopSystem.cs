@@ -80,13 +80,66 @@ public class ShopSystem : MonoBehaviour {
         //PlayerPrefs.SetFloat("calvaryHP", 50);
         //PlayerPrefs.SetFloat("infantryHP", 60);
         //PlayerPrefs.Save();
+        
+        if (PlayerPrefs.GetInt("UpgradeInfantryHealth") == 0)
+        {
+            PlayerPrefs.SetInt("UpgradeInfantryHealth", UpgradeInfantryHealthPrice);
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            UpgradeInfantryHealthPrice = PlayerPrefs.GetInt("UpgradeInfantryHealth");
+        }
 
-        UpgradeInfantryHealthPrice = PlayerPrefs.GetInt("UpgradeInfantryHealth");
-        UpgradeInfantryAttackPrice = PlayerPrefs.GetInt("UpgradeInfantryAttack");
-        UpgradeCavalryHealthPrice = PlayerPrefs.GetInt("UpgradeCavalryHealth");
-        UpgradeCavalryAttackPrice = PlayerPrefs.GetInt("UpgradeCavalryAttack");
-        UpgradeBowmenHealthPrice = PlayerPrefs.GetInt("UpgradeBowmenHealth");
-        UpgradeBowmenAttackPrice = PlayerPrefs.GetInt("UpgradeBowmenAttack");
+        if(PlayerPrefs.GetInt("UpgradeInfantryAttack") == 0)
+        {
+            PlayerPrefs.SetInt("UpgradeInfantryAttack", UpgradeInfantryAttackPrice);
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            UpgradeInfantryAttackPrice = PlayerPrefs.GetInt("UpgradeInfantryAttack");
+        }
+
+        if (PlayerPrefs.GetInt("UpgradeCavalryHealth") == 0)
+        {
+            PlayerPrefs.SetInt("UpgradeCavalryHealth", UpgradeCavalryHealthPrice);
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            UpgradeCavalryHealthPrice = PlayerPrefs.GetInt("UpgradeCavalryHealth");
+        }
+
+        if (PlayerPrefs.GetInt("UpgradeCavalryAttack") == 0)
+        {
+            PlayerPrefs.SetInt("UpgradeCavalryAttack", UpgradeCavalryAttackPrice);
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            UpgradeCavalryAttackPrice = PlayerPrefs.GetInt("UpgradeCavalryAttack");
+        }
+        
+        if(PlayerPrefs.GetInt("UpgradeBowmenHealth") == 0)
+        {
+            PlayerPrefs.SetInt("UpgradeBowmenHealth", UpgradeBowmenHealthPrice);
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            UpgradeBowmenHealthPrice = PlayerPrefs.GetInt("UpgradeBowmenHealth");
+        }
+
+        if(PlayerPrefs.GetInt("UpgradeBowmenAttack") == 0)
+        {
+            PlayerPrefs.SetInt("UpgradeBowmenAttack", UpgradeBowmenAttackPrice);
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            UpgradeBowmenAttackPrice = PlayerPrefs.GetInt("UpgradeBowmenAttack");
+        }
 
         //Add shop items that the player can buy
         shopItems.Add("UpgradeInfantryHealth", UpgradeInfantryHealthPrice);
