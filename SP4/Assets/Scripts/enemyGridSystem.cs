@@ -1162,7 +1162,7 @@ public class enemyGridSystem : MonoBehaviour
     public void CheckGreyedGrid()
     {
         //Check Column
-        for (uint x = 0; x < col - 1; ++x)
+        for (uint x = 0; x < col; ++x)
         {
             bool colGreyed = true;
             for (uint numRow = 0; numRow < row; ++numRow)

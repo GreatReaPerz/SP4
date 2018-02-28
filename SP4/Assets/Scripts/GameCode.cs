@@ -9,6 +9,8 @@ public class GameCode : MonoBehaviour {
     [SerializeField]
     Canvas Ui;
 
+    [SerializeField]
+    int LevelNo;
 
     [SerializeField]
     GameObject Terrain;
@@ -20,6 +22,8 @@ public class GameCode : MonoBehaviour {
     Animator UIPanelAnimator;
     [SerializeField]
     Sprite PaperBG;
+    [SerializeField]
+    Sprite ButtonImage;
     enum GameState
     {
         PLANNING,
@@ -56,11 +60,13 @@ public class GameCode : MonoBehaviour {
     //CheckWinLose winLoseChecker;
     HealthSystem P1Health;
     HealthSystem P2Health;
+    SceneTransition sceneTransition;
     // Use this for initialization
     void Start () {
         theSpawner = GameObject.Find("EventSystem").GetComponent<TetrisSpawner>();
         theGridSystem = GameObject.Find("PlayerTetrisGrid").GetComponent<GridSystem>();
         enemyGridSystem = GameObject.Find("EnemyTetrisGrid").GetComponent<enemyGridSystem>();
+        sceneTransition = GameObject.Find("EventSystem").GetComponent<SceneTransition>();
         //winLoseChecker = GameObject.Find("EventSystem").GetComponent<CheckWinLose>();
         P1Health = Player1.GetComponent<HealthSystem>();
         P2Health = Player2.GetComponent<HealthSystem>();
@@ -885,6 +891,34 @@ public class GameCode : MonoBehaviour {
             Balance.text = "Your final balance: " + Player1.GetComponent<GoldSystem>().getGold();                                                //Set text to display
             Balance.transform.name = "Balance";                                                                                                 //Give the gameObject a unique name
 
+            Button NextLevel = CreateButton(background.gameObject, new Vector3(-200, -280, 0));
+            NextLevel.transform.name = "NextLevel";
+            Text buttonText = CreateText(NextLevel.gameObject, new Vector3(0, 0, 0));
+            buttonText.color = Color.white;
+            buttonText.rectTransform.sizeDelta = NextLevel.GetComponent<RectTransform>().sizeDelta;
+            buttonText.alignment = TextAnchor.MiddleCenter;
+            buttonText.resizeTextForBestFit = true;
+            if (text.text == "You Lose")
+            {
+                buttonText.text = "Retry";
+                NextLevel.onClick.AddListener(delegate { sceneTransition.TransitTo("Level0" + (LevelNo).ToString()); });
+            }
+            else if (text.text == "You Win")
+            {
+                buttonText.text = "Next Level";
+                NextLevel.onClick.AddListener(delegate { sceneTransition.TransitTo("Level0" + (++LevelNo).ToString()); });
+            }
+
+            Button ReturnToMenu = CreateButton(background.gameObject, new Vector3(200, -280, 0));
+            ReturnToMenu.transform.name = "ReturnToMenu";
+            ReturnToMenu.onClick.AddListener(delegate { sceneTransition.TransitToMenu(); });
+            Text toMenuText = CreateText(ReturnToMenu.gameObject, new Vector3(0, 0, 0));
+            toMenuText.color = Color.white;
+            toMenuText.alignment = TextAnchor.MiddleCenter;
+            toMenuText.rectTransform.sizeDelta = NextLevel.GetComponent<RectTransform>().sizeDelta;
+            toMenuText.resizeTextForBestFit = true;
+            toMenuText.text = "Back To Main Menu";
+
             Gameover = true;                                                                                                                    //To prevent more instatiation of this panel
         }
         return true;
@@ -899,5 +933,15 @@ public class GameCode : MonoBehaviour {
         //text.resizeTextForBestFit = true;                                                                                                     //Allow text to resize to fit to rectTranform scaling
         text.color = Color.black;                                                                                                               //Default text colour to black
         return text;
+    }
+    Button CreateButton(GameObject _parent, Vector3 _displacement)
+    {
+        Button theButton = new GameObject().AddComponent<Button>();                                                                             //Creates new button obj
+        theButton.transform.SetParent(_parent.transform);                                                                                       //Parent to _parent parameter
+        theButton.transform.position = _parent.transform.position + _displacement;                                                              //Reposition button placement
+        theButton.gameObject.AddComponent<Image>().sprite = ButtonImage;                                                                        //Creates and assigns button texture/image
+        theButton.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(380, 100);                                                   //Scaling button
+
+        return theButton;
     }
 }

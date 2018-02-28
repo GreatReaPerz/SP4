@@ -1647,11 +1647,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Ui: {fileID: 961660700}
+  LevelNo: 5
   Terrain: {fileID: 599830710}
   Player1: {fileID: 261397399}
   Player2: {fileID: 1480803532}
   UIPanelAnimator: {fileID: 1174336883}
   PaperBG: {fileID: 21300000, guid: 23216051f7ba81f4ea7ffadf0cd8dad6, type: 3}
+  ButtonImage: {fileID: 21300000, guid: f64c44196934b334eacecc3137b1d41a, type: 3}
   player1: 0
   player2: 0
   effect: 0
