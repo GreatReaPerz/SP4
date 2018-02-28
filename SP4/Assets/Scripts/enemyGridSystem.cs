@@ -690,17 +690,19 @@ public class enemyGridSystem : MonoBehaviour
                     if (!check[i])
                     {
                         theTetrisSpawner.enemyList[i].isMoving = true;
-                        if(i == 2)
+                        int index = (i * 3) + 22;
+                        if (i == 2)
                         {
-                            theTetrisSpawner.enemyList[i].partOne.MovePosition(grid[(i * 3) + 22].transform.position);
+                            index = (i * 3) + 23;
                         }
                         else
                         {
-                            theTetrisSpawner.enemyList[i].partOne.MovePosition(grid[(i * 3) + 22].transform.position);
+                            index = (i * 3) + 22;
                         }
+                        theTetrisSpawner.enemyList[i].partOne.MovePosition(grid[index].transform.position);
                         theTetrisSpawner.enemyList[i].Whatisbeingmoved = "partOne";
-                        if (Mathf.Abs(theTetrisSpawner.enemyList[i].partOne.position.x - grid[(i * 3) + 22].transform.position.x) < 10
-                            && (Mathf.Abs(theTetrisSpawner.enemyList[i].partOne.position.y - grid[(i * 3) + 22].transform.position.y) < 10))
+                        if (Mathf.Abs(theTetrisSpawner.enemyList[i].partOne.position.x - grid[index].transform.position.x) < 10
+                            && (Mathf.Abs(theTetrisSpawner.enemyList[i].partOne.position.y - grid[index].transform.position.y) < 10))
                         {
                             check[i] = true;
                             theTetrisSpawner.enemyList[i].isMoving = false;
@@ -712,6 +714,7 @@ public class enemyGridSystem : MonoBehaviour
             }
             else
             {
+                Debug.Log(timer);
                 timer++;
             }
         }

@@ -502,6 +502,8 @@ public class GameCode : MonoBehaviour {
                         if (troop.type == "Bowmen")
                             troop.gameObject.AddComponent<Projectile>();
 
+                        Debug.Log(troop.health);
+
                         dist = 0;
                         for (uint j = 0; j < theGridSystem.GridSize; ++j)
                         {
@@ -656,7 +658,7 @@ public class GameCode : MonoBehaviour {
 
                 //Destroy(theGridSystem);
                 //Destroy(enemyGridSystem);
-                if (ready && destroyed && ready1 && ((enemyGridSystem.check[0] && enemyGridSystem.check[1] && enemyGridSystem.check[2]) || enemyGridSystem.multi))
+                if (ready && destroyed && ready1 && ((enemyGridSystem.check[0] && enemyGridSystem.check[1] && enemyGridSystem.check[2] && enemyGridSystem.timer > 3) || enemyGridSystem.multi))
                 {
                     timer = 0.0f;
                     state = (int)GameState.ATTACK;
