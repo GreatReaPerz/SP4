@@ -358,7 +358,7 @@ public class TroopAI : MonoBehaviour {
                                 attacktimer = 0;
                                 if (_class == nearestAI._class)
                                 {
-                                if (!fireProj && _class == 2)                                
+                                if (!fireProj && _class == 2 && nearestAI)                                
                                     theProjectile.CreateProjectile(projectileOBJ,this, nearestAI, attckDmg);                              
                                 else if(_class != 2)
                                     nearestAI.health.addHealth(-attckDmg );
@@ -373,7 +373,7 @@ public class TroopAI : MonoBehaviour {
                                 }
                                 if (_class == 2 && nearestAI._class == 1)
                                 {
-                                if (!fireProj)
+                                if (!fireProj && nearestAI)
                                     theProjectile.CreateProjectile(projectileOBJ, this, nearestAI, attckDmg + 10);
                                 else
                                     nearestAI.health.addHealth(-attckDmg * 5);
