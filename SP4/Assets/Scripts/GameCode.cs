@@ -65,6 +65,7 @@ public class GameCode : MonoBehaviour {
     public MainGame.TerrainModifierValue TMV_Cavalry;
     public MainGame.TerrainModifierValue TMV_Infantry;
     public MainGame.TerrainModifierValue TMV_Bowmen;
+    MainGame m_game;
     // Use this for initialization
     void Start () {
         theSpawner = GameObject.Find("EventSystem").GetComponent<TetrisSpawner>();
@@ -77,7 +78,7 @@ public class GameCode : MonoBehaviour {
         timer = 0;
         destroyed = false;
         state = (int)GameState.PLANNING;
-        MainGame m_game = Terrain.GetComponent<MainGame>();
+        m_game = Terrain.GetComponent<MainGame>();
         TerrainName = m_game.NeutralZoneTerrainType;
         TMV_Cavalry = m_game.TMV_Cavalry;
         TMV_Infantry = m_game.TMV_Infantry;
@@ -147,6 +148,9 @@ public class GameCode : MonoBehaviour {
             return;
         if (state == (int)GameState.PLANNING)
         {
+            TMV_Cavalry = m_game.TMV_Cavalry;
+            TMV_Infantry = m_game.TMV_Infantry;
+            TMV_Bowmen = m_game.TMV_Bowmen;
             UIPanelAnimator.SetBool("UIPanelEnabled", true);
             //if (timer > 10.0f && !destroyed)
             //{
