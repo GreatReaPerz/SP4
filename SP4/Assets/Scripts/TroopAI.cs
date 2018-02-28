@@ -66,15 +66,9 @@ public class TroopAI : MonoBehaviour {
         attackHeight = 40;
         originPos = transform.position;
 
-        if(SceneManager.GetActiveScene().name == "Level01" || SceneManager.GetActiveScene().name == "Level02" || SceneManager.GetActiveScene().name == "Level03")
-        {
-            attackWidth = 50;
-        }
-        else
-        {
-            //Attack adjacent tiles
-            attackWidth = 150;
-        }
+        
+        //Attack adjacent tiles
+        attackWidth = 150;
 
         //Debug.Log("Cavalry");
         if (type == "Cavalry")
