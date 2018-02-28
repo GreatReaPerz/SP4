@@ -80,27 +80,27 @@ public class TroopAI : MonoBehaviour {
             _class = 3;
             if (terrainName == "Hills")
             {
-                attckDmg -= (attckDmg * 0.15f);
-                speed -= (speed * 0.25f);
-                attckSpd -= (attckSpd * 0.15f);
+                attckDmg -= (attckDmg * game.TMV_Cavalry.attackDamage);
+                speed -= (speed * game.TMV_Cavalry.speed);
+                attckSpd -= (attckSpd * game.TMV_Cavalry.attackSpeed);
             }
             else if (terrainName == "Forest")
             {
-                attckDmg -= (attckDmg * 0.1f);
-                speed -= (speed * 0.15f);
-                attckSpd -= (attckSpd * 0.05f);
+                attckDmg -= (attckDmg * game.TMV_Cavalry.attackDamage);
+                speed -= (speed * game.TMV_Cavalry.speed);
+                attckSpd -= (attckSpd * game.TMV_Cavalry.attackSpeed);
             }
             else if (terrainName == "River")
             {
-                attckDmg += (attckDmg * 0.1f);
-                speed -= (speed * 0.1f);
-                attckSpd -= (attckSpd * 0.1f);
+                attckDmg += (attckDmg * game.TMV_Cavalry.attackDamage);
+                speed -= (speed * game.TMV_Cavalry.speed);
+                attckSpd -= (attckSpd * game.TMV_Cavalry.attackSpeed);
             }
             else if (terrainName == "Plains")
             {
-                attckDmg += (attckDmg * 0.1f);
-                speed += (speed * 0.15f);
-                attckSpd += (attckSpd * 0.1f);
+                attckDmg += (attckDmg * game.TMV_Cavalry.attackDamage);
+                speed += (speed * game.TMV_Cavalry.speed);
+                attckSpd += (attckSpd * game.TMV_Cavalry.attackSpeed);
             }
         }
         else if (type == "Infantry")
@@ -118,27 +118,27 @@ public class TroopAI : MonoBehaviour {
             _class = 1;
             if (terrainName == "Hills")
             {
-                attckDmg -= (attckDmg * 0.1f);
-                speed -= (speed * 0.15f);
-                attckSpd -= (attckSpd * 0.1f);
+                attckDmg -= (attckDmg * game.TMV_Infantry.attackDamage);
+                speed -= (speed * game.TMV_Infantry.speed);
+                attckSpd -= (attckSpd * game.TMV_Infantry.attackSpeed);
             }
             else if (terrainName == "Forest")
             {
-                attckDmg += (attckDmg * 0.1f);
-                speed -= (speed * 0.1f);
-                attckSpd -= (attckSpd * 0.05f);
+                attckDmg += (attckDmg * game.TMV_Infantry.attackDamage);
+                speed -= (speed * game.TMV_Infantry.speed);
+                attckSpd -= (attckSpd * game.TMV_Infantry.attackSpeed);
             }
             else if (terrainName == "River")
             {
-                attckDmg -= (attckDmg * 0.1f);
-                speed -= (speed * 0.15f);
-                attckSpd -= (attckSpd * 0.1f);
+                attckDmg -= (attckDmg * game.TMV_Infantry.attackDamage);
+                speed -= (speed * game.TMV_Infantry.speed);
+                attckSpd -= (attckSpd * game.TMV_Infantry.attackSpeed);
             }
             else if (terrainName == "Plains")
             {
-                attckDmg += (attckDmg * 0.1f);
-                speed += (speed * 0.2f);
-                attckSpd += (attckSpd * 0.1f);
+                attckDmg += (attckDmg * game.TMV_Infantry.attackDamage);
+                speed += (speed * game.TMV_Infantry.speed);
+                attckSpd += (attckSpd * game.TMV_Infantry.attackSpeed);
             }
         }
         else if (type == "Bowmen")
@@ -157,27 +157,27 @@ public class TroopAI : MonoBehaviour {
             _class = 2;
             if (terrainName == "Hills")
             {
-                attckDmg += (attckDmg * 0.1f);
-                speed += (speed * 0.05f);
-                attckSpd -= (attckSpd * 0.1f);
+                attckDmg += (attckDmg * game.TMV_Bowmen.attackDamage);
+                speed += (speed * game.TMV_Bowmen.speed);
+                attckSpd -= (attckSpd * game.TMV_Bowmen.attackSpeed);
             }
             else if (terrainName == "Forest")
             {
-                attckDmg -= (attckDmg * 0.15f);
-                speed -= (speed * 0.1f);
-                attckSpd -= (attckSpd * 0.15f);
+                attckDmg -= (attckDmg * game.TMV_Bowmen.attackDamage);
+                speed -= (speed * game.TMV_Bowmen.speed);
+                attckSpd -= (attckSpd * game.TMV_Bowmen.attackSpeed);
             }
             else if (terrainName == "River")
             {
-                attckDmg -= (attckDmg * 0.1f);
-                speed -= (speed * 0.1f);
-                attckSpd -= (attckSpd * 0.1f);
+                attckDmg -= (attckDmg * game.TMV_Bowmen.attackDamage);
+                speed -= (speed * game.TMV_Bowmen.speed);
+                attckSpd -= (attckSpd * game.TMV_Bowmen.attackSpeed);
             }
             else if (terrainName == "Plains")
             {
-                attckDmg += (attckDmg * 0.1f);
-                speed += (speed * 0.1f);
-                attckSpd += (attckSpd * 0.2f);
+                attckDmg += (attckDmg * game.TMV_Bowmen.attackDamage);
+                speed += (speed * game.TMV_Bowmen.speed);
+                attckSpd += (attckSpd * game.TMV_Bowmen.attackSpeed);
             }
         }
             //Debug.Log(transform.position);

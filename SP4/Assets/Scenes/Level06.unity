@@ -3604,10 +3604,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Ui: {fileID: 1436831066}
+  LevelNo: 6
   Terrain: {fileID: 980623725}
   Player1: {fileID: 1823824756}
   Player2: {fileID: 906243351}
   UIPanelAnimator: {fileID: 1055615179}
+  PaperBG: {fileID: 0}
+  ButtonImage: {fileID: 0}
   player1: 0
   player2: 0
   effect: 0
@@ -3627,6 +3630,7 @@ MonoBehaviour:
   - name: Damage
     trapPrefab: {fileID: 1906492468089352, guid: 35047877ca906134b8a1b62877caeaac,
       type: 2}
+  Gameover: 0
 --- !u!114 &618696764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5759,6 +5763,7 @@ MonoBehaviour:
   thisCanvas: {fileID: 1436831066}
   GreyGridSprite: {fileID: 21300000, guid: 510741c1e8710c1428cba48f72f5fa03, type: 3}
   BlueGridSprite: {fileID: 21300000, guid: c616bc0d5b326404f8b11ef19d6124fe, type: 3}
+  theTrapSystem: {fileID: 0}
   gridData: 
 --- !u!1 &912371576
 GameObject:
