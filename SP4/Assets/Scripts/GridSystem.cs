@@ -53,9 +53,9 @@ public class GridSystem : MonoBehaviour {
         RectTransform objectRectTransform = thisCanvas.GetComponent<RectTransform>();
         Vector2 Grid0Pos = new Vector2(objectRectTransform.transform.position.x - (0.5f * (col - 1) * tileWidth) , objectRectTransform.transform.position.y  - ((row * tileHeight)) - (2 * (tileHeight)));
         grid[0].transform.position = Grid0Pos;
-        EventTrigger.Entry mouseClick = new EventTrigger.Entry();                                                                       //Create trigger
-        mouseClick.eventID = EventTriggerType.PointerClick;                                                                             //Define trigger type   (Pointer click)
-        mouseClick.callback.AddListener((data) => { theTrapSystem.setToChooseTrap(); });                                                //Add listener to call function/ do something(changes text)
+        //EventTrigger.Entry mouseClick = new EventTrigger.Entry();                                                                       //Create trigger
+        //mouseClick.eventID = EventTriggerType.PointerClick;                                                                             //Define trigger type   (Pointer click)
+        //mouseClick.callback.AddListener((data) => { theTrapSystem.setToChooseTrap(); });                                                //Add listener to call function/ do something(changes text)
         for (uint i = 0; i < gridSize; ++i)
         {
             //Adjusts the individual grid block's size
@@ -66,8 +66,8 @@ public class GridSystem : MonoBehaviour {
             grid[i].rectTransform.anchorMax = new Vector2(0.5f, 0);
             grid[i].rectTransform.pivot = new Vector2(0.5f, 0.5f);
 
-            EventTrigger mytrigger = grid[i].gameObject.AddComponent<EventTrigger>();
-            mytrigger.triggers.Add(mouseClick);                                                                                             //Add to Event Trigger
+            //EventTrigger mytrigger = grid[i].gameObject.AddComponent<EventTrigger>();
+            //mytrigger.triggers.Add(mouseClick);                                                                                             //Add to Event Trigger
             if (i == 0)
             {
                 continue;
