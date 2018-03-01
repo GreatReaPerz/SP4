@@ -3603,7 +3603,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1436831065}
+    m_TransformParent: {fileID: 1261129673}
     m_Modifications:
     - target: {fileID: 224836159394974504, guid: 3f3cf5fc7b73f5443a5db6250f73c13d,
         type: 2}
@@ -3618,22 +3618,22 @@ Prefab:
     - target: {fileID: 224836159394974504, guid: 3f3cf5fc7b73f5443a5db6250f73c13d,
         type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -126.54944
       objectReference: {fileID: 0}
     - target: {fileID: 224836159394974504, guid: 3f3cf5fc7b73f5443a5db6250f73c13d,
         type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 224836159394974504, guid: 3f3cf5fc7b73f5443a5db6250f73c13d,
         type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 224836159394974504, guid: 3f3cf5fc7b73f5443a5db6250f73c13d,
         type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 224836159394974504, guid: 3f3cf5fc7b73f5443a5db6250f73c13d,
         type: 2}
@@ -3643,17 +3643,17 @@ Prefab:
     - target: {fileID: 224836159394974504, guid: 3f3cf5fc7b73f5443a5db6250f73c13d,
         type: 2}
       propertyPath: m_RootOrder
-      value: 21
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 224836159394974504, guid: 3f3cf5fc7b73f5443a5db6250f73c13d,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -114
+      value: -144.26636
       objectReference: {fileID: 0}
     - target: {fileID: 224836159394974504, guid: 3f3cf5fc7b73f5443a5db6250f73c13d,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 1824.8429
       objectReference: {fileID: 0}
     - target: {fileID: 224836159394974504, guid: 3f3cf5fc7b73f5443a5db6250f73c13d,
         type: 2}
@@ -3709,6 +3709,32 @@ Prefab:
       propertyPath: theDialogBox
       value: 
       objectReference: {fileID: 2000779004}
+    - target: {fileID: 224836159394974504, guid: 3f3cf5fc7b73f5443a5db6250f73c13d,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.2654942
+      objectReference: {fileID: 0}
+    - target: {fileID: 224836159394974504, guid: 3f3cf5fc7b73f5443a5db6250f73c13d,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.2654943
+      objectReference: {fileID: 0}
+    - target: {fileID: 224836159394974504, guid: 3f3cf5fc7b73f5443a5db6250f73c13d,
+        type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1.2654943
+      objectReference: {fileID: 0}
+    - target: {fileID: 114036406870690560, guid: 3f3cf5fc7b73f5443a5db6250f73c13d,
+        type: 2}
+      propertyPath: playerMoney
+      value: 
+      objectReference: {fileID: 1823824759}
+    - target: {fileID: 114036406870690560, guid: 3f3cf5fc7b73f5443a5db6250f73c13d,
+        type: 2}
+      propertyPath: trapPrefab.Array.data[1]
+      value: 
+      objectReference: {fileID: 1906492468089352, guid: 35047877ca906134b8a1b62877caeaac,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3f3cf5fc7b73f5443a5db6250f73c13d, type: 2}
   m_IsPrefabParent: 0
@@ -3793,7 +3819,7 @@ MonoBehaviour:
   blockRespawn: 0
   objects: []
   typesOfTraps:
-  - name: TrapDoor
+  - name: Trap
     trapPrefab: {fileID: 1906492468089352, guid: ac7ee6cf29379e741a3b5ba1eec82668,
       type: 2}
   - name: Damage
@@ -6961,6 +6987,7 @@ RectTransform:
   - {fileID: 1281456122}
   - {fileID: 432779698}
   - {fileID: 1319876754}
+  - {fileID: 608447938}
   - {fileID: 2080057462}
   m_Father: {fileID: 1055615180}
   m_RootOrder: 1
@@ -7964,7 +7991,6 @@ RectTransform:
   - {fileID: 1055615180}
   - {fileID: 1397473168}
   - {fileID: 2097774976}
-  - {fileID: 608447938}
   - {fileID: 2068293912}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -10365,7 +10391,7 @@ Prefab:
     - target: {fileID: 224786941538599498, guid: 3a8c214801507cf4ab2432e7a02d9ca8,
         type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 224786941538599498, guid: 3a8c214801507cf4ab2432e7a02d9ca8,
         type: 2}
