@@ -71,6 +71,8 @@ public class GameCode : MonoBehaviour {
     MainGame m_game;
     DialogBox theDialogBox;
     bool setDialog = false;
+
+    GameObject TimerCountdown;
     // Use this for initialization
     void Start () {
         theSpawner = GameObject.Find("EventSystem").GetComponent<TetrisSpawner>();
@@ -78,6 +80,7 @@ public class GameCode : MonoBehaviour {
         enemyGridSystem = GameObject.Find("EnemyTetrisGrid").GetComponent<enemyGridSystem>();
         sceneTransition = GameObject.Find("EventSystem").GetComponent<SceneTransition>();
         theDialogBox = GameObject.Find("DialogBox").GetComponent<DialogBox>();
+        TimerCountdown = GameObject.Find("Timer");
         //winLoseChecker = GameObject.Find("EventSystem").GetComponent<CheckWinLose>();
         P1Health = Player1.GetComponent<HealthSystem>();
         P2Health = Player2.GetComponent<HealthSystem>();
@@ -155,6 +158,7 @@ public class GameCode : MonoBehaviour {
             return;
         if (state == (int)GameState.PLANNING)
         {
+            DisableTimer();
             TMV_Cavalry = m_game.TMV_Cavalry;
             TMV_Infantry = m_game.TMV_Infantry;
             TMV_Bowmen = m_game.TMV_Bowmen;
@@ -753,6 +757,8 @@ public class GameCode : MonoBehaviour {
 
         if (state == (int)GameState.ATTACK)
         {
+            TimerUpdate();
+                
             UIPanelAnimator.SetBool("UIPanelEnabled", false);
             if (destroyed)
             {
@@ -1212,5 +1218,19 @@ public class GameCode : MonoBehaviour {
             + "\nBowmen Attack:" + PlayerPrefs.GetFloat("bowmenAtt")
             + "\nBowmen AttackSpeed:" + PlayerPrefs.GetFloat("bowmenAttSpd");
 
+    }
+    void DisableTimer()
+    {
+        if (TimerCountdown.activeInHierarchy)
+        {
+            TimerCountdown.SetActive(false);
+            TimerCountdown.transform.Find("Text").GetComponent<Text>().text = "0";
+        }
+    }
+    void TimerUpdate()
+    {
+        if (!TimerCountdown.activeInHierarchy)
+            TimerCountdown.SetActive(true);
+        TimerCountdown.transform.Find("Text").GetComponent<Text>().text = (30-(int)timer).ToString();
     }
 }
