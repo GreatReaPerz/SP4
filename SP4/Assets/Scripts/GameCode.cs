@@ -258,7 +258,7 @@ public class GameCode : MonoBehaviour {
                         Vector3 hello = theSpawner.playerList[i].partOne.transform.position;
                         hello.z = 100;
                         newObj = (GameObject)Instantiate(theTetrisObject, hello, Quaternion.identity);
-                        newObj.transform.parent = Ui.transform;
+                        newObj.transform.parent = Ui.transform.Find("spawnHolder").transform;
 
                         newObj.transform.localScale = new Vector3(newObj.transform.localScale.x * canvasLocalScale.x, newObj.transform.localScale.y * canvasLocalScale.y, 0);
                         troop = newObj.GetComponent<TroopAI>();
@@ -309,7 +309,7 @@ public class GameCode : MonoBehaviour {
                         hello = theSpawner.playerList[i].partTwo.transform.position;
                         hello.z = 100;
                         newObj1 = (GameObject)Instantiate(theTetrisObject, hello, Quaternion.identity);
-                        newObj1.transform.parent = Ui.transform;
+                        newObj1.transform.parent = Ui.transform.Find("spawnHolder").transform;
                         newObj1.transform.localScale = new Vector3(newObj1.transform.localScale.x * canvasLocalScale.x, newObj1.transform.localScale.y * canvasLocalScale.y, 0);
                         troop = newObj1.GetComponent<TroopAI>();
                         troop.team = 1;
@@ -355,7 +355,7 @@ public class GameCode : MonoBehaviour {
                         hello = theSpawner.playerList[i].partThree.transform.position;
                         hello.z = 100;
                         newObj2 = (GameObject)Instantiate(theTetrisObject, hello, Quaternion.identity);
-                        newObj2.transform.parent = Ui.transform;
+                        newObj2.transform.parent = Ui.transform.Find("spawnHolder").transform;
                         newObj2.transform.localScale = new Vector3(newObj2.transform.localScale.x * canvasLocalScale.x, newObj2.transform.localScale.y * canvasLocalScale.y, 0);
                         troop = newObj2.GetComponent<TroopAI>();
                         troop.team = 1;
@@ -401,7 +401,7 @@ public class GameCode : MonoBehaviour {
                         hello = theSpawner.playerList[i].partFour.transform.position;
                         hello.z = 100;
                         newObj3 = (GameObject)Instantiate(theTetrisObject, hello, Quaternion.identity);
-                        newObj3.transform.parent = Ui.transform;
+                        newObj3.transform.parent = Ui.transform.Find("spawnHolder").transform;
                         newObj3.transform.localScale = new Vector3(newObj3.transform.localScale.x * canvasLocalScale.x, newObj3.transform.localScale.y * canvasLocalScale.y, 0);
                         troop = newObj3.GetComponent<TroopAI>();
 
@@ -453,7 +453,7 @@ public class GameCode : MonoBehaviour {
                         Vector3 hello = theSpawner.enemyList[i].partOne.transform.position;
                         hello.z = 100;
                         newObj = (GameObject)Instantiate(GameObject.Find(theSpawner.enemyList[i].troopName), hello, Quaternion.identity);
-                        newObj.transform.parent = Ui.transform;
+                        newObj.transform.parent = Ui.transform.Find("spawnHolder").transform;
                         newObj.transform.localScale = new Vector3(newObj.transform.localScale.x * canvasLocalScale.x, newObj.transform.localScale.y * canvasLocalScale.y,0);
 
                         troop = newObj.GetComponent<TroopAI>();
@@ -500,7 +500,7 @@ public class GameCode : MonoBehaviour {
                         hello = theSpawner.enemyList[i].partTwo.transform.position;
                         hello.z = 100;
                         newObj1 = (GameObject)Instantiate(GameObject.Find(theSpawner.enemyList[i].troopName), hello, Quaternion.identity);
-                        newObj1.transform.parent = Ui.transform;
+                        newObj1.transform.parent = Ui.transform.Find("spawnHolder").transform;
                         newObj1.transform.localScale = new Vector3(newObj1.transform.localScale.x * canvasLocalScale.x, newObj1.transform.localScale.y * canvasLocalScale.y, 0);
                         troop = newObj1.GetComponent<TroopAI>();
                         troop.team = -1;
@@ -546,7 +546,7 @@ public class GameCode : MonoBehaviour {
                         hello = theSpawner.enemyList[i].partThree.transform.position;
                         hello.z = 100;
                         newObj2 = (GameObject)Instantiate(GameObject.Find(theSpawner.enemyList[i].troopName), hello, Quaternion.identity);
-                        newObj2.transform.parent = Ui.transform;
+                        newObj2.transform.parent = Ui.transform.Find("spawnHolder").transform;
                         newObj2.transform.localScale = new Vector3(newObj2.transform.localScale.x * canvasLocalScale.x, newObj2.transform.localScale.y * canvasLocalScale.y, 0);
                         troop = newObj2.GetComponent<TroopAI>();
                         troop.team = -1;
@@ -593,7 +593,7 @@ public class GameCode : MonoBehaviour {
                         hello = theSpawner.enemyList[i].partFour.transform.position;
                         hello.z = 100;
                         newObj3 = (GameObject)Instantiate(GameObject.Find(theSpawner.enemyList[i].troopName), hello, Quaternion.identity);
-                        newObj3.transform.parent = Ui.transform;
+                        newObj3.transform.parent = Ui.transform.Find("spawnHolder").transform;
                         newObj3.transform.localScale = new Vector3(newObj3.transform.localScale.x * canvasLocalScale.x, newObj3.transform.localScale.y * canvasLocalScale.y, 0);
                         troop = newObj3.GetComponent<TroopAI>();
                         troop.team = -1;
