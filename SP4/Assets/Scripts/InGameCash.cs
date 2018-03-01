@@ -7,7 +7,7 @@ public class InGameCash : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        amount = PlayerPrefs.GetInt("IGC", 0);
+        //amount = PlayerPrefs.GetInt("IGC", 0);
 	}
 	
 	// Update is called once per frame
@@ -38,8 +38,9 @@ public class InGameCash : MonoBehaviour {
 
     //To be used at the end of each game
     //cashes out remaining unused cash earned in game into current gold balance
-    public void cashoutToGold()
+    public void cashoutToGold(float _percentage)
     {
+        amount = (int)(_percentage * (float)amount);
         this.gameObject.GetComponent<GoldSystem>().addGold(amount);
         addAmount(-amount);
     }

@@ -1102,10 +1102,10 @@ public class GameCode : MonoBehaviour {
             Text Earnings = CreateText(background.gameObject, new Vector3(0, 100, 0));                                                          //Create text object
             Earnings.rectTransform.sizeDelta = currGoldText.rectTransform.sizeDelta;                                                            //Size base on currGoldText
             Earnings.fontSize = 50;                                                                                                             //Set text size to 50
-            Earnings.text = "Gold earned in this game: " + Player1.GetComponent<InGameCash>().getAmount();                                      //Set text to display
+            Earnings.text = "Gold earned in this game: " + Player1.GetComponent<InGameCash>().getAmount() + (text.text == "You Lose" ? "(-60%)" : "");//Set text to display
             Earnings.transform.name = "Earnings";                                                                                               //Give the gameObject a unique name
 
-            Player1.GetComponent<InGameCash>().cashoutToGold();                                                                                 //Function call to output to gold
+            Player1.GetComponent<InGameCash>().cashoutToGold((text.text == "You Lose" ? 0.4f : 1f));                                            //Function call to output to gold
 
             Text Balance = CreateText(background.gameObject, new Vector3(0, 0, 0));                                                             //Create text object
             Balance.rectTransform.sizeDelta = currGoldText.rectTransform.sizeDelta;                                                             //Size base on currGoldText
