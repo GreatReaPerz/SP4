@@ -13,6 +13,13 @@ public class GridSystem : MonoBehaviour {
     public uint GridSize = gridSize;
     public const float tileWidth = 100;
     public const float tileHeight = 100;
+
+    float scaledTileWidth; 
+    float scaledTileHeight;
+
+    float scaledHalfTileWidth; 
+    float scaledHalfTileHeight; 
+
     public bool[] taken = new bool[gridSize];
     private TetrisSpawner theTetrisSpawner = null;
     private HealthSystem PlayerHealth;
@@ -49,6 +56,22 @@ public class GridSystem : MonoBehaviour {
         PlayerHealth = GameObject.Find("Player").GetComponent<HealthSystem>();
         
         Debug.Assert(theTetrisSpawner != null);
+
+        Vector3 CanvasScale = GameObject.FindGameObjectWithTag("Canvas").transform.localScale;
+
+        //scaledTileWidth = tileWidth * CanvasScale.x;
+        //scaledTileHeight = tileHeight * CanvasScale.y;
+
+        //scaledHalfTileWidth = tileWidth * CanvasScale.x * 0.5f;
+        //scaledHalfTileHeight = tileHeight * CanvasScale.y * 0.5f;
+
+        scaledTileWidth = tileWidth * ((float)Screen.width / 1080);
+        scaledTileHeight = tileHeight * ((float)Screen.height / 1920 );
+
+        scaledHalfTileWidth = tileWidth * ((float)Screen.width / 1080) * 0.5f;
+        scaledHalfTileHeight = tileHeight * ((float)Screen.height / 1920) * 0.5f;
+
+
 
         RectTransform objectRectTransform = thisCanvas.GetComponent<RectTransform>();
         Vector2 Grid0Pos = new Vector2(objectRectTransform.transform.position.x - (0.5f * (col - 1) * tileWidth) , objectRectTransform.transform.position.y  - ((row * tileHeight)) - (2 * (tileHeight)));
@@ -104,7 +127,7 @@ public class GridSystem : MonoBehaviour {
         //        //Check col
         //        for (uint it = 0; it < col; ++it)
         //        {
-        //            if (grid[0].transform.position.x + ((tileWidth * (it + 1)) - halfTileWidth) > Input.mousePosition.x)
+        //            if (grid[0].transform.position.x + ((scaledTileWidth * (it + 1)) - scaledHalfTileWidth) > Input.mousePosition.x)
         //            {
         //                colNum = it;
         //                break;
@@ -114,7 +137,7 @@ public class GridSystem : MonoBehaviour {
         //        //Check row
         //        for (uint it = 0; it < row; ++it)
         //        {
-        //            if (grid[0].transform.position.y + ((tileHeight * (it + 1)) - halfTileHeight) > Input.mousePosition.y)
+        //            if (grid[0].transform.position.y + ((scaledTileHeight * (it + 1)) - scaledHalfTileHeight) > Input.mousePosition.y)
         //            {
         //                rowNum = it;
         //                break;
@@ -376,6 +399,7 @@ public class GridSystem : MonoBehaviour {
 
     public void GameUpdate()
     {
+
         if (Input.GetMouseButton(0) == true)
         {
             if (theTetrisSpawner.playerIsMoving == true)
@@ -386,7 +410,7 @@ public class GridSystem : MonoBehaviour {
                 //Check col
                 for (uint it = 0; it < col; ++it)
                 {
-                    if (grid[0].transform.position.x + ((tileWidth * (it + 1)) - halfTileWidth) > Input.mousePosition.x)
+                    if (grid[0].transform.position.x + ((scaledTileWidth * (it + 1)) - scaledHalfTileWidth) > Input.mousePosition.x)
                     {
                         colNum = it;
                         break;
@@ -396,12 +420,15 @@ public class GridSystem : MonoBehaviour {
                 //Check row
                 for (uint it = 0; it < row; ++it)
                 {
-                    if (grid[0].transform.position.y + ((tileHeight * (it + 1)) - halfTileHeight) > Input.mousePosition.y)
+                    if (grid[0].transform.position.y + ((scaledTileHeight * (it + 1)) - scaledHalfTileHeight) > Input.mousePosition.y)
                     {
                         rowNum = it;
                         break;
                     }
                 }
+
+                Text test = GameObject.Find("THIS").GetComponent<Text>();
+                test.text = rowNum.ToString();
                 float nearest = 1000000;
                 uint index = 0;
                 for (uint j = 0; j < gridSize; ++j)
@@ -419,11 +446,14 @@ public class GridSystem : MonoBehaviour {
 
 
 
-                objectIndex = index;
+               objectIndex = index;
+
+                //objectIndex = colNum + (rowNum * col);
+
                 //FirstTetrisBlock.transform.position = grid[objectIndex].transform.position;
                 bool mouse = false;
-                if (Input.mousePosition.x < grid[0].transform.position.x - tileWidth || Input.mousePosition.x > grid[col - 1].transform.position.x + tileWidth
-                 && Input.mousePosition.y < grid[0].transform.position.y - tileHeight && Input.mousePosition.y > grid[gridSize - 1].transform.position.y + tileHeight)
+                if (Input.mousePosition.x < grid[0].transform.position.x - scaledTileWidth || Input.mousePosition.x > grid[col - 1].transform.position.x + scaledTileWidth
+                 && Input.mousePosition.y < grid[0].transform.position.y - scaledTileHeight && Input.mousePosition.y > grid[gridSize - 1].transform.position.y + scaledTileHeight)
                 {
                     mouse = true;
                     Debug.Log("hello");
@@ -551,13 +581,13 @@ public class GridSystem : MonoBehaviour {
             {
                 theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].returning = true;
             }
-          
-        }
-        //When the tetris block is picked up from the grid, it removes the data from that tile
-        if (isMouseMovingAnObject && Input.GetMouseButtonDown(0))
-        {
             isMouseMovingAnObject = false;
         }
+        //When the tetris block is picked up from the grid, it removes the data from that tile
+        //if (isMouseMovingAnObject && Input.GetMouseButtonDown(0))
+        //{
+        //    isMouseMovingAnObject = false;
+        //}
         for (int i = 0; i < theTetrisSpawner.playerList.Count; ++i)
         {
 
@@ -677,14 +707,14 @@ public class GridSystem : MonoBehaviour {
 
     public bool InGridCheck(TetrisCube cube)
     {
-        if (cube.partOne.position.x > grid[0].transform.position.x - halfTileWidth && cube.partOne.position.x < grid[col - 1].transform.position.x + halfTileWidth
-            && cube.partOne.position.y > grid[0].transform.position.y - halfTileHeight && cube.partOne.position.y < grid[gridSize - 1].transform.position.y + halfTileHeight
-            && cube.partTwo.position.x > grid[0].transform.position.x - halfTileWidth && cube.partTwo.position.x < grid[col - 1].transform.position.x + halfTileWidth
-            && cube.partTwo.position.y > grid[0].transform.position.y - halfTileHeight && cube.partTwo.position.y < grid[gridSize - 1].transform.position.y + halfTileHeight
-            && cube.partThree.position.x > grid[0].transform.position.x - halfTileWidth && cube.partThree.position.x < grid[col - 1].transform.position.x + halfTileWidth
-            && cube.partThree.position.y > grid[0].transform.position.y - halfTileHeight && cube.partThree.position.y < grid[gridSize - 1].transform.position.y + halfTileHeight
-            && cube.partFour.position.x > grid[0].transform.position.x - halfTileWidth && cube.partFour.position.x < grid[col - 1].transform.position.x + halfTileWidth
-            && cube.partFour.position.y > grid[0].transform.position.y - halfTileHeight && cube.partFour.position.y < grid[gridSize - 1].transform.position.y + halfTileHeight)
+        if (cube.partOne.position.x > grid[0].transform.position.x - scaledHalfTileWidth && cube.partOne.position.x < grid[col - 1].transform.position.x + scaledHalfTileWidth
+            && cube.partOne.position.y > grid[0].transform.position.y - scaledHalfTileHeight && cube.partOne.position.y < grid[gridSize - 1].transform.position.y + scaledHalfTileHeight
+            && cube.partTwo.position.x > grid[0].transform.position.x - scaledHalfTileWidth && cube.partTwo.position.x < grid[col - 1].transform.position.x + scaledHalfTileWidth
+            && cube.partTwo.position.y > grid[0].transform.position.y - scaledHalfTileHeight && cube.partTwo.position.y < grid[gridSize - 1].transform.position.y + scaledHalfTileHeight
+            && cube.partThree.position.x > grid[0].transform.position.x - scaledHalfTileWidth && cube.partThree.position.x < grid[col - 1].transform.position.x + scaledHalfTileWidth
+            && cube.partThree.position.y > grid[0].transform.position.y - scaledHalfTileHeight && cube.partThree.position.y < grid[gridSize - 1].transform.position.y + scaledHalfTileHeight
+            && cube.partFour.position.x > grid[0].transform.position.x - scaledHalfTileWidth && cube.partFour.position.x < grid[col - 1].transform.position.x + scaledHalfTileWidth
+            && cube.partFour.position.y > grid[0].transform.position.y - scaledHalfTileHeight && cube.partFour.position.y < grid[gridSize - 1].transform.position.y + scaledHalfTileHeight)
         {
             return true;
         }
@@ -796,7 +826,7 @@ public class GridSystem : MonoBehaviour {
                 //Check col
                 for (uint it = 0; it < col; ++it)
                 {
-                    if (grid[0].transform.position.x + ((tileWidth * (it + 1)) - halfTileWidth) > touchposition.x)
+                    if (grid[0].transform.position.x + ((scaledTileWidth * (it + 1)) - scaledHalfTileWidth) > touchposition.x)
                     {
                         colNum = it;
                         break;
@@ -806,7 +836,7 @@ public class GridSystem : MonoBehaviour {
                 //Check row
                 for (uint it = 0; it < row; ++it)
                 {
-                    if (grid[0].transform.position.y + ((tileHeight * (it + 1)) - halfTileHeight) > touchposition.y)
+                    if (grid[0].transform.position.y + ((scaledTileHeight * (it + 1)) - scaledHalfTileHeight) > touchposition.y)
                     {
                         rowNum = it;
                         break;
@@ -817,8 +847,8 @@ public class GridSystem : MonoBehaviour {
                 //FirstTetrisBlock.transform.position = grid[objectIndex].transform.position;
                 bool mouse = false;
 
-                if (touchposition.x < grid[0].transform.position.x - halfTileWidth - 50 || touchposition.x > grid[col - 1].transform.position.x + halfTileWidth + 50
-                 && touchposition.y < grid[0].transform.position.y - halfTileHeight - 50 && touchposition.y > grid[gridSize - 1].transform.position.y + halfTileHeight + 50)
+                if (touchposition.x < grid[0].transform.position.x - scaledHalfTileWidth - 50 || touchposition.x > grid[col - 1].transform.position.x + scaledHalfTileWidth + 50
+                 && touchposition.y < grid[0].transform.position.y - scaledHalfTileHeight - 50 && touchposition.y > grid[gridSize - 1].transform.position.y + scaledHalfTileHeight + 50)
                 {
                     mouse = true;
                 }
