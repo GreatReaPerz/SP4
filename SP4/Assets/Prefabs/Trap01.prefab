@@ -44,8 +44,11 @@ MonoBehaviour:
   instantKill: 1
   dealsDamage: 0
   damageAmount: 0
+  stun: 0
   isactive: 1
   isPlaced: 0
+  team: 0
+  cost: 50
 --- !u!222 &222861019814790226
 CanvasRenderer:
   m_ObjectHideFlags: 1

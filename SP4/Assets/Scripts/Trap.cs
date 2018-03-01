@@ -25,6 +25,8 @@ public class Trap : MonoBehaviour {
 
     public int team;
 
+    public int cost;
+
     // Use this for initialization
     void Start()
     {

@@ -48,6 +48,7 @@ MonoBehaviour:
   isactive: 1
   isPlaced: 0
   team: 0
+  cost: 20
 --- !u!222 &222861019814790226
 CanvasRenderer:
   m_ObjectHideFlags: 1

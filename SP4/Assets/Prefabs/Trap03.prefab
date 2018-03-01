@@ -39,7 +39,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceef8cee14e2f64fa8a507e51c3404e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TrapName: Stun
+  TrapName: Spikes
   texture: {fileID: 21300000, guid: 5222c183762cfe04bb821139aba2eb14, type: 3}
   instantKill: 0
   dealsDamage: 1
@@ -48,6 +48,7 @@ MonoBehaviour:
   isactive: 1
   isPlaced: 0
   team: 0
+  cost: 20
 --- !u!222 &222861019814790226
 CanvasRenderer:
   m_ObjectHideFlags: 1

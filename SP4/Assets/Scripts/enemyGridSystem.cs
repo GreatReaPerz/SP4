@@ -18,8 +18,13 @@ public class enemyGridSystem : MonoBehaviour
     public bool[] check = new bool[3];
     float halfTileWidth = tileWidth * 0.5f, halfTileHeight = tileHeight * 0.5f;
     public bool[] taken = new bool[gridSize];
-
+    Vector3 CanvasScale;
     private HealthSystem EnemyHealth;
+    float scaledTileWidth;
+    float scaledTileHeight;
+
+    float scaledHalfTileWidth;
+    float scaledHalfTileHeight;
 
     [SerializeField]
     public Image[] grid = new Image[gridSize];
@@ -50,6 +55,13 @@ public class enemyGridSystem : MonoBehaviour
                 taken[i] = false;
             }
         }
+
+        scaledTileWidth = tileWidth * CanvasScale.x;
+        scaledTileHeight = tileHeight * CanvasScale.y;
+
+        scaledHalfTileWidth = tileWidth * CanvasScale.x * 0.5f;
+        scaledHalfTileHeight = tileHeight * CanvasScale.y * 0.5f;
+        CanvasScale = GameObject.FindGameObjectWithTag("Canvas").transform.localScale;
         theTetrisSpawner = GameObject.Find("EventSystem").GetComponent<TetrisSpawner>();
         EnemyHealth = GameObject.Find("Enemy").GetComponent<HealthSystem>();
         Debug.Assert(theTetrisSpawner != null);
@@ -701,8 +713,8 @@ public class enemyGridSystem : MonoBehaviour
                         }
                         theTetrisSpawner.enemyList[i].partOne.MovePosition(grid[index].transform.position);
                         theTetrisSpawner.enemyList[i].Whatisbeingmoved = "partOne";
-                        if (Mathf.Abs(theTetrisSpawner.enemyList[i].partOne.position.x - grid[index].transform.position.x) < 10
-                            && (Mathf.Abs(theTetrisSpawner.enemyList[i].partOne.position.y - grid[index].transform.position.y) < 10))
+                        if (Mathf.Abs(theTetrisSpawner.enemyList[i].partOne.position.x - grid[index].transform.position.x) < 10 *CanvasScale.x
+                            && (Mathf.Abs(theTetrisSpawner.enemyList[i].partOne.position.y - grid[index].transform.position.y) < 10 * CanvasScale.x))
                         {
                             check[i] = true;
                             theTetrisSpawner.enemyList[i].isMoving = false;
@@ -769,8 +781,8 @@ public class enemyGridSystem : MonoBehaviour
                     //FirstTetrisBlock.transform.position = grid[objectIndex].transform.position;
                     bool mouse = false;
 
-                    if (Input.mousePosition.x > grid[0].transform.position.x - halfTileWidth - 50 || Input.mousePosition.x < grid[col - 1].transform.position.x + halfTileWidth + 50
-                     && Input.mousePosition.y > grid[0].transform.position.y - halfTileHeight - 50 && Input.mousePosition.y < grid[gridSize - 1].transform.position.y + halfTileHeight + 50)
+                    if (Input.mousePosition.x < grid[0].transform.position.x - scaledTileWidth || Input.mousePosition.x > grid[col - 1].transform.position.x + scaledTileWidth
+                    && Input.mousePosition.y < grid[0].transform.position.y - scaledTileHeight && Input.mousePosition.y > grid[gridSize - 1].transform.position.y + scaledTileHeight)
                     {
                         mouse = true;
                     }
@@ -844,8 +856,8 @@ public class enemyGridSystem : MonoBehaviour
                         };
                         for (int j = 0; j < gridSize; ++j)
                         {
-                            if (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partOne.transform.position.x - grid[j].transform.position.x) < 50
-                                && (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partOne.transform.position.y - grid[j].transform.position.y) < 50))
+                            if (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partOne.transform.position.x - grid[j].transform.position.x) < 10 * CanvasScale.x
+                                && (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partOne.transform.position.y - grid[j].transform.position.y) < 10 * CanvasScale.x))
                             {
                                 if (taken[j])
                                 {
@@ -853,8 +865,8 @@ public class enemyGridSystem : MonoBehaviour
                                     // theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].btmLeft.position = theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].origin;
                                 }
                             }
-                            if (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partTwo.transform.position.x - grid[j].transform.position.x) < 50
-                                && (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partTwo.transform.position.y - grid[j].transform.position.y) < 50))
+                            if (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partTwo.transform.position.x - grid[j].transform.position.x) < 10 * CanvasScale.x
+                                && (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partTwo.transform.position.y - grid[j].transform.position.y) < 10 * CanvasScale.x))
                             {
                                 if (taken[j])
                                 {
@@ -862,8 +874,8 @@ public class enemyGridSystem : MonoBehaviour
                                     //theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].btmLeft.position = theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].origin;
                                 }
                             }
-                            if (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partThree.transform.position.x - grid[j].transform.position.x) < 50
-                                && (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partThree.transform.position.y - grid[j].transform.position.y) < 50))
+                            if (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partThree.transform.position.x - grid[j].transform.position.x) < 10 * CanvasScale.x
+                                && (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partThree.transform.position.y - grid[j].transform.position.y) < 10 * CanvasScale.x))
                             {
                                 if (taken[j])
                                 {
@@ -871,8 +883,8 @@ public class enemyGridSystem : MonoBehaviour
                                     // theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].btmLeft.position = theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].origin;
                                 }
                             }
-                            if (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partFour.transform.position.x - grid[j].transform.position.x) < 50
-                                && (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partFour.transform.position.y - grid[j].transform.position.y) < 50))
+                            if (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partFour.transform.position.x - grid[j].transform.position.x) < 10 * CanvasScale.x
+                                && (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partFour.transform.position.y - grid[j].transform.position.y) < 10 * CanvasScale.x))
                             {
                                 if (taken[j])
                                 {
@@ -1067,23 +1079,23 @@ public class enemyGridSystem : MonoBehaviour
                 {
                     for (int j = 0; j < gridSize; ++j)
                     {
-                        if (Mathf.Abs(theTetrisSpawner.enemyList[k].partOne.transform.position.x - grid[j].transform.position.x) < 50
-                            && (Mathf.Abs(theTetrisSpawner.enemyList[k].partOne.transform.position.y - grid[j].transform.position.y) < 50))
+                        if (Mathf.Abs(theTetrisSpawner.enemyList[k].partOne.transform.position.x - grid[j].transform.position.x) < 10 * CanvasScale.x
+                            && (Mathf.Abs(theTetrisSpawner.enemyList[k].partOne.transform.position.y - grid[j].transform.position.y) < 10 * CanvasScale.x))
                         {
                             taken[j] = true;
                         }
-                        if (Mathf.Abs(theTetrisSpawner.enemyList[k].partTwo.transform.position.x - grid[j].transform.position.x) < 50
-                            && (Mathf.Abs(theTetrisSpawner.enemyList[k].partTwo.transform.position.y - grid[j].transform.position.y) < 50))
+                        if (Mathf.Abs(theTetrisSpawner.enemyList[k].partTwo.transform.position.x - grid[j].transform.position.x) < 10 * CanvasScale.x
+                            && (Mathf.Abs(theTetrisSpawner.enemyList[k].partTwo.transform.position.y - grid[j].transform.position.y) < 10 * CanvasScale.x))
                         {
                             taken[j] = true;
                         }
-                        if (Mathf.Abs(theTetrisSpawner.enemyList[k].partThree.transform.position.x - grid[j].transform.position.x) < 50
-                            && (Mathf.Abs(theTetrisSpawner.enemyList[k].partThree.transform.position.y - grid[j].transform.position.y) < 50))
+                        if (Mathf.Abs(theTetrisSpawner.enemyList[k].partThree.transform.position.x - grid[j].transform.position.x) < 10 * CanvasScale.x
+                            && (Mathf.Abs(theTetrisSpawner.enemyList[k].partThree.transform.position.y - grid[j].transform.position.y) < 10 * CanvasScale.x))
                         {
                             taken[j] = true;
                         }
-                        if (Mathf.Abs(theTetrisSpawner.enemyList[k].partFour.transform.position.x - grid[j].transform.position.x) < 50
-                            && (Mathf.Abs(theTetrisSpawner.enemyList[k].partFour.transform.position.y - grid[j].transform.position.y) < 50))
+                        if (Mathf.Abs(theTetrisSpawner.enemyList[k].partFour.transform.position.x - grid[j].transform.position.x) < 10 * CanvasScale.x
+                            && (Mathf.Abs(theTetrisSpawner.enemyList[k].partFour.transform.position.y - grid[j].transform.position.y) < 10 * CanvasScale.x))
                         {
                             taken[j] = true;
                         }
@@ -1096,23 +1108,23 @@ public class enemyGridSystem : MonoBehaviour
                 {
                     for (int j = 0; j < gridSize; ++j)
                     {
-                        if (Mathf.Abs(theTetrisSpawner.enemyList[k].partOne.transform.position.x - grid[j].transform.position.x) < 50
-                            && (Mathf.Abs(theTetrisSpawner.enemyList[k].partOne.transform.position.y - grid[j].transform.position.y) < 50))
+                        if (Mathf.Abs(theTetrisSpawner.enemyList[k].partOne.transform.position.x - grid[j].transform.position.x) < 10 * CanvasScale.x
+                            && (Mathf.Abs(theTetrisSpawner.enemyList[k].partOne.transform.position.y - grid[j].transform.position.y) < 10 * CanvasScale.x))
                         {
                             taken[j] = true;
                         }
-                        if (Mathf.Abs(theTetrisSpawner.enemyList[k].partTwo.transform.position.x - grid[j].transform.position.x) < 50
-                            && (Mathf.Abs(theTetrisSpawner.enemyList[k].partTwo.transform.position.y - grid[j].transform.position.y) < 50))
+                        if (Mathf.Abs(theTetrisSpawner.enemyList[k].partTwo.transform.position.x - grid[j].transform.position.x) < 10 * CanvasScale.x
+                            && (Mathf.Abs(theTetrisSpawner.enemyList[k].partTwo.transform.position.y - grid[j].transform.position.y) < 10 * CanvasScale.x))
                         {
                             taken[j] = true;
                         }
-                        if (Mathf.Abs(theTetrisSpawner.enemyList[k].partThree.transform.position.x - grid[j].transform.position.x) < 50
-                            && (Mathf.Abs(theTetrisSpawner.enemyList[k].partThree.transform.position.y - grid[j].transform.position.y) < 50))
+                        if (Mathf.Abs(theTetrisSpawner.enemyList[k].partThree.transform.position.x - grid[j].transform.position.x) < 10 * CanvasScale.x
+                            && (Mathf.Abs(theTetrisSpawner.enemyList[k].partThree.transform.position.y - grid[j].transform.position.y) < 10 * CanvasScale.x))
                         {
                             taken[j] = true;
                         }
-                        if (Mathf.Abs(theTetrisSpawner.enemyList[k].partFour.transform.position.x - grid[j].transform.position.x) < 50
-                            && (Mathf.Abs(theTetrisSpawner.enemyList[k].partFour.transform.position.y - grid[j].transform.position.y) < 50))
+                        if (Mathf.Abs(theTetrisSpawner.enemyList[k].partFour.transform.position.x - grid[j].transform.position.x) < 10 * CanvasScale.x
+                            && (Mathf.Abs(theTetrisSpawner.enemyList[k].partFour.transform.position.y - grid[j].transform.position.y) < 10 * CanvasScale.x))
                         {
                             taken[j] = true;
                         }
@@ -1147,14 +1159,14 @@ public class enemyGridSystem : MonoBehaviour
         //    && cube.topLeft.position.y > grid[0].transform.position.y - halfTileHeight && cube.topLeft.position.y < grid[gridSize - 1].transform.position.y + halfTileHeight
         //    && cube.topRight.position.x > grid[0].transform.position.x - halfTileWidth && cube.topRight.position.x < grid[col - 1].transform.position.x + halfTileWidth
         //    && cube.topRight.position.y > grid[0].transform.position.y - halfTileHeight && cube.topRight.position.y < grid[gridSize - 1].transform.position.y + halfTileHeight)
-        if (cube.partOne.position.x < grid[0].transform.position.x + halfTileWidth && cube.partOne.position.x > grid[col - 1].transform.position.x - halfTileWidth
-    && cube.partOne.position.y < grid[0].transform.position.y + halfTileHeight && cube.partOne.position.y > grid[gridSize - 1].transform.position.y - halfTileHeight
-    && cube.partTwo.position.x < grid[0].transform.position.x + halfTileWidth && cube.partTwo.position.x > grid[col - 1].transform.position.x - halfTileWidth
-    && cube.partTwo.position.y < grid[0].transform.position.y + halfTileHeight && cube.partTwo.position.y > grid[gridSize - 1].transform.position.y - halfTileHeight
-    && cube.partThree.position.x < grid[0].transform.position.x + halfTileWidth && cube.partThree.position.x > grid[col - 1].transform.position.x - halfTileWidth
-    && cube.partThree.position.y < grid[0].transform.position.y + halfTileHeight && cube.partThree.position.y > grid[gridSize - 1].transform.position.y - halfTileHeight
-    && cube.partFour.position.x < grid[0].transform.position.x + halfTileWidth && cube.partFour.position.x > grid[col - 1].transform.position.x - halfTileWidth
-    && cube.partFour.position.y < grid[0].transform.position.y + halfTileHeight && cube.partFour.position.y > grid[gridSize - 1].transform.position.y - halfTileHeight)
+        if (cube.partOne.position.x < grid[0].transform.position.x + scaledHalfTileWidth && cube.partOne.position.x > grid[col - 1].transform.position.x - scaledHalfTileWidth
+    && cube.partOne.position.y < grid[0].transform.position.y + scaledHalfTileHeight && cube.partOne.position.y > grid[gridSize - 1].transform.position.y - scaledHalfTileHeight
+    && cube.partTwo.position.x < grid[0].transform.position.x + scaledHalfTileWidth && cube.partTwo.position.x > grid[col - 1].transform.position.x - scaledHalfTileWidth
+    && cube.partTwo.position.y < grid[0].transform.position.y + scaledHalfTileHeight && cube.partTwo.position.y > grid[gridSize - 1].transform.position.y - scaledHalfTileHeight
+    && cube.partThree.position.x < grid[0].transform.position.x + scaledHalfTileWidth && cube.partThree.position.x > grid[col - 1].transform.position.x - scaledHalfTileWidth
+    && cube.partThree.position.y < grid[0].transform.position.y + scaledHalfTileHeight && cube.partThree.position.y > grid[gridSize - 1].transform.position.y - scaledHalfTileHeight
+    && cube.partFour.position.x < grid[0].transform.position.x + scaledHalfTileWidth && cube.partFour.position.x > grid[col - 1].transform.position.x - scaledHalfTileWidth
+    && cube.partFour.position.y < grid[0].transform.position.y + scaledHalfTileHeight && cube.partFour.position.y > grid[gridSize - 1].transform.position.y - scaledHalfTileHeight)
         {
             return true;
         }
