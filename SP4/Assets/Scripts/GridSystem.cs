@@ -427,8 +427,8 @@ public class GridSystem : MonoBehaviour {
                     }
                 }
 
-                Text test = GameObject.Find("THIS").GetComponent<Text>();
-                test.text = rowNum.ToString();
+                //Text test = GameObject.Find("THIS").GetComponent<Text>();
+                //test.text = rowNum.ToString();
                 float nearest = 1000000;
                 uint index = 0;
                 for (uint j = 0; j < gridSize; ++j)
