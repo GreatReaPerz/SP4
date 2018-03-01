@@ -747,9 +747,25 @@ public class enemyGridSystem : MonoBehaviour
                         }
                     }
 
+                    float nearest = 1000000;
+                    uint index = 0;
+                    for (uint j = 0; j < gridSize; ++j)
+                    {
+                        Vector2 distance;
+                        distance.x = Input.mousePosition.x - grid[j].transform.position.x;
+                        distance.y = Input.mousePosition.y - grid[j].transform.position.y;
+                        float hello = distance.SqrMagnitude();
+                        if (hello < nearest)
+                        {
+                            nearest = hello;
+                            index = j;
+                        }
+                    }
 
 
-                    objectIndex = colNum + (rowNum * col);
+
+                    objectIndex = index;
+
                     //FirstTetrisBlock.transform.position = grid[objectIndex].transform.position;
                     bool mouse = false;
 
@@ -1244,10 +1260,19 @@ public class enemyGridSystem : MonoBehaviour
                     if (!check[i])
                     {
                         theTetrisSpawner.enemyList[i].isMoving = true;
-                        theTetrisSpawner.enemyList[i].partOne.MovePosition(grid[(i * 3) + 22].transform.position);
+                        int index = (i * 3) + 22;
+                        if (i == 2)
+                        {
+                            index = (i * 3) + 23;
+                        }
+                        else
+                        {
+                            index = (i * 3) + 22;
+                        }
+                        theTetrisSpawner.enemyList[i].partOne.MovePosition(grid[index].transform.position);
                         theTetrisSpawner.enemyList[i].Whatisbeingmoved = "partOne";
-                        if (Mathf.Abs(theTetrisSpawner.enemyList[i].partOne.position.x - grid[(i * 3) + 22].transform.position.x) < 10
-                            && (Mathf.Abs(theTetrisSpawner.enemyList[i].partOne.position.y - grid[(i * 3) + 22].transform.position.y) < 10))
+                        if (Mathf.Abs(theTetrisSpawner.enemyList[i].partOne.position.x - grid[index].transform.position.x) < 10
+                            && (Mathf.Abs(theTetrisSpawner.enemyList[i].partOne.position.y - grid[index].transform.position.y) < 10))
                         {
                             check[i] = true;
                             theTetrisSpawner.enemyList[i].isMoving = false;
@@ -1256,6 +1281,11 @@ public class enemyGridSystem : MonoBehaviour
                     }
                 }
                 // check = true;
+            }
+            else
+            {
+                Debug.Log(timer);
+                timer++;
             }
         }
         else
@@ -1287,9 +1317,25 @@ public class enemyGridSystem : MonoBehaviour
                         }
                     }
 
+                    float nearest = 1000000;
+                    uint index = 0;
+                    for (uint j = 0; j < gridSize; ++j)
+                    {
+                        Vector2 distance;
+                        distance.x = Input.GetTouch(0).position.x - grid[j].transform.position.x;
+                        distance.y = Input.GetTouch(0).position.y - grid[j].transform.position.y;
+                        float hello = distance.SqrMagnitude();
+                        if (hello < nearest)
+                        {
+                            nearest = hello;
+                            index = j;
+                        }
+                    }
 
 
-                    objectIndex = colNum + (rowNum * col);
+
+                    objectIndex = index;
+
                     //FirstTetrisBlock.transform.position = grid[objectIndex].transform.position;
                     bool mouse = false;
 
