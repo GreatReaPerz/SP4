@@ -61,7 +61,7 @@ public class MainGame : MonoBehaviour {
         if (Application.platform == RuntimePlatform.WindowsPlayer)
         {
             //If the platform is Windows
-            NeutralZone.rectTransform.sizeDelta = new Vector2((objectRectTransform.rect.width * 0.62f) * canvasLocalScale.x, (objectRectTransform.rect.height * canvasLocalScale.y) * 0.54f);
+            NeutralZone.rectTransform.sizeDelta = new Vector2((objectRectTransform.rect.width) * canvasLocalScale.x * 2, (objectRectTransform.rect.height * canvasLocalScale.y) * 0.53f);
         }
         else if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.WindowsEditor)
         {
