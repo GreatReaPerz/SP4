@@ -35,6 +35,7 @@ public class TrapSystem : MonoBehaviour {
     public bool trapSystemActive = true;
 
     List<Button> trapButtons;
+    float timer = 0.0f;
     // Use this for initialization
     void Start()
     {
@@ -78,11 +79,12 @@ public class TrapSystem : MonoBehaviour {
             displacement.x += newTrapBut.GetComponent<RectTransform>().rect.width;                                                          //Increment displacement every iteration
         }
         Button close = trapSelectionPanel.transform.Find("CloseButton").gameObject.GetComponent<Button>();
-        EventTrigger closeEV = close.gameObject.AddComponent<EventTrigger>();                                                               //Add EvenTrigger component
-        EventTrigger.Entry closeClick = new EventTrigger.Entry();                                                                           //Create trigger
-        closeClick.eventID = EventTriggerType.PointerClick;                                                                                 //Define trigger type   (Pointer click)
-        closeClick.callback.AddListener((data) => { resetVariables(); });                                                                   //Add listener to call function/ do something(changes text)
-        closeEV.triggers.Add(closeClick);                                                                                                   //Add to Event Trigger
+        //EventTrigger closeEV = close.gameObject.AddComponent<EventTrigger>();                                                               //Add EvenTrigger component
+        //EventTrigger.Entry closeClick = new EventTrigger.Entry();                                                                           //Create trigger
+        //closeClick.eventID = EventTriggerType.PointerClick;                                                                                 //Define trigger type   (Pointer click)
+        //closeClick.callback.AddListener((data) => { resetVariables(); });                                                                   //Add listener to call function/ do something(changes text)
+        close.onClick.AddListener(delegate { resetVariables(); });
+        //closeEV.triggers.Add(closeClick);                                                                                                   //Add to Event Trigger
     }
 
     // Update is called once per frame
@@ -90,15 +92,16 @@ public class TrapSystem : MonoBehaviour {
     {
         if (!trapSystemActive || theDialogBox.activeInHierarchy)
             return;
+        timer -= Time.deltaTime;
         switch (myState)
         {
             case executionState.GRID_CHOOSING:
                 Vector3 pos = new Vector3(0, 0, 0);
-                if (Input.GetMouseButtonUp(0))                           //if mouse input
+                if (Input.GetMouseButtonUp(0) && timer <=0.0f)                           //if mouse input
                 {
                     pos = Input.mousePosition;
                 }
-                if (Input.touchCount > 0)                                 //if phone input
+                if (Input.touchCount > 0 && timer <= 0.0f)                                 //if phone input
                 {
                     pos = Input.GetTouch(0).position;
                 }
@@ -149,6 +152,7 @@ public class TrapSystem : MonoBehaviour {
         myState = executionState.GRID_CHOOSING;
         trapSelectionPanel.SetActive(false);
         trapToBePlaced = null;
+        timer = 1.0f;
     }
 
     public void SetTrapToBePlaced(GameObject _theTrap)
