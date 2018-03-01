@@ -11925,7 +11925,7 @@ Prefab:
     - target: {fileID: 114331979080955744, guid: 5f92a8f13258f8348b70c270f5a37893,
         type: 2}
       propertyPath: dialogs.Array.data[2].text
-      value: They aren't free by the way
+      value: They aren't free by the way(tap and hold on trap to see cost)
       objectReference: {fileID: 0}
     - target: {fileID: 114331979080955744, guid: 5f92a8f13258f8348b70c270f5a37893,
         type: 2}
