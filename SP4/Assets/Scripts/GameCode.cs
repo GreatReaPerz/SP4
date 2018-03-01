@@ -69,12 +69,15 @@ public class GameCode : MonoBehaviour {
     public MainGame.TerrainModifierValue TMV_Bowmen;
     Vector2 canvasLocalScale;
     MainGame m_game;
+    DialogBox theDialogBox;
+    bool setDialog = false;
     // Use this for initialization
     void Start () {
         theSpawner = GameObject.Find("EventSystem").GetComponent<TetrisSpawner>();
         theGridSystem = GameObject.Find("PlayerTetrisGrid").GetComponent<GridSystem>();
         enemyGridSystem = GameObject.Find("EnemyTetrisGrid").GetComponent<enemyGridSystem>();
         sceneTransition = GameObject.Find("EventSystem").GetComponent<SceneTransition>();
+        theDialogBox = GameObject.Find("DialogBox").GetComponent<DialogBox>();
         //winLoseChecker = GameObject.Find("EventSystem").GetComponent<CheckWinLose>();
         P1Health = Player1.GetComponent<HealthSystem>();
         P2Health = Player2.GetComponent<HealthSystem>();
@@ -143,7 +146,7 @@ public class GameCode : MonoBehaviour {
         //    TMV_Infantry.attackSpeed = 0.1f;
         //    TMV_Bowmen.attackSpeed = 0.2f;
         //}
-        effect = 0;
+        effect = UnityEngine.Random.Range(0,6);
     }
 
     // Update is called once per frame
@@ -160,7 +163,7 @@ public class GameCode : MonoBehaviour {
             //{
             //    ready = true;
             //}
-            //effect = 1;// Random.Range(0, 0);
+            //effect = /*1;//*/ UnityEngine.Random.Range(0, 0);
             if (enemyGridSystem.multi)
             {
                 switch (effect)
@@ -169,30 +172,65 @@ public class GameCode : MonoBehaviour {
                         info = "Normal";
                         melee = false;
                         side = 0;
+                        if (!setDialog)
+                        {
+                            theDialogBox.addDialog("Current turn's effect: " + info + "\nTroops attack: Forward and side");
+                            setDialog = true;
+                        }
                         break;
                     case 1:
                         info = "onlyfoward";
                         melee = false;
                         side = 1;
+                        if (!setDialog)
+                        {
+                            theDialogBox.addDialog("Current turn's effect: " + info + "\nTroops attack: Forward only");
+                            setDialog = true;
+                        }
                         break;
                     case 2:
                         info = "onlyside";
                         melee = false;
                         side = 2;
+                        if (!setDialog)
+                        {
+                            theDialogBox.addDialog("Current turn's effect: " + info + "\nTroops attack: Side only");
+                            setDialog = true;
+                        }
                         break;
                     case 3:
                         info = "onlymelee";
                         melee = true;
                         side = 0;
+                        if (!setDialog)
+                        {
+                            theDialogBox.addDialog("Current turn's effect: " + info + "\nTroops attack: All melee(no range attacks)");
+                            setDialog = true;
+                        }
                         break;
                     case 4:
                         info = "calvaryspeed";
+                        if (!setDialog)
+                        {
+                            theDialogBox.addDialog("Current turn's effect: " + info + "\nTroops attack: Forward and side\n Cavalry's movement speed increase");
+                            setDialog = true;
+                        }
                         break;
                     case 5:
                         info = "bowmenspeed";
+                        if(!setDialog)
+                        {
+                            theDialogBox. addDialog("Current turn's effect: " + info + "\nTroops attack: Forward and side\n Bowmen's movement speed increase");
+                            setDialog = true;
+                        }
                         break;
                     case 6:
                         info = "infantryspeed";
+                        if (!setDialog)
+                        {
+                            theDialogBox.addDialog("Current turn's effect: " + info + "\nTroops attack: Forward and side\n Infantry's movement speed increase");
+                            setDialog = true;
+                        }
                         break;
                 }
             }
@@ -962,6 +1000,8 @@ public class GameCode : MonoBehaviour {
                 ready = false;
                 ready1 = false;
                 state = (int)GameState.PLANNING;
+                effect = UnityEngine.Random.Range(0, 6);
+                setDialog = false;
             }
         }
 
