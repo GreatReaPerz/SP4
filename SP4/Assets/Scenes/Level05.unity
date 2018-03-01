@@ -4296,7 +4296,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 679, y: -542}
+  m_AnchoredPosition: {x: 679, y: -484}
   m_SizeDelta: {x: 133.21997, y: 325.59998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &590215077
@@ -8207,7 +8207,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 88.670456
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: 1
   m_CullingMask:
@@ -11784,7 +11784,7 @@ Prefab:
     - target: {fileID: 114331979080955744, guid: 5f92a8f13258f8348b70c270f5a37893,
         type: 2}
       propertyPath: dialogs.Array.size
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 224611013852941758, guid: 5f92a8f13258f8348b70c270f5a37893,
         type: 2}
@@ -11880,11 +11880,12 @@ Prefab:
         type: 2}
       propertyPath: dialogs.Array.data[0].relevantImage
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: 08a42d3aef74ead4fa94d8f83d900f6c,
+        type: 3}
     - target: {fileID: 114331979080955744, guid: 5f92a8f13258f8348b70c270f5a37893,
         type: 2}
       propertyPath: dialogs.Array.data[0].text
-      value: How's your experience with the game so far?
+      value: Here's the second last thing you will need to learn
       objectReference: {fileID: 0}
     - target: {fileID: 114331979080955744, guid: 5f92a8f13258f8348b70c270f5a37893,
         type: 2}
@@ -11894,7 +11895,8 @@ Prefab:
     - target: {fileID: 114331979080955744, guid: 5f92a8f13258f8348b70c270f5a37893,
         type: 2}
       propertyPath: dialogs.Array.data[1].text
-      value: Here's the second last thing you will need to learn
+      value: Traps. Tap on any grid during the planning phase to bring out a panel
+        and choose a trap to place and twat your opponents advancing in your land.
       objectReference: {fileID: 0}
     - target: {fileID: 1090240229609458, guid: 5f92a8f13258f8348b70c270f5a37893, type: 2}
       propertyPath: m_IsActive
@@ -11903,13 +11905,12 @@ Prefab:
     - target: {fileID: 114331979080955744, guid: 5f92a8f13258f8348b70c270f5a37893,
         type: 2}
       propertyPath: dialogs.Array.data[2].text
-      value: Traps. Tap on any grid during the planning phase to bring out a panel
-        and choose a trap to place and twat your opponents advancing in your land.
+      value: They aren't free by the way
       objectReference: {fileID: 0}
     - target: {fileID: 114331979080955744, guid: 5f92a8f13258f8348b70c270f5a37893,
         type: 2}
       propertyPath: dialogs.Array.data[3].text
-      value: They aren't free by the way
+      value: -end-
       objectReference: {fileID: 0}
     - target: {fileID: 114331979080955744, guid: 5f92a8f13258f8348b70c270f5a37893,
         type: 2}
@@ -11920,6 +11921,36 @@ Prefab:
         type: 2}
       propertyPath: dialogs.Array.data[5].text
       value: -end-
+      objectReference: {fileID: 0}
+    - target: {fileID: 114415697369148736, guid: 5f92a8f13258f8348b70c270f5a37893,
+        type: 2}
+      propertyPath: m_FontData.m_MinSize
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 114415697369148736, guid: 5f92a8f13258f8348b70c270f5a37893,
+        type: 2}
+      propertyPath: m_FontData.m_MaxSize
+      value: 63
+      objectReference: {fileID: 0}
+    - target: {fileID: 224232688390981162, guid: 5f92a8f13258f8348b70c270f5a37893,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224232688390981162, guid: 5f92a8f13258f8348b70c270f5a37893,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224232688390981162, guid: 5f92a8f13258f8348b70c270f5a37893,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224232688390981162, guid: 5f92a8f13258f8348b70c270f5a37893,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5f92a8f13258f8348b70c270f5a37893, type: 2}
