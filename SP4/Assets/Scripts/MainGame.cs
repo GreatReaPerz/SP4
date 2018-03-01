@@ -214,6 +214,8 @@ public class MainGame : MonoBehaviour {
             Image BG = TerrainInformation.AddComponent<Image>();
             BG.sprite = PaperBg;
             BG.rectTransform.sizeDelta = NeutralZone.rectTransform.sizeDelta;
+            Vector2 canvasLocalScale = GameObject.FindGameObjectWithTag("Canvas").transform.localScale;
+            BG.rectTransform.sizeDelta= new Vector2(BG.rectTransform.rect.width * canvasLocalScale.x, BG.rectTransform.rect.height * canvasLocalScale.y);
             Color BGColor = BG.color;
             BGColor.a = 0.6f;
             BG.color = BGColor;
