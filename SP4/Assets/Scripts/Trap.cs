@@ -26,11 +26,18 @@ public class Trap : MonoBehaviour {
     public int team;
 
     public int cost;
-
+    bool once = false;
     // Use this for initialization
     void Start()
     {
-        this.gameObject.AddComponent<Image>().sprite = texture;
+        Image myimage = this.gameObject.AddComponent<Image>();
+        myimage.sprite = texture;
+        if (!once)
+        {
+            Vector2 canvasLocalScale = GameObject.FindGameObjectWithTag("Canvas").transform.localScale;
+            myimage.rectTransform.sizeDelta = new Vector2(myimage.GetComponent<Image>().rectTransform.rect.width * canvasLocalScale.x, myimage.rectTransform.rect.height * canvasLocalScale.y);
+            once = true;
+        }
         //typesOfTraps = GameObject.Find("EventSystem").GetComponent<GameCode>().typesOfTraps;    //Gets list from GameCode script
         //if(TrapName!= "")
         //{
