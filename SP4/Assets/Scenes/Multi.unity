@@ -1734,8 +1734,7 @@ MonoBehaviour:
   SpawnInfantry: 0
   SpawnBowmen: 1
   SpawnCavalry: 1
-  SpawnCountPlayer: 3
-  SpawnCountEnemy: 3
+  SpawnCount: 3
 --- !u!1 &288717486
 GameObject:
   m_ObjectHideFlags: 0
@@ -5709,7 +5708,7 @@ MonoBehaviour:
   attackHeight: 0
   terrainName: 
   originPos: {x: 0, y: 0, z: 0}
-  targetPos: {x: 0, y: 0, z: 0}
+  Pos: {x: 0, y: 0, z: 0}
 --- !u!114 &900728164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7541,7 +7540,7 @@ MonoBehaviour:
   attackHeight: 0
   terrainName: 
   originPos: {x: 0, y: 0, z: 0}
-  targetPos: {x: 0, y: 0, z: 0}
+  Pos: {x: 0, y: 0, z: 0}
 --- !u!114 &1213968305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7848,7 +7847,7 @@ MonoBehaviour:
   attackHeight: 0
   terrainName: 
   originPos: {x: 0, y: 0, z: 0}
-  targetPos: {x: 0, y: 0, z: 0}
+  Pos: {x: 0, y: 0, z: 0}
 --- !u!114 &1242434780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8297,8 +8296,7 @@ MonoBehaviour:
   SpawnInfantry: 0
   SpawnBowmen: 0
   SpawnCavalry: 0
-  SpawnCountPlayer: 0
-  SpawnCountEnemy: 0
+  SpawnCount: 0
 --- !u!4 &1361587870
 Transform:
   m_ObjectHideFlags: 0
@@ -9622,7 +9620,7 @@ MonoBehaviour:
   attackHeight: 0
   terrainName: 
   originPos: {x: 0, y: 0, z: 0}
-  targetPos: {x: 0, y: 0, z: 0}
+  Pos: {x: 0, y: 0, z: 0}
 --- !u!114 &1656381460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9928,7 +9926,7 @@ MonoBehaviour:
   attackHeight: 0
   terrainName: 
   originPos: {x: 0, y: 0, z: 0}
-  targetPos: {x: 0, y: 0, z: 0}
+  Pos: {x: 0, y: 0, z: 0}
 --- !u!114 &1705511909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10098,7 +10096,7 @@ MonoBehaviour:
   attackHeight: 0
   terrainName: 
   originPos: {x: 0, y: 0, z: 0}
-  targetPos: {x: 0, y: 0, z: 0}
+  Pos: {x: 0, y: 0, z: 0}
 --- !u!114 &1747291361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11728,7 +11726,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1090240229609458, guid: 5f92a8f13258f8348b70c270f5a37893, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5f92a8f13258f8348b70c270f5a37893, type: 2}
