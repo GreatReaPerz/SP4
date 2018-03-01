@@ -8737,7 +8737,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Ui: {fileID: 1777976493}
-  LevelNo: 6
+  LevelNo: 1
   Terrain: {fileID: 1067884741}
   Player1: {fileID: 943448628}
   Player2: {fileID: 233697009}

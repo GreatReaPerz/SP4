@@ -219,9 +219,9 @@ public class MainGame : MonoBehaviour {
             Color BGColor = BG.color;
             BGColor.a = 0.6f;
             BG.color = BGColor;
-            CreateTerrainInfoFor("Cavalry", new Vector2(-320, 100), TerrainInformation, TMV_Cavalry);  //Create texts for "Cavalry"
-            CreateTerrainInfoFor("Infantry", new Vector2(0, 100), TerrainInformation, TMV_Infantry);    //Create texts for "Infantry"
-            CreateTerrainInfoFor("Bowmen", new Vector2(330, 100), TerrainInformation, TMV_Bowmen);    //Create texts for "Bowmen"
+            CreateTerrainInfoFor("Cavalry", new Vector2(-320, 100), TerrainInformation, TMV_Cavalry, canvasLocalScale);  //Create texts for "Cavalry"
+            CreateTerrainInfoFor("Infantry", new Vector2(0, 100), TerrainInformation, TMV_Infantry, canvasLocalScale);    //Create texts for "Infantry"
+            CreateTerrainInfoFor("Bowmen", new Vector2(330, 100), TerrainInformation, TMV_Bowmen, canvasLocalScale);    //Create texts for "Bowmen"
             SetTerrainInfo();                                                           //Sets information to be displayed to player
         }
         if (TerrainInformation.activeInHierarchy)                                       //If already active dont do anything
@@ -236,38 +236,39 @@ public class MainGame : MonoBehaviour {
         ResetTerrainInfo();                     //Calls function to reset string 
         TerrainInformation.SetActive(false);    //Set parent to not active(so cannot be seen)
     }
-    Text CreateText(GameObject _parent, Vector3 _displacement)
+    Text CreateText(GameObject _parent, Vector3 _displacement, Vector2 CanvasScale)
     {
         Text text = new GameObject().AddComponent<Text>();                                                                                      //Create empty Go wtith Text component
         text.transform.SetParent(_parent.transform);                                                                                            //Parent to background
         text.transform.position = _parent.transform.position + _displacement;                                                                   //Reposition text placement
         text.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;                                                            //Set font
         text.rectTransform.localScale = TerrainInformation.gameObject.transform.localScale;                                                                     //
+        text.rectTransform.sizeDelta = CanvasScale;
         //text.resizeTextForBestFit = true;                                                                                                     //Allow text to resize to fit to rectTranform scaling
         text.color = Color.black;                                                                                                               //Default text colour to black
         return text;
     }
-    void CreateTerrainInfoFor(string _troopName, Vector2 _textPos, GameObject _parent, TerrainModifierValue _myTMV)
+    void CreateTerrainInfoFor(string _troopName, Vector2 _textPos, GameObject _parent, TerrainModifierValue _myTMV, Vector2 CanvasScale)
     {
-        Text result = CreateText(_parent, _textPos);            //Create text object
+        Text result = CreateText(_parent, _textPos,CanvasScale);            //Create text object
         result.rectTransform.sizeDelta = new Vector2(350, 56);  //Size from 'text' object
         result.fontSize = 50;                                   //Set text size to 50
         result.text = _troopName + ":";                         //Set text to display
         result.transform.name = _troopName;                     //Give the gameObject a unique name
 
-        Text Info1 = CreateText(result.gameObject, new Vector2(0, -result.rectTransform.sizeDelta.y));          //Create text object
+        Text Info1 = CreateText(result.gameObject, new Vector2(0, -result.rectTransform.sizeDelta.y), CanvasScale);          //Create text object
         Info1.rectTransform.sizeDelta = result.rectTransform.sizeDelta;                                         //Size from 'text' object
         Info1.fontSize = 30;                                                                                    //Set text size to 50
         Info1.text = "Attack Damage:";                                                                          //Set text to display
         Info1.transform.name = "Info1";                                                                         //Give the gameObject a unique name
 
-        Text Info2 = CreateText(result.gameObject, new Vector2(0, -(2f * result.rectTransform.sizeDelta.y)));   //Create text object
+        Text Info2 = CreateText(result.gameObject, new Vector2(0, -(2f * result.rectTransform.sizeDelta.y)), CanvasScale);   //Create text object
         Info2.rectTransform.sizeDelta = Info1.rectTransform.sizeDelta;                                          //Size from 'text' object
         Info2.fontSize = Info1.fontSize;                                                                        //Set text size to 50
         Info2.text = "Movement Speed:";                                                                         //Set text to display
         Info2.transform.name = "Info2";                                                                         //Give the gameObject a unique name
 
-        Text Info3 = CreateText(result.gameObject, new Vector2(0, -(3f * result.rectTransform.sizeDelta.y)));   //Create text object
+        Text Info3 = CreateText(result.gameObject, new Vector2(0, -(3f * result.rectTransform.sizeDelta.y)), CanvasScale);   //Create text object
         Info3.rectTransform.sizeDelta = Info1.rectTransform.sizeDelta;                                          //Size from 'text' object
         Info3.fontSize = Info1.fontSize;                                                                        //Set text size to 50
         Info3.text = "Attack Speed:";                                                                           //Set text to display
