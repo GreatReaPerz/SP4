@@ -755,10 +755,14 @@ public class GridSystem : MonoBehaviour {
         {
             for (uint numRow = 1; numRow < row; ++numRow)
             {
-                if (IsGreyedOut(x + numRow * 10) && IsGreyedOut((x - 1) + numRow * 10))
+                if (x >= 1)
                 {
-                    UnSetIsGreyOut(x + numRow * 10);
-                    SetIsGreyOut((x - 1) + numRow * 10);
+                    if (IsGreyedOut(x + numRow * 10) && IsGreyedOut((x - 1) + numRow * 10))
+                    {
+                        UnSetIsGreyOut(x + numRow * 10);
+                        SetIsGreyOut((x - 1) + numRow * 10);
+                        Debug.Log("giggy");
+                    }
                 }
             }
         }

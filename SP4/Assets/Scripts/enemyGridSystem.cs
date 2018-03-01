@@ -1205,17 +1205,7 @@ public class enemyGridSystem : MonoBehaviour
     public void CheckGreyedGrid()
     {
         //Check Column
-        for (uint x = 0; x < col; ++x)
-        {
-            for (uint numRow = 1; numRow < row; ++numRow)
-            {
-                if (IsGreyedOut(x + numRow * 10) && IsGreyedOut((x - 1) + numRow * 10))
-                {
-                    UnSetIsGreyOut(x + numRow * 10);
-                    SetIsGreyOut((x - 1) + numRow * 10);
-                }
-            }
-        }
+
         for (uint x = 0; x < col; ++x)
         {
             bool colGreyed = true;
@@ -1255,6 +1245,21 @@ public class enemyGridSystem : MonoBehaviour
                 for (uint numCol = 0; numCol < col; ++numCol)
                 {
                     UnSetIsGreyOut(numCol + y * 10);
+                }
+            }
+        }
+        for (uint x = 0; x < col; ++x)
+        {
+            for (uint numRow = 1; numRow < row; ++numRow)
+            {
+                if (x >= 1)
+                {
+                    if (IsGreyedOut(x + numRow * 10) && IsGreyedOut((x - 1) + numRow * 10))
+                    {
+                        UnSetIsGreyOut(x + numRow * 10);
+                        SetIsGreyOut((x - 1) + numRow * 10);
+                        Debug.Log("giggy");
+                    }
                 }
             }
         }

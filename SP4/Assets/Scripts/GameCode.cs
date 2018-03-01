@@ -271,8 +271,6 @@ public class GameCode : MonoBehaviour {
                         float dist = 0;
                         for (uint j = 0; j < enemyGridSystem.GridSize; ++j)
                         {
-                            Debug.Log(enemyGridSystem.grid[j].transform.position);
-                            Debug.Log(newObj.transform.position);
                             float yDist = enemyGridSystem.grid[j].transform.position.y - troop.originPos.y;
                             if (Mathf.Abs(enemyGridSystem.grid[j].transform.position.x - troop.originPos.x) < 20 && !enemyGridSystem.IsGreyedOut(j) && yDist > dist)
                             {
