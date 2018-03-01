@@ -71,6 +71,8 @@ public class GameCode : MonoBehaviour {
     MainGame m_game;
     DialogBox theDialogBox;
     bool setDialog = false;
+    [SerializeField]
+    Animator pausePanel;
 
     GameObject TimerCountdown;
     // Use this for initialization
@@ -154,7 +156,7 @@ public class GameCode : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (CheckWin())
+        if (CheckWin() || pausePanel.GetBool("PauseEnabled") == true)
             return;
         if (state == (int)GameState.PLANNING)
         {
