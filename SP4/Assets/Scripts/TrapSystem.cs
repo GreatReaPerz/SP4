@@ -38,6 +38,7 @@ public class TrapSystem : MonoBehaviour {
     float timer = 0.0f;
     [SerializeField]
     InGameCash playerMoney;
+    Vector3 tempPos;
     // Use this for initialization
     void Start()
     {
@@ -99,6 +100,10 @@ public class TrapSystem : MonoBehaviour {
         {
             case executionState.GRID_CHOOSING:
                 Vector3 pos = new Vector3(0, 0, 0);
+                if (Input.GetMouseButtonDown(0) && timer <= 0.0f)                           //if mouse input
+                {
+                    tempPos = Input.mousePosition;
+                }
                 if (Input.GetMouseButtonUp(0) && timer <=0.0f)                           //if mouse input
                 {
                     pos = Input.mousePosition;
@@ -134,7 +139,7 @@ public class TrapSystem : MonoBehaviour {
 
     Vector3 CheckClickedPosition(Vector3 _mousePos)
     {
-        if (theGridSystem)                                                                                          //If theGridSystem is not null
+        if (theGridSystem && tempPos == _mousePos)                                                                                          //If theGridSystem is not null
         {
             for(int i=0; i<theGridSystem.grid.Length; ++i)                                                          //For each grid(images)
             {
