@@ -19,7 +19,7 @@ public class SceneTransition : MonoBehaviour {
     }
     public void TransitToGame()
     {
-        SceneManager.LoadScene("Level06");
+        SceneManager.LoadScene("Level01");
     }
     public void TransitToShop()
     {
