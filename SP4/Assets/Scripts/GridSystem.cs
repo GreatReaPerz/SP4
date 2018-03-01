@@ -750,22 +750,6 @@ public class GridSystem : MonoBehaviour {
     }
     public void CheckGreyedGrid()
     {
-        //Check Column
-        for (uint x = 0; x < col; ++x)
-        {
-            for (uint numRow = 1; numRow < row; ++numRow)
-            {
-                if (x >= 1)
-                {
-                    if (IsGreyedOut(x + numRow * 10) && IsGreyedOut((x - 1) + numRow * 10))
-                    {
-                        UnSetIsGreyOut(x + numRow * 10);
-                        SetIsGreyOut((x - 1) + numRow * 10);
-                        Debug.Log("giggy");
-                    }
-                }
-            }
-        }
         for (uint x = 0; x < col; ++x)
         {
             bool colGreyed = true;
@@ -806,12 +790,26 @@ public class GridSystem : MonoBehaviour {
                 }
             }
         }
-        //}
-        //catch (Exception e)
-        //{
-        //    Debug.Log(e.ToString());
-        //}
-    }
+
+        //Check Column
+        for (uint x = 0; x < col; ++x)
+        {
+            for (uint numRow = 1; numRow < row; ++numRow)
+            {
+                if (IsGreyedOut(x + numRow * 10) && !IsGreyedOut(x + (numRow - 1) * 10))
+                {
+                    UnSetIsGreyOut(x + numRow * 10);
+                    SetIsGreyOut(x + (numRow - 1) * 10);
+                    Debug.Log("giggy1");
+                }
+            }
+        }
+    //}
+    //catch (Exception e)
+    //{
+    //    Debug.Log(e.ToString());
+    //}
+}
 
     public void GameUpdateAndroid()
     {

@@ -1252,15 +1252,12 @@ public class enemyGridSystem : MonoBehaviour
         {
             for (uint numRow = 1; numRow < row; ++numRow)
             {
-                if (x >= 1)
-                {
-                    if (IsGreyedOut(x + numRow * 10) && IsGreyedOut((x - 1) + numRow * 10))
+                    if (IsGreyedOut(x + numRow * 10) && !IsGreyedOut(x  + (numRow - 1) * 10))
                     {
                         UnSetIsGreyOut(x + numRow * 10);
-                        SetIsGreyOut((x - 1) + numRow * 10);
-                        Debug.Log("giggy");
+                        SetIsGreyOut(x + (numRow - 1) * 10);
+                        Debug.Log("giggy1");
                     }
-                }
             }
         }
     }
