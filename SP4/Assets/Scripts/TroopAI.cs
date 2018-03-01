@@ -58,6 +58,8 @@ public class TroopAI : MonoBehaviour {
     private GridSystem theGridSystem = null;
     private enemyGridSystem enemyGridSystem = null;
 
+    Vector2 canvasLocalScale; 
+
 
     GameObject thePlayer;
     // Use this for initialization
@@ -76,6 +78,7 @@ public class TroopAI : MonoBehaviour {
         attackHeight = 40;
         originPos = transform.position;
         Pos = originPos;
+        canvasLocalScale = GameObject.FindGameObjectWithTag("Canvas").transform.localScale;
 
 
         //Attack adjacent tiles
@@ -258,7 +261,7 @@ public class TroopAI : MonoBehaviour {
                     for (int i = 0; i < game.objects.Count; ++i)
                     {
                         Vector3 nextPosition = Pos + hello * speed;
-                        if (!(game.objects[i].transform.position.x == Pos.x && game.objects[i].transform.position.y == Pos.y))
+                        if (!(Mathf.Abs(game.objects[i].transform.position.x - Pos.x) < 10 * canvasLocalScale.x && Mathf.Abs(game.objects[i].transform.position.y - Pos.y) < 10 * canvasLocalScale.y))
                         {
                             if (Collided(nextPosition, game.objects[i].transform.position))
                             {
@@ -295,7 +298,7 @@ public class TroopAI : MonoBehaviour {
                             //    minNearest = dist;
                             //    nearest = game.objects[i];
                             //}
-                            if (game.objects[i].transform.position.x > transform.position.x - attackWidth && game.objects[i].transform.position.x < transform.position.x + attackWidth && (game.objects[i].transform.position - transform.position).magnitude < range + 10 && Mathf.Abs(game.objects[i].transform.position.y - transform.position.y) < attackHeight + 10)
+                            if (game.objects[i].transform.position.x > transform.position.x - attackWidth && game.objects[i].transform.position.x < transform.position.x + attackWidth && (game.objects[i].transform.position - transform.position).magnitude < range + 10  * canvasLocalScale.x && Mathf.Abs(game.objects[i].transform.position.y - transform.position.y) < attackHeight + 10 * canvasLocalScale.y)
                             {
                                 nearest = game.objects[i];
                             }
@@ -306,96 +309,6 @@ public class TroopAI : MonoBehaviour {
                         state = (int)States.ATTACK;
                     }
                 }
-                //if (state == (int)States.CHASE)
-                //{
-                //    aggrotimer += Time.deltaTime;
-                //    if (/*prevhealth == health*/!health.isHealthModified() && aggrotimer % 5 == 0 || aggrotimer % 5 == 0)
-                //    {
-                //        state = (int)States.CHARGE;
-                //    }
-                //    if (nearest == null)
-                //    {
-                //        state = (int)States.CHARGE;
-                //    }
-                //    else
-                //    {
-                //        if (nearestAI.activ)
-                //        {
-                //            float minNearest = 1000000;
-                //            for (int i = 0; i < game.objects.Count; ++i)
-                //            {
-                //                nearestAI = game.objects[i].GetComponent<TroopAI>();
-                //                if (nearestAI.activ && nearestAI.team != team)
-                //                {
-                //                    Vector2 hello1 = new Vector2(game.objects[i].transform.position.x - transform.position.x, game.objects[i].transform.position.y - transform.position.y);
-                //                    float dist = hello1.SqrMagnitude();
-                //                    if (dist <= vision * vision && dist < minNearest)
-                //                    {
-                //                        //Debug.Log(dist);
-                //                        minNearest = dist;
-                //                        nearest = game.objects[i];
-                //                    }
-                //                }
-                //            }
-                //            nearestAI = nearest.GetComponent<TroopAI>();
-                //            float Xdistance = Mathf.Abs(nearest.transform.position.x - transform.position.x);
-                //            float Ydistance = Mathf.Abs(nearest.transform.position.y - transform.position.y);
-                //            if (Xdistance >= Ydistance)
-                //            {
-                //                Vector3 hello2 = new Vector3(nearest.transform.position.x - transform.position.x, 0, 0);
-                //                hello2.Normalize();
-                //                bool collided = false;
-                //                for (int i = 0; i < game.objects.Count; ++i)
-                //                {
-                //                    Vector3 nextPosition = transform.position + hello2 * speed;
-                //                    if (game.objects[i].transform.position.x != transform.position.x || game.objects[i].transform.position.y != transform.position.y)
-                //                    {
-                //                        if (Collided(nextPosition, game.objects[i].transform.position))
-                //                        {
-                //                            collided = true;
-                //                        }
-                //                    }
-                //                }
-                //                if (!collided)
-                //                {
-                //                    transform.position += hello2 * speed;
-                //                }
-                //            }
-                //            else
-                //            {
-                //                Vector3 hello2 = new Vector3(0, nearest.transform.position.y - transform.position.y, 0);
-                //                hello2.Normalize();
-                //                bool collided = false;
-                //                for (int i = 0; i < game.objects.Count; ++i)
-                //                {
-                //                    Vector3 nextPosition = transform.position + hello2 * speed;
-                //                    if (game.objects[i].transform.position.x != transform.position.x || game.objects[i].transform.position.y != transform.position.y)
-                //                    {
-                //                        if (Collided(nextPosition, game.objects[i].transform.position))
-                //                        {
-                //                            collided = true;
-                //                        }
-                //                    }
-                //                }
-                //                if (!collided)
-                //                {
-                //                    transform.position += hello2 * speed;
-                //                }
-                //            }
-                //            Vector3 hello3 = new Vector3(nearest.transform.position.x - transform.position.x, nearest.transform.position.y - transform.position.y, 0);
-                //            float dis = hello3.sqrMagnitude;
-                //            if (dis <= range * range)
-                //            {
-                //                state = (int)States.ATTACK;
-                //                // attacktimer = 0.0f;
-                //            }
-                //        }
-                //        else
-                //        {
-                //            state = (int)States.CHARGE;
-                //        }
-                //    }
-                //}
 
                 if (state == (int)States.ATTACK)
                 {
@@ -556,11 +469,10 @@ public class TroopAI : MonoBehaviour {
     }
     bool Collided(Vector3 firstTroop, Vector3 secondTroop)
     {
-        Vector2 canvasLocalScale = GameObject.FindGameObjectWithTag("Canvas").transform.localScale;
-        if (firstTroop.x - (99 * 0.5f * canvasLocalScale.x) < secondTroop.x + (99 * 0.5f * canvasLocalScale.x) 
-            &&  firstTroop.x + (99 * 0.5f * canvasLocalScale.x) > secondTroop.x - (99 * 0.5f * canvasLocalScale.x)
-            && firstTroop.y - (99 * 0.5f * canvasLocalScale.x) < secondTroop.y + (99 * 0.5f * canvasLocalScale.x)
-            && (99 * 0.5f * canvasLocalScale.x) + firstTroop.y > secondTroop.y - (99 * 0.5f * canvasLocalScale.x))
+        if (firstTroop.x - (90 * 0.5f * canvasLocalScale.x) < secondTroop.x + (90 * 0.5f * canvasLocalScale.x) 
+            &&  firstTroop.x + (90 * 0.5f * canvasLocalScale.x) > secondTroop.x - (90 * 0.5f * canvasLocalScale.x)
+            && firstTroop.y - (90 * 0.5f * canvasLocalScale.x) < secondTroop.y + (90 * 0.5f * canvasLocalScale.x)
+            && (90 * 0.5f * canvasLocalScale.x) + firstTroop.y > secondTroop.y - (90 * 0.5f * canvasLocalScale.x))
         {
             //Debug.Log("collided");
             return true;

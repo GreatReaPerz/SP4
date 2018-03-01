@@ -31,13 +31,13 @@ public class Projectile : MonoBehaviour
                 thisArcher.fireProj = false;
                 return;
             }
-            if (thisArcher.health.getHealth() <= 0)
+            if (!thisArcher.activ)
             {
                 Destroy(theProjectile);
                 thisArcher.fireProj = false;
                 return;
             }
-            else if(enemy.health.getHealth() <= 0)
+            else if(!enemy.activ)
             {
                 Destroy(theProjectile);
                 thisArcher.fireProj = false;

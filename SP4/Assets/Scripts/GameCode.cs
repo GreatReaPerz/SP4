@@ -146,7 +146,7 @@ public class GameCode : MonoBehaviour {
         //    TMV_Infantry.attackSpeed = 0.1f;
         //    TMV_Bowmen.attackSpeed = 0.2f;
         //}
-        effect = UnityEngine.Random.Range(0,6);
+        effect = 0;
     }
 
     // Update is called once per frame
@@ -166,6 +166,7 @@ public class GameCode : MonoBehaviour {
             //effect = /*1;//*/ UnityEngine.Random.Range(0, 0);
             if (enemyGridSystem.multi)
             {
+                effect = UnityEngine.Random.Range(0, 6);
                 switch (effect)
                 {
                     case 0:
