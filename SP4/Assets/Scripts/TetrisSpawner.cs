@@ -39,10 +39,18 @@ public class TetrisSpawner : MonoBehaviour
     public bool SpawnInfantry = false;
     public bool SpawnBowmen = false;
     public bool SpawnCavalry = false;
-    public int SpawnCountPlayer = 0;
-    public int SpawnCountEnemy = 0;
+    //public int SpawnCountPlayer = 0;
+    //public int SpawnCountEnemy = 0;
+    public int SpawnCount = 0;
 
-
+    private float ScreenWidthOffset;
+    private float halfOffset;
+    public void Awake()
+    {
+        ScreenWidthOffset = Screen.width / 2;
+        halfOffset = ScreenWidthOffset / 2;
+        
+    }
 
     // Use this for initialization
     public void Start()
@@ -66,7 +74,74 @@ public class TetrisSpawner : MonoBehaviour
         }
         else  //Spawn Specific
         {
-            if (SpawnForPlayer)
+            for (int i = 0; i < SpawnCount; ++i)
+            {
+                int rand = Random.Range(0, TetrisTypes.Length);  //Rand Piece
+                int randUnitType = Random.Range(0, 2); // Rand Unit
+                if (SpawnForPlayer)
+                {
+                    if (SpawnCavalry && SpawnInfantry)
+                    {
+                        if (randUnitType == 0)   //Spawn cavalry                      
+                            playerSpawned = SpawnTetris(playerSpawned, playerSpawner, 0, 0, TetrisTypes[rand]);
+                        else //Spawn infantry                       
+                            playerSpawned = SpawnTetris(playerSpawned, playerSpawner, 0, 1, TetrisTypes[rand]);
+                    }
+                    else if (SpawnCavalry && SpawnBowmen)
+                    {
+                        if (randUnitType == 0)   //Spawn cavalry
+                            playerSpawned = SpawnTetris(playerSpawned, playerSpawner, 0, 0, TetrisTypes[rand]);
+                        else //Spawn Bowmen 
+                            playerSpawned = SpawnTetris(playerSpawned, playerSpawner, 0, 2, TetrisTypes[rand]);
+                    }
+                    else if (SpawnInfantry && SpawnBowmen)
+                    {
+                        if (randUnitType == 0)   //Spawn infanry
+                            playerSpawned = SpawnTetris(playerSpawned, playerSpawner, 0, 1, TetrisTypes[rand]);
+                        else //Spawn Bowmen 
+                            playerSpawned = SpawnTetris(playerSpawned, playerSpawner, 0, 2, TetrisTypes[rand]);
+                    }
+                    else if (SpawnCavalry)
+                        playerSpawned = SpawnTetris(playerSpawned, playerSpawner, 0, 0, TetrisTypes[rand]);
+                    else if (SpawnInfantry)
+                        playerSpawned = SpawnTetris(playerSpawned, playerSpawner, 0, 1, TetrisTypes[rand]);
+                    else if (SpawnBowmen)
+                        playerSpawned = SpawnTetris(playerSpawned, playerSpawner, 0, 2, TetrisTypes[rand]);
+
+
+                }
+                if (SpawnForEnemy)
+                {
+                    if (SpawnCavalry && SpawnInfantry)
+                    {
+                        if (randUnitType == 0)   //Spawn cavalry                      
+                            enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 1, 0, TetrisTypes[rand]);
+                        else //Spawn infantry                       
+                            enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 1, 1, TetrisTypes[rand]);
+                    }
+                    else if (SpawnCavalry && SpawnBowmen)
+                    {
+                        if (randUnitType == 0)   //Spawn cavalry
+                            enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 1, 0, TetrisTypes[rand]);
+                        else //Spawn Bowmen 
+                            enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 1, 2, TetrisTypes[rand]);
+                    }
+                    else if (SpawnInfantry && SpawnBowmen)
+                    {
+                        if (randUnitType == 0)   //Spawn infanry
+                            enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 1, 1, TetrisTypes[rand]);
+                        else //Spawn Bowmen 
+                            enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 1, 2, TetrisTypes[rand]);
+                    }
+                    else if (SpawnCavalry)
+                        enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 0, 0, TetrisTypes[rand]);
+                    else if (SpawnInfantry)
+                        enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 1, 1, TetrisTypes[rand]);
+                    else if (SpawnBowmen)
+                        enemySpawned = SpawnTetris(enemySpawned, enemySpawner, 1, 2, TetrisTypes[rand]);
+                }
+            }
+            /*if (SpawnForPlayer)
             {
                 for (int count = 0; count < SpawnCountPlayer; ++count)
                 {
@@ -164,7 +239,7 @@ public class TetrisSpawner : MonoBehaviour
                     }
                 }
 
-            }
+            }*/
         }
     }
 
@@ -226,13 +301,20 @@ public class TetrisSpawner : MonoBehaviour
 
         //So that it appears within canvas
         theCube.parentCube.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, true);
-                theCube.parentCube.transform.SetParent(spawner.transform);
+                //theCube.parentCube.transform.SetParent(spawner.transform);
 
         //Off set x pos base on key(index)
-        pil.Set(-300 + (key * 300), 0, 0);
+        if(key == 0)
+        pil.Set(-ScreenWidthOffset + halfOffset , 0, 0);
+        else if(key==1)
+            pil.Set(0, 0, 0);
+        else
+            pil.Set(ScreenWidthOffset - halfOffset, 0, 0);
+
+
         //Set the origin (snapping)
         pil1 = theCube.parentCube.transform.position + pil;
-        theCube.origin.Set(pil1.x, pil1.y, pil1.z);
+        theCube.origin.Set(pil1.x, spawner.transform.position.y, spawner.transform.position.z);
         //Translate to origin
         theCube.parentCube.transform.position = theCube.origin;
 
