@@ -49,7 +49,7 @@ public class TetrisSpawner : MonoBehaviour
     {
         ScreenWidthOffset = Screen.width / 2;
         halfOffset = ScreenWidthOffset / 2;
-        
+
     }
 
     // Use this for initialization
@@ -301,12 +301,12 @@ public class TetrisSpawner : MonoBehaviour
 
         //So that it appears within canvas
         theCube.parentCube.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, true);
-                theCube.parentCube.transform.SetParent(spawner.transform);
+        theCube.parentCube.transform.SetParent(spawner.transform);
 
         //Off set x pos base on key(index)
-        if(key == 0)
-        pil.Set(-ScreenWidthOffset + halfOffset , 0, 0);
-        else if(key==1)
+        if (key == 0)
+            pil.Set(-ScreenWidthOffset + halfOffset, 0, 0);
+        else if (key == 1)
             pil.Set(0, 0, 0);
         else
             pil.Set(ScreenWidthOffset - halfOffset, 0, 0);
@@ -395,7 +395,7 @@ public class TetrisSpawner : MonoBehaviour
                             theCube.troopName = "RedInfantry";
                         }
                     }
-                        break;
+                    break;
                 }
             case 2:
                 {
@@ -411,15 +411,15 @@ public class TetrisSpawner : MonoBehaviour
                         else
                         {
                             theSprite.sprite = troopImages[4];
-                            theCube.troopName = "RedBowmen";                                                   
+                            theCube.troopName = "RedBowmen";
                         }
                     }
                     break;
                 }
         };
 
-
-        if (team == 0)
+        enemyGridSystem enemyGridSystem = GameObject.Find("EnemyTetrisGrid").GetComponent<enemyGridSystem>();
+        if (team == 0 || enemyGridSystem.multi)
         {
             //Could use raycast instead 
             //Also cause the only thing changing is the movement function, could try to make a switch instead

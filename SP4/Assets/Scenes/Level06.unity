@@ -3826,6 +3826,7 @@ MonoBehaviour:
     trapPrefab: {fileID: 1906492468089352, guid: 35047877ca906134b8a1b62877caeaac,
       type: 2}
   Gameover: 0
+  pausePanel: {fileID: 2097774977}
 --- !u!114 &618696764
 MonoBehaviour:
   m_ObjectHideFlags: 0
