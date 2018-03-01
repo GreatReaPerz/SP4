@@ -1681,6 +1681,10 @@ MonoBehaviour:
   UIPanelAnimator: {fileID: 1174336883}
   PaperBG: {fileID: 21300000, guid: 23216051f7ba81f4ea7ffadf0cd8dad6, type: 3}
   ButtonImage: {fileID: 21300000, guid: f64c44196934b334eacecc3137b1d41a, type: 3}
+  audioSource: {fileID: 1973491078}
+  GameSound: {fileID: 8300000, guid: 4571d744680e64a478287b0b75b0bacc, type: 3}
+  LoseSound: {fileID: 8300000, guid: 84f5de307f810894fb2603518c91536e, type: 3}
+  WinSound: {fileID: 8300000, guid: cecc123ef681c794fb9d39419f08ddbc, type: 3}
   player1: 0
   player2: 0
   effect: 0
@@ -11234,11 +11238,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 81e919f71dddee14f801494b8f087b0b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4571d744680e64a478287b0b75b0bacc, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

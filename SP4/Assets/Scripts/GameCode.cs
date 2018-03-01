@@ -26,6 +26,16 @@ public class GameCode : MonoBehaviour {
     Sprite PaperBG;
     [SerializeField]
     Sprite ButtonImage;
+
+    [SerializeField]
+    GameObject audioSource;
+    [SerializeField]
+    AudioClip GameSound;
+    [SerializeField]
+    AudioClip LoseSound;
+    [SerializeField]
+    AudioClip WinSound;
+
     enum GameState
     {
         PLANNING,
@@ -923,9 +933,6 @@ public class GameCode : MonoBehaviour {
                                 troop.range = 100 * canvasLocalScale.y;
                             }
 
-
-
-
                             if (side == 0)
                             {
                                 if (SceneManager.GetActiveScene().name == "Level01" || SceneManager.GetActiveScene().name == "Level02" || SceneManager.GetActiveScene().name == "Level03")
@@ -1085,10 +1092,14 @@ public class GameCode : MonoBehaviour {
             text.rectTransform.sizeDelta = new Vector2(0.7f * background.rectTransform.sizeDelta.x, 0.2f * background.rectTransform.sizeDelta.y);   //Scale based on background width
             if (P1Health.getHealth() <= 0)                                                                                                          //Choose to set text to lose or win
             {
+                audioSource.GetComponent<AudioSource>().clip = LoseSound;
+                audioSource.GetComponent<AudioSource>().Play();
                 text.text = "You Lose";
             }
             else if (P2Health.getHealth() <= 0)
             {
+                audioSource.GetComponent<AudioSource>().clip = WinSound;
+                audioSource.GetComponent<AudioSource>().Play();
                 text.text = "You Win";
             }
             text.transform.name = "Outcome";

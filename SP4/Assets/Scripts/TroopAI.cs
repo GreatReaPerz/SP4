@@ -88,6 +88,8 @@ public class TroopAI : MonoBehaviour {
         //Attack adjacent tiles
         attackWidth = 150;
 
+
+
         //Debug.Log("Cavalry");
         if (type == "Cavalry")
         {
@@ -95,6 +97,7 @@ public class TroopAI : MonoBehaviour {
             attckDmg = PlayerPrefs.GetFloat("calvaryAtt");
             attckSpd = PlayerPrefs.GetFloat("calvaryAttSpd");
             speed = PlayerPrefs.GetFloat("calvarySpd");
+
             vision = 100;
             range = 100;
             state = (int)States.CHARGE;
@@ -134,6 +137,7 @@ public class TroopAI : MonoBehaviour {
             attckSpd = PlayerPrefs.GetFloat("infantryAttSpd");
             speed = PlayerPrefs.GetFloat("infantrySpd");
             range = 100;
+
             vision = 100;
             state = (int)States.CHARGE;
             //prevhealth = health;
@@ -233,8 +237,11 @@ public class TroopAI : MonoBehaviour {
                     for (uint j = 0; j < enemyGridSystem.GridSize; ++j)
                     {
                         float yDist = enemyGridSystem.grid[j].transform.position.y - originPos.y;
+                        Debug.Log("TEST");
+
                         if (Mathf.Abs(enemyGridSystem.grid[j].transform.position.x - originPos.x) < 20 && !enemyGridSystem.IsGreyedOut(j) && Mathf.Abs(yDist) > dist)
                         {
+                            Debug.Log("TEST");
                             dist = Mathf.Abs(yDist);
                             targetPos = enemyGridSystem.grid[j].transform.position;
                             targetIndex = j;
