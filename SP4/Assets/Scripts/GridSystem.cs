@@ -66,7 +66,7 @@ public class GridSystem : MonoBehaviour {
         //scaledHalfTileHeight = tileHeight * CanvasScale.y * 0.5f;
 
         scaledTileWidth = tileWidth * ((float)Screen.width / 1080);
-        scaledTileHeight = tileHeight * ((float)Screen.height / 1920 );
+        scaledTileHeight = tileHeight * ((float)Screen.height / 1920);
 
         scaledHalfTileWidth = tileWidth * ((float)Screen.width / 1080) * 0.5f;
         scaledHalfTileHeight = tileHeight * ((float)Screen.height / 1920) * 0.5f;
@@ -427,8 +427,8 @@ public class GridSystem : MonoBehaviour {
                     }
                 }
 
-                Text test = GameObject.Find("THIS").GetComponent<Text>();
-                test.text = rowNum.ToString();
+                //Text test = GameObject.Find("THIS").GetComponent<Text>();
+                //test.text = rowNum.ToString();
                 float nearest = 1000000;
                 uint index = 0;
                 for (uint j = 0; j < gridSize; ++j)
@@ -443,9 +443,7 @@ public class GridSystem : MonoBehaviour {
                         index = j;
                     }
                 }
-
-
-
+                
                objectIndex = index;
 
                 //objectIndex = colNum + (rowNum * col);

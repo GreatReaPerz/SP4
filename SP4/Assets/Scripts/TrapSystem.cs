@@ -94,7 +94,7 @@ public class TrapSystem : MonoBehaviour {
         {
             case executionState.GRID_CHOOSING:
                 Vector3 pos = new Vector3(0, 0, 0);
-                if (Input.GetMouseButtonDown(0))                           //if mouse input
+                if (Input.GetMouseButtonUp(0))                           //if mouse input
                 {
                     pos = Input.mousePosition;
                 }
