@@ -68,7 +68,11 @@ public class TroopAI : MonoBehaviour {
         theGridSystem = GameObject.Find("PlayerTetrisGrid").GetComponent<GridSystem>();
         enemyGridSystem = GameObject.Find("EnemyTetrisGrid").GetComponent<enemyGridSystem>();
         thePowerupsSystem = GameObject.Find("PowerUpSystem").GetComponent<PowerupsSystem>();
-        theTrapSystem = GameObject.Find("TrapSystem").GetComponent<TrapSystem>();
+        if(!enemyGridSystem.multi)
+        {
+            theTrapSystem = GameObject.Find("TrapSystem").GetComponent<TrapSystem>();
+        }
+
 
         thePlayer = GameObject.Find("Player");
         game = GameObject.Find("EventSystem").GetComponent<GameCode>();
