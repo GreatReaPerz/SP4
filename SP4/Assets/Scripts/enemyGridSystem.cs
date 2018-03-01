@@ -726,7 +726,6 @@ public class enemyGridSystem : MonoBehaviour
             }
             else
             {
-                Debug.Log(timer);
                 timer += Time.deltaTime;
             }
         }
