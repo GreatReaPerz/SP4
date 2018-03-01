@@ -8,25 +8,25 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: ed55651c9ee725f429db7e3ad1a2ad85
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Game.unity
     guid: 8907219d325fc37409f4b369a605a3ed
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Marcus.unity
     guid: 7b20936724c248f4c80989ed9aa657df
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ChuanXu.unity
     guid: 0e3912aafbd508645acf9b1e7980d1ad
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Shish.unity
     guid: c5d950b58af40064fa89c47a044ac75c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Steven.unity
     guid: 885a8940eb0c1c04a91fc072e7304fea
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Lose.unity
     guid: 7794a5cfdb0638d45bc076da8262740f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Win.unity
     guid: e155b7e589f253d43b65b77d207b8062
   - enabled: 1
@@ -38,6 +38,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level02.unity
     guid: c1f5ab41cc5af394396df8e5a3ec27ec
+  - enabled: 1
+    path: Assets/Scenes/Level03.unity
+    guid: 4c88e97954da40f479cae7365b1df6d5
   - enabled: 1
     path: Assets/Scenes/Level04.unity
     guid: 1031e71a181575d48a47acad0bda4b6a
