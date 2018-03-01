@@ -903,18 +903,18 @@ public class GameCode : MonoBehaviour {
                             {
                                 if(melee)
                                 {
-                                    troop.range = 100 * canvasLocalScale.x;
+                                    troop.range = 100 * canvasLocalScale.y;
                                     Debug.Log("chkeck");
                                 }
                                 else
                                 {
 
-                                    troop.range = 300 * canvasLocalScale.x;
+                                    troop.range = 300 * canvasLocalScale.y;
                                 }
                             }
                             else
                             {
-                                troop.range = 100 * canvasLocalScale.x;
+                                troop.range = 100 * canvasLocalScale.y;
                             }
 
 
