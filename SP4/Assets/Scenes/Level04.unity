@@ -176,7 +176,7 @@ MonoBehaviour:
   attackHeight: 0
   terrainName: 
   originPos: {x: 0, y: 0, z: 0}
-  targetPos: {x: 0, y: 0, z: 0}
+  Pos: {x: 0, y: 0, z: 0}
 --- !u!114 &7889928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,7 +278,7 @@ MonoBehaviour:
   attackHeight: 0
   terrainName: 
   originPos: {x: 0, y: 0, z: 0}
-  targetPos: {x: -1000, y: 0, z: 0}
+  Pos: {x: 0, y: 0, z: 0}
 --- !u!114 &42663586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -786,7 +786,8 @@ Prefab:
         type: 2}
       propertyPath: dialogs.Array.data[0].relevantImage
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: a23ad1b2cfeccd646b6881b1107a7dbd,
+        type: 3}
     - target: {fileID: 114331979080955744, guid: 5f92a8f13258f8348b70c270f5a37893,
         type: 2}
       propertyPath: dialogs.Array.data[1].relevantImage
@@ -797,6 +798,36 @@ Prefab:
         type: 2}
       propertyPath: dialogs.Array.data[1].text
       value: This powerup increase Movement Speed
+      objectReference: {fileID: 0}
+    - target: {fileID: 114415697369148736, guid: 5f92a8f13258f8348b70c270f5a37893,
+        type: 2}
+      propertyPath: m_FontData.m_MinSize
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 114415697369148736, guid: 5f92a8f13258f8348b70c270f5a37893,
+        type: 2}
+      propertyPath: m_FontData.m_MaxSize
+      value: 63
+      objectReference: {fileID: 0}
+    - target: {fileID: 224232688390981162, guid: 5f92a8f13258f8348b70c270f5a37893,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224232688390981162, guid: 5f92a8f13258f8348b70c270f5a37893,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224232688390981162, guid: 5f92a8f13258f8348b70c270f5a37893,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224232688390981162, guid: 5f92a8f13258f8348b70c270f5a37893,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5f92a8f13258f8348b70c270f5a37893, type: 2}
@@ -1667,7 +1698,7 @@ MonoBehaviour:
   attackHeight: 0
   terrainName: 
   originPos: {x: 0, y: 0, z: 0}
-  targetPos: {x: 0, y: 0, z: 0}
+  Pos: {x: 0, y: 0, z: 0}
 --- !u!114 &225881644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2394,7 +2425,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &439403915
 GameObject:
@@ -3217,7 +3248,7 @@ MonoBehaviour:
   attackHeight: 0
   terrainName: 
   originPos: {x: 0, y: 0, z: 0}
-  targetPos: {x: 0, y: 0, z: 0}
+  Pos: {x: 0, y: 0, z: 0}
 --- !u!114 &625285325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3639,8 +3670,7 @@ MonoBehaviour:
   SpawnInfantry: 0
   SpawnBowmen: 0
   SpawnCavalry: 0
-  SpawnCountPlayer: 0
-  SpawnCountEnemy: 0
+  SpawnCount: 0
 --- !u!4 &715856961
 Transform:
   m_ObjectHideFlags: 0
@@ -4488,95 +4518,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!1 &923441862
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 923441867}
-  - component: {fileID: 923441866}
-  - component: {fileID: 923441865}
-  - component: {fileID: 923441864}
-  - component: {fileID: 923441863}
-  m_Layer: 5
-  m_Name: UI Camera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!81 &923441863
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 923441862}
-  m_Enabled: 0
---- !u!92 &923441864
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 923441862}
-  m_Enabled: 1
---- !u!124 &923441865
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 923441862}
-  m_Enabled: 1
---- !u!20 &923441866
-Camera:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 923441862}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
-  m_StereoMirrorMode: 0
---- !u!4 &923441867
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 923441862}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 540, y: 960, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &924913668
 GameObject:
   m_ObjectHideFlags: 0
@@ -4678,7 +4619,7 @@ MonoBehaviour:
   attackHeight: 0
   terrainName: 
   originPos: {x: 0, y: 0, z: 0}
-  targetPos: {x: 0, y: 0, z: 0}
+  Pos: {x: 0, y: 0, z: 0}
 --- !u!114 &962675566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5264,7 +5205,7 @@ MonoBehaviour:
   attackHeight: 0
   terrainName: 
   originPos: {x: 0, y: 0, z: 0}
-  targetPos: {x: -1000, y: 0, z: 0}
+  Pos: {x: 0, y: 0, z: 0}
 --- !u!114 &1024747532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6855,7 +6796,7 @@ MonoBehaviour:
   attackHeight: 0
   terrainName: 
   originPos: {x: 0, y: 0, z: 0}
-  targetPos: {x: -10000, y: 0, z: 0}
+  Pos: {x: 0, y: 0, z: 0}
 --- !u!114 &1338258519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7263,6 +7204,7 @@ MonoBehaviour:
   effect: 0
   info: 
   ready: 0
+  ready1: 0
   melee: 0
   side: 0
   blockRespawn: 0
@@ -7313,8 +7255,7 @@ MonoBehaviour:
   SpawnInfantry: 0
   SpawnBowmen: 0
   SpawnCavalry: 0
-  SpawnCountPlayer: 0
-  SpawnCountEnemy: 0
+  SpawnCount: 0
 --- !u!114 &1411907030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8054,6 +7995,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GridSize: 40
   multi: 0
+  timer: 0
   check: 000000
   taken: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   grid:
@@ -8471,7 +8413,7 @@ RectTransform:
   - {fileID: 1737781866}
   - {fileID: 71846930}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -8799,7 +8741,7 @@ MonoBehaviour:
   attackHeight: 0
   terrainName: 
   originPos: {x: 0, y: 0, z: 0}
-  targetPos: {x: 0, y: 0, z: 0}
+  Pos: {x: 0, y: 0, z: 0}
 --- !u!114 &1679533945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9930,7 +9872,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 679, y: -542}
+  m_AnchoredPosition: {x: 679, y: -484}
   m_SizeDelta: {x: 133.21997, y: 325.59998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1936073721
@@ -10800,7 +10742,7 @@ MonoBehaviour:
   attackHeight: 0
   terrainName: 
   originPos: {x: 0, y: 0, z: 0}
-  targetPos: {x: 0, y: 0, z: 0}
+  Pos: {x: 0, y: 0, z: 0}
 --- !u!114 &2066742082
 MonoBehaviour:
   m_ObjectHideFlags: 0
