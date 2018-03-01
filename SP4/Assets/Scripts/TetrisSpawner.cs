@@ -49,7 +49,7 @@ public class TetrisSpawner : MonoBehaviour
     {
         ScreenWidthOffset = Screen.width / 2;
         halfOffset = ScreenWidthOffset / 2;
-        
+
     }
 
     // Use this for initialization
@@ -301,12 +301,12 @@ public class TetrisSpawner : MonoBehaviour
 
         //So that it appears within canvas
         theCube.parentCube.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, true);
-                //theCube.parentCube.transform.SetParent(spawner.transform);
+        theCube.parentCube.transform.SetParent(spawner.transform);
 
         //Off set x pos base on key(index)
-        if(key == 0)
-        pil.Set(-ScreenWidthOffset + halfOffset , 0, 0);
-        else if(key==1)
+        if (key == 0)
+            pil.Set(-ScreenWidthOffset + halfOffset, 0, 0);
+        else if (key == 1)
             pil.Set(0, 0, 0);
         else
             pil.Set(ScreenWidthOffset - halfOffset, 0, 0);
@@ -395,7 +395,7 @@ public class TetrisSpawner : MonoBehaviour
                             theCube.troopName = "RedInfantry";
                         }
                     }
-                        break;
+                    break;
                 }
             case 2:
                 {
@@ -411,55 +411,59 @@ public class TetrisSpawner : MonoBehaviour
                         else
                         {
                             theSprite.sprite = troopImages[4];
-                            theCube.troopName = "RedBowmen";                                                   
+                            theCube.troopName = "RedBowmen";
                         }
                     }
                     break;
                 }
         };
 
-        //Could use raycast instead 
-        //Also cause the only thing changing is the movement function, could try to make a switch instead
-        //Trigger and entry for bottom left 
-        EventTrigger BtmLTrig = cubeOne.GetComponent<EventTrigger>();
-        EventTrigger.Entry BtmLEntry = new EventTrigger.Entry();
-        BtmLEntry.eventID = EventTriggerType.Drag;
-
-        BtmLEntry.callback.AddListener((data) =>
+        enemyGridSystem enemyGridSystem = GameObject.Find("EnemyTetrisGrid").GetComponent<enemyGridSystem>();
+        if (team == 0 || enemyGridSystem.multi)
         {
-            theCube.DragObject(theCube.partOne);
-        });
-        BtmLTrig.triggers.Add(BtmLEntry);
+            //Could use raycast instead 
+            //Also cause the only thing changing is the movement function, could try to make a switch instead
+            //Trigger and entry for bottom left 
+            EventTrigger BtmLTrig = cubeOne.GetComponent<EventTrigger>();
+            EventTrigger.Entry BtmLEntry = new EventTrigger.Entry();
+            BtmLEntry.eventID = EventTriggerType.Drag;
 
-        //Trigger and entry for bottom Right 
-        EventTrigger BtmRTrig = cubeTwo.GetComponent<EventTrigger>();
-        EventTrigger.Entry BtmREntry = new EventTrigger.Entry();
-        BtmREntry.eventID = EventTriggerType.Drag;
-        BtmREntry.callback.AddListener((data) =>
-        {
-            theCube.DragObject(theCube.partTwo);
-        });
-        BtmRTrig.triggers.Add(BtmREntry);
+            BtmLEntry.callback.AddListener((data) =>
+            {
+                theCube.DragObject(theCube.partOne);
+            });
+            BtmLTrig.triggers.Add(BtmLEntry);
 
-        //Trigger and entry for top Left 
-        EventTrigger TopLTrig = cubeThree.GetComponent<EventTrigger>();
-        EventTrigger.Entry TopLEntry = new EventTrigger.Entry();
-        TopLEntry.eventID = EventTriggerType.Drag;
-        TopLEntry.callback.AddListener((data) =>
-        {
-            theCube.DragObject(theCube.partThree);
-        });
-        TopLTrig.triggers.Add(TopLEntry);
+            //Trigger and entry for bottom Right 
+            EventTrigger BtmRTrig = cubeTwo.GetComponent<EventTrigger>();
+            EventTrigger.Entry BtmREntry = new EventTrigger.Entry();
+            BtmREntry.eventID = EventTriggerType.Drag;
+            BtmREntry.callback.AddListener((data) =>
+            {
+                theCube.DragObject(theCube.partTwo);
+            });
+            BtmRTrig.triggers.Add(BtmREntry);
 
-        //Trigger and entry for top Right 
-        EventTrigger TopRTrig = cubeFour.GetComponent<EventTrigger>();
-        EventTrigger.Entry TopREntry = new EventTrigger.Entry();
-        TopREntry.eventID = EventTriggerType.Drag;
-        TopREntry.callback.AddListener((data) =>
-        {
-            theCube.DragObject(theCube.partFour);
-        });
-        TopRTrig.triggers.Add(TopREntry);
+            //Trigger and entry for top Left 
+            EventTrigger TopLTrig = cubeThree.GetComponent<EventTrigger>();
+            EventTrigger.Entry TopLEntry = new EventTrigger.Entry();
+            TopLEntry.eventID = EventTriggerType.Drag;
+            TopLEntry.callback.AddListener((data) =>
+            {
+                theCube.DragObject(theCube.partThree);
+            });
+            TopLTrig.triggers.Add(TopLEntry);
+
+            //Trigger and entry for top Right 
+            EventTrigger TopRTrig = cubeFour.GetComponent<EventTrigger>();
+            EventTrigger.Entry TopREntry = new EventTrigger.Entry();
+            TopREntry.eventID = EventTriggerType.Drag;
+            TopREntry.callback.AddListener((data) =>
+            {
+                theCube.DragObject(theCube.partFour);
+            });
+            TopRTrig.triggers.Add(TopREntry);
+        }
 
         //Rotate the cubes back if is enemy (event trigger will not trigger if this is not done for enemy)
         if (team == 1)

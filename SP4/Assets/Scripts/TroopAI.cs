@@ -271,7 +271,6 @@ public class TroopAI : MonoBehaviour {
                     }
                     if (!collided)
                     {
-                        Debug.Log(Pos);
                     Pos += hello * speed;
 
                     }
