@@ -9650,7 +9650,7 @@ MonoBehaviour:
   NeutralZone: {fileID: 1642834814}
   healthTexture: {fileID: 1974022535733052, guid: 4ec6f150674a2584fb95fac40a8969cf,
     type: 2}
-  PaperBg: {fileID: 0}
+  PaperBg: {fileID: 21300000, guid: 23216051f7ba81f4ea7ffadf0cd8dad6, type: 3}
   NeutralZoneTerrainType: 
 --- !u!224 &1695982236
 RectTransform:
