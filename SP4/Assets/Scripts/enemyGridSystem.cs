@@ -64,7 +64,7 @@ public class enemyGridSystem : MonoBehaviour
         CanvasScale = GameObject.FindGameObjectWithTag("Canvas").transform.localScale;
         theTetrisSpawner = GameObject.Find("EventSystem").GetComponent<TetrisSpawner>();
         EnemyHealth = GameObject.Find("Enemy").GetComponent<HealthSystem>();
-        Debug.Assert(theTetrisSpawner != null);
+        //Debug.Assert(theTetrisSpawner != null);
 
         RectTransform objectRectTransform = thisCanvas.GetComponent<RectTransform>();
         Vector2 Grid0Pos = new Vector2(objectRectTransform.transform.position.x + (0.5f * (col - 1) * tileWidth), objectRectTransform.transform.position.y + ((row * tileHeight)) + (2 * (tileHeight)));
@@ -1256,7 +1256,7 @@ public class enemyGridSystem : MonoBehaviour
                     {
                         UnSetIsGreyOut(x + numRow * 10);
                         SetIsGreyOut(x + (numRow - 1) * 10);
-                        Debug.Log("giggy1");
+                        //Debug.Log("giggy1");
                     }
             }
         }
@@ -1297,7 +1297,7 @@ public class enemyGridSystem : MonoBehaviour
             }
             else
             {
-                Debug.Log(timer);
+                //Debug.Log(timer);
                 timer++;
             }
         }
@@ -1560,7 +1560,7 @@ public class enemyGridSystem : MonoBehaviour
                             }
                             else
                             {
-                                Debug.Log("choochoo");
+                                //Debug.Log("choochoo");
                                 theTetrisSpawner.enemyList[i].partTwo.MovePosition(grid[index].transform.position);
                             }
                             break;

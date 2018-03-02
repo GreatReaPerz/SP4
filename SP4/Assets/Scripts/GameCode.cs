@@ -920,7 +920,7 @@ public class GameCode : MonoBehaviour {
                                 if(melee)
                                 {
                                     troop.range = 100 * canvasLocalScale.y;
-                                    Debug.Log("chkeck");
+                                    //Debug.Log("chkeck");
                                 }
                                 else
                                 {

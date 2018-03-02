@@ -15,7 +15,7 @@ public class BaseHealthRestore : UpgradesButton {
     {
         if (ThePlayer.GetComponent<InGameCash>().addAmount(-getCostOfUpgrade()))
         {
-            Debug.Log("Increasing Health");
+            //Debug.Log("Increasing Health");
             ThePlayer.GetComponent<HealthSystem>().addHealth(1);
         }
     }

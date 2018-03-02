@@ -55,7 +55,7 @@ public class GridSystem : MonoBehaviour {
         theTetrisSpawner = GameObject.Find("EventSystem").GetComponent<TetrisSpawner>();
         PlayerHealth = GameObject.Find("Player").GetComponent<HealthSystem>();
         
-        Debug.Assert(theTetrisSpawner != null);
+        //Debug.Assert(theTetrisSpawner != null);
 
         CanvasScale = GameObject.FindGameObjectWithTag("Canvas").transform.localScale;
 
@@ -174,7 +174,7 @@ public class GridSystem : MonoBehaviour {
                  && Input.mousePosition.y < grid[0].transform.position.y - scaledTileHeight && Input.mousePosition.y > grid[gridSize - 1].transform.position.y + scaledTileHeight)
                 {
                     mouse = true;
-                    Debug.Log("hello");
+                    //Debug.Log("hello");
                 }
                 if (InGridCheck(theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject]) && !theTetrisSpawner.playerList[theTetrisSpawner.IndexofPlayerObject].returning && !mouse)
                 {
@@ -521,7 +521,7 @@ public class GridSystem : MonoBehaviour {
                 {
                     UnSetIsGreyOut(x + numRow * 10);
                     SetIsGreyOut(x + (numRow - 1) * 10);
-                    Debug.Log("giggy1");
+                    //Debug.Log("giggy1");
                 }
             }
         }

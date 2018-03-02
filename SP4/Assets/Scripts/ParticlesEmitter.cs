@@ -16,14 +16,14 @@ public class ParticlesEmitter : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            Debug.Log("A pressed");
+            //Debug.Log("A pressed");
             theParticles = Instantiate(theParticles, transform.position, Quaternion.identity);
             theParticles.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, true);
             theParticles.Play();
         }
         if(theParticles.isPlaying)
         {
-            Debug.Log("Playing");
+            //Debug.Log("Playing");
         }
     }
 }

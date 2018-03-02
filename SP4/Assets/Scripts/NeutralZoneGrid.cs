@@ -32,8 +32,8 @@ public class NeutralZoneGrid : MonoBehaviour {
         theGridSystem = GameObject.Find("PlayerTetrisGrid").GetComponent<GridSystem>();
         theEnemyGridSystem = GameObject.Find("EnemyTetrisGrid").GetComponent<enemyGridSystem>();
 
-        Debug.Assert(theGridSystem != null);
-        Debug.Assert(theEnemyGridSystem != null);
+        //Debug.Assert(theGridSystem != null);
+        //Debug.Assert(theEnemyGridSystem != null);
 
         //Calculate the number of possible rows the canvas can hold
         //PossibleRowTilesinCanvas = (uint)(thisCanvas.GetComponent<RectTransform>().rect.height / GridSystem.tileHeight);

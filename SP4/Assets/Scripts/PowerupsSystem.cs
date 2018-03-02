@@ -49,8 +49,8 @@ public class PowerupsSystem : MonoBehaviour
         theGridSystem = GameObject.Find("PlayerTetrisGrid").GetComponent<GridSystem>();
         theEnemyGridSystem = GameObject.Find("EnemyTetrisGrid").GetComponent<enemyGridSystem>();
 
-        Debug.Assert(theGridSystem != null);
-        Debug.Assert(theEnemyGridSystem != null);
+        //Debug.Assert(theGridSystem != null);
+        //Debug.Assert(theEnemyGridSystem != null);
         SampleImage.enabled = false;
         
         CreatePowerups();

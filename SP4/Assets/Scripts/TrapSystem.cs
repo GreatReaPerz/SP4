@@ -43,11 +43,11 @@ public class TrapSystem : MonoBehaviour {
     void Start()
     {
         theGridSystem = GameObject.Find("PlayerTetrisGrid").GetComponent<GridSystem>();
-        Debug.Assert(theGridSystem != null);
+        //Debug.Assert(theGridSystem != null);
         theEnemyGridSystem = GameObject.Find("EnemyTetrisGrid").GetComponent<enemyGridSystem>();
-        Debug.Assert(theEnemyGridSystem != null);
+        //Debug.Assert(theEnemyGridSystem != null);
         gameCanvas = GameObject.Find("GameCanvas");
-        Debug.Assert(gameCanvas != null);
+        //Debug.Assert(gameCanvas != null);
 
         //trapSelectionPanel = GameObject.Find("TrapSelectionPanel");
         //Debug.Assert(trapSelectionPanel != null);

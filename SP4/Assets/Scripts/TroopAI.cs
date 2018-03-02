@@ -237,11 +237,11 @@ public class TroopAI : MonoBehaviour {
                     for (uint j = 0; j < enemyGridSystem.GridSize; ++j)
                     {
                         float yDist = enemyGridSystem.grid[j].transform.position.y - originPos.y;
-                        Debug.Log("TEST");
+                        //Debug.Log("TEST");
 
                         if (Mathf.Abs(enemyGridSystem.grid[j].transform.position.x - originPos.x) < 20 && !enemyGridSystem.IsGreyedOut(j) && Mathf.Abs(yDist) > dist)
                         {
-                            Debug.Log("TEST");
+                            //Debug.Log("TEST");
                             dist = Mathf.Abs(yDist);
                             targetPos = enemyGridSystem.grid[j].transform.position;
                             targetIndex = j;

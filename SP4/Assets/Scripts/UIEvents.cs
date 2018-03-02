@@ -37,7 +37,7 @@ public class UIEvents : MonoBehaviour {
     //Used for buttons to Debug
     public void DebugLog(string text)
     {
-        Debug.Log(text);
+        //Debug.Log(text);
     }
 
 
