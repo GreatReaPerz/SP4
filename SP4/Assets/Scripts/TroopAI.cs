@@ -469,6 +469,7 @@ public class TroopAI : MonoBehaviour {
                         theTrap.activateTrap(this);
                         //Destroy(theTrap);
                         theTrap.isactive = false;
+                        go.SetActive(false);
                     }
                 }
                 theTrapSystem.cleanUpTraps();
