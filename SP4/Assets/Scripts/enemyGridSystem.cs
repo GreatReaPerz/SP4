@@ -780,8 +780,8 @@ public class enemyGridSystem : MonoBehaviour
                     //FirstTetrisBlock.transform.position = grid[objectIndex].transform.position;
                     bool mouse = false;
 
-                    if (Input.mousePosition.x > grid[0].transform.position.x - halfTileWidth - 50 || Input.mousePosition.x < grid[col - 1].transform.position.x + halfTileWidth + 50
-                     && Input.mousePosition.y > grid[0].transform.position.y - halfTileHeight - 50 && Input.mousePosition.y < grid[gridSize - 1].transform.position.y + halfTileHeight + 50)
+                    if (Input.mousePosition.x < grid[0].transform.position.x - scaledTileWidth || Input.mousePosition.x > grid[col - 1].transform.position.x + scaledTileWidth
+                     && Input.mousePosition.y < grid[0].transform.position.y - scaledTileHeight && Input.mousePosition.y > grid[gridSize - 1].transform.position.y + scaledTileHeight)
                     {
                         mouse = true;
                     }
@@ -855,8 +855,8 @@ public class enemyGridSystem : MonoBehaviour
                         };
                         for (int j = 0; j < gridSize; ++j)
                         {
-                            if (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partOne.transform.position.x - grid[j].transform.position.x) < 50
-                                && (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partOne.transform.position.y - grid[j].transform.position.y) < 50))
+                            if (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partOne.transform.position.x - grid[j].transform.position.x) < 10 * CanvasScale.x
+                                && (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partOne.transform.position.y - grid[j].transform.position.y) < 10 * CanvasScale.x))
                             {
                                 if (taken[j])
                                 {
@@ -864,8 +864,8 @@ public class enemyGridSystem : MonoBehaviour
                                     // theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].btmLeft.position = theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].origin;
                                 }
                             }
-                            if (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partTwo.transform.position.x - grid[j].transform.position.x) < 50
-                                && (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partTwo.transform.position.y - grid[j].transform.position.y) < 50))
+                            if (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partTwo.transform.position.x - grid[j].transform.position.x) < 10 * CanvasScale.x
+                                && (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partTwo.transform.position.y - grid[j].transform.position.y) < 10 * CanvasScale.x))
                             {
                                 if (taken[j])
                                 {
@@ -873,8 +873,8 @@ public class enemyGridSystem : MonoBehaviour
                                     //theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].btmLeft.position = theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].origin;
                                 }
                             }
-                            if (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partThree.transform.position.x - grid[j].transform.position.x) < 50
-                                && (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partThree.transform.position.y - grid[j].transform.position.y) < 50))
+                            if (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partThree.transform.position.x - grid[j].transform.position.x) < 10 * CanvasScale.x
+                                && (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partThree.transform.position.y - grid[j].transform.position.y) < 10 * CanvasScale.x))
                             {
                                 if (taken[j])
                                 {
@@ -882,8 +882,8 @@ public class enemyGridSystem : MonoBehaviour
                                     // theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].btmLeft.position = theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].origin;
                                 }
                             }
-                            if (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partFour.transform.position.x - grid[j].transform.position.x) < 50
-                                && (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partFour.transform.position.y - grid[j].transform.position.y) < 50))
+                            if (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partFour.transform.position.x - grid[j].transform.position.x) < 10 * CanvasScale.x
+                                && (Mathf.Abs(theTetrisSpawner.enemyList[theTetrisSpawner.IndexofEnemyObject].partFour.transform.position.y - grid[j].transform.position.y) < 10 * CanvasScale.x))
                             {
                                 if (taken[j])
                                 {
